@@ -1,0 +1,84 @@
+<!-- index.html -->
+<html>
+  <head>
+    <title>Hello React</title>
+    <script src="http://fb.me/react-0.13.0.js"></script>
+    <script src="http://fb.me/JSXTransformer-0.13.0.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+  </head>
+  <body>
+    <div id="content"></div>
+    <script type="text/jsx">
+
+function loadCommentsFromServer(url, data, callback) {
+    setTimeout(function () {
+        callback({username: 'xxx', age: 10});
+    }, 10);
+}
+
+var App = React.createClass({
+    getInitialState: function () {
+        return {data: {}};
+    },
+    handleSubmit: function (model) {
+        console.log(model);
+        //TODO
+    },
+    componentDidMount: function () {
+        loadCommentsFromServer('url', {}, function (data) {
+            this.setState({
+                data: data
+            });
+        }.bind(this));
+    },
+    render: function () {
+        return (
+            <div>
+                <Form data={this.state.data} submit={this.handleSubmit}/>
+            </div>
+        );
+    }
+});
+
+var Form = React.createClass({
+    handleSubmit: function (e) {
+        e.preventDefault();
+        this.props.submit({
+            username: this.refs.username.getDOMNode().value,
+            age: this.refs.age.getDOMNode().value
+        });
+    },
+    render: function () {
+        return (
+            <form onSubmit={this.handleSubmit}>
+                <Input type="text" placeholder="Username" value={this.props.data.username} ref="username"/>
+                <Input type="text" placeholder="Age" value={this.props.data.age} ref="age"/>
+                <button type="submit">submit</button>
+            </form>
+        );
+    }
+});
+
+
+var Input = React.createClass({
+    getInitialState: function () {
+        return {value: ''};
+    },
+    componentWillReceiveProps: function (nextProps) {
+        this.setState({value: nextProps.value});
+    },
+    handleChange: function (e) {
+        this.setState({
+            value: e.currentTarget.value
+        });
+    },
+    render: function () {
+        return <input {...this.props} value={this.state.value} onChange={this.handleChange}/>;
+    }
+});
+
+
+React.render(<App />, document.body);
+    </script>
+  </body>
+</html>

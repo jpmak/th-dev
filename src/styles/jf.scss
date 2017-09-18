@@ -1,0 +1,296 @@
+//sass style
+//-----------------------------------
+// header顶部样式 
+@charset "UTF-8";
+$yellowColor: #F5A623;
+$borderColor: #DEDEDE;
+    $redColor:#ED0E47;
+$lazzyBg:url(../images/loadbg.png) no-repeat 50% 50%;
+$bg:'../images/';
+.mt20 {
+    margin-top: .2rem
+}
+a.th-btn.th-btn-assertive.th-btn-outline {
+    background-color:   $redColor;
+    color: #fff;
+}
+.th-block{
+    background:#fff;
+}
+.pr{position: relative;}
+.th-btn.th-btn-assertive.th-btn-outline {
+    border: 1px solid   $redColor;
+    color: #E21D1D;
+}
+
+.th-btn.th-btn-outline {
+    height: .6rem;
+    padding: 0 .25rem;
+    line-height: .6rem;
+    background: 0 0;
+    border-radius: .05rem;
+}
+.th-btn.th-btn-assertive {
+    background:$redColor;
+    color: #fff;
+}
+.th-btn {
+    display: inline-block;
+    padding: 0 .25rem;
+    height: .6rem;
+    line-height: .6rem;
+    border-radius: .05rem;
+}
+.jf-record-icon {
+    display: inline-block;
+    width: .4rem;
+    height: .4rem;
+    background: url($bg+'duihuan_dingdan.png') no-repeat;
+    background-size: .4rem .4rem;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+}
+
+// 搜索样式
+@import 'jf_search';
+.jf-floor-banner .swiper-container {
+    width: 7.5rem;
+    height: 3.2rem;
+    background: $lazzyBg;
+    background-size: 2rem 2rem;
+    overflow: hidden;
+}
+.jf-floor-banner .swiper-wrapper img {
+        width: 100%;
+}
+// 积分兑换记录
+.pr{position: relative;}
+
+.jf-record {
+    width: 7.5rem;
+    height: 1.28rem;
+    background: #fff;
+    color: $yellowColor;
+    .box {
+        padding: .425rem .3rem 0;
+        vertical-align: middle;
+        .jf-left {
+            height: .43rem;
+            line-height: .43rem;
+            float: left;
+            .num {
+                   background: url($bg+'duihuan_xiangjiao.png') no-repeat;
+                background-size: .43rem .41rem;
+                padding-left: .6rem;
+                display: inline-block;
+                height: .43rem;
+                font-size: .43rem;
+                line-height: .43rem;
+            }
+        }
+        .jf-right {
+            float: right;
+            margin-top: .1rem;
+            a.record {
+                font-size: .24rem;
+                color: $yellowColor;
+                border: 1px solid $yellowColor;
+                padding: .1rem .3rem;
+                border-radius: 10rem;
+            }
+        }
+    }
+}
+
+/*兑换排行榜*/
+
+#sales-wrapper{
+    background:#fff;
+    z-index: 1;
+    width: 100%;
+    padding-top:.2rem;
+    -webkit-overflow-scrolling: touch;
+
+}
+
+#sales-wrapper ::-webkit-scrollbar{
+  display: none;
+    } 
+
+#scroller{
+    background:#fff;
+    z-index: 1;
+    width: 100%;
+    overflow-y:hidden; 
+    -webkit-overflow-scrolling: touch;
+}
+.hor-view{
+        display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+     .tag {
+    margin-left: .2rem;
+    height: .56rem;
+    line-height: .56rem;
+    font-size: .28rem;
+    font-weight: bold;
+    color: $redColor;
+    margin-right: .1rem;
+}
+
+}
+
+
+
+.jf-bsell-box {
+
+    .banner {
+        width: 7.5rem;
+        height: 1.28rem;
+        // background: url($bg+'Combined.jpg') no-repeat;
+        background-size: 7.5rem 1.28rem;
+    }
+    .banner-bottom {
+        margin-top:.2rem;
+        width: 7.5rem;
+        height: 1.6rem;
+    }
+    .list {
+        display: table;
+        table-layout: fixed;
+        white-space: nowrap;
+        padding: .0rem .2rem 0rem 0;
+
+        height: 2.2rem;
+       -webkit-overflow-scrolling: touch;
+        li {
+            width: 1.4rem;
+            height: 1.4rem;
+         
+            display: inline-block;
+            margin:0 .1rem 0 .2rem;
+            a {
+                display: block;
+            }
+            .info-img {
+                width: 1.4rem;
+                height: 1.4rem;
+                position: relative;
+                display: table-cell;
+                text-align: center;
+                vertical-align: middle;
+                // padding: .4rem .4rem .2rem;
+                text-align: center;
+                background-color: #fff;
+                img {
+                    max-width: 1.4rem;
+                    max-height: 1.4 rem;
+                    vertical-align: middle;
+                    text-align: center;
+                }
+                :after {
+                    content: '';
+                    width: 0;
+                    height: 100%;
+                    display: inline-block;
+                    vertical-align: middle;
+                }
+                .t1 {
+                    background: url($bg+'duihuan_top1.png') no-repeat;
+                }
+                .t2 {
+                    background: url($bg+'duihuan_top2.png') no-repeat;
+                  
+                }
+                .t3 {
+                    background: url($bg+'duihuan_top3.png') no-repeat;
+                }
+                .top {
+                    width: .64rem;
+                    height: .64rem;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                      border:0;
+                    background-size: .64rem .64rem;
+                }
+            }
+            .info-bar {
+                // padding: 0 .28rem 0;
+                overflow: hidden;
+                   width: 1.4rem;
+                background-color: #fff;
+                .pro-title {
+                 
+                    font-size: .28rem;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    color: #333;
+
+                }
+                .e-numb {
+                    color: $yellowColor;
+                    font-size: .18rem;
+                    text-align: left;
+                    em {
+                        font-weight: bold;
+                        font-size: .4rem;
+                        // padding-right: .08rem;
+                    }
+            
+                    
+                }
+            }
+        }
+    }
+}
+/*底部导航*/
+.nav-tab{
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+    width: 100%;
+    height: 1rem;
+    z-index: 199;
+
+    border-top: 1px solid #EEE;
+    .hor-view{
+        display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    background: #fff;
+
+    a {
+        color: #353d44;
+            position: relative;
+            flex:1;
+    display: block;
+line-height:.7rem;
+margin:.15rem 0;
+    height: .7rem;
+    text-align: center;
+    border-right:1px dashed $borderColor;
+    } 
+     a:last-child { 
+    border-right:0; 
+}
+span{
+
+}
+    .cur span {
+    color: #F5A623;
+}
+    }
+}
+
+/*积分分类*/
+@import 'brand';
+/*详情页面*/
+@import 'detail';
