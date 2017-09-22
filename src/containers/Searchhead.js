@@ -78,7 +78,8 @@ class Searchhead extends React.Component {
         this.refs.getarr.funStoreHistory(e)
     }
     historyPush(e) {
-        this.props.history.push('/search/' + e)
+        console.log(1);
+        this.props.history.push('/Exchange-index.html/search/' + e)
     }
     pushValue(e) {
         this.setState({
@@ -100,8 +101,6 @@ class Searchhead extends React.Component {
     funloadHistory() {
         if (window.localStorage.searchhistory) {
             this.props.dispatch(getKeyword(this.searchMsg[0]));
-            // 
-            // this.props.dispatch(getKeyword(this.props.match.params.keyword))
         }
     }
     componentWillMount() {
@@ -111,7 +110,6 @@ class Searchhead extends React.Component {
             this.setState({
                 searchMsgStatus: true
             });
-            // this.searchhistory_ev = true;
         }
     }
     componentDidMount(e) {
@@ -234,20 +232,8 @@ class Searchhead extends React.Component {
             this.setState({
                 searchMsgStatus: 1
             });
-
             this.keywordClick(nextProps.match.params.keyword)
         }
-        // if (nextProps.match.params.keyword !== this.props.match.params.keyword) {
-        //     this.searchNum();
-        //     this.setState({
-        //         searchMsgStatus: 1
-        //     });
-
-        //     this.keywordClick(nextProps.match.params.keyword)
-        // }
-        // if (nextProps.match.params.id !== this.props.match.params.id) {
-        //     this.cate_idClick(nextProps.match.params.id)
-        // }
     }
 
     render() {
@@ -273,7 +259,6 @@ class Searchhead extends React.Component {
                 <div className="th-search-shadow"></div>
          <GobackUp />
         <SearchBtn funStoreHistory={this.funStoreHistory.bind(this)} value={this.state.value}/>
-        { /*<a className="search-btn" onClick={this._handleClick.bind(this)}>搜索</a>*/ }
                     <div className="wbox search-bar" >
                     <i className="th-search-iconbtn"></i>
         <DelValue handleDel={this.clearValue.bind(this)}/>

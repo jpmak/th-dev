@@ -67,7 +67,7 @@ class SalesWrapper extends React.Component {
             }
             return (
 
-                <li  key={index} onClick={_this.handleClick.bind(_this,goods.goods_name,goods.item_price,goods.list_image)}><Link to={'/product/'+goods.item_id} className="upItem" data-id={goods.item_id}  ><div className="info-img"><div className={sales_top}></div>
+                <li  key={index} onClick={_this.handleClick.bind(_this,goods.goods_name,goods.item_price,goods.list_image)}><Link to={'/Exchange-index.html/product/'+goods.item_id} className="upItem" data-id={goods.item_id}  ><div className="info-img"><div className={sales_top}></div>
                 <img alt='' src={goods.list_image}  />
                 </div><div className="info-bar"><div className="e-numb"><span className="e-price"><em>{goods.item_price} </em>积分</span></div></div></Link> </li>
 

@@ -5,7 +5,7 @@ import {
 class SortsBtn extends React.Component {
 	render() {
 		return (
-			<Link to={'/list'} className="class sorts" ></Link>
+			<Link to={'/Exchange-index.html/list'} className="class sorts" ></Link>
 		)
 	}
 }

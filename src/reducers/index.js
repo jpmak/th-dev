@@ -8,8 +8,11 @@ import MsgDetailReducer from "./detail.js";
 
 
 
-
 const initState = {
+  userStatus: 0, // 登录状态
+  userMoney: 0, //惠积分
+  userBuy: 0, //购物积分
+  UserTourism: 0, //旅游积分
   loadingStatus: 1, // 首屏加载状态
   pageStatus: 1, //返回状态标识
   bannerItems: [], // banner列表,
@@ -24,14 +27,25 @@ const initState = {
   pullDownStatus: 4, //下加载状态
   moveWidths: 0, //块状移动长度
   liWidth: 0 //块状长度
-
-
 };
 
 const APP_RESTORE_COMPONENT_reducer = (state, action) => {
   // 计算一下
   return state;
 }
+
+
+const FETCHUSERINFO_SUCCESS_reducer = (state, action) => {
+  return Object.assign({}, state, {
+    userStatus: action.userStatus,
+    userMoney: action.userMoney,
+    userBuy: action.userBuy,
+    UserTourism: action.UserTourism,
+
+  });
+  return state;
+}
+
 
 const FETCHBANNER_SUCCESS_reducer = (state, action) => {
   return Object.assign({}, state, {
@@ -129,6 +143,8 @@ export const MsgAppReducer = (state = initState, action) => {
       return APP_RESTORE_COMPONENT_reducer(state, action);
     case consts.UPDATE_CATEID_STATUS:
       return UPDATE_CATEID_STATUS_reducer(state, action);
+    case consts.FETCHUSERINFO_SUCCESS:
+      return FETCHUSERINFO_SUCCESS_reducer(state, action);
     case consts.FETCHBANNER_SUCCESS:
       return FETCHBANNER_SUCCESS_reducer(state, action);
     case consts.FETCHSALSE_SUCCESS:

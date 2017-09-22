@@ -92,7 +92,7 @@ class Searchhead extends React.Component {
         this.refs.getarr.funStoreHistory(e)
     }
     historyPush(e) {
-        this.props.history.push('/search/' + e)
+        this.props.history.push('/Exchange-index.html/search/' + e)
     }
     pushValue(e) {
         this.setState({

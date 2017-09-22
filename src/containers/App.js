@@ -2,6 +2,8 @@ import React from 'react';
 import {
 	connect
 } from 'react-redux'
+import $ from 'jquery';
+
 import TopNav from '../components/TopNav';
 import SearchBox from '../components/SearchBox';
 import SlickBanner from '../components/SlickBanner';
@@ -25,39 +27,19 @@ import {
 	detailInit,
 } from '../actions/detail'
 
-// import {
-// 	bindActionCreators
-// } from 'redux'
+
 
 class App extends React.Component {
 	componentWillMount() {
-		this.props.dispatch(updateLoadingStatus(1));
+		this.props.dispatch(updateLoadingStatus(1)); //清空搜索status
 		this.props.dispatch(tryRestoreComponent());
-
-		// fetch('/wap/?g=WapSite&c=Exchange&a=loginExchange', {
-		// 	method: 'POST',
-		// 	headers: {
-		// 		"Content-Type": "application/x-www-form-urlencoded"
-		// 	}
-		// })
-
-
 	}
 	componentDidMount() {
-		// fetch('/wap/?g=WapSite&c=Exchange&a=user_info', {
-		// 	method: 'POST',
-		// 	headers: {
-		// 		"Content-Type": "application/x-www-form-urlencoded"
-		// 	}
-		// })
+		console.log(this.props.loadingStatus);
 		if (this.props.loadingStatus === 1) {
 			this.props.dispatch(beginRefresh())
 		}
 
-	}
-	componentWillReceiveProps(nextProps) {}
-	tryRestoreComponent() {
-		// this.props.dispatch(tryRestoreComponent())
 	}
 
 	get_cate_goods(index, id, page) {
@@ -86,6 +68,7 @@ class App extends React.Component {
 		this.props.dispatch(liMove(index, widths, width))
 	}
 	render() {
+		console.log(this.props.loadingStatus);
 		const {
 			loadingStatus,
 			bannerItems,
@@ -101,9 +84,9 @@ class App extends React.Component {
 			moveWidths
 		} = this.props
 		return (
-
 			<div id='AppWrap'>
 		<div id='scrollwrap' >
+			<a href="www.163.com">1111111</a>
 		<header id="headnav" >
 		<TopNav titleName = "兑换商城"	icon = "jf-record-icon" icon_link = "search.html" />
 		</header>
@@ -140,6 +123,10 @@ const mapStateToProps = state => {
 	return {
 		searchLoadingStatus: state.MsgListPageReducer.loadingStatus,
 		loadingStatus: state.MsgAppReducer.loadingStatus,
+		userStatus: state.MsgAppReducer.userStatus,
+		// userMoney: state.MsgAppReducer.userMoney,
+		// userBuy: state.MsgAppReducer.userBuy,
+		// UserTourism: state.MsgAppReducer.UserTourism,
 		bannerItems: state.MsgAppReducer.bannerItems,
 		bannerItems_2: state.MsgAppReducer.bannerItems_2,
 		cateList: state.MsgAppReducer.cateList,

@@ -19,7 +19,7 @@ class ListGoods extends React.Component {
                 let liGood = good.thcate.map(function(liThcate, index) {
                     return (
                         <li  key={index}>
-                    <Link to={'/search/'+liThcate.cate_id+'&list'} onClick={self.goodsFun.bind(self,liThcate.cate_id)}>
+                    <Link to={'/Exchange-index.html/search/'+liThcate.cate_id+'&list'} onClick={self.goodsFun.bind(self,liThcate.cate_id)}>
                     <LazyLoad   height={10} offset={10}>
                              <img  src={liThcate.cate_thumb}/>
                                    </LazyLoad>

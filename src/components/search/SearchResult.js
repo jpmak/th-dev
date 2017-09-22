@@ -58,7 +58,6 @@ class SearchResult extends React.Component {
             // this.state.arrval.unshift(e);
             arrval.unshift(e)
             if (arrval.length === 10) {
-                console.log('test');
                 arrval.pop()
             }
             this.setState({

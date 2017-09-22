@@ -131,7 +131,7 @@ class CateGoods extends React.Component {
 
                     <li  key={index} onClick={this.handleClick.bind(this,CateGood.goods_name,CateGood.item_price,CateGood.list_image)}
                      className={this.changeGoods?'add':'move'}> 
-                <Link to={'/product/'+CateGood.item_id}  className="upItem " data-id={CateGood.item_id}>
+                <Link to={'/Exchange-index.html/product/'+CateGood.item_id}  className="upItem " data-id={CateGood.item_id}>
                 <div className="info-img">
                 <LazyLoad  placeholder={<PlaceholderComponent />}>
                 <img  src={CateGood.list_image}/>

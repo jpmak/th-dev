@@ -49,7 +49,7 @@ class SearchBox extends React.Component {
 
     }
 
- 
+
 
     clearValue() {
         this.setState({
@@ -67,7 +67,8 @@ class SearchBox extends React.Component {
     }
 
     historyPush(e) {
-        this.props.history.push('/search/' + e)
+        this.props.history.push('/Exchange-index.html/search/' + e)
+
     }
     searchMsgStatus_fun(e) {
         this.setState({

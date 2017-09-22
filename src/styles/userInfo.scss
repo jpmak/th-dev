@@ -1,0 +1,46 @@
+//sass style
+//-----------------------------------
+
+@charset "UTF-8";
+// $yellowColor: #F5A623;
+// $borderColor: #DEDEDE;
+//     $redColor:#ED0E47;
+// $lazzyBg:url(../images/loadbg.png) no-repeat 50% 50%;
+// $bg:'../images/';
+.th-nav{
+    background-color: #FBFBFB;
+    border:0px dashed #FBFBFB;
+
+}
+.info-watch {
+    width: 7.5rem;
+    margin:0 auto;
+    height: .8rem;
+    padding: .2rem 0;
+    background-color: #FBFBFB;
+    li{
+    font-size: .22rem;
+    display: block;
+    float: left;
+    width: 2.4rem;
+    text-align: center;
+    border-right: 1px dashed #C6C6C6;
+    color: #353d44;
+      &:last-child {
+    border-right: 0px ;
+            }
+            p{
+    color: #353d44;
+                
+            }
+.num{
+    font-size: .39rem;
+    line-height: .5rem;
+    color: #E7940C;
+    font-weight: bold;
+
+    }
+}
+}
+
+

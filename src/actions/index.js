@@ -7,19 +7,46 @@
       };
     }
     // 发起刷新
-    export function beginRefresh() {
+    export const beginRefresh = () => {
       return (dispatch) => {
 
         // 异步网络请求
         fetchBanner(dispatch);
         fetchSalse(dispatch);
         fetchCateList(dispatch);
-
+        fetchUser(dispatch);
       }
     }
 
-    const fetchBanner = (dispatch) => {
+    export const beginUser = () => {
+      return (dispatch) => {
+        fetchUser(dispatch);
+      }
+    }
 
+
+    const fetchUser = (dispatch) => {
+      $.ajax({
+        url: '/wap/?g=WapSite&c=Exchange&a=user_info',
+        // type: 'POST',
+        dataType: 'json',
+        success: (data) => {
+
+          dispatch({
+            type: consts.FETCHUSERINFO_SUCCESS,
+            userStatus: data.status,
+            userMoney: data.info ? data.info.user_money : '',
+            userBuy: data.info ? data.info.banana : '',
+            UserTourism: (data.info) ? data.info.user_tourism : '',
+          });
+        },
+        error: () => {
+          console.log('加载失败');
+        }
+      });
+    }
+
+    const fetchBanner = (dispatch) => {
       $.ajax({
         url: '/wap/?g=WapSite&c=Exchange&a=get_index_Banner',
         type: 'POST',
@@ -30,13 +57,11 @@
             bannerItems: data.bann_top.advList,
             bannerItems_2: data.bann_foo1.advList
           });
-
         },
         error: () => {
           console.log('加载失败');
         }
       });
-
     }
 
     const fetchSalse = (dispatch) => {

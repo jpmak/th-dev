@@ -15,6 +15,8 @@ import App from './containers/App';
 import Detail from './containers/Detail';
 import Searchhead from './containers/Searchhead';
 import List from './containers/List';
+import Home from './containers/Home';
+
 
 
 import reducer from './reducers';
@@ -42,18 +44,21 @@ const store = createStore(
 	reducer,
 	applyMiddleware(...middleware)
 )
+
+
 const Jf = () => (
 	<Router>
 	<div>
-	<Route exact path="/" component={App} />
-	 <Route path="/product/:id" component={Detail}/>
+	<Route exact path="/Exchange-index.html" component={App} />
+	 <Route path="/Exchange-index.html/product/:id" component={Detail}/>
 
-	  <Route path="/search/:keyword" component={Searchhead} />
-	 <Route path="/list" component={List}/>
+	 <Route path="/Exchange-index.html/search/:keyword" component={Searchhead} />
+	 <Route path="/Exchange-index.html/list" component={List}/>
+	 <Route path="/Exchange-index.html/home/"component={Home}/>
+
 	</div>
   </Router>
 );
-
 
 
 render(
