@@ -54,8 +54,8 @@
         success: (data) => {
           dispatch({
             type: consts.FETCHBANNER_SUCCESS,
-            bannerItems: data.bann_top.advList,
-            bannerItems_2: data.bann_foo1.advList
+            bannerItems: data.bann_top?data.bann_top.advList:'',
+            bannerItems_2: data.bann_foo1?data.bann_foo1.advList:''
           });
         },
         error: () => {
