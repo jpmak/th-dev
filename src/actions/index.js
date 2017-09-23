@@ -31,13 +31,13 @@
         // type: 'POST',
         dataType: 'json',
         success: (data) => {
-
+          window.localStorage.user_info = JSON.stringify(data.status)
           dispatch({
             type: consts.FETCHUSERINFO_SUCCESS,
             userStatus: data.status,
-            userMoney: data.info ? data.info.user_money : '',
-            userBuy: data.info ? data.info.banana : '',
-            UserTourism: (data.info) ? data.info.user_tourism : '',
+            userMoney: data.buy_info ? data.buy_info.discharge_point : '',
+            userBuy: data.buy_info ? data.buy_info.point : '',
+            UserTourism: data.buy_info ? data.buy_info.tourism : '',
           });
         },
         error: () => {
@@ -73,6 +73,7 @@
         })
         .then((res) => res.json())
         .then((data) => {
+
           dispatch({
             type: consts.FETCHSALSE_SUCCESS,
             salesItems: data.goods_list

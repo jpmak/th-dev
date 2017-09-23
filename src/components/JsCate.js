@@ -116,7 +116,7 @@ class JsCate extends React.Component {
     componentWillReceiveProps(nextProps) {
 
         if (nextProps.loadingStatus !== this.props.loadingStatus) {
-            console.log('test');
+
             let nav_w = $('.app-scroller li').first().width();
             this.props.liMove(0, 0, nav_w)
         }

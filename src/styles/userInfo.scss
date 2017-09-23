@@ -18,6 +18,8 @@
     height: .8rem;
     padding: .2rem 0;
     background-color: #FBFBFB;
+    border-bottom: 1px solid #C6C6C6;
+
     li{
     font-size: .22rem;
     display: block;
@@ -41,6 +43,16 @@
 
     }
 }
+}
+.infoTitle{
+    font-size: .28rem;
+    padding-left: .28rem;
+    color:#E42C2F;
+    height: .8rem;
+    display: block;
+    background-color: #fff;
+
+    line-height: .8rem;
 }
 
 

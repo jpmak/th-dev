@@ -35,7 +35,6 @@ class App extends React.Component {
 		this.props.dispatch(tryRestoreComponent());
 	}
 	componentDidMount() {
-		console.log(this.props.loadingStatus);
 		if (this.props.loadingStatus === 1) {
 			this.props.dispatch(beginRefresh())
 		}
@@ -68,7 +67,7 @@ class App extends React.Component {
 		this.props.dispatch(liMove(index, widths, width))
 	}
 	render() {
-		console.log(this.props.loadingStatus);
+
 		const {
 			loadingStatus,
 			bannerItems,

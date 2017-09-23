@@ -5,6 +5,7 @@ import * as consts from "../consts/ActionTypes";
 import MsgListPageReducer from "./search.js";
 import MsgListReducer from "./list.js";
 import MsgDetailReducer from "./detail.js";
+import MsgHomeReducer from "./home.js";
 
 
 
@@ -170,6 +171,8 @@ const rootReducer = combineReducers({
   MsgListPageReducer,
   MsgListReducer,
   MsgDetailReducer,
+  MsgHomeReducer,
+
 
 })
 export default rootReducer
