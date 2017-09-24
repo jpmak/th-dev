@@ -155,7 +155,6 @@ class Searchhead extends React.Component {
     }
     backupIScrollY(e) {
         this.props.dispatch(backupIScrollY(e))
-
     }
     getKeyword(e) {
 

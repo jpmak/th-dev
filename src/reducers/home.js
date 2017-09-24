@@ -5,7 +5,8 @@ const homeInitState = {
   InfoGoodsStatus: 1, // 内容状态
   InfoGoodsItems: [], // 列表内容
   InfoGoodsPage: 0, //页数
-  pullDownStatus: 4 //下加载状态
+  pullDownStatus: 4, //下加载状态
+  y:0
 
 };
 
@@ -17,9 +18,10 @@ const INFO_RESTORE_COMPONENT_reducer = (state, action) => {
 const INFO_GOODS_SUCCESS_reducer = (state, action) => {
   let nextState = Object.assign({}, state);
 
-  nextState.InfoGoodsStatus = action.InfoGoodsStatus;
+  // nextState.InfoGoodsStatus = action.InfoGoodsStatus;
   nextState.homeLoadingStatus = 2;
-  if (action.InfoGoodsStatus) {
+  if (action.InfoGoodsItems.length>0) {
+
     if (action.InfoGoodsPage === 0) {
       // nextState.listLoadingStatus = 2;
       nextState.InfoGoodsPage = action.InfoGoodsPage + 1;
@@ -43,7 +45,7 @@ const INFO_GOODS_SUCCESS_reducer = (state, action) => {
 
 
   } else {
-    if (action.InfoGoodsPage === 0) {
+    if (action.InfoGoodsItems.length === 0) {
       nextState.InfoGoodsItems = [];
       nextState.pullDownStatus = 4;
     }
@@ -57,12 +59,25 @@ const INFO_GOODS_SUCCESS_reducer = (state, action) => {
 
 const INFO_GOODS_FAIL_reducer = (state, action) => {
   return Object.assign({}, state, {
-    listLoadingStatus: 3
+    homeLoadingStatus: 3
   });
   return state;
 }
 
-
+const HOME_UPDATE_LOADING_STATUS_reducer = (state, action) => {
+  if (state.homeLoadingStatus !== action.homeLoadingStatus) {
+    return Object.assign({}, state, {
+      homeLoadingStatus: action.nextStatus
+    });
+  }
+  return state;
+}
+const HOME_BACKUP_Y_reducer = (state, action) => {
+  return Object.assign({}, state, {
+    y: action.y
+  });
+  return state;
+}
 export const MsgHomeReducer = (state = homeInitState, action) => {
   switch (action.type) {
     case consts.INFO_RESTORE_COMPONENT:
@@ -71,6 +86,10 @@ export const MsgHomeReducer = (state = homeInitState, action) => {
       return INFO_GOODS_SUCCESS_reducer(state, action);
     case consts.INFO_GOODS_FAIL:
       return INFO_GOODS_FAIL_reducer(state, action);
+    case consts.HOME_UPDATE_LOADING_STATUS:
+      return HOME_UPDATE_LOADING_STATUS_reducer(state, action);
+          case consts.HOME_BACKUP_Y:
+      return HOME_BACKUP_Y_reducer(state, action);
 
       // 有2类action.type会进入default
       // 1) 你不关心的action，属于其他组件

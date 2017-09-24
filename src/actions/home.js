@@ -26,10 +26,12 @@
             'page': page
           },
           success: (data) => {
+
             dispatch({
               type: consts.INFO_GOODS_SUCCESS,
+              homeLoadingStatus:2,
               InfoGoodsStatus: data.status,
-              InfoGoodsItems: data.lists,
+              InfoGoodsItems: data.lists?data.lists:'',
               InfoGoodsPage: page
             });
           },
@@ -42,6 +44,18 @@
         });
       }
     }
+    export const updateHomeLoadingStatus=(nextStatus)=> {
+      return {
+        type: consts.HOME_UPDATE_LOADING_STATUS,
+        nextStatus: nextStatus
+      };
+    }
 
+        export const backupIScrollY=(y)=> {
+      return {
+        type: consts.HOME_BACKUP_Y,
+        y: y
+      };
+    }
 
     //////iscrool///////

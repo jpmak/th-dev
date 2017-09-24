@@ -1,6 +1,8 @@
 import React from 'react';
 import LazyLoad from 'react-lazyload';
 import $ from 'jquery';
+import LoadingLayer from '../../components/LoadingLayer/LoadingLayer';
+
 import PlaceholderComponent from './../public/Placeholder';
 
 import {
@@ -82,10 +84,27 @@ class InfoGoods extends React.Component {
 
     }
 
-
+        onRetryLoading() {
+        this.props.beginRefresh();
+    }
     handleClick(goods_name, item_price, list_image) {
         this.props.detailData(goods_name, item_price, list_image)
     }
+
+        renderLoading() {
+        let outerStyle = {
+            height: window.innerHeight/2
+        };
+        return (
+            <div>
+                <LoadingLayer outerStyle={outerStyle} onRetry={this.onRetryLoading.bind(this)}
+                    loadingStatus={this.props.homeLoadingStatus}
+                />
+            </div>
+        );
+    }
+
+
     renderPage() {
         let bodyBox = document.getElementById('root')
         let InfoGoodList = [];
@@ -111,9 +130,9 @@ class InfoGoods extends React.Component {
                 )
             }, this)
         }
-        // else if (this.props.pageStatus == 0 && CateGoods == 0) {
-        //     CateGoodList = (<div className="none-data"></div>);
-        // }
+        else if (this.props.InfoGoodsPage == 0 && InfoGoods == 0) {
+            InfoGoodList = (<div className="none-data"></div>);
+        }
 
         return (
             <div className="app-pd-wp"  style={{background:'#fff',paddingBottom:'0'}}>
@@ -129,8 +148,21 @@ class InfoGoods extends React.Component {
 
 
     render() {
-        console.log(this.props.InfoGoods);
-        return this.renderPage()
+        console.log(this.props.homeLoadingStatus)
+      let renderHtml = [];
+           if (this.props.homeLoadingStatus !== 2) {
+            renderHtml = this.renderLoading();
+        } else {
+
+            renderHtml = this.renderPage();
+
+        }
+        return(
+            <div>
+               {renderHtml} 
+            </div> 
+
+            )
     }
 
 

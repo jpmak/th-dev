@@ -13,7 +13,7 @@
     }
 
     const fetchListNav = (dispatch, getState) => {
-      fetch('/wap/?g=WapSite&c=Exchange&a=get_canBuy_goods', {
+      fetch('/wap/?g=WapSite&c=Exchange&a=get_cate_list', {
           method: 'POST',
           headers: {
             "Content-Type": "application/x-www-form-urlencoded"
@@ -85,6 +85,11 @@
       };
     }
 
+      export const backupY=(y)=> {
+      return {
+        type: consts.LIST_BACKUP_Y,
+        y: y
+      };
+    }
 
 
-    //////iscrool///////

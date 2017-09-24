@@ -8,7 +8,6 @@ import $ from 'jquery';
 
 import TopNav from '../components/TopNav';
 import Goback from '../components/public/Goback';
-import LoadingLayer from '../components/LoadingLayer/LoadingLayer';
 import InfoGoods from '../components/info/InfoGoods';
 
 import {
@@ -20,20 +19,27 @@ import {
 import {
     InfoTryRestoreComponent,
     beginRefresh,
-    fetchInfoGoods
+    fetchInfoGoods,
+    updateHomeLoadingStatus,
+    backupIScrollY
 
 } from '../actions/home'
 
 class Home extends React.Component {
-
+    constructor(props) {
+        super(props);
+        this.scrollTop=0;
+        this.homehandleScroll = this.homehandleScroll.bind(this);
+    };
     componentWillMount() {
-
+console.log(this.props.y)
         let p = new Promise(function(resolve, reject) {});
 
         if (window.localStorage.user_info != 1) {
-            p.then(this.props.history.push('/Exchange-index.html/'))
-                .then(window.location.href = "http://www.thgo8.me/wap/User-login-1.html")
+            p.then(this.props.history.push('/Exchange-index.html/login/home/'))
+                // .then(window.location.href = "http://www.thgo8.me/wap/User-login-1.html")
         } else {
+
             this.props.dispatch(InfoTryRestoreComponent());
         }
 
@@ -48,8 +54,9 @@ class Home extends React.Component {
     }
     componentDidMount() {
 
-        console.log(this.props.userStatus);
-
+        window.addEventListener('scroll', this.homehandleScroll);
+       
+       console.log(this.props.y)
         let p = new Promise(function(resolve, reject) {});
         // if (window.localStorage.user_info != 1) {
         //     p.then(this.props.dispatch(beginUser()))
@@ -62,6 +69,8 @@ class Home extends React.Component {
         }
         if (this.props.homeLoadingStatus === 1) {
             this.props.dispatch(beginRefresh())
+        }else{
+                        window.scrollTo(0,this.props.y)
         }
 
 
@@ -75,8 +84,46 @@ class Home extends React.Component {
             }
             // window.location.href = "http://www.thgo8.me/wap/User-login-1.html";
         }
-        //search
 
+            componentWillUnmount() {
+
+        window.removeEventListener('scroll', this.homehandleScroll);
+
+
+
+
+        if (this.props.homeLoadingStatus === 2) { // 首屏成功刷出，则备份y
+        this.props.dispatch(backupIScrollY(this.scrollTop))
+         
+        }
+      
+    }
+    homehandleScroll(){
+
+        let scrollTop = this.getScrollTop(); //滚动条滚动高度
+       this.scrollTop=scrollTop
+
+
+    }
+        getScrollTop() {
+        var scrollTop = 0;
+        if (document.documentElement && document.documentElement.scrollTop) {
+            scrollTop = document.documentElement.scrollTop;
+        } else if (document.body) {
+            scrollTop = document.body.scrollTop;
+        }
+        return scrollTop;
+    }
+       
+        //search
+beginRefresh(){
+      this.props.dispatch(updateHomeLoadingStatus(1)); // 恢复loading界面
+      this.props.dispatch(beginRefresh());
+
+}
+    backupIScrollY(e) {
+        this.props.dispatch(backupIScrollY(e))
+    }
 
     onRetryLoading() {
         // this.props.dispatch(updateListLoadingStatus(1)); // 恢复loading界面
@@ -95,21 +142,10 @@ class Home extends React.Component {
         this.props.dispatch(fetchInfoGoods(this.props.InfoGoodsPage))
 
     }
-    renderLoading() {
-        let outerStyle = {
-            height: window.innerHeight
-        };
-        return (
-            <div>
-                <LoadingLayer outerStyle={outerStyle} onRetry={this.onRetryLoading.bind(this)}
-                    loadingStatus={this.props.listLoadingStatus}
-                />
-            </div>
-        );
-    }
+   
     renderPage() {
         return (
-            <div>
+            <div id='home'>
         <TopNav titleName = "我的积分" />
 <Info userBuy={this.props.userBuy}  userMoney={this.props.userMoney} UserTourism={this.props.UserTourism}/>
                <div className='w'>
@@ -117,7 +153,7 @@ class Home extends React.Component {
    我可兑换
    </div>
 
-        <InfoGoods InfoGoodsPage={this.props.InfoGoodsPage} InfoGoods={this.props.InfoGoodsItems} detailData={this.detailData.bind(this)} pullDownStatus={this.props.pullDownStatus} changeGoods={this.changeGoods.bind(this)}/>
+        <InfoGoods homeLoadingStatus={this.props.homeLoadingStatus} beginRefresh={this.beginRefresh.bind(this)} InfoGoodsPage={this.props.InfoGoodsPage} InfoGoods={this.props.InfoGoodsItems} detailData={this.detailData.bind(this)} pullDownStatus={this.props.pullDownStatus} changeGoods={this.changeGoods.bind(this)}/>
    </div>
 
 </div>)
@@ -127,8 +163,7 @@ class Home extends React.Component {
     render() {
         let p = new Promise(function(resolve, reject) {});
         console.log(this.props.homeLoadingStatus);
-        console.log(this.props.InfoGoodsItems);
-        console.log(this.props.InfoGoodsStatus);
+  
 
 
         console.log('render=  ' + this.props.userStatus);
@@ -200,6 +235,7 @@ const mapStateToProps = state => {
         InfoGoodsPage: state.MsgHomeReducer.InfoGoodsPage,
         InfoGoodsItems: state.MsgHomeReducer.InfoGoodsItems,
         pullDownStatus: state.MsgHomeReducer.pullDownStatus,
+        y:state.MsgHomeReducer.y
 
 
     }

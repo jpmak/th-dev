@@ -7,7 +7,8 @@ const listInitState = {
   pushIndex: 0, //导航ID
   goodStatus: 1, // 内容状态
   goodItems: [], // 列表内容
-  changeLoading: 1 //列表加载状态
+  changeLoading: 1, //列表加载状态
+  y:0//goods局部滚动条
 };
 
 const LIST_RESTORE_COMPONENT_reducer = (state, action) => {
@@ -76,7 +77,12 @@ const LIST_UPDATE_LOADING_STATUS_reducer = (state, action) => {
   return state;
 }
 
-
+const LIST_BACKUP_Y_reducer = (state, action) => {
+  return Object.assign({}, state, {
+    y: action.y
+  });
+  return state;
+}
 export const MsgListReducer = (state = listInitState, action) => {
   switch (action.type) {
     case consts.LIST_RESTORE_COMPONENT:
@@ -93,6 +99,9 @@ export const MsgListReducer = (state = listInitState, action) => {
       return LIST_GOODS_FAIL_reducer(state, action);
     case consts.LIST_UPDATE_LOADING_STATUS:
       return LIST_UPDATE_LOADING_STATUS_reducer(state, action);
+
+          case consts.LIST_BACKUP_Y:
+      return LIST_BACKUP_Y_reducer(state, action);
       // 有2类action.type会进入default
       // 1) 你不关心的action，属于其他组件
       // 2）系统的action，例如router切换了location，redux初始化了等等

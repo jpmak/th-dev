@@ -1,4 +1,5 @@
 import React from 'react';
+import $ from 'jquery';
 
 
 
@@ -19,7 +20,11 @@ class ListNav extends React.Component {
         })
         this.props.listGoods(e, id);
         this.props.changeLoading(1);
-
+        let ListGoods=document.getElementById('list-label');
+          // let top = ListGoods.scrollTop;
+          // console.log(top)
+        ListGoods.scrollTop=0;
+  
     }
     render() {
         let ListNavs = this.props.navItems;

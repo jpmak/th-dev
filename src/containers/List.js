@@ -18,6 +18,7 @@ import {
     fetchListGoods,
     beginRefresh,
     changeLoading,
+    backupY,
     updateListLoadingStatus
 } from '../actions/list'
 import {
@@ -103,6 +104,10 @@ class List extends React.Component {
         this.props.dispatch(fetchListGoods(index, id));
 
     }
+    backupY(e){
+        this.props.dispatch(backupY(e));
+
+    }
 
     changeLoading(e) {
 
@@ -130,7 +135,7 @@ class List extends React.Component {
             <div id="js-list">
         <div className="list-wrap wbox" style={{height:this.state.wrapHeight}}>
         <ListNav navItems={this.props.navItems} pushIndex={this.props.pushIndex} navStatus={this.props.navStatus} height={this.state.wrapHeight} listGoods={this.getListGoods.bind(this)} changeLoading={this.changeLoading.bind(this)}/>
-        <ListGoods goodItems={this.props.goodItems} changeLoading={this.props.changeLoading}  height={this.state.wrapHeight} goodStatus={this.props.goodStatus} goodsFun={this.funStoreHistory.bind(this)}/>
+        <ListGoods y={this.props.y} listLoadingStatus={this.props.listLoadingStatus} backupY={this.backupY.bind(this)} goodItems={this.props.goodItems} changeLoading={this.props.changeLoading}  height={this.state.wrapHeight} goodStatus={this.props.goodStatus} goodsFun={this.funStoreHistory.bind(this)}/>
         </div>
     </div>);
 
@@ -211,7 +216,8 @@ const mapStateToProps = state => {
         pushIndex: state.MsgListReducer.pushIndex,
         goodStatus: state.MsgListReducer.goodStatus,
         goodItems: state.MsgListReducer.goodItems,
-        changeLoading: state.MsgListReducer.changeLoading
+        changeLoading: state.MsgListReducer.changeLoading,
+        y:state.MsgListReducer.y
     }
 }
 
