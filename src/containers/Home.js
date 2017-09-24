@@ -31,8 +31,8 @@ class Home extends React.Component {
         this.scrollTop=0;
         this.homehandleScroll = this.homehandleScroll.bind(this);
     };
+
     componentWillMount() {
-console.log(this.props.y)
         let p = new Promise(function(resolve, reject) {});
 
         if (window.localStorage.user_info != 1) {
@@ -55,8 +55,7 @@ console.log(this.props.y)
     componentDidMount() {
 
         window.addEventListener('scroll', this.homehandleScroll);
-       
-       console.log(this.props.y)
+
         let p = new Promise(function(resolve, reject) {});
         // if (window.localStorage.user_info != 1) {
         //     p.then(this.props.dispatch(beginUser()))
@@ -64,26 +63,28 @@ console.log(this.props.y)
         // }
 
 
-        if (this.props.userStatus === 0) {
-            this.props.dispatch(beginUser())
-        }
-        if (this.props.homeLoadingStatus === 1) {
+        // if (this.props.userStatus === 0) {
+        //     this.props.dispatch(beginUser())
+        // }
+        if (this.props.homeLoadingStatus === 1||this.props.userStatus === 0) {
+              this.props.dispatch(beginUser())
             this.props.dispatch(beginRefresh())
+              
         }else{
                         window.scrollTo(0,this.props.y)
         }
 
 
     }
-    componentWillReceiveProps(nextProps) {
-            console.log(this.props.userStatus);
+    // componentWillReceiveProps(nextProps) {
+    //         console.log(this.props.userStatus);
 
-            if (nextProps.userStatus === this.props.userStatus) {
-                console.log(111111);
+    //         if (nextProps.userStatus === this.props.userStatus) {
+    //             console.log(111111);
 
-            }
-            // window.location.href = "http://www.thgo8.me/wap/User-login-1.html";
-        }
+    //         }
+    //         // window.location.href = "http://www.thgo8.me/wap/User-login-1.html";
+    //     }
 
             componentWillUnmount() {
 
@@ -162,25 +163,13 @@ beginRefresh(){
     }
     render() {
         let p = new Promise(function(resolve, reject) {});
-        console.log(this.props.homeLoadingStatus);
-  
-
-
-        console.log('render=  ' + this.props.userStatus);
-
         let renderHtml = [];
         // 首屏没有加载成功，那么均展示loading效果
-        if (this.props.userStatus === 0) {
-            {
-                // this.props.dispatch(beginUser());
-                // window.location.href = "http://www.thgo8.me/wap/User-login-1.html";
-                // window.location.href = "http://www.163.com/";
-            }
-        } else {
+      
 
             renderHtml = this.renderPage();
 
-        }
+   
         return (
             <div>
         {

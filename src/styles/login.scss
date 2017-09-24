@@ -14,6 +14,7 @@
 .button {border:none;}
 .button button{line-height: .8rem;display: inline-block;height: .8rem;padding: 0 .25rem;border-radius: .05rem;font-size: .3rem;margin: .3rem;min-width: 6.9rem;border: none;}
 .button button.registered{width:2.4rem;  margin: 0 auto; display: block;min-width: 0;}
+.button button.registered a{color:#f25d5e;}
 .button ul li{  -webkit-box-sizing: border-box}
 .button .bg-red{background:#f25d5e; color:#fff;}
 .button .bg-dark{background:#909090; color:#ccc;}

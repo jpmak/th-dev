@@ -31,7 +31,7 @@
         // type: 'POST',
         dataType: 'json',
         success: (data) => {
-          window.localStorage.user_info = JSON.stringify(data.status)
+          // window.localStorage.user_info = JSON.stringify(data.status)
           dispatch({
             type: consts.FETCHUSERINFO_SUCCESS,
             userStatus: data.status,
@@ -39,8 +39,10 @@
             userBuy: data.buy_info ? data.buy_info.point : '',
             UserTourism: data.buy_info ? data.buy_info.tourism : '',
           });
+                     window.localStorage.user_info =data.status
         },
         error: () => {
+        
           console.log('加载失败');
         }
       });

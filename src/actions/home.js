@@ -34,6 +34,7 @@
               InfoGoodsItems: data.lists?data.lists:'',
               InfoGoodsPage: page
             });
+       
           },
           error: () => {
             dispatch({

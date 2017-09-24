@@ -4,10 +4,33 @@ import './../styles/login.scss';
 import {
     connect
 } from 'react-redux'
-import TopNav from '../components/TopNav';
+import Modal from 'react-modal';
+import {
 
+    beginUser
+
+} from '../actions'
 import $ from 'jquery';
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)',
+    background:'#000',
+      opacity:'.5',
 
+    color:'#fff',
+ 
+  },
+  overlay:{
+    background:'none',
+  
+
+  }
+};
 // import {
 //     ListTryRestoreComponent,
 //     fetchListNav,
@@ -17,12 +40,54 @@ import $ from 'jquery';
 //     backupY,
 //     updateListLoadingStatus
 // } from '../actions/list'
+class TopNav extends React.Component {
 
+    static defaultProps = {
+        dis: 'none'
+    };
+    backEchange(){
+        this.props.backEchange()
+    }
+    render() {
+        return (
+            <div className="th-nav wbox ">
+            <a className="class th-nav-back" onClick={this.backEchange.bind(this)}> </a>
+          
+            <div className="th-nav-title of bg">{this.props.titleName}</div>
+            <div className="th-nav-right tr" style={{display: this.props.dis}}>
+            <a className={this.props.icon} href={this.props.icon_link}> </a>
+               {/*  <a className="jf-record-icon" href=""> </a>*/}
+            </div>
+        </div>
+        );
+    }
+}
 class Login extends React.Component {
     constructor(props) {
         super(props);
-
+            this.state = {
+      modalIsOpen: false,
+      text:''
+    };
+    this.openModal = this.openModal.bind(this);
+    // this.afterOpenModal = this.afterOpenModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
     }
+      openModal() {
+    this.setState({modalIsOpen: true},()=>{
+
+             setTimeout(this.closeModal,1000)
+    });
+  }
+
+  afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    // this.subtitle.style.color = '#f00';
+  }
+
+  closeModal() {
+    this.setState({modalIsOpen: false});
+  }
     componentWillMount() {
 
 
@@ -66,52 +131,76 @@ componentDidMount() {
         });
 
     }
+    backEchange(){
+              this.props.history.push('/Exchange-index.html/')
 
+    }
+router(){
+
+     const params = this.props.match.params
+      const router = params.router
+        if(router){
+
+             this.props.history.push('/Exchange-index.html/'+
+                router)
+        }else{
+
+            //跳转到用户主页
+              this.props.history.push('/Exchange-index.html/')
+        }
+}
 toLogin() {
     var username = $('#username').val();
-    // if (username == '') {
-    //     // layer.msg('请填写账号信息', {
-    //     //     skin: 'layui-layer-huise'
-    //     // });
-    //     return false;
-    // }
-    console.log(this.props.match.params.router)
- // this.props.history.push('/Exchange-index.html/list')
+   var pwd = $('#pwd').val();
+  
 
- this.props.history.push('/Exchange-index.html/'+this.props.match.params.router)
-      // this.props.history.push('/Exchange-index.html/login')
+    if (username == '') {
+        this.setState({
+            text:'请填写账号信息',
+        });
+        this.openModal()
+   
+        return false;
+    }
 
-    var pwd = $('#pwd').val();
-    // if (pwd == '') {
-    //     layer.msg('密码不能为空', {
-    //         skin: 'layui-layer-huise'
-    //     });
-    //     return false;
-    // }
-    // Load.show();
-    // ptsAjax({
-    //     'url': urlRoot + '?g=WapSite&c=User&a=userlogin',
-    //     'type': 'json',
-    //     'Thread': true,
-    //     'data': {
-    //         'username': username,
-    //         'pwd': pwd
-    //     },
-    //     'complete': function() {
-    //         Load.hide();
-    //     },
-    //     'error': function() {
-    //         alert('网络连接失败！');
-    //     },
-    //     success: function(data, textStatus, xhr) {
-    //         layer.msg(data.msg, {
-    //             skin: 'layui-layer-huise'
-    //         });
-    //         if (data.success) {
-    //                             location = "User-center.html";
-    //                         }
-    //     }
-    // });
+    if (pwd == '') {
+         this.setState({
+            text:'密码不能为空',
+        });
+        this.openModal()
+        return false;
+    }
+
+          $.ajax({
+          url: '/wap/?g=WapSite&c=User&a=userlogin',
+          dataType: 'json',
+          type: 'post',
+          'data': {
+            //        'username': '13516557373',
+            // 'pwd': 'a6885938a'
+            'username': username,
+            'pwd': pwd
+      },
+          success: (data) => {
+                 if (data.success) {
+                     window.localStorage.user_info = data.success;
+                     this.setState({
+            text:data.msg,
+        });
+        this.openModal()
+               this.router();
+                            }else{
+                                 this.setState({
+            text:data.msg,
+        });
+        this.openModal()
+                            }
+          },
+          error: () => {
+     console.log('加载失败')
+        }
+    })
+
 }
 
         //search
@@ -120,7 +209,7 @@ toLogin() {
     render() {
 return(  
         <div className="div1" id="bodyDiv">
-        <TopNav titleName = "登录" />
+        <TopNav titleName = "登录" backEchange={this.backEchange.bind(this)}/>
         <div id="wrapper">
             <div className="user-img">
                 <div className="img-show"><img src="http://www.thgo8.me/public/wapsite/images/face.png" alt=""/></div>
@@ -128,13 +217,13 @@ return(
             <div className="form-list login-list">
                 <ul>
                     <li className="rel">
-                        <label for="username"> 账 号 </label>
-                        <input type="text" id="username" placeholder="手机号/邮箱" autofocus="true"/>
+                        <label htmlFor="username"> 账 号 </label>
+                        <input type="text" id="username" placeholder="手机号/邮箱" />
                         <div id="del" className="delete"></div>
                     </li>
                     <li className="rel">
-                        <label for="pwd"> 密 码 </label>
-                        <input type="password" autocomplete="off" id="pwd" placeholder="登录密码"/>
+                        <label htmlFor="pwd"> 密 码 </label>
+                        <input type="password" id="pwd" placeholder="登录密码"/>
                         <div id="del" className="delete"></div>
                     </li>
                     <li className='forget' ><a href="User-forgetpwd.html" >忘记密码</a></li>
@@ -146,12 +235,20 @@ return(
                         <button id="loginform" onClick={this.toLogin.bind(this)} className="btn bg-red bg-dark">登录</button>
                     </li>
                     <li>
-                        <button className="btn bg-fff registered" onclick="location='User-registeruser.html'">立即注册</button>
+                        <button className="btn bg-fff registered" ><a href='www.thgo8.com'>立即注册</a></button>
                     </li>
                 </ul>
             </div>
         </div>
-
+     <Modal
+          isOpen={this.state.modalIsOpen}
+          onAfterOpen={this.afterOpenModal}
+          onRequestClose={this.closeModal}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
+        <p>{this.state.text}</p>
+        </Modal>
         </div>
 )
 
