@@ -20,7 +20,7 @@ const LOG_GOODS_SUCCESS_reducer = (state, action) => {
   // console.log(action.logList);
   // nextState.logGoodsStatus = action.logGoodsStatus;
   nextState.logLoadingStatus = 2;
-  console.log(action.logGoodsPage);
+
   if (action.logList.length > 0) {
     if (action.logGoodsPage === 0) {
       nextState.logGoodsPage = action.logGoodsPage + 1;
