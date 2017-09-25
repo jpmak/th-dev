@@ -39,10 +39,10 @@
             userBuy: data.buy_info ? data.buy_info.point : '',
             UserTourism: data.buy_info ? data.buy_info.tourism : '',
           });
-                     window.localStorage.user_info =data.status
+          window.localStorage.user_info = data.status
         },
         error: () => {
-        
+
           console.log('加载失败');
         }
       });
@@ -56,8 +56,8 @@
         success: (data) => {
           dispatch({
             type: consts.FETCHBANNER_SUCCESS,
-            bannerItems: data.bann_top?data.bann_top.advList:'',
-            bannerItems_2: data.bann_foo1?data.bann_foo1.advList:''
+            bannerItems: data.bann_top ? data.bann_top.advList : '',
+            bannerItems_2: data.bann_foo1 ? data.bann_foo1.advList : ''
           });
         },
         error: () => {
@@ -99,8 +99,10 @@
         .then((data) => {
           dispatch({
             type: consts.FETCHCATELIST_SUCCESS,
+            // cateId: data.cate_list[0].cate_id
             cateList: data.cate_list,
           });
+          getCateId(data.cate_list[0].cate_id)(dispatch);
           fetchCateGoods(data.cate_list[0].cate_id, 0)(dispatch);
         })
         .catch(function(e) {
@@ -135,6 +137,8 @@
     }
 
     export const getCateId = (id) => {
+      console.log(id)
+
       return (dispatch) => {
         dispatch({
           type: consts.UPDATE_CATEID_STATUS,

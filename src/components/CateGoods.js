@@ -14,6 +14,7 @@ class CateGoods extends React.Component {
         this.onClick = false;
         this.scrollTop = 0;
         this.changeGoods = true;
+        this.isDataing = false;
         // this.scrollFixed = false;
         this.handleScroll = this.handleScroll.bind(this)
         this.state = {
@@ -102,7 +103,9 @@ class CateGoods extends React.Component {
             })
         }
 
-        if ((clientHeight + scrollTop) == (scrollHeight) && this.props.pageStatus == 1) {
+
+        if ((clientHeight + scrollTop) == (scrollHeight) && this.props.pageStatus == 1 && this.isDataing === false) {
+            this.isDataing = true;
             this.props.changeGoods();
 
         }
@@ -120,6 +123,11 @@ class CateGoods extends React.Component {
     }
     handleClick(goods_name, item_price, list_image) {
         this.props.detailData(goods_name, item_price, list_image)
+    }
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.cateGoods !== this.props.cateGoods) {
+            this.isDataing = false;
+        }
     }
     renderPage() {
         let bodyBox = document.getElementById('root')

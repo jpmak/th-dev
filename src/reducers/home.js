@@ -4,9 +4,9 @@ const homeInitState = {
   homeLoadingStatus: 1, // [1]首屏加载状态 [2]非首次进去 [3]加载失败 [4]没有数据放回首页
   InfoGoodsStatus: 1, // 内容状态
   InfoGoodsItems: [], // 列表内容
-  InfoGoodsPage: 0, //页数
+  InfoGoodsPage: 1, //页数
   pullDownStatus: 4, //下加载状态
-  y:0
+  y: 0
 
 };
 
@@ -20,9 +20,9 @@ const INFO_GOODS_SUCCESS_reducer = (state, action) => {
 
   // nextState.InfoGoodsStatus = action.InfoGoodsStatus;
   nextState.homeLoadingStatus = 2;
-  if (action.InfoGoodsItems.length>0) {
+  if (action.InfoGoodsItems.length > 0) {
 
-    if (action.InfoGoodsPage === 0) {
+    if (action.InfoGoodsPage === 1) {
       // nextState.listLoadingStatus = 2;
       nextState.InfoGoodsPage = action.InfoGoodsPage + 1;
       nextState.InfoGoodsItems = action.InfoGoodsItems;
@@ -45,7 +45,8 @@ const INFO_GOODS_SUCCESS_reducer = (state, action) => {
 
 
   } else {
-    if (action.InfoGoodsItems.length === 0) {
+    if (action.InfoGoodsPage === 0) {
+      console.log('null');
       nextState.InfoGoodsItems = [];
       nextState.pullDownStatus = 4;
     }
@@ -88,7 +89,7 @@ export const MsgHomeReducer = (state = homeInitState, action) => {
       return INFO_GOODS_FAIL_reducer(state, action);
     case consts.HOME_UPDATE_LOADING_STATUS:
       return HOME_UPDATE_LOADING_STATUS_reducer(state, action);
-          case consts.HOME_BACKUP_Y:
+    case consts.HOME_BACKUP_Y:
       return HOME_BACKUP_Y_reducer(state, action);
 
       // 有2类action.type会进入default

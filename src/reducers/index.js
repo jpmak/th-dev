@@ -6,6 +6,7 @@ import MsgListPageReducer from "./search.js";
 import MsgListReducer from "./list.js";
 import MsgDetailReducer from "./detail.js";
 import MsgHomeReducer from "./home.js";
+import MsgLogReducer from "./log.js";
 
 
 
@@ -172,6 +173,7 @@ const rootReducer = combineReducers({
   MsgListReducer,
   MsgDetailReducer,
   MsgHomeReducer,
+  MsgLogReducer,
 
 
 })

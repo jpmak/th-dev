@@ -2,32 +2,32 @@ import React from 'react';
 import './../styles/login.scss';
 
 import {
-    connect
+  connect
 } from 'react-redux'
 import Modal from 'react-modal';
 import {
 
-    beginUser
+  beginUser
 
 } from '../actions'
 import $ from 'jquery';
 const customStyles = {
-  content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)',
-    background:'#000',
-      opacity:'.5',
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    background: '#000',
+    opacity: '.5',
 
-    color:'#fff',
- 
+    color: '#fff',
+
   },
-  overlay:{
-    background:'none',
-  
+  overlay: {
+    background: 'none',
+
 
   }
 };
@@ -42,15 +42,15 @@ const customStyles = {
 // } from '../actions/list'
 class TopNav extends React.Component {
 
-    static defaultProps = {
-        dis: 'none'
-    };
-    backEchange(){
-        this.props.backEchange()
-    }
-    render() {
-        return (
-            <div className="th-nav wbox ">
+  static defaultProps = {
+    dis: 'none'
+  };
+  backEchange() {
+    this.props.backEchange()
+  }
+  render() {
+    return (
+      <div className="th-nav wbox ">
             <a className="class th-nav-back" onClick={this.backEchange.bind(this)}> </a>
           
             <div className="th-nav-title of bg">{this.props.titleName}</div>
@@ -59,24 +59,26 @@ class TopNav extends React.Component {
                {/*  <a className="jf-record-icon" href=""> </a>*/}
             </div>
         </div>
-        );
-    }
+    );
+  }
 }
 class Login extends React.Component {
-    constructor(props) {
-        super(props);
-            this.state = {
+  constructor(props) {
+    super(props);
+    this.state = {
       modalIsOpen: false,
-      text:''
+      text: ''
     };
     this.openModal = this.openModal.bind(this);
     // this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
-    }
-      openModal() {
-    this.setState({modalIsOpen: true},()=>{
+  }
+  openModal() {
+    this.setState({
+      modalIsOpen: true
+    }, () => {
 
-             setTimeout(this.closeModal,1000)
+      setTimeout(this.closeModal, 1000)
     });
   }
 
@@ -86,129 +88,131 @@ class Login extends React.Component {
   }
 
   closeModal() {
-    this.setState({modalIsOpen: false});
+    this.setState({
+      modalIsOpen: false
+    });
   }
-    componentWillMount() {
+  componentWillMount() {
 
 
-    }
-componentDidMount() {
+  }
+  componentDidMount() {
     // const _self=this
     // $("#loginform").click(function() {
     //     _self.toLogin();
     // });
-        setTimeout(function() {
-        if ($('#username').val() !== '') {
-            $('#username').next().show();
-            $('#pwd').next().show();
-            $('#loginform').removeClass('bg-dark');
-        }
-        }, 10);
+    setTimeout(function() {
+      if ($('#username').val() !== '') {
+        $('#username').next().show();
+        $('#pwd').next().show();
+        $('#loginform').removeClass('bg-dark');
+      }
+    }, 10);
 
 
-        $('#username,#pwd').on('keyup', function() {
-        var uVal = $("#username").val();
-        var pVal = $("#pwd").val();
-        if (uVal !== "" && pVal !== "") {
+    $('#username,#pwd').on('keyup', function() {
+      var uVal = $("#username").val();
+      var pVal = $("#pwd").val();
+      if (uVal !== "" && pVal !== "") {
         $(this).next().show();
         $('#loginform').removeClass('bg-dark');
-        } else if (uVal == "" && pVal !== "") {
+      } else if (uVal == "" && pVal !== "") {
         $('#loginform').addClass('bg-dark');
         $('#username').next().hide();
         $('#pwd').next().show();
-        } else if (uVal !== "" && pVal == "") {
+      } else if (uVal !== "" && pVal == "") {
         $('#loginform').addClass('bg-dark');
         $('#username').next().show();
         $('#pwd').next().hide();
-        } else {
+      } else {
         $(this).next().hide();
-        }
-        });
-        $('.delete').on('click', function() {
-        $(this).prev().val("");
-        $(this).hide();
-        $('#loginform').addClass('bg-dark');
-        });
+      }
+    });
+    $('.delete').on('click', function() {
+      $(this).prev().val("");
+      $(this).hide();
+      $('#loginform').addClass('bg-dark');
+    });
 
+  }
+  backEchange() {
+    this.props.history.push('/Exchange-index.html/')
+
+  }
+  router() {
+
+    const params = this.props.match.params
+    const router = params.router
+    if (router) {
+
+      this.props.history.push('/Exchange-index.html/' +
+        router)
+    } else {
+
+      //跳转到用户主页
+      this.props.history.push('/Exchange-index.html/')
     }
-    backEchange(){
-              this.props.history.push('/Exchange-index.html/')
-
-    }
-router(){
-
-     const params = this.props.match.params
-      const router = params.router
-        if(router){
-
-             this.props.history.push('/Exchange-index.html/'+
-                router)
-        }else{
-
-            //跳转到用户主页
-              this.props.history.push('/Exchange-index.html/')
-        }
-}
-toLogin() {
+  }
+  toLogin() {
     var username = $('#username').val();
-   var pwd = $('#pwd').val();
-  
+    var pwd = $('#pwd').val();
+
 
     if (username == '') {
-        this.setState({
-            text:'请填写账号信息',
-        });
-        this.openModal()
-   
-        return false;
+      this.setState({
+        text: '请填写账号信息',
+      });
+      this.openModal()
+
+      return false;
     }
 
     if (pwd == '') {
-         this.setState({
-            text:'密码不能为空',
-        });
-        this.openModal()
-        return false;
+      this.setState({
+        text: '密码不能为空',
+      });
+      this.openModal()
+      return false;
     }
 
-          $.ajax({
-          url: '/wap/?g=WapSite&c=User&a=userlogin',
-          dataType: 'json',
-          type: 'post',
-          'data': {
-            //        'username': '13516557373',
-            // 'pwd': 'a6885938a'
-            'username': username,
-            'pwd': pwd
+    $.ajax({
+      url: '/wap/?g=WapSite&c=Login&a=checkin',
+      dataType: 'json',
+      type: 'post',
+      'data': {
+        //        'username': '13516557373',
+        // 'pwd': 'a6885938a'
+        'username': username,
+        'pwd': pwd
       },
-          success: (data) => {
-                 if (data.success) {
-                     window.localStorage.user_info = data.success;
-                     this.setState({
-            text:data.msg,
-        });
-        this.openModal()
-               this.router();
-                            }else{
-                                 this.setState({
-            text:data.msg,
-        });
-        this.openModal()
-                            }
-          },
-          error: () => {
-     console.log('加载失败')
+      success: (data) => {
+        if (data.returns) {
+          window.localStorage.user_info = data.returns;
+          this.setState({
+            text: data.msg,
+          });
+          this.openModal()
+          this.router();
+        } else {
+          this.setState({
+            text: data.msg,
+          });
+          this.openModal()
         }
+      },
+      error: () => {
+        console.log('加载失败')
+      }
     })
 
-}
+  }
 
-        //search
+  //search
 
-  
-    render() {
-return(  
-        <div className="div1" id="bodyDiv">
+
+  render() {
+    return (
+      <div className="div1" id="bodyDiv">
         <TopNav titleName = "登录" backEchange={this.backEchange.bind(this)}/>
         <div id="wrapper">
             <div className="user-img">
@@ -250,22 +254,18 @@ return(
         <p>{this.state.text}</p>
         </Modal>
         </div>
-)
+    )
 
 
-    }
+  }
 }
 
 
 
-
-
-
-
 const mapStateToProps = state => {
-    return {
-        
-    }
+  return {
+
+  }
 }
 
 

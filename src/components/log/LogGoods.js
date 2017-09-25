@@ -8,7 +8,7 @@ import PlaceholderComponent from './../public/Placeholder';
 import {
     Link
 } from 'react-router-dom'
-class InfoGoods extends React.Component {
+class LogGoods extends React.Component {
     constructor(props) {
         super(props);
         this.pullDownTips = {
@@ -78,7 +78,7 @@ class InfoGoods extends React.Component {
         let clientHeight = this.getClientHeight(); //可视区域高度
         let scrollTop = this.getScrollTop(); //滚动条滚动高度
         let scrollHeight = this.getScrollHeight(); //滚动内容高度
-        if ((clientHeight + scrollTop) == (scrollHeight) && this.props.InfoGoodsStatus !== 0 && this.isDataing === false) {
+        if ((clientHeight + scrollTop) == (scrollHeight) && this.props.LogGoodsStatus !== 0 && this.isDataing === false) {
             console.log(11)
             this.isDataing = true;
             setTimeout(this.props.changeGoods(), 100)
@@ -89,7 +89,7 @@ class InfoGoods extends React.Component {
 
     }
     componentWillReceiveProps(nextProps) {
-        if (nextProps.InfoGoods !== this.props.InfoGoods) {
+        if (nextProps.LogGoods !== this.props.LogGoods) {
             this.isDataing = false;
         }
     }
@@ -107,47 +107,58 @@ class InfoGoods extends React.Component {
         return (
             <div>
                 <LoadingLayer outerStyle={outerStyle} onRetry={this.onRetryLoading.bind(this)}
-                    loadingStatus={this.props.homeLoadingStatus}
+                    loadingStatus={this.props.logLoadingStatus}
                 />
             </div>
         );
     }
 
-
+    // <li key = {index} onClick = {this.handleClick.bind(this, LogGood.goods_name, LogGood.item_price, LogGood.list_image)}
+    //           className = {this.changeGoods ? 'add' : 'move'} >
+    //           <Link to={'/Exchange-index.html/product/'+LogGood.item_id}  className="upItem " data-id={LogGood.item_id}>
+    //       <div className="info-img">
+    //       <LazyLoad  placeholder={<PlaceholderComponent />}>
+    //       <img  src={LogGood.list_image}/>
+    //       </LazyLoad>
+    //       </div>
+    //       <div className="info-bar">
+    //       <div className="pro-title">{LogGood.goods_name}</div>
+    //       <div className="e-numb">
+    //       <span className="e-price"><em>{LogGood.item_price}</em>积分</span>
+    //       </div>
+    //       </div>
+    //       </Link> </li>
     renderPage() {
         let bodyBox = document.getElementById('root')
-        let InfoGoodList = [];
-        let InfoGoods = this.props.InfoGoods;
-        if (InfoGoods != '') {
-            InfoGoodList = InfoGoods.map((InfoGood, index) => {
+        let LogGoodList = [];
+        let LogGoods = this.props.logList ? this.props.logList : '';
+        if (LogGoods != '') {
+            LogGoodList = LogGoods.map((LogGood, index) => {
                 return (
-                    <li key = {index} onClick = {this.handleClick.bind(this, InfoGood.goods_name, InfoGood.item_price, InfoGood.list_image)}
-                    className = {this.changeGoods ? 'add' : 'move'} >
-                    <Link to={'/Exchange-index.html/product/'+InfoGood.item_id}  className="upItem " data-id={InfoGood.item_id}>
-                <div className="info-img">
-                <LazyLoad  placeholder={<PlaceholderComponent />}>
-                <img  src={InfoGood.list_image}/>
-                </LazyLoad>
-                </div>
-                <div className="info-bar">
-                <div className="pro-title">{InfoGood.goods_name}</div>
-                <div className="e-numb">
-                <span className="e-price"><em>{InfoGood.item_price}</em>积分</span>
-                </div>
-                </div>
-                </Link> </li>
+                    <li key={index}><Link to={'/Exchange-index.html/product/'+LogGood.item_id} className='upItem' data-id={LogGood.user_id}>
+
+<div className='order'>
+<div className='orderNum'><span>订单号：</span><span>{LogGood.exchange_order_number}</span></div>
+<div className='orderdate'><span>{LogGood.created}</span></div>
+</div>
+
+   <div className="info-img"><img alt="" className="lazy" src={LogGood.goods_image}/>{/*</LazyLoad>*/}</div><div className="info-bar"><div className="pro-title">{LogGood.prop_value}</div><div className="e-numb"><span className="e-price"><em>{LogGood.t_beans}</em>积分</span></div></div></Link>      </li>
+
+
+
                 )
             }, this)
-        } else if (this.props.InfoGoodsPage == 1 && InfoGoods == 0) {
-            InfoGoodList = (<div className="none-data"></div>);
+        } else if (this.props.logGoodsPage == 0 && LogGoods == 0) {
+            LogGoodList = (<div className="none-data"></div>);
         }
 
         return (
 
-            <div className="app-pd-wp"  style={{background:'#fff',paddingBottom:'0'}}>
-                <div className="app-pd-list">
+            <div className="app-pd-wp"  style={{paddingBottom:'0'}}>
+                <div className="app-pd-list hor-list order">
                    <ul >
-                {InfoGoodList}
+     
+                {LogGoodList}
                    </ul>
                     </div>
               <p ref="PullDown" id="PullDown" dangerouslySetInnerHTML={{__html:this.pullDownTips[this.props.pullDownStatus]}} />
@@ -157,9 +168,9 @@ class InfoGoods extends React.Component {
 
 
     render() {
-
+        console.log(this.props.logGoodsPage);
         let renderHtml = [];
-        if (this.props.homeLoadingStatus !== 2) {
+        if (this.props.logLoadingStatus !== 2) {
             renderHtml = this.renderLoading();
         } else {
 
@@ -177,4 +188,4 @@ class InfoGoods extends React.Component {
 
 }
 
-export default InfoGoods;
+export default LogGoods;

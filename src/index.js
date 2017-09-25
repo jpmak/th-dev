@@ -17,10 +17,7 @@ import Searchhead from './containers/Searchhead';
 import List from './containers/List';
 import Home from './containers/Home';
 import Login from './containers/Login';
-
-
-
-
+import Log from './containers/Log';
 import reducer from './reducers';
 
 import {
@@ -59,7 +56,9 @@ const Jf = () => (
 
 	 <Route path="/Exchange-index.html/search/:keyword" component={Searchhead} />
 	 <Route path="/Exchange-index.html/list" component={List}/>
-	 <Route path="/Exchange-index.html/home/"component={Home}/>
+	 <Route path="/Exchange-index.html/home/" component={Home}/>
+	 <Route path="/Exchange-index.html/log/" component={Log}/>
+
 
 	</div>
   </Router>

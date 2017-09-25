@@ -31,6 +31,7 @@ class JsCate extends React.Component {
 
     }
     handleClick(index, id) {
+
         let scrollwrap = document.getElementById('scrollwrap').offsetHeight
         let promise = new Promise(function(resolve, rejeact) {
             resolve();
@@ -43,6 +44,8 @@ class JsCate extends React.Component {
                 },
                 1000);
         })
+        this.props.UpDataCateId(id);
+
         this.props.UpDataPullUpStatus(0);
         this.onClick = true;
         var widths = 0;

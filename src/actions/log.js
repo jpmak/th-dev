@@ -1,60 +1,59 @@
     import $ from 'jquery';
 
     import * as consts from "../consts/ActionTypes";
-    export function InfoTryRestoreComponent() {
+    export function logTryRestoreComponent() {
       return {
-        type: consts.INFO_RESTORE_COMPONENT
+        type: consts.LOG_RESTORE_COMPONENT
       };
     }
 
     // 发起刷新
     export function beginRefresh() {
       return (dispatch) => {
-        fetchInfoGoods(1)(dispatch);
+        fetchLogGoods(0)(dispatch);
       }
     }
 
 
 
-    export const fetchInfoGoods = (page) => {
+    export const fetchLogGoods = (page) => {
       return (dispatch) => {
         $.ajax({
-          url: '/wap/?g=WapSite&c=Exchange&a=get_canBuy_goods',
+          url: '/wap/?g=WapSite&c=Exchange&a=get_exchange_log',
           dataType: 'json',
           type: 'post',
           'data': {
             'page': page
           },
           success: (data) => {
-
             dispatch({
-              type: consts.INFO_GOODS_SUCCESS,
-              homeLoadingStatus: 2,
-              InfoGoodsStatus: data.status,
-              InfoGoodsItems: data.lists ? data.lists : '',
-              InfoGoodsPage: page
+              type: consts.LOG_GOODS_SUCCESS,
+              logLoadingStatus: 2,
+              LogGoodsStatus: data.status,
+              logList: data.log_list ? data.log_list : '',
+              logGoodsPage: page
             });
 
           },
           error: () => {
             dispatch({
-              type: consts.INFO_GOODS_FAIL
+              type: consts.LOG_GOODS_FAIL
 
             })
           }
         });
       }
     }
-    export const updateHomeLoadingStatus = (nextStatus) => {
+    export const updateLogLoadingStatus = (nextStatus) => {
       return {
-        type: consts.HOME_UPDATE_LOADING_STATUS,
+        type: consts.LOG_UPDATE_LOADING_STATUS,
         nextStatus: nextStatus
       };
     }
 
     export const backupIScrollY = (y) => {
       return {
-        type: consts.HOME_BACKUP_Y,
+        type: consts.LOG_BACKUP_Y,
         y: y
       };
     }

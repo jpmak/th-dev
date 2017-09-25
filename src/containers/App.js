@@ -42,13 +42,18 @@ class App extends React.Component {
 	}
 
 	get_cate_goods(index, id, page) {
-		this.props.dispatch(getCateId(id))
+		// this.props.dispatch(getCateId(id))
 		this.props.dispatch(fetchCateGoods(index, id, page))
 	}
 	changeGoods(e, page) {
 		if (this.props.pullUpStatus !== 0) {
 			this.props.dispatch(fetchCateGoods(this.props.cateId, this.props.CateGoodsPage))
 		}
+	}
+	UpDataCateId(id) {
+
+		this.props.dispatch(getCateId(id))
+
 	}
 	UpDataPullUpStatus(e) {
 		this.props.dispatch(pullUpStatus(e))
@@ -67,7 +72,6 @@ class App extends React.Component {
 		this.props.dispatch(liMove(index, widths, width))
 	}
 	render() {
-
 		const {
 			loadingStatus,
 			bannerItems,
@@ -85,7 +89,7 @@ class App extends React.Component {
 		return (
 			<div id='AppWrap'>
 		<div id='scrollwrap' >
-			<a href="www.163.com">1111111</a>
+	
 		<header id="headnav" >
 		<TopNav titleName = "兑换商城"	icon = "jf-record-icon" icon_link = "search.html" />
 		</header>
@@ -105,7 +109,7 @@ class App extends React.Component {
 		</div>
 		</div>
 			<div className='w'>
-		<JsCate loadingStatus={loadingStatus} detailData={this.detailData.bind(this)} cateList={cateList} cateGoods={cateGoods} liWidth={liWidth} moveWidths={moveWidths} pushIndex={pushIndex} pageStatus={pageStatus} pullDownStatus={pullDownStatus} pullUpStatus={pullUpStatus} UpDataPullUpStatus={this.UpDataPullUpStatus.bind(this)} get_cate_goods={this.get_cate_goods.bind(this)} changeGoods={this.changeGoods.bind(this)} liMove={this.liMove.bind(this)}/>
+		<JsCate UpDataCateId={this.UpDataCateId.bind(this)}  loadingStatus={loadingStatus} detailData={this.detailData.bind(this)} cateList={cateList} cateGoods={cateGoods} liWidth={liWidth} moveWidths={moveWidths} pushIndex={pushIndex} pageStatus={pageStatus} pullDownStatus={pullDownStatus} pullUpStatus={pullUpStatus} UpDataPullUpStatus={this.UpDataPullUpStatus.bind(this)} get_cate_goods={this.get_cate_goods.bind(this)} changeGoods={this.changeGoods.bind(this)} liMove={this.liMove.bind(this)}/>
 
             </div>
 		<footer id='nav '>

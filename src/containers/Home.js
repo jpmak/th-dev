@@ -28,7 +28,7 @@ import {
 class Home extends React.Component {
     constructor(props) {
         super(props);
-        this.scrollTop=0;
+        this.scrollTop = 0;
         this.homehandleScroll = this.homehandleScroll.bind(this);
     };
 
@@ -66,47 +66,38 @@ class Home extends React.Component {
         // if (this.props.userStatus === 0) {
         //     this.props.dispatch(beginUser())
         // }
-        if (this.props.homeLoadingStatus === 1||this.props.userStatus === 0) {
-              this.props.dispatch(beginUser())
+        if (this.props.homeLoadingStatus === 1 || this.props.userStatus === 0) {
+            this.props.dispatch(beginUser())
             this.props.dispatch(beginRefresh())
-              
-        }else{
-                        window.scrollTo(0,this.props.y)
+
+        } else {
+            window.scrollTo(0, this.props.y)
         }
 
 
     }
-    // componentWillReceiveProps(nextProps) {
-    //         console.log(this.props.userStatus);
 
-    //         if (nextProps.userStatus === this.props.userStatus) {
-    //             console.log(111111);
 
-    //         }
-    //         // window.location.href = "http://www.thgo8.me/wap/User-login-1.html";
-    //     }
-
-            componentWillUnmount() {
+    componentWillUnmount() {
 
         window.removeEventListener('scroll', this.homehandleScroll);
 
 
 
-
         if (this.props.homeLoadingStatus === 2) { // 首屏成功刷出，则备份y
-        this.props.dispatch(backupIScrollY(this.scrollTop))
-         
+            this.props.dispatch(backupIScrollY(this.scrollTop))
+
         }
-      
+
     }
-    homehandleScroll(){
+    homehandleScroll() {
 
         let scrollTop = this.getScrollTop(); //滚动条滚动高度
-       this.scrollTop=scrollTop
+        this.scrollTop = scrollTop
 
 
     }
-        getScrollTop() {
+    getScrollTop() {
         var scrollTop = 0;
         if (document.documentElement && document.documentElement.scrollTop) {
             scrollTop = document.documentElement.scrollTop;
@@ -115,13 +106,13 @@ class Home extends React.Component {
         }
         return scrollTop;
     }
-       
-        //search
-beginRefresh(){
-      this.props.dispatch(updateHomeLoadingStatus(1)); // 恢复loading界面
-      this.props.dispatch(beginRefresh());
 
-}
+    //search
+    beginRefresh() {
+        this.props.dispatch(updateHomeLoadingStatus(1)); // 恢复loading界面
+        this.props.dispatch(beginRefresh());
+
+    }
     backupIScrollY(e) {
         this.props.dispatch(backupIScrollY(e))
     }
@@ -139,11 +130,10 @@ beginRefresh(){
     }
 
     changeGoods() {
-
+        console.log(this.props.pullDownStatus);
         this.props.dispatch(fetchInfoGoods(this.props.InfoGoodsPage))
-
     }
-   
+
     renderPage() {
         return (
             <div id='home'>
@@ -165,11 +155,11 @@ beginRefresh(){
         let p = new Promise(function(resolve, reject) {});
         let renderHtml = [];
         // 首屏没有加载成功，那么均展示loading效果
-      
 
-            renderHtml = this.renderPage();
 
-   
+        renderHtml = this.renderPage();
+
+
         return (
             <div>
         {
@@ -224,7 +214,7 @@ const mapStateToProps = state => {
         InfoGoodsPage: state.MsgHomeReducer.InfoGoodsPage,
         InfoGoodsItems: state.MsgHomeReducer.InfoGoodsItems,
         pullDownStatus: state.MsgHomeReducer.pullDownStatus,
-        y:state.MsgHomeReducer.y
+        y: state.MsgHomeReducer.y
 
 
     }
