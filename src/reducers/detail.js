@@ -92,6 +92,7 @@ export const MsgDetailReducer = (state = detailInitState, action) => {
             return DETAIL_RESTORE_COMPONENT_reducer(state, action);
         case consts.DETAIL_ID_STATUS:
             return DETAIL_ID_STATUS_reducer(state, action);
+          
         case consts.DETAIL_GOODS_SUCCESS:
             return DETAIL_GOODS_SUCCESS_reducer(state, action);
         case consts.DETAIL_UPDATA_LOCALDETAILDATA:

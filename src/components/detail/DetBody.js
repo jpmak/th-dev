@@ -104,15 +104,15 @@ class DetBody extends React.Component {
 
     componentDidUpdate() {
 
-        const _this = this
-        $('.way-wp li').on('click', function() {
-            $(this).addClass('cur').siblings().removeClass('cur');
-        });
-        $('.select-list .items .value').on('click', function() {
-            $(this).addClass('cur disabled').siblings().removeClass('cur disabled');
-            // eventId = $(this).attr('id');
-            _this.handleClick();
-        });
+        // const _this = this
+        // $('.way-wp li').on('click', function() {
+        //     $(this).addClass('cur').siblings().removeClass('cur');
+        // });
+        // $('.select-list .items .value').on('click', function() {
+        //     $(this).addClass('cur disabled').siblings().removeClass('cur disabled');
+        //     // eventId = $(this).attr('id');
+        //     _this.handleClick();
+        // });
     }
     iScrollUp() {
         this.setState({
@@ -159,12 +159,12 @@ class DetBody extends React.Component {
             stock:this.props.stock
         })
         }
+    }
 
-   
+        pushIdStatus(id){
+this.props.pushIdStatus(id);
     }
     render() {
-        console.log(this.props.stock)
-
         let isDisplay = this.state.isDisplay ? 'block' : 'none';
         let name=this.props.name?this.props.name:this.detailMsg.productName;
         let item_price=this.props.item_price?this.props.item_price:this.detailMsg.productPrice;
@@ -208,7 +208,7 @@ class DetBody extends React.Component {
       
 
 
-        <ProductCover isDisplay={isDisplay} imgsrc={this.props.imgsrc}  callClick={this.handleClick} item_price={this.props.item_price} stock={this.props.stock? this.props.stock : '缺货'} item_name={this.props.item_name} prop_name={this.props.prop_name} saleProp={this.props.saleProp} itemUrl={this.props.itemUrl} />
+        <ProductCover pushIdStatus={this.pushIdStatus.bind(this)} isDisplay={isDisplay} imgsrc={this.props.imgsrc}  callClick={this.handleClick} item_price={this.props.item_price} stock={this.props.stock? this.props.stock : '缺货'} item_name={this.props.item_name} prop_name={this.props.prop_name} saleProp={this.props.saleProp} itemUrl={this.props.itemUrl} />
             </div>
         )
 

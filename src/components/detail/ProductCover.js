@@ -1,27 +1,45 @@
-import React from 'react';
+ import React from 'react';
 import PutBtn from './PutBtn';
 
 import $ from 'jquery';
+
 class ProductCover extends React.Component {
+        constructor(props) {
+        super(props);
+      
+        this.state = {
+            currentIndex: 0,
+        };
+    };
+    handClick(id,index){
+   this.setState({
+            currentIndex: index,
+        });
+   this.props.pushIdStatus(id)
+    }
+  cheack(index) {
+        return index === this.state.currentIndex ? 'cur disabled' : '';
+    }
     render() {
         const _this = this;
         let salePropHeight = '40%';
         let saleProps = this.props.saleProp ? this.props.saleProp : [];
         let itemUrls = this.props.itemUrl;
 let imgsrc=this.props.imgsrc?this.props.imgsrc[0]:'';
+
         let salePropList = saleProps.map(function(saleProp, index) {
             let propLis = saleProp.props;
             let PropKeys = Object.keys(propLis);
             let PropKeyList = PropKeys.map(function(propLi, index) {
-                if (index === 0) {
+                // if (index === 0) {
                     return (
-                        <a className='value cur disabled' key={index} onClick={(event) => { event.preventDefault()  }} id={itemUrls[propLi]}>{propLis[propLi]} </a>
+                        <a className={'value '+this.cheack(index)} key={index} onClick={this.handClick.bind(this,itemUrls[propLi],index) } id={propLi}>{propLis[propLi]} </a>
                     );
-                } else {
-                    return (
-                        <a className='value' key={index} onClick={(event) => { event.preventDefault()  }}  id={itemUrls[propLi]}>{propLis[propLi]} </a>
-                    );
-                }
+                // } else {
+                    // return (
+                    //     <a className='value' key={index} onClick={this.handClick.bind(this,itemUrls[propLi]) }  id={itemUrls[propLi]}>{propLis[propLi]} </a>
+                    // );
+                // }
             }, _this);
             return (
                 <li key={ index }>
@@ -53,7 +71,7 @@ let imgsrc=this.props.imgsrc?this.props.imgsrc[0]:'';
                     </div>
                 </div>
 
-        <div className="cover-body wbox-flex" style={{'display':this.props.isDisplay}}>
+        <div className="cover-body wbox-flex" style={{'display':this.props.saleProp?'blcok':'none'}}>
         <ul className="select-list">
         {
             salePropList
@@ -61,7 +79,7 @@ let imgsrc=this.props.imgsrc?this.props.imgsrc[0]:'';
                     </ul>
                 </div>
              
-        <div style={{color:'#ccc',textAlign:'center','display':!this.props.isDisplay}}>无可选属性</div>
+        <div style={{color:'#ccc',textAlign:'center'}}>{this.props.saleProp?'':'无可选属性'}</div>
           <PutBtn/>
        
             </div>

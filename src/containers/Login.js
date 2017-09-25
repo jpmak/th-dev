@@ -51,8 +51,7 @@ class TopNav extends React.Component {
   render() {
     return (
       <div className="th-nav wbox ">
-            <a className="class th-nav-back" onClick={this.backEchange.bind(this)}> </a>
-          
+      <a className="class th-nav-back" href="javascript:history.go(-2);"> </a>
             <div className="th-nav-title of bg">{this.props.titleName}</div>
             <div className="th-nav-right tr" style={{display: this.props.dis}}>
             <a className={this.props.icon} href={this.props.icon_link}> </a>

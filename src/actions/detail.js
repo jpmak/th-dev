@@ -82,8 +82,13 @@
         }
     }
 
-    // 发起加载更多
-
+    // 更新Id
+    export const updateId=(nextStatus)=> {
+        return {
+            type: consts.DETAIL_UPDATA_ID,
+            id: nextStatus
+        };
+    }
     // 更新loading状态
     export const updateDetailLoadingStatus=(nextStatus)=> {
         return {

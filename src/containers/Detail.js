@@ -39,9 +39,12 @@ class Detail extends React.Component {
         }
 
     }
+    pushIdStatus(id){
+this.props.dispatch(pushIdStatus(id));
+    }
     // <DetBody goodItems={goodItems}/>
     render() {
-
+console.log(this.props.id)
 
 
 
@@ -63,7 +66,7 @@ class Detail extends React.Component {
         	<div className = "th-block">
         	<header id = "headnav" >
         	<TopNav titleName = "产品详情" icon = "jf-record-icon" dis = "none"/></header><div id = "detwrap" ></div> 
-        	<DetBody id={this.props.match.params.id} detailLoadingStatus={detailLoadingStatus} name = { name } saleProp = { saleProp } prop_name = { prop_name } itemUrl = { itemUrl } imgsrc = { imgsrc } stock = { stock } item_price = { item_price } item_name = { item_name } goods_id = { goods_id } goods_body = {goods_body} goodStatus={goodStatus}/>
+        	<DetBody pushIdStatus={this.pushIdStatus.bind(this)}  id={this.props.match.params.id} detailLoadingStatus={detailLoadingStatus} name = { name } saleProp = { saleProp } prop_name = { prop_name } itemUrl = { itemUrl } imgsrc = { imgsrc } stock = { stock } item_price = { item_price } item_name = { item_name } goods_id = { goods_id } goods_body = {goods_body} goodStatus={goodStatus}/>
         	</div>
         )
     }
