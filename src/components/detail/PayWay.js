@@ -2,6 +2,17 @@ import React from 'react';
 import $ from 'jquery';
 
 class PayWay extends React.Component {
+          constructor(props) {
+    super(props);
+
+    this.tips = {
+        'balance_point':'排点积分',
+        'travel_point':'旅游积分',
+        'point':'购物积分'
+       
+    };
+
+  }
     chooseType() {
         $('#chooseTypeWrap .payWay').show();
         $('#payWay').hide();
@@ -28,11 +39,11 @@ class PayWay extends React.Component {
 </li>
 <li onClick={this.chooseType.bind(this)}>
     <label>兑换积分类型</label>
-    <p><span>购物积分</span><em className='blockUp'></em></p>
+    <p><span>{this.tips[this.props.chooseId]}</span><em className='blockUp'></em></p>
 </li>
 <li>
     <label>付款方式</label>
-    <p><i className='payIcon'></i><span>惠积分支付</span><em className='blockUp'></em></p>
+    <p><i className='payIcon'></i><span>惠积分支付</span></p>
 </li>
 </ul>
             <div className='fix-box product-payup'>

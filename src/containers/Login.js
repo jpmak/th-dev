@@ -21,14 +21,10 @@ const customStyles = {
     transform: 'translate(-50%, -50%)',
     background: '#000',
     opacity: '.5',
-
     color: '#fff',
-
   },
   overlay: {
     background: 'none',
-
-
   }
 };
 // import {
@@ -76,9 +72,7 @@ class Login extends React.Component {
         modalIsOpen: true
       },
       () => {
-        setTimeout(this.setState({
-          modalIsOpen: false
-        }), 1000)
+        setTimeout(this.closeModal,1000)
       }
 
     );
