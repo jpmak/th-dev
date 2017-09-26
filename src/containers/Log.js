@@ -50,8 +50,7 @@ class Log extends React.Component {
     componentDidMount() {
         window.addEventListener('scroll', this.loghandleScroll);
         let p = new Promise(function(resolve, reject) {});
-        console.log(this.props.logLoadingStatus);
-        console.log(this.props.userStatus);
+
 
         if (this.props.logLoadingStatus === 1 || this.props.userStatus === 0) {
             this.props.dispatch(beginUser())

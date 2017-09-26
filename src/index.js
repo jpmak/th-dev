@@ -18,7 +18,7 @@ import List from './containers/List';
 import Home from './containers/Home';
 import Login from './containers/Login';
 import Log from './containers/Log';
-import IsOrder from './components/IsOrder';
+import IsOrder from './containers/IsOrder';
 
 
 

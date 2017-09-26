@@ -4,7 +4,6 @@ import $ from 'jquery';
 class PayWay extends React.Component {
     chooseType() {
         $('#chooseTypeWrap .payWay').show();
-        console.log('test');
         $('#payWay').hide();
 
 
@@ -20,12 +19,12 @@ class PayWay extends React.Component {
 <div className='wbox-flex payTitle'>付款方式</div>
 <ul className='payList'>
 <li >
-    <label >付款金额</label>
-    <p className="payMoney"><em>¥</em><span>18.50</span></p>
+    <label >支付服务费</label>
+    <p className="payMoney"><em>¥</em><span>{this.props.fee?this.props.fee:0}</span></p>
 </li>
 <li>
     <label >付款账号</label>
-    <p>小麦</p>
+    <p>{this.props.userName}</p>
 </li>
 <li onClick={this.chooseType.bind(this)}>
     <label>兑换积分类型</label>
@@ -44,7 +43,7 @@ class PayWay extends React.Component {
                     </div>
                 </div>
                 </div>
-                <ChooseType/>
+                <ChooseType userMoney={this.props.userMoney}  userBuy={this.props.userBuy} userTourism={this.props.userTourism}  goods_price={ this.props.goods_price}/>
                 </div>
         )
 
@@ -57,47 +56,90 @@ class ChooseType extends React.Component {
         super(props);
         this.state = {
             currentIndex: '0',
+            pushId: '0'
         }
     };
-    cheack(index) {
-        return index === this.state.currentIndex ? 'cur' : '';
+    cheack(index, money) {
+        if (money >= 50 && index === this.state.currentIndex) {
+            return 'cur'
+        } else if (money >= 50 && index !== this.state.currentIndex) {
+            return '    '
+
+        } else if (money < 50) {
+            return 'pointerNone'
+
+
+        }
+        // return index === this.state.currentIndex ? 'cur' : '';
 
     }
-    handleClick(e) {
+
+    handleClick(e, event) {
+        // this.stopPropagation()
+        event.stopPropagation();
         let num = e.target.getAttribute('data-Num')
+        let id = e.target.getAttribute('data-Id')
+
         this.setState({
-            currentIndex: num
+            currentIndex: num,
+            pushId: id
         })
 
+        console.log(id)
 
+
+    }
+    stopPropagation(event) {
+        if (event.stopPropagation) {
+            event.stopPropagation();
+        } else {
+            event.cancelBubble = true;
+        }
     }
     handlePush() {
+        console.log(this.state.id)
         $('#chooseTypeWrap .payWay').hide();
-
         $('.cover-mask').removeClass('cover-mask-toggle').hide();
 
-
+    }
+    handleBack() {
+        $('#chooseTypeWrap .payWay').hide();
+        $('#payWay').show();
     }
     render() {
+
 
         return (
             <div id='chooseTypeWrap'>
             <div className="payWay">
 
-<a className="class th-nav-back" onClick={this.handlePush.bind(this)}> </a>
+<a className="class th-nav-back" onClick={this.handleBack.bind(this)}> </a>
 <div className='wbox-flex payTitle'>选择积分类型</div>
 <ul className='payList'>
-<li className={this.cheack('0')} data-Id="balance_point" data-Num='0' onClick={this.handleClick.bind(this)}> 
+<li className={this.cheack('0',this.props.userMoney)}   data-Id="balance_point" data-Num='0' data-Money={this.props.userMoney} onClick={this.handleClick.bind(this)}> 
     <label >排点积分</label>
+    <p>
+       <span className='num'>{this.props.userMoney}</span>
+   <span  className='jf'>积分</span>
    <i className="round"></i>
+   </p>
 </li>
-<li className={this.cheack('1')} data-Id="travel_point" data-Num='1' onClick={this.handleClick.bind(this)}>
+<li className={this.cheack('1',this.props.userTourism)} data-Id="travel_point" data-Num='1' data-Money={this.props.userBuy} onClick={this.handleClick.bind(this)}>
     <label >旅游积分</label>
+        <p>
+       <span className='num'>{this.props.userTourism}</span>
+   <span className='jf'>积分</span>
    <i className="round"></i>
+   </p>
+
 </li>
-<li className={this.cheack('2')} data-Id="point" data-Num='2' onClick={this.handleClick.bind(this)}> 
+<li className={this.cheack('2',this.props.userBuy)} data-Id="point" data-Num='2'  data-Money={this.props.userBuy} onClick={this.handleClick.bind(this)}> 
     <label>购物积分</label>
+    <p>
+       <span className='num'>{this.props.userBuy}</span>
+   <span  className='jf'>积分</span>
    <i className="round"></i>
+   </p>
 </li>
 
 </ul>

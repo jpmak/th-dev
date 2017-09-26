@@ -152,27 +152,30 @@ class DetBody extends React.Component {
         }
 
     }
-       componentWillReceiveProps(nextProps) {
+    componentWillReceiveProps(nextProps) {
         if (nextProps.goodStatus !== this.props.goodStatus) {
-      this.setState({
-            iScrollUp: !this.state.iScrollUp,
-            stock:this.props.stock
-        })
+            this.setState({
+                iScrollUp: !this.state.iScrollUp,
+                stock: this.props.stock
+            })
         }
     }
 
-        pushIdStatus(id){
-this.props.pushIdStatus(id);
+    pushIdStatus(id) {
+        this.props.pushIdStatus(id);
+    }
+    history() {
+        this.props.history();
     }
     render() {
         let isDisplay = this.state.isDisplay ? 'block' : 'none';
-        let name=this.props.name?this.props.name:this.detailMsg.productName;
-        let item_price=this.props.item_price?this.props.item_price:this.detailMsg.productPrice;
-          // let imgsrc=this.props.imgsrc?this.props.imgsrc:this.detailMsg.productImg;
-    let imgsrc=this.props.imgsrc?this.props.imgsrc:this.detailMsg.productImg;
-    let stock=this.props.stock;
-// imgsrc={this.props.imgsrc[0]}
-      
+        let name = this.props.name ? this.props.name : this.detailMsg.productName;
+        let item_price = this.props.item_price ? this.props.item_price : this.detailMsg.productPrice;
+        // let imgsrc=this.props.imgsrc?this.props.imgsrc:this.detailMsg.productImg;
+        let imgsrc = this.props.imgsrc ? this.props.imgsrc : this.detailMsg.productImg;
+        let stock = this.props.stock;
+        // imgsrc={this.props.imgsrc[0]}
+
         return (
             <div>
             <div className="produt-show" style={{position:'relative'}} onTouchStart={this.startMoveY.bind(this)} onTouchMove={this.movIngY.bind(this)}  onTouchEnd={this.endMove.bind(this)}>
@@ -208,7 +211,7 @@ this.props.pushIdStatus(id);
       
 
 
-        <ProductCover pushIdStatus={this.pushIdStatus.bind(this)} isDisplay={isDisplay} imgsrc={this.props.imgsrc}  callClick={this.handleClick} item_price={this.props.item_price} stock={this.props.stock? this.props.stock : '缺货'} item_name={this.props.item_name} prop_name={this.props.prop_name} saleProp={this.props.saleProp} itemUrl={this.props.itemUrl} />
+        <ProductCover history={this.history.bind(this)} pushIdStatus={this.pushIdStatus.bind(this)} isDisplay={isDisplay} imgsrc={this.props.imgsrc}  callClick={this.handleClick} item_price={this.props.item_price} stock={this.props.stock? this.props.stock : '缺货'} item_name={this.props.item_name} prop_name={this.props.prop_name} saleProp={this.props.saleProp} itemUrl={this.props.itemUrl} />
             </div>
         )
 

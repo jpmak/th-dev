@@ -1,23 +1,27 @@
 import React from 'react';
-    
-class OrderFoot extends React.Component {
-  
+import $ from 'jquery';
 
-    render() {
-      
-        return (
-<div className="order-footer">
+class OrderFoot extends React.Component {
+	settlement() {
+		$('#payWay').show();
+		$('.product-cover').removeClass('cover-mask-toggle').hide();
+		$('.cover-mask').addClass('cover-mask-toggle').show();
+	}
+
+	render() {
+
+		return (
+			<div className="order-footer">
 <div className="left-cont fl">
-<label for="">合计</label>
+<label htmlFor="">合计</label>
 <div className="total-wrap">
-<div className="total">¥ <span id="order_amcount">199.00</span></div>
-<div className="integral">获得旅游积分<span id="tourism_point">0</span></div>
+<div className="total"> <span className='num'>{this.props.orderLi.goods_price}</span><span >积分</span><i className='add'>+</i><span className='num'>{this.props.fee}</span><span>元服务费</span></div>
 </div>
 </div>
-<div className="settle fr" onclick="upsUp()">结算</div>
+<div className="settle fr" onClick={this.settlement.bind(this)}>结算</div>
 </div>
-        )
-    }
+		)
+	}
 
 
 }

@@ -69,37 +69,31 @@ class Login extends React.Component {
       text: ''
     };
     this.openModal = this.openModal.bind(this);
-    // this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
   openModal() {
     this.setState({
-      modalIsOpen: true
-    }, () => {
+        modalIsOpen: true
+      },
+      () => {
+        setTimeout(this.setState({
+          modalIsOpen: false
+        }), 1000)
+      }
 
-      setTimeout(this.closeModal, 1000)
-    });
+    );
   }
 
-  afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    // this.subtitle.style.color = '#f00';
-  }
+
 
   closeModal() {
     this.setState({
       modalIsOpen: false
     });
   }
-  componentWillMount() {
 
-
-  }
   componentDidMount() {
-    // const _self=this
-    // $("#loginform").click(function() {
-    //     _self.toLogin();
-    // });
+
     setTimeout(function() {
       if ($('#username').val() !== '') {
         $('#username').next().show();
@@ -142,10 +136,17 @@ class Login extends React.Component {
 
     const params = this.props.match.params
     const router = params.router
+    let id = this.props.id
     if (router) {
+      if (router === 'product') {
+        this.props.history.push('/Exchange-index.html/' +
+          router + '/' + id)
 
-      this.props.history.push('/Exchange-index.html/' +
-        router)
+      } else {
+        this.props.history.push('/Exchange-index.html/' +
+          router)
+      }
+
     } else {
 
       //跳转到用户主页
@@ -159,7 +160,7 @@ class Login extends React.Component {
 
     if (username == '') {
       this.setState({
-        text: '请填写账号信息',
+        text: '请填写账号信息'
       });
       this.openModal()
 
@@ -168,7 +169,7 @@ class Login extends React.Component {
 
     if (pwd == '') {
       this.setState({
-        text: '密码不能为空',
+        text: '密码不能为空'
       });
       this.openModal()
       return false;
@@ -188,13 +189,14 @@ class Login extends React.Component {
         if (data.returns) {
           window.localStorage.user_info = data.returns;
           this.setState({
-            text: data.msg,
-          });
-          this.openModal()
+            text: data.msg
+          })
+          this.openModal();
+
           this.router();
         } else {
           this.setState({
-            text: data.msg,
+            text: data.msg
           });
           this.openModal()
         }
@@ -210,6 +212,7 @@ class Login extends React.Component {
 
 
   render() {
+    console.log(this.props.match.params.router);
     return (
       <div className="div1" id="bodyDiv">
         <TopNav titleName = "登录" backEchange={this.backEchange.bind(this)}/>
@@ -263,7 +266,7 @@ class Login extends React.Component {
 
 const mapStateToProps = state => {
   return {
-
+    id: state.MsgDetailReducer.id
   }
 }
 

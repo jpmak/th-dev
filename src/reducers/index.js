@@ -12,9 +12,10 @@ import MsgLogReducer from "./log.js";
 
 const initState = {
   userStatus: 0, // 登录状态
+  userName: '', // 用户名
   userMoney: 0, //惠积分
   userBuy: 0, //购物积分
-  UserTourism: 0, //旅游积分
+  userTourism: 0, //旅游积分
   loadingStatus: 1, // 首屏加载状态
   pageStatus: 1, //返回状态标识
   bannerItems: [], // banner列表,
@@ -42,8 +43,8 @@ const FETCHUSERINFO_SUCCESS_reducer = (state, action) => {
     userStatus: action.userStatus,
     userMoney: action.userMoney,
     userBuy: action.userBuy,
-    UserTourism: action.UserTourism,
-
+    userTourism: action.userTourism,
+    userName: action.userName
   });
   return state;
 }

@@ -4,12 +4,12 @@ const detailInitState = {
     goodStatus: 0,
     id: 0,
     saleProp: [],
-    name: null,//标题
+    name: null, //标题
     prop_name: '',
     itemUrl: '',
-    imgsrc: null,//图片[]
+    imgsrc: null, //图片[]
     stock: null,
-    item_price:null,//积分数量
+    item_price: null, //积分数量
     item_name: '',
     goods_id: '',
     goods_body: '',
@@ -19,7 +19,7 @@ const detailInitState = {
 
 const DETAIL_INIT_reducer = (state, action) => {
     // 计算一下
-       return Object.assign({}, state, detailInitState);
+    return Object.assign({}, state, detailInitState);
     return state;
 }
 
@@ -47,7 +47,17 @@ const DETAIL_GOODS_SUCCESS_reducer = (state, action) => {
     });
     return state;
 }
+const DETAIL_PROPS_SUCCESS_reducer = (state, action) => {
+    return Object.assign({}, state, {
 
+        stock: action.stock,
+        item_price: action.item_price,
+        item_name: action.item_name,
+        itemUrl: action.itemUrl
+
+    });
+    return state;
+}
 const DETAIL_GOODS_FAIL_reducer = (state, action) => {
     // 首屏加载失败, 那么需要展示loading fail效果
     return Object.assign({}, state, {
@@ -92,7 +102,10 @@ export const MsgDetailReducer = (state = detailInitState, action) => {
             return DETAIL_RESTORE_COMPONENT_reducer(state, action);
         case consts.DETAIL_ID_STATUS:
             return DETAIL_ID_STATUS_reducer(state, action);
-          
+
+        case consts.DETAIL_PROPS_SUCCESS:
+            return DETAIL_PROPS_SUCCESS_reducer(state, action);
+
         case consts.DETAIL_GOODS_SUCCESS:
             return DETAIL_GOODS_SUCCESS_reducer(state, action);
         case consts.DETAIL_UPDATA_LOCALDETAILDATA:

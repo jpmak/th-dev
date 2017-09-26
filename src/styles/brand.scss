@@ -880,7 +880,8 @@
         float: left;
     height: 100%;
     width: 4.90rem;
-    padding: .24rem .20rem;
+    padding: 0rem .20rem;
+    line-height: 1.2rem;
     box-sizing: border-box;
    label {
     display: inline-block;
@@ -892,8 +893,17 @@
     vertical-align: middle;
     margin-left: .20rem;
     .total {
-    font-size: .40rem;
+    font-size: .22rem;
+ 
     color: #ED1A3B;
+    .num{
+           font-size: .40rem;
+   margin-right: .05rem;
+    }
+    .add{
+        font-weight: bold;
+        margin:0 .05rem;
+    }
 }
 }
 }

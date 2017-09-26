@@ -456,6 +456,7 @@ vertical-align: middle;
 }
 .payList{
     li{
+        display: block;
     -webkit-flex: 1 !important;
     -webkit-box-flex: 1;
     word-wrap: break-word;
@@ -467,8 +468,13 @@ vertical-align: middle;
     font-size: .28rem;
     color: #2B2424;
     border-top: 1px solid #dedede;
+   
     label {
     float: left;
+     }
+     span{
+     
+
      }
          .round {
             float: right;
@@ -481,6 +487,7 @@ vertical-align: middle;
                      border-radius: 50%;
                      width: .22rem;
                      height: .22rem;
+                     margin-left: .1rem;
                  }
                  &.cur {
                      color: $redColor;
@@ -492,6 +499,14 @@ vertical-align: middle;
                  }
      p {
         float: right;
+        .num{
+            font-size: .32rem;
+            font-weight: bold;
+            margin-right: .05rem;
+        }
+        .jf{
+                  font-size: .22rem;
+        }
         .payIcon{
             width: .36rem;
             height: .36rem;
@@ -511,6 +526,10 @@ margin-right:.1rem;
         }
 }
       }
+       .pointerNone{
+        color:#d4d4d4;
+         pointer-events: none;
+    }
     }
 }
 
