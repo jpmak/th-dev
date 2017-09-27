@@ -10,6 +10,7 @@ import {
   beginUser
 
 } from '../actions'
+
 import $ from 'jquery';
 const customStyles = {
   content: {
@@ -72,7 +73,7 @@ class Login extends React.Component {
         modalIsOpen: true
       },
       () => {
-        setTimeout(this.closeModal,1000)
+        setTimeout(this.closeModal, 1000)
       }
 
     );
@@ -182,6 +183,7 @@ class Login extends React.Component {
       success: (data) => {
         if (data.returns) {
           window.localStorage.user_info = data.returns;
+          this.props.dispatch(beginUser());
           this.setState({
             text: data.msg
           })

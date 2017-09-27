@@ -19,16 +19,10 @@ class PayWay extends React.Component {
 
 
     }
-    open() {
-        $('#payWay').hide();
-
-        $('#paypwd').show();
-
-    }
     render() {
         return (
             <div>
-        <div id='payWay' className="payWay">
+            <div id='payWay' className="payWay">
    <div className="product-icon cover-close">
         <a className="close"></a>
                 </div>
@@ -52,7 +46,7 @@ class PayWay extends React.Component {
     <p><i className='payIcon'></i><span>惠积分支付</span></p>
 </li>
 </ul>
-            <div className='fix-box product-payup'  onClick={this.open.bind(this)}>
+            <div className='fix-box product-payup'>
         <div className='pay-item'>
         <div className='wbox-flex tc exchange-submit'>
         <a className='th-btn th-btn-assertive'>确认支付</a>
@@ -102,6 +96,7 @@ class ChooseType extends React.Component {
             pushId: id
         })
 
+        console.log(id)
 
 
     }
@@ -121,8 +116,6 @@ class ChooseType extends React.Component {
     handleBack() {
         $('#chooseTypeWrap .payWay').hide();
         $('#payWay').show();
-        $("#payPassword_rsainput").keyup()
-
     }
     render() {
 

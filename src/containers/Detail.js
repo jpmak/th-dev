@@ -50,7 +50,7 @@ class Detail extends React.Component {
 
     }
     history() {
-
+        console.log(this.props.userStatus);
         if (window.localStorage.user_info != 1 || !this.props.userStatus) {
             this.props.history.push('/Exchange-index.html/login/product/' + this.props.id)
         } else {
@@ -66,7 +66,7 @@ class Detail extends React.Component {
                 dataType: 'json',
                 type: 'post',
                 'data': {
-                    'item_id': 291
+                    'item_id': this.props.id
                         // 'item_id': this.props.id
                 },
                 success: (data) => {
@@ -82,6 +82,7 @@ class Detail extends React.Component {
         }
         // <DetBody goodItems={goodItems}/>
     render() {
+        console.log(this.props.item_price);
         const {
             detailLoadingStatus,
             goodStatus,

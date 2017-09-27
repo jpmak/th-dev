@@ -37,3 +37,68 @@
 /*.login-type .type-pro{width:100%; height:.94rem; line-height:.94rem; background:url(../images/login_type.png) no-repeat center center;background-size:100%; text-align:center; font-size:.48rem;}*/
 .type-list{margin:0 auto; height:.75rem; width:.75rem; margin-top:.5rem;}
 .type-list img{height:.75rem; width:.75rem;}
+
+
+
+
+//支付密码
+.payPwd {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+    padding: 0 .3rem;
+    background: #fff;
+    z-index: 200;
+    height: 3.0rem;
+    display: none;
+.payTitle {
+	text-align: center;
+    margin: 0 auto;
+    color: #353d44;
+    font-size: .4rem;
+    line-height: 1rem;
+    border-bottom:1px  solid #cccccc
+}
+}
+.pop-ups .mask{width: 7.50rem;height: 100%;margin-left: -3.75rem;background: rgba(0,0,0,.5);position: fixed;top: 0;left: 50%;z-index: 20;}
+.pop-ups .ups-cont{width: 7.50rem;margin-left: -3.75rem;background: #fff;position: fixed;bottom: 0;left: 50%;z-index: 20;height: auto;padding: 0 .20rem;box-sizing: border-box;padding-bottom: .20rem;}
+.pop-ups .ups-cont .title{position: relative;font-size: .32rem;height: 1.10rem;line-height: 1.10rem;}
+
+.pop-ups .ups-cont .title a{display: block;position: absolute;left: 4%;width: .28rem;height: .28rem;border: solid #2B2424;border-width: 2px 0 0 2px;-webkit-transform: rotate(-45deg) translateY(-50%);transform: rotate(-45deg) translateY(-50%);top: 50%;}
+
+.pop-ups .ups-cont .type-list{max-height: 4.42rem;overflow-y: auto;-webkit-overflow-scrolling: touch;}
+.pop-ups .ups-cont .type-list .list{display: flex;align-items: center;justify-content: space-between;height: 1.10px;border-bottom: 1px solid #dedede;}
+.pop-ups .ups-cont .type-list .list:last-child{border-bottom: none;}
+.radio-ch{position: relative;width: .30rem;height: .30rem;overflow: hidden;}
+.radio-ch input{position: absolute;left: 0;top: 0;width: 100%;height: 100%;opacity: 0;}
+.radio-ch div{width: 100%;height: 100%;background: url(../images/check.png);background-size: 100% 100%;}
+.radio-ch input:checked + div{background: url(../images/checked.png);background-size: 100% 100%;}
+.pop-ups .ups-cont button{width: 7.10rem;height: 100px;border-radius: .08rem;color: #fff;display: block;-moz-transform-origin: 0 auto;margin-top: .40rem;font-size: .32rem;}
+.pop-ups .ups-cont .red-btn{background: #ED1A3B;}
+
+.pop-ups .paid-pwd{padding:0 .20rem;box-sizing: border-box;padding-bottom: .20rem;}
+.pop-ups .paid-pwd .title{border-bottom: 1px solid #dedede;}
+.paid-pwd .tips{margin-top: .20rem;}
+.paid-pwd .tips::after{content: "";display: block;clear: both;}
+.paid-pwd .tips .forget-psd{float: right;color: #4990E2;font-size: .28rem;}
+
+.clearfix:after {clear: both;}
+.clearfix:before, .clearfix:after {content: " ";display: table;}
+.alieditContainer{position: relative;text-align: center;}    
+.sixDigitPassword {position: absolute;left: -1.22rem;top: 0;   
+width: 10.00rem;height: 1.00rem;color: #fff;font-size: .24rem;-webkit-box-sizing: content-box;box-sizing: content-box;-webkit-user-select: initial;outline: 'none';z-index: 999;opacity:0;filter:alpha(opacity=0);}
+.sixDigitPassword-box {box-sizing: border-box;cursor:text;
+background: #fff;outline: none;position: relative;padding: .08rem 0;height: 99%;border: 1px solid #cccccc;border-radius: 2px;box-sizing: border-box;}
+.sixDigitPassword-box i{float: left;display: block;padding: .04rem 0;height: .78rem;border-left: 1px solid #cccccc;width: 1.12rem;box-sizing: border-box;}
+.sixDigitPassword-box i:first-child{border-left: none;}
+.sixDigitPassword-box span{width: 1.13rem; left: 0px; visibility: hidden;}
+/*.sixDigitPassword-box .active {background: url(../../images/micro_site/user/password-blink.gif) no-repeat center center;background-size: 2px 80%;}*/
+.sixDigitPassword-box b {display: block;margin: 0 auto;width: .12rem;height: 100%;overflow: hidden;visibility:hidden;background: url(../images/passeord-dot.png) no-repeat center center;background-size: .12rem .12rem;}
+.sixDigitPassword-box span {position: absolute;display: block;left: 0px;top: 0px;height: 100%;box-sizing:border-box;border: 1px solid rgba(82, 168, 236, .8);border: 1px solid #00ffff\9;border-radius: 2px;visibility: hidden;
+-webkit-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.75), 0 0 8px rgba(82, 168, 236, 0.6);box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);}
+.ui-securitycore  .ui-form-item .ui-form-explain{margin-top: 8px;}
+.i-block{display:inline-block;}
+.six-password{position: relative;height:1.00rem;width:6.80rem;overflow: hidden;
+vertical-align: middle;margin: 0 auto;margin-top: .30rem;box-sizing: border-box;}

@@ -19,6 +19,7 @@ import Home from './containers/Home';
 import Login from './containers/Login';
 import Log from './containers/Log';
 import IsOrder from './containers/IsOrder';
+import SuccessView from './containers/SuccessView';
 
 
 
@@ -62,7 +63,9 @@ const Jf = () => (
 	 <Route path="/Exchange-index.html/list" component={List}/>
 	 <Route path="/Exchange-index.html/home/" component={Home}/>
 	 <Route path="/Exchange-index.html/log/" component={Log}/>
-	 <Route path="/Exchange-index.html/isorder/" component={IsOrder}/>
+	 <Route path="/Exchange-index.html/isorder/:id?" component={IsOrder}/>
+	 <Route path="/Exchange-index.html/SuccessView/:id?" component={SuccessView}/>
+
 
 
 

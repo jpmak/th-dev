@@ -89,7 +89,7 @@ class SearchInput extends React.Component {
     render() {
 
         return (
-            <input id="searchInput" className="th-search-form" type="text" placeholder="搜索商品关键字"  value={this.state.value} onClick={this.searchInputClick.bind(this)} onKeyUp={this.searchInputonKeyUp.bind(this)}  onChange={this.handleChange}/>
+        <input id="searchInput" className="th-search-form" type="text" placeholder="搜索商品关键字"  value={this.state.value} onClick={this.searchInputClick.bind(this)} onKeyUp={this.searchInputonKeyUp.bind(this)}  onChange={this.handleChange}/>
         )
 
 

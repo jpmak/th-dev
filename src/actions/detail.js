@@ -63,7 +63,7 @@
                         // saleProp: (data.saleProp) ? data.saleProp : [],
                         saleProp: data.saleProp,
                         itemUrl: (data.itemUrl) ? data.itemUrl : '',
-                        item_price: data.goods.item_price,
+                        item_price: (data.goods.item_price) ? data.goods.item_price : '',
                         name: data.goods.goods_name,
                         stock: data.goods.stock,
                         goods_id: data.goods.goods_id,

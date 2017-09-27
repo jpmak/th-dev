@@ -926,3 +926,43 @@ color:#dedede;
 .gray .settle{
     background: #dedede;
 }
+
+//支付成功
+.successOrder{
+    padding-top: 1.4rem;
+    padding-bottom: .2rem;
+    text-align: center;
+    width: 7.5rem; margin:0 auto
+}
+.successOrder img {
+    width: 3.6rem;
+}
+
+.successOrder p:first-of-type {
+    color: #ED1A3B;
+    font-size: .4rem;
+    padding-top: .6rem;
+}
+
+.successOrder .button {
+    margin-top: .5rem;
+}
+.successOrder .order_details {
+    display: inline-block;
+    color: rgba(43, 36, 36, .7);
+    border: 1px solid #5C5C5C;
+    border-radius: .2rem;
+    width: 1.8rem;
+    line-height: .6rem;
+    background-color: #f2f2f2;
+}
+
+.successOrder .continue_exchange {
+    display: inline-block;
+    color: #fff;
+    border-radius: .2rem;
+    width: 1.8rem;
+    line-height: .64rem;
+    background: linear-gradient(-90deg, #F57351 4%, #CA001E 100%);
+    margin-left: .7rem;
+}
