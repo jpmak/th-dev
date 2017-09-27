@@ -53,19 +53,19 @@ class OrderFoot extends React.Component {
 		let userTourism = this.props.userTourism;
 		let userMoney = this.props.userMoney;
 		let userBuy = this.props.userBuy;
-		let goods_price = this.props.goods_price;
-		if (userTourism < goods_price && userMoney < goods_price && userBuy < goods_price) {
+		let item_price = this.props.item_price;
+		if (userTourism < item_price && userMoney < item_price && userBuy < item_price) {
 			return ' gray'
 		}
 	}
 
 	settlement() {
 
-			// let goods_price = 0;
+			// let item_price = 0;
 
 
 
-			if (this.state.gray === 'gray') {
+			if (this.cssGray === 'gray') {
 				this.setState({
 					text: '抱歉，你没有可兑换的积分',
 
@@ -86,7 +86,7 @@ class OrderFoot extends React.Component {
 			}
 		}
 		// componentWillReceiveProps(nextProps) {
-		// 	if (nextProps.goods_price !== this.props.goods_price) {
+		// 	if (nextProps.item_price !== this.props.item_price) {
 		// 		console.log('ghotest');
 
 
@@ -94,27 +94,33 @@ class OrderFoot extends React.Component {
 	// }
 	render() {
 		// let cssGray = 'gray'
+
 		let userTourism = this.props.userTourism;
 		let userMoney = this.props.userMoney;
 		let userBuy = this.props.userBuy;
-		let goods_price = this.props.goods_price;
-		if (userTourism < goods_price && userMoney < goods_price && userBuy < goods_price) {
+		let item_price = parseInt(this.props.item_price);
+
+
+		// 	console.log(userTourism);
+		// console.log(userMoney);
+
+		// console.log(userBuy);
+
+		// console.log(item_price)
+		if (userTourism < item_price && userMoney < item_price && userBuy < item_price) {
 			this.cssGray = 'gray'
 		} else {
 			this.cssGray = ''
 		}
 
-		// console.log(userTourism);
-		// console.log(userMoney);
-
-		// console.log(userBuy);
+	
 		// <div className={'order-footer '+ this.props.gray}>
 		return (
 			<div className={'order-footer '+ this.cssGray}>
 <div className="left-cont fl">
 <label htmlFor="">合计</label>
 <div className="total-wrap">
-<div className="total"> <span className='num'>{this.props.orderLi.goods_price}</span><span >积分</span><i className='add'>+</i><span className='num'>{this.props.fee}</span><span>元服务费</span></div>
+<div className="total"> <span className='num'>{this.props.orderLi.item_price}</span><span >积分</span><i className='add'>+</i><span className='num'>{this.props.fee}</span><span>元服务费</span></div>
 </div>
 </div>
 <div className="settle fr" onClick={this.settlement.bind(this)}>结算</div>

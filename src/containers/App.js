@@ -72,6 +72,10 @@ class App extends React.Component {
 		this.props.dispatch(liMove(index, widths, width))
 	}
 	render() {
+		   // console.log(this.props.UserTourism)
+     //    console.log(this.props.UserMoney)
+     //    console.log(this.props.userBuy)
+     //    console.log(this.props.userStatus)
 		const {
 			loadingStatus,
 			bannerItems,
@@ -127,9 +131,9 @@ const mapStateToProps = state => {
 		searchLoadingStatus: state.MsgListPageReducer.loadingStatus,
 		loadingStatus: state.MsgAppReducer.loadingStatus,
 		userStatus: state.MsgAppReducer.userStatus,
-		// userMoney: state.MsgAppReducer.userMoney,
-		// userBuy: state.MsgAppReducer.userBuy,
-		// UserTourism: state.MsgAppReducer.UserTourism,
+		userMoney: state.MsgAppReducer.userMoney,
+		userBuy: state.MsgAppReducer.userBuy,
+		UserTourism: state.MsgAppReducer.UserTourism,
 		bannerItems: state.MsgAppReducer.bannerItems,
 		bannerItems_2: state.MsgAppReducer.bannerItems_2,
 		cateList: state.MsgAppReducer.cateList,

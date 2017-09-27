@@ -70,9 +70,7 @@ class PayPwd extends React.Component {
             $("#payPassword_rsainput").keyup()
         });
     }
-    componentWillMount() {
-        console.log(11111111);
-    }
+
     componentDidMount() {
         let _self = this
         var payPassword = $("#payPassword_container");

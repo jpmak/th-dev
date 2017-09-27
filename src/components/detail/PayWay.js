@@ -60,7 +60,7 @@ class PayWay extends React.Component {
                     </div>
                 </div>
                 </div>
-                <ChooseType userMoney={this.props.userMoney}  userBuy={this.props.userBuy} userTourism={this.props.userTourism}  goods_price={ this.props.goods_price}/>
+                <ChooseType userMoney={this.props.userMoney}  userBuy={this.props.userBuy} userTourism={this.props.userTourism}  item_price={ this.props.item_price}/>
                 </div>
         )
 
@@ -77,12 +77,13 @@ class ChooseType extends React.Component {
         }
     };
     cheack(index, money) {
-        if (money >= 50 && index === this.state.currentIndex) {
+        let goods_price=parseInt(this.props.item_price)
+        if (money >= goods_price && index === this.state.currentIndex) {
             return 'cur'
-        } else if (money >= 50 && index !== this.state.currentIndex) {
+        } else if (money >= goods_price && index !== this.state.currentIndex) {
             return '    '
 
-        } else if (money < 50) {
+        } else if (money < goods_price) {
             return 'pointerNone'
 
 

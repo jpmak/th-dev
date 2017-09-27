@@ -20,6 +20,8 @@ import Login from './containers/Login';
 import Log from './containers/Log';
 import IsOrder from './containers/IsOrder';
 import SuccessView from './containers/SuccessView';
+import AllOrder from './containers/AllOrder';
+
 
 
 
@@ -65,6 +67,7 @@ const Jf = () => (
 	 <Route path="/Exchange-index.html/log/" component={Log}/>
 	 <Route path="/Exchange-index.html/isorder/:id?" component={IsOrder}/>
 	 <Route path="/Exchange-index.html/SuccessView/:id?" component={SuccessView}/>
+	 <Route path="/Exchange-index.html/allorder/" component={AllOrder}/>
 
 
 

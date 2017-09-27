@@ -23,10 +23,11 @@ class IsOrder extends React.Component {
     constructor(props) {
             super(props);
             this.mounted = false;
-
+// this.chooseId='balance_point'
             this.state = {
                 addressItems: [],
                 orderLi: [],
+                item_price:'',
                 csrf: '',
                 fee: '0',
                 payWay: '排点',
@@ -44,7 +45,6 @@ class IsOrder extends React.Component {
 
     // }
     componentWillMount() {
-        this.fetchOrder();
         if (!this.props.userStatus) {
             this.props.dispatch(beginUser())
 
@@ -52,6 +52,7 @@ class IsOrder extends React.Component {
     }
     componentDidMount() {
 
+        this.fetchOrder();
 
 
         // this.checkChoose();
@@ -66,8 +67,13 @@ class IsOrder extends React.Component {
                 'item_id': this.props.id ? this.props.id : this.props.match.params.id
             },
             success: (data) => {
+let goods_price= parseInt(data.info.goods_info.goods_price)
+console.log(data.info.goods_info.goods_price)
+this.checkId(goods_price)
                 this.setState({
                     addressItems: data.info.address_all,
+                    item_price:  data.info.goods_info.goods_price,
+
                     orderLi: data.info.goods_info,
                     fee: data.info.fee,
                     csrf: data.info.csrf
@@ -81,67 +87,90 @@ class IsOrder extends React.Component {
     }
 
     chooseId(id) {
-            this.setState({
-                chooseId: id
-            })
+           
+               this.chooseId=id
+           
+        }
+        checkId(item_price){
+            let userTourism = this.props.userTourism;
+        let userMoney = this.props.userMoney;
+        let userBuy = this.props.userBuy;
+     console.log(userTourism)
+     console.log(userMoney)
+     console.log(userBuy)
+
+          if (userMoney >= item_price) {
+       
+this.setState({
+chooseId:'balance_point'
+})
+               
+
+            }
+            if (userTourism >= item_price) {
+this.setState({
+chooseId:'travel_point'
+})
+               
+
+            }
+            if (userBuy >= item_price) {
+this.setState({
+chooseId:'point'
+})
+               
+
+            }
         }
         // 'balance_point':'排点积分',
         //    'travel_point':'旅游积分',
         //    'point':'购物积分'
-    checkChoose() {
-        let userTourism = this.props.userTourism;
-        let userMoney = this.props.userMoney;
-        let userBuy = this.props.userBuy;
-        let goods_price = 99;
+    // checkChoose() {
+    //     let userTourism = this.props.userTourism;
+    //     let userMoney = this.props.userMoney;
+    //     let userBuy = this.props.userBuy;
+    //     let item_price = this.props.item_price;
 
-        if (userMoney >= goods_price) {
-            this.setState({
-                chooseId: 'balance_point'
-            })
+    //     if (userMoney >= item_price) {
+    //         this.setState({
+    //             chooseId: 'balance_point'
+    //         })
 
-        }
-        if (userTourism >= goods_price) {
-            this.setState({
-                chooseId: 'userTourism'
-            })
+    //     }
+    //     if (userTourism >= item_price) {
 
-        }
-        if (userBuy >= goods_price) {
-            this.setState({
-                chooseId: 'point'
-            })
+    //         this.setState({
+    //             chooseId: 'travel_point'
+    //         })
 
-        }
-        //
-    }
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.userStatus !== this.props.userStatus) {
+    //     }
+    //     if (userBuy >= item_price) {
+           
 
-            let userTourism = nextProps.userTourism;
-            let userMoney = nextProps.userMoney;
-            let userBuy = nextProps.userBuy;
-            let goods_price = nextProps.item_price
+    //         this.setState({
+    //             chooseId: 'point'
+    //         })
 
-            if (userMoney >= goods_price) {
-                this.setState({
-                    chooseId: 'balance_point'
-                })
+    //     }
+    //     //
+    // }
+//     componentWillReceiveProps(nextProps) {
+//         if (nextProps.userStatus !== this.props.userStatus) {
 
-            }
-            if (userTourism >= goods_price) {
-                this.setState({
-                    chooseId: 'userTourism'
-                })
+//             let userMoney = nextProps.userMoney;
+//             let userTourism = nextProps.userTourism;
+//             let userBuy = nextProps.userBuy;
+//             let item_price =100;
+// console.log(userTourism)
+// console.log(userMoney)
+//  console.log(userBuy)
+//  console.log(this.props.item_price)
 
-            }
-            if (userBuy >= goods_price) {
-                this.setState({
-                    chooseId: 'point'
-                })
 
-            }
-        }
-    }
+
+          
+//         }
+//     }
     renderPage() {
 
         return (
@@ -151,10 +180,10 @@ class IsOrder extends React.Component {
                <div className='w'>
         <IsOrderAddress addressItems={this.state.addressItems}/>
         <IsOrderLi orderLi={this.state.orderLi}/>
-        <PayWay chooseId={this.state.chooseId} fee={this.state.fee} orderLi={this.state.orderLi} userName={this.props.userName} userMoney={this.props.userMoney}  userBuy={this.props.userBuy} userTourism={this.props.userTourism} goods_price={this.state.orderLi.goods_price}/>
+        <PayWay chooseId={this.state.chooseId} fee={this.state.fee} orderLi={this.state.orderLi} userName={this.props.userName} userMoney={this.props.userMoney}  userBuy={this.props.userBuy} userTourism={this.props.userTourism} item_price={this.state.item_price}/>
             <CoverMask />
         <PayPwd csrf={this.state.csrf} chooseId={this.state.chooseId} addressId={this.state.addressItems.address_id}/>
-<OrderFoot gray={this.state.gray}  addressItems={this.state.addressItems} csrf={this.state.csrf} fee={this.state.fee} orderLi={this.state.orderLi} userMoney={this.props.userMoney}  userBuy={this.props.userBuy} userTourism={this.props.userTourism} goods_price={this.state.orderLi.goods_price} />
+<OrderFoot gray={this.state.gray}  addressItems={this.state.addressItems} csrf={this.state.csrf} fee={this.state.fee} orderLi={this.state.orderLi} userMoney={this.props.userMoney}  userBuy={this.props.userBuy} userTourism={this.props.userTourism} item_price={this.state.item_price} />
 
    </div>
 
@@ -163,8 +192,9 @@ class IsOrder extends React.Component {
 
     }
     render() {
+console.log(this.state.chooseId)
 
-        // console.log(this.props.userBuy)
+        // console.log(this.state.item_price)
         //                console.log(this.props.userStatus)
         //                console.log(this.state.chooseId)
 

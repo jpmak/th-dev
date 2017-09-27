@@ -138,7 +138,7 @@ class Home extends React.Component {
         return (
             <div id='home'>
         <TopNav titleName = "我的积分" />
-<Info userBuy={this.props.userBuy}  userMoney={this.props.userMoney} UserTourism={this.props.UserTourism}/>
+<Info userBuy={this.props.userBuy}  userMoney={this.props.userMoney} userTourism={this.props.userTourism}/>
                <div className='w'>
  <div className='infoTitle'>
    我可兑换
@@ -152,6 +152,9 @@ class Home extends React.Component {
 
     }
     render() {
+     
+
+
         let p = new Promise(function(resolve, reject) {});
         let renderHtml = [];
         // 首屏没有加载成功，那么均展示loading效果
@@ -177,7 +180,7 @@ class Home extends React.Component {
 class Info extends React.Component {
     render() {
         let userMoney = this.props.userMoney ? this.props.userMoney : '0';
-        let UserTourism = this.props.UserTourism ? this.props.UserTourism : '0';
+        let userTourism = this.props.userTourism ? this.props.userTourism : '0';
         let userBuy = this.props.userBuy ? this.props.userBuy : '0';
         return (
             <div className='info-watch'>
@@ -187,7 +190,7 @@ class Info extends React.Component {
                                 <p>可用积分排点</p>
           </li>
                 <li>
-                          <p className='num'>{UserTourism} </p>
+                          <p className='num'>{userTourism} </p>
                                 <p>可用旅游积分</p>
           </li>
                 <li>
@@ -208,7 +211,7 @@ const mapStateToProps = state => {
         userStatus: state.MsgAppReducer.userStatus,
         userBuy: state.MsgAppReducer.userBuy,
         userMoney: state.MsgAppReducer.userMoney,
-        UserTourism: state.MsgAppReducer.UserTourism,
+        userTourism: state.MsgAppReducer.userTourism,
         homeLoadingStatus: state.MsgHomeReducer.homeLoadingStatus,
         InfoGoodsStatus: state.MsgHomeReducer.InfoGoodsStatus,
         InfoGoodsPage: state.MsgHomeReducer.InfoGoodsPage,

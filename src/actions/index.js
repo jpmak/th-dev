@@ -31,12 +31,10 @@
         // type: 'POST',
         dataType: 'json',
         success: (data) => {
-          // window.localStorage.user_info = JSON.stringify(data.status)
           dispatch({
             type: consts.FETCHUSERINFO_SUCCESS,
             userStatus: data.status,
             userName: data.user_info ? data.user_info.user_name : '',
-
             userMoney: data.buy_info ? data.buy_info.discharge_point : '',
             userBuy: data.buy_info ? data.buy_info.point : '',
             userTourism: data.buy_info ? data.buy_info.tourism : '',
