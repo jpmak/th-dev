@@ -8,6 +8,9 @@ import $ from 'jquery';
 
 import TopNav from '../components/TopNav';
 import Goback from '../components/public/Goback';
+
+import AllOrderCate from '../components/allorder/AllOrderCate';
+
 import AllOrderGoods from '../components/allorder/AllOrderGoods';
 
 import {
@@ -20,6 +23,8 @@ import {
     allOrderTryRestoreComponent,
     beginRefresh,
     fetchAllOrderGoods,
+    pullUpStatus,
+    UpDataCateType,
     updateAllOrderLoadingStatus,
     backupIScrollY
 
@@ -29,10 +34,10 @@ class AllOrder extends React.Component {
     constructor(props) {
         super(props);
         this.scrollTop = 0;
-        this.allOrderhandleScroll = this.allOrderhandleScroll.bind(this);
     };
 
     componentWillMount() {
+        // console.log(this.props.y);
         let p = new Promise(function(resolve, reject) {});
 
         if (window.localStorage.user_info != 1) {
@@ -48,12 +53,15 @@ class AllOrder extends React.Component {
 
 
     componentDidMount() {
-        window.addEventListener('scroll', this.allOrderhandleScroll);
         let p = new Promise(function(resolve, reject) {});
 
+        // console.log(this.props.allOrderLoadingStatus);
+        // console.log(this.props.userStatus);
 
-        if (this.props.logLoadingStatus === 1 || this.props.userStatus === 0) {
+        if (this.props.allOrderLoadingStatus === 1 || this.props.userStatus === 0) {
             this.props.dispatch(beginUser())
+
+
             this.props.dispatch(beginRefresh())
         } else {
             window.scrollTo(0, this.props.y)
@@ -62,34 +70,14 @@ class AllOrder extends React.Component {
 
     }
 
-
     componentWillUnmount() {
-
-        window.removeEventListener('scroll', this.allOrderhandleScroll);
-
-
-
-        if (this.props.logLoadingStatus === 2) { // 首屏成功刷出，则备份y
+        if (this.props.allOrderLoadingStatus === 2) { // 首屏成功刷出，则备份y
+            // this.props.dispatch(backupIScrollY(this.scrollTop))
             this.props.dispatch(backupIScrollY(this.scrollTop))
+                // 
 
         }
 
-    }
-    allOrderhandleScroll() {
-
-        let scrollTop = this.getScrollTop(); //滚动条滚动高度
-        this.scrollTop = scrollTop
-
-
-    }
-    getScrollTop() {
-        var scrollTop = 0;
-        if (document.documentElement && document.documentElement.scrollTop) {
-            scrollTop = document.documentElement.scrollTop;
-        } else if (document.body) {
-            scrollTop = document.body.scrollTop;
-        }
-        return scrollTop;
     }
 
     //search
@@ -99,28 +87,42 @@ class AllOrder extends React.Component {
 
     }
     backupIScrollY(e) {
-        this.props.dispatch(backupIScrollY(e))
+        this.scrollTop = e
     }
 
+    UpDataCateType(type, move) {
+
+        this.props.dispatch(UpDataCateType(type, move))
+
+    }
+    UpDataPullUpStatus(e) {
+        this.props.dispatch(pullUpStatus(e))
+
+    }
+    changeGoods(e, type) {
+
+        this.props.dispatch(fetchAllOrderGoods(this.props.allOrderGoodsPage, this.props.allOrderType))
+    }
+    get_type_goods(page, type) {
+
+        this.props.dispatch(fetchAllOrderGoods(page, type))
 
 
-    changeGoods() {
-        console.log(this.props.pullDownStatus);
-        this.props.dispatch(fetchAllOrderGoods(this.props.AllOrderGoodsPage))
     }
 
     renderPage() {
+
         return (
             <div >
         <TopNav titleName = "兑换订单" />
-
                <div className='w'>
 
-        <AllOrderGoods allOrderLoadingStatus={this.props.allOrderLoadingStatus} beginRefresh={this.beginRefresh.bind(this)} allOrderGoodsPage={this.props.allOrderGoodsPage} allOrderList={this.props.allOrderList}  pullDownStatus={this.props.pullDownStatus} changeGoods={this.changeGoods.bind(this)}/>
+        <AllOrderCate TypeMove={this.props.TypeMove} allOrderType={this.props.allOrderType} get_type_goods={this.get_type_goods.bind(this)}  UpDataPullUpStatus={this.UpDataPullUpStatus.bind(this)} UpDataCateType={this.UpDataCateType.bind(this)}/>
+
+        <AllOrderGoods  pullUpStatus={this.props.pullUpStatus} allOrderLoadingStatus={this.props.allOrderLoadingStatus} beginRefresh={this.beginRefresh.bind(this)} allOrderGoodsPage={this.props.allOrderGoodsPage} allOrderList={this.props.allOrderList}  pullDownStatus={this.props.pullDownStatus} changeGoods={this.changeGoods.bind(this)} backupIScrollY={this.backupIScrollY.bind(this)}/>
    </div>
 
 </div>)
-
 
     }
     render() {
@@ -149,6 +151,11 @@ const mapStateToProps = state => {
         allOrderGoodsPage: state.MsgAllOrderReducer.allOrderGoodsPage,
         allOrderList: state.MsgAllOrderReducer.allOrderList,
         pullDownStatus: state.MsgAllOrderReducer.pullDownStatus,
+        pullUpStatus: state.MsgAllOrderReducer.pullUpStatus,
+        allOrderType: state.MsgAllOrderReducer.allOrderType,
+        TypeMove: state.MsgAllOrderReducer.TypeMove,
+
+
         y: state.MsgAllOrderReducer.y
 
     }

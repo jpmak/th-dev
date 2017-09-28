@@ -8,9 +8,7 @@ import MsgDetailReducer from "./detail.js";
 import MsgHomeReducer from "./home.js";
 import MsgLogReducer from "./log.js";
 import MsgAllOrderReducer from "./allorder.js";
-
-  
-
+import MsgOrderDetailReducer from "./orderDetail.js";
 
 
 
@@ -48,7 +46,7 @@ const FETCHUSERINFO_SUCCESS_reducer = (state, action) => {
     userMoney: action.userMoney,
     userBuy: action.userBuy,
     userTourism: action.userTourism,
-    
+
     userName: action.userName
   });
 
@@ -181,6 +179,7 @@ const rootReducer = combineReducers({
   MsgDetailReducer,
   MsgHomeReducer,
   MsgLogReducer,
-  MsgAllOrderReducer
+  MsgAllOrderReducer,
+  MsgOrderDetailReducer
 })
 export default rootReducer

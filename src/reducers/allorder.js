@@ -2,9 +2,14 @@ import * as consts from "../consts/ActionTypes";
 // 组件初始化状态，其实就是把component的constructor的挪到这里就完事了
 const allOrderInitState = {
   allOrderLoadingStatus: 1, // [1]首屏加载状态 [2]非首次进去 [3]加载失败 [4]没有数据放回首页
+
+  allOrderType: '', //订单支付类型
+  TypeMove: '0px', //块状移动
   allOrderGoodsStatus: 1, // 内容状态
+  pullUpStatus: 0, //上加载状态
+
   allOrderList: [], // 列表内容
-  allOrderGoodsPage: 0, //页数
+  allOrderGoodsPage: 1, //页数
   pullDownStatus: 4, //下加载状态
   y: 0
 
@@ -18,14 +23,17 @@ const ALLORDER_RESTORE_COMPONENT_reducer = (state, action) => {
 const ALLORDER_GOODS_SUCCESS_reducer = (state, action) => {
   let nextState = Object.assign({}, state);
   nextState.allOrderLoadingStatus = 2;
-console.log( nextState.allOrderLoadingStatus)
+  nextState.pullUpStatus = 2;
+
 
   if (action.allOrderList.length > 0) {
-    if (action.allOrderGoodsPage === 0) {
+
+    if (action.allOrderGoodsPage === 1) {
+
       nextState.allOrderGoodsPage = action.allOrderGoodsPage + 1;
       nextState.allOrderList = action.allOrderList;
 
-      if (action.allOrderList.length < 10) {
+      if (action.allOrderList.length < 5) {
 
         nextState.pullDownStatus = 1;
       } else {
@@ -33,7 +41,7 @@ console.log( nextState.allOrderLoadingStatus)
       }
     } else { // 加载操作
       if (state.pullDownStatus === 0) {
-        if (action.allOrderList.length < 10) {
+        if (action.allOrderList.length < 5) {
           nextState.pullDownStatus = 1;
         }
         nextState.allOrderList = state.allOrderList.concat(action.allOrderList);
@@ -43,11 +51,14 @@ console.log( nextState.allOrderLoadingStatus)
 
 
   } else {
-    if (action.allOrderGoodsPage === 0) {
+    if (action.allOrderGoodsPage === 1) {
+      nextState.allOrderGoodsPage = 1;
+
       nextState.allOrderList = [];
       nextState.pullDownStatus = 4;
     }
-    if (action.AllOrderGoodsPage > 0 && state.pullDownStatus < 2) {
+    if (action.allOrderGoodsPage > 1 && state.pullDownStatus < 2) {
+
       nextState.pullDownStatus = 2;
 
     }
@@ -76,8 +87,32 @@ const ALLORDER_BACKUP_Y_reducer = (state, action) => {
   });
   return state;
 }
+const ALLORDER_UPDATE_PULLUP_STATUS_reducer = (state, action) => {
+  return Object.assign({}, state, {
+    pullUpStatus: action.pullUpStatus
+  });
+  return state;
+}
+
+const ALLORDER_UPDATE_CATETYPE_STATUS_reducer = (state, action) => {
+
+  return Object.assign({}, state, {
+    allOrderType: action.allOrderType,
+    TypeMove: action.TypeMove
+  });
+  return state;
+}
+
 export const MsgAllOrderReducer = (state = allOrderInitState, action) => {
   switch (action.type) {
+
+    case consts.ALLORDER_UPDATE_PULLUP_STATUS:
+      return ALLORDER_UPDATE_PULLUP_STATUS_reducer(state, action);
+
+
+    case consts.ALLORDER_UPDATE_CATETYPE_STATUS:
+      return ALLORDER_UPDATE_CATETYPE_STATUS_reducer(state, action);
+
     case consts.ALLORDER_RESTORE_COMPONENT:
       return ALLORDER_RESTORE_COMPONENT_reducer(state, action);
     case consts.ALLORDER_GOODS_SUCCESS:

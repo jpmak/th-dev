@@ -137,7 +137,7 @@
     }
 
     export const getCateId = (id) => {
-      console.log(id)
+
 
       return (dispatch) => {
         dispatch({

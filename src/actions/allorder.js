@@ -10,28 +10,28 @@
     // 发起刷新
     export function beginRefresh() {
       return (dispatch) => {
-        fetchAllOrderGoods(0)(dispatch);
+        fetchAllOrderGoods(1, '')(dispatch);
       }
     }
 
 
 
-    export const fetchAllOrderGoods = (page) => {
+    export const fetchAllOrderGoods = (page, state) => {
       return (dispatch) => {
         $.ajax({
-          url: '/wap/?g=WapSite&c=Exchange&a=get_exchange_log',
+          url: '/wap/?g=WapSite&c=Exchange&a=orderList',
           dataType: 'json',
           type: 'post',
           'data': {
-            'page': page
+            'page': page,
+            'state': state
           },
           success: (data) => {
-         
             dispatch({
               type: consts.ALLORDER_GOODS_SUCCESS,
               allOrderLoadingStatus: 2,
               allOrderGoodsStatus: data.status,
-              allOrderList: data.ALLORDER_list ? data.ALLORDER_list : '',
+              allOrderList: data.list ? data.list : '',
               allOrderGoodsPage: page
             });
 
@@ -49,6 +49,27 @@
       return {
         type: consts.ALLORDER_UPDATE_LOADING_STATUS,
         nextStatus: nextStatus
+      };
+    }
+    export const pullUpStatus = (e) => {
+      return (dispatch) => {
+        dispatch({
+          type: consts.ALLORDER_UPDATE_PULLUP_STATUS,
+          pullUpStatus: e
+        });
+      }
+    }
+
+
+    export const UpDataCateType = (type, TypeMove) => {
+
+
+      return (dispatch) => {
+        dispatch({
+          type: consts.ALLORDER_UPDATE_CATETYPE_STATUS,
+          allOrderType: type,
+          TypeMove: TypeMove
+        });
       };
     }
 

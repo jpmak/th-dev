@@ -72,10 +72,10 @@ class App extends React.Component {
 		this.props.dispatch(liMove(index, widths, width))
 	}
 	render() {
-		   // console.log(this.props.UserTourism)
-     //    console.log(this.props.UserMoney)
-     //    console.log(this.props.userBuy)
-     //    console.log(this.props.userStatus)
+		// console.log(this.props.UserTourism)
+		//    console.log(this.props.UserMoney)
+		//    console.log(this.props.userBuy)
+		//    console.log(this.props.userStatus)
 		const {
 			loadingStatus,
 			bannerItems,

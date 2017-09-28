@@ -1,4 +1,4 @@
-    $scrllerColor:#666;
+        $scrllerColor:#666;
     $activeColor:#FF3838;
     $yellowColor: #F5A623;
     $borderColor:#dedede;
@@ -343,6 +343,11 @@
                         padding-right: .08rem;
                     }
                 }
+.orderPrice{
+    float: right;
+    color:#333;
+}
+
             }
         }
     }
@@ -360,10 +365,10 @@
                 float: left;
                 width: 6.9rem;
                 border-bottom: 1px solid #DEDEDE;
-
+ 
                 .orderNum {
                     float: left;
-                    i{
+                    i {
                         vertical-align: middle;
                         display: inline-block;
                         width: .45rem;
@@ -371,13 +376,20 @@
                         margin-top: .05rem;
                         margin-right: .1rem;
 
-                     background: url(../images/shop.png) no-repeat;
-        background-size: .45rem .45rem;
+                        background: url(../images/shop.png) no-repeat;
+                        background-size: .45rem .45rem;
                     }
                 }
+           
                 .orderdate {
                     float: right;
                 }
+                .orderState
+                {
+                    float: right;
+                    color:#E7940C;
+                }
+           
             }
             .info-img {
                 padding: 0.3rem .2rem .3rem 0;
@@ -387,11 +399,39 @@
             }
         }
     }
-    .hor-list li .info-bar .e-numb .orderNum { font-size: .24rem; color: #333 ; float: right; }
-.order li .shop{
-    height: .8rem;
-    line-height: .8rem;
-}
+
+    .hor-list li .info-bar .e-numb .orderNum {
+        font-size: .24rem;
+        color: #333;
+        float: right;
+    }
+
+    .order li .shop {
+        height: .8rem;
+        line-height: .8rem;
+    }
+       .totalWrap{ float: left;
+
+                    .orderTotal{
+                   border-top:1px solid #DEDEDE;
+                          width: 6.9rem;
+                          height:.78rem;
+                          line-height: .78rem;
+                          // background:#FBFBFB;
+                          .total{
+
+                            .num{
+                            color:#E42C2F;font-size:.28rem;
+                            font-weight: bold;
+                            margin-right: .05rem;
+                            }
+                            .serve{
+                                margin:0 .05rem;
+                            }
+                          }
+                    }
+                    
+                }
     .ordersList {
         float: left;
         padding: .2rem 0;
@@ -495,6 +535,7 @@
                     margin-right: .2rem;
                 }
             }
+
         }
         .order-pro-list.order-box {
             li {
@@ -824,145 +865,219 @@
         display: inline-block;
         line-height: .4rem;
         margin-right: .1rem;
-    }
-    //地址
+    } //地址
     .user-info {
-    background: #fff;
-    box-sizing: border-box;
-    margin-bottom: .2rem;
-}
-.user-info i {
-    display: block;
-    height: .13rem;
-    background: url(../images/border.png) no-repeat;
+        background: #fff;
+        box-sizing: border-box;
+        margin-bottom: .2rem;
+    }
+
+    .user-info i {
+        display: block;
+        height: .13rem;
+        background: url(../images/border.png) no-repeat;
         background-size: 7.5rem 0.13rem;
-
-}
-.user-info .left-cont {
-    display: inline-block;
-    vertical-align: middle;
-    width: 6.30rem;
-    margin-left: .20rem;
-}
-.user-info .left-cont dl {
-    margin: .20rem 0;
-    font-size: .28rem;
-}
-.user-info .left-cont dl dt {
-    display: inline-block;
-    vertical-align: middle;
-    width: .90rem;
-    font-weight: 500;
-    text-align: right;
-}
-.user-info .left-cont dl dd {
-    display: inline-block;
-    vertical-align: middle;
-    width: 5.20rem;
-    margin-left: .10rem;
-}
-.user-info .addressChange{
-    text-align:right; height:.45rem; line-height:.30rem;
-}
-.user-info .addressChange a{
-    padding:0 .20rem; color:#0066ff;
-}
-.order-footer {
-    width: 7.50rem;
-    height: 1.20rem;
-    margin-left: -3.75rem;
-    left: 50%;
-    bottom: 0;
-    background: #fff;
-    position: fixed;
-    z-index: 20;
-    .left-cont {
-        float: left;
-    height: 100%;
- 
-    padding: 0rem .20rem;
-    line-height: 1.2rem;
-    box-sizing: border-box;
-   label {
-    display: inline-block;
-    vertical-align: middle;
-    font-size: .28rem;
-}
-.total-wrap {
-    display: inline-block;
-    vertical-align: middle;
-    margin-left: .20rem;
-    .total {
-    font-size: .22rem;
- 
-    color: #ED1A3B;
-    .num{
-           font-size: .40rem;
-   margin-right: .05rem;
     }
-    .add{
-        font-weight: bold;
-        margin:0 .05rem;
+
+    .user-info .left-cont {
+        display: inline-block;
+        vertical-align: middle;
+        width: 6.30rem;
+        margin-left: .20rem;
     }
-}
-}
-}
-.settle {
-   
-    width: 2.40rem;
-    height: 100%;
-    background-image: linear-gradient(90deg, #FE5030, #DD2476);
-    color: #fff;
-    font-size: .28rem;
-    line-height: 1.20rem;
+
+    .user-info .left-cont dl {
+        margin: .20rem 0;
+        font-size: .28rem;
+    }
+
+    .user-info .left-cont dl dt {
+        display: inline-block;
+        vertical-align: middle;
+        width: .90rem;
+        font-weight: 500;
+        text-align: right;
+    }
+
+    .user-info .left-cont dl dd {
+        display: inline-block;
+        vertical-align: middle;
+        width: 5.20rem;
+        margin-left: .10rem;
+    }
+
+    .user-info .addressChange {
+        text-align: right;
+        height: .45rem;
+        line-height: .30rem;
+    }
+
+    .user-info .addressChange a {
+        padding: 0 .20rem;
+        color: #0066ff;
+    }
+
+    .order-footer {
+        width: 7.50rem;
+        height: 1.20rem;
+        margin-left: -3.75rem;
+        left: 50%;
+        bottom: 0;
+        background: #fff;
+        position: fixed;
+        z-index: 20;
+        .left-cont {
+            float: left;
+            height: 100%;
+
+            padding: 0rem .20rem;
+            line-height: 1.2rem;
+            box-sizing: border-box;
+            label {
+                display: inline-block;
+                vertical-align: middle;
+                font-size: .28rem;
+            }
+            .total-wrap {
+                display: inline-block;
+                vertical-align: middle;
+                margin-left: .20rem;
+                .total {
+                    font-size: .22rem;
+
+                    color: #ED1A3B;
+                    .num {
+                        font-size: .40rem;
+                        margin-right: .05rem;
+                    }
+                    .add {
+                        font-weight: bold;
+                        margin: 0 .05rem;
+                    }
+                }
+            }
+        }
+        .settle {
+
+            width: 2.40rem;
+            height: 100%;
+            background-image: linear-gradient(90deg, #FE5030, #DD2476);
+            color: #fff;
+            font-size: .28rem;
+            line-height: 1.20rem;
+            text-align: center;
+        }
+    }
+
+
+    .gray .left-cont .total-wrap .total {
+        color: #dedede;
+    }
+
+    .gray .settle {
+        background: #dedede;
+    }
+
+    //支付成功
+    .successOrder {
+        padding-top: 1.4rem;
+        padding-bottom: .2rem;
+        text-align: center;
+        width: 7.5rem;
+        margin: 0 auto
+    }
+
+    .successOrder img {
+        width: 3.6rem;
+    }
+
+    .successOrder p:first-of-type {
+        color: #ED1A3B;
+        font-size: .4rem;
+        padding-top: .6rem;
+    }
+
+    .successOrder .button {
+        margin-top: .5rem;
+    }
+
+    .successOrder .order_details {
+        display: inline-block;
+        color: rgba(43, 36, 36, .7);
+        border: 1px solid #5C5C5C;
+        border-radius: .2rem;
+        width: 1.8rem;
+        line-height: .6rem;
+        background-color: #f2f2f2;
+    }
+
+    .successOrder .continue_exchange {
+        display: inline-block;
+        color: #fff;
+        border-radius: .2rem;
+        width: 1.8rem;
+        line-height: .64rem;
+        background: linear-gradient(-90deg, #F57351 4%, #CA001E 100%);
+        margin-left: .7rem;
+    }
+
+
+    .titleWrap {
+        .nav {
+            position: relative;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: row;
+            -ms-flex-direction: row;
+            flex-direction: row;
+            -webkit-flex-wrap: nowrap;
+            -ms-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+            border-bottom: 1px solid #dcdcdc;
+            .filter-item {
+                display: block;
+                width: 100%;
+                height: 100%;
+                background: #FBFBFB;
+                margin: 0 auto;
+                text-align: center;
+                height: 100%;
+                line-height: .8rem;
+                  color: #353d44;
+                  z-index: 1;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+            }
+       
+        }
+             .title-list{ 
+                p {
+    position: absolute;
+    top: .75rem;
+    left: 0px;
+    border-top: 0.06rem solid #ED0E47;
+    overflow: hidden;
     text-align: center;
+    z-index: 100;
 }
+                .cur {
+                             color: #ED0E47;
+                         }
+                     }
+        }
+.w33 .title-list p {
+    width: 33%;
 }
-
-
-.gray .left-cont .total-wrap .total{
-color:#dedede;
-}
-.gray .settle{
-    background: #dedede;
-}
-
-//支付成功
-.successOrder{
-    padding-top: 1.4rem;
-    padding-bottom: .2rem;
-    text-align: center;
-    width: 7.5rem; margin:0 auto
-}
-.successOrder img {
-    width: 3.6rem;
-}
-
-.successOrder p:first-of-type {
-    color: #ED1A3B;
-    font-size: .4rem;
-    padding-top: .6rem;
-}
-
-.successOrder .button {
-    margin-top: .5rem;
-}
-.successOrder .order_details {
-    display: inline-block;
-    color: rgba(43, 36, 36, .7);
-    border: 1px solid #5C5C5C;
-    border-radius: .2rem;
-    width: 1.8rem;
-    line-height: .6rem;
-    background-color: #f2f2f2;
-}
-
-.successOrder .continue_exchange {
-    display: inline-block;
-    color: #fff;
-    border-radius: .2rem;
-    width: 1.8rem;
-    line-height: .64rem;
-    background: linear-gradient(-90deg, #F57351 4%, #CA001E 100%);
-    margin-left: .7rem;
+.cf:after {
+    content: "";
+    clear: both;
+    display: block;
+    height: 0;
+    overflow: hidden;
 }
