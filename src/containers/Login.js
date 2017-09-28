@@ -208,7 +208,7 @@ class Login extends React.Component {
 
 
   render() {
-    console.log(this.props.match.params.router);
+
     return (
       <div className="div1" id="bodyDiv">
         <TopNav titleName = "登录" backEchange={this.backEchange.bind(this)}/>

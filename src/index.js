@@ -22,6 +22,9 @@ import IsOrder from './containers/IsOrder';
 import SuccessView from './containers/SuccessView';
 import AllOrder from './containers/AllOrder';
 import OrderDetail from './containers/OrderDetail';
+import TranList from './containers/TranList';
+
+
 
 
 
@@ -69,6 +72,7 @@ const Jf = () => (
 	 <Route path="/Exchange-index.html/successview/:id?" component={SuccessView}/>
 	 <Route path="/Exchange-index.html/allorder/" component={AllOrder}/>
 	 <Route path="/Exchange-index.html/orderdetail/:id?" component={OrderDetail}/>
+	 <Route path="/Exchange-index.html/TranList/:id?" component={TranList}/>
 
 
 

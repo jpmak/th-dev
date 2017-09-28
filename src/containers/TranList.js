@@ -108,102 +108,15 @@ class OrderDetail extends React.Component {
     renderPage() {
         return (
             <div>
-        <TopNav titleName = "订单详情" />
-               <div className='w orderDetWrap'>
+        <TopNav titleName = "物流列表" />
+               <div className='w'>
 
-<div className="top-board">
-                <div className="left-cont">
-                    <h3>待付款</h3>
-                </div>
-                <div className="right-icon"></div>
-            </div>
+<div className='wlNoData'>
+<h3>暂无物流包裹</h3>
+</div>
 
-<div className="order-msg">
-                <div className="bg-icon"></div>
-                <div className="right-cont">
-                    <div className="user-msg">
-                        <div className="user-id">test</div>
-                        <div className="tel-num">13700137000</div>
-                    </div>
-                    <div className="address">
-                        <p>西藏 拉萨市 城关区</p>
-                        <p>test11111</p>
-                    </div>
-                </div>
-            </div>
+        
 
-<div className="seller-shipped">
-                <div className="bg-icon"></div>
-                <div className="mid-cont">
-                    <div className="condition">卖家发货</div>
-                    <div className="time">2017-09-14 17:40:52</div>
-                </div>
-            </div>
-
-
-            <div className="order-details">
-                <div className="goods-details">
-                    <div className="order-sub">
-                        <div className="order-sub-num">子订单号:170923152229828091</div>
-                        <div className="shop-name">通惠自营店</div>
-                    </div>
-                                        <div className="order-lists">
-                        <div className="goods-msg">
-                         <div className="icon"><img src="https://img.thgo8.com/assets/images/04/11/list_adf83bb4dc61d76b7ad775a19abd9a7ab366e1f5.jpg" alt=""/></div>
-                            <div className="right-cont">
-                                <div className="goods-name">【门店自提】海天 水果醋果汁酿造调味醋 苹果醋(拉环盖)450ml</div>
-                                <div className="norm-wrap">
-                                    <div className="norm"></div>
-                                    <div className="amount">× 1</div>
-                                </div>
-                                <div className="price">¥ 6.50</div>
-                            </div>
-                        </div>
-                                            </div>
-                                        <div className="shop-tit" onclick="location='Store-home-1.html'">
-                        <div className="title">
-                            <i></i>
-                            通惠自营店                       </div>
-                    </div>
-                    <ul className="charges">
-                        <li className="char-lists">
-                            <label for="">运费：</label>
-                            <p className="freight">¥ 20.00</p>
-                        </li>
-                        <li className="char-lists">
-                            <label for="">借贷券：</label>
-                            <p className="loan-vcr">0.00</p>
-                        </li>
-                        <li className="char-lists">
-                            <label for="">商品优惠：</label>
-                            <p className="offers">-¥ 0.00</p>
-                        </li>
-                        <li className="char-lists">
-                            <label for="">优惠券优惠：</label>
-                            <p className="offers">-¥ 0.00</p>
-                        </li>
-                        <li className="char-lists">
-                            <label for="">红包：</label>
-                            <p className="red-elp">-¥ 0.00</p>
-                        </li>
-                        <li className="char-lists">
-                            <label for="">实付 (含运费)</label>
-                            <p className="act-paid">¥ 26.50</p>
-                        </li>
-                    </ul>
-                    <ul className="place-msg">
-                        <li className="place-lists">下单时间：2017-09-23 15:22:29</li>
-                        <li className="place-lists">配送方式：快递运送</li>
-                        <li className="place-lists">付款方式：未支付</li>
-                        <li className="place-lists">获得购物积分：0</li>
-                    </ul>
-                </div>
-            </div>
-
-<div className="foot">
-               <button className="order-cancel" >取消订单</button>
-               <button className="pay-btn red-btn" >立即支付</button>
-    </div>
 
 
    </div>
