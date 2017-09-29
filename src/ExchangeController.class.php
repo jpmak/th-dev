@@ -467,20 +467,17 @@ class ExchangeController extends BaseController
         $this->assign("state", $state);
         if(!empty($state)){
             switch ($state){
-                case 'paid'://已支付（待发货）
+                case 'paid':
                     $where .= " AND paid = 1 AND status = 1 AND ems_status = 0";
                     break;
-                case 'ems'://已发货（待确认）
+                case 'ems':
                     $where .= " AND ems_status = 1 AND status = 1 AND finished = 0";
                     break;
-                case 'unpaid'://待支付
+                case 'unpaid':
                     $where .= " AND paid = 0 AND status = 1 AND ems_status = 0";
                     break;
-                case 'finshed'://已完成
+                case 'finshed':
                     $where .= " AND ems_status = 1 AND status = 1 AND finished = 1";
-                	break;
-                default :
-                	$where .= '';
                 	break;
             }
         }
@@ -510,9 +507,13 @@ class ExchangeController extends BaseController
             'where' => $where,
         ));
         if( isset($_POST) && !empty($_POST) ){
-    		$json['status'] = 1;
-    		$json['list'] = $orders;
-    		exit(json_encode($json));
+        	if(empty($orders)){
+        		$json['status'] = 0;
+        	}else{
+        		$json['status'] = 1;
+        		$json['list'] = $orders;
+        	}
+        	exit(json_encode($json));
         }else{
 	        $this->assign("orders", $orders);
 	        $this->display();
@@ -584,8 +585,8 @@ class ExchangeController extends BaseController
                 "SELECT * FROM ".$model_consignee->getTable().' WHERE exchange_order_id = :exchange_order_id',
                 ['exchange_order_id'=>$order['exchange_order_id']]
             );
+            $delivery['track']['info'] = [];
             //物流信息
-            $delivery = [];
             $deliveryModel = new OrderDeliveryModel();
             if (!empty($consignee['waybill'])) {
                 $delivery['waybill'] = $consignee['waybill'];
@@ -595,7 +596,7 @@ class ExchangeController extends BaseController
                 $delivery['express_name'] = $consignee['express_name'];
                 $delivery['track'] = ShowAPI::logisticsTrack($consignee['waybill'], $express_code);
                 if( empty($delivery['track']) ){
-                    $delivery['track'] = [];
+                    $delivery['track']['info'] = [];
                 }
             }
             $json['delivery'] = $delivery;
@@ -741,7 +742,9 @@ class ExchangeController extends BaseController
 //        $data['available_point'] = $available_point;
 
         //生成校验码 提交订单使用 防止多次提交
-        $_SESSION['getOrderInfo'] = md5(time().rand(1000,9999).$_SESSION['user']['user_id']);
+        if( !isset($_SESSION['getOrderInfo']) || empty($_SESSION['getOrderInfo'])){
+            $_SESSION['getOrderInfo'] = md5(time().rand(1000,9999).$_SESSION['user']['user_id']);
+        }
         $data['csrf'] = $_SESSION['getOrderInfo'];
         //获取用户所有地址
         $address_model = new UsersAddressModel();
@@ -801,13 +804,16 @@ class ExchangeController extends BaseController
 				throw new Exception("支付密码错误");
 			}
 			//检查重复提交
-			// if( empty($_SESSION['getOrderInfo']) || $csrf != $_SESSION['getOrderInfo'] ){
-   //              throw new Exception("请勿重复提交");
-   //          }else{
-			//     unset($_SESSION['getOrderInfo']);
-   //          }
+			if( $csrf != $_SESSION['getOrderInfo'] ){
+                throw new Exception("请勿重复提交");
+            }else{
+			    unset($_SESSION['getOrderInfo']);
+            }
+			$model_exchange_order->begin();
 			$order_number = $model_exchange_order->createOrder($user_id, $item_id, $consignee_id, ExchangeOrderModel::$map_p_type[$p_type]);
+            $model_exchange_order->commit();
         }catch (Exception $e){
+            $model_exchange_order->rollback();
             exit(json_encode(array('status'=>1,'msg'=>$e->getMessage())));
 		}
 		exit(json_encode($this->pay($order_number, $pay_type)));
@@ -851,13 +857,9 @@ class ExchangeController extends BaseController
 		$json['status'] = 1;
 		if(!empty($order_number)){
 			switch($pay_type) {
-				// case 'unionpay':
-				//     Url::redirect(['Index/Upacp/recharge_pay', 'payment_number'=>$orderId]);
-				//     break;
 				case ExchangeOrderModel::PAY_TYPE_BALANCE:
 					try{
 						$model_user->begin();
-
 						if(empty($order)){
 							throw new Exception("找不到兑换订单：${order_number}");
 						}
@@ -870,24 +872,19 @@ class ExchangeController extends BaseController
 						}
 						$model_user->commit();
 						$json['msg'] = '支付成功';
-						// Url::redirect(['Index/Exchange/exchange_success', 'order_number' => $order_number]);
 					}catch (Exception $e){
 						$model_user->rollback();
 						$json['status'] = 0;
 						$json['msg'] = $e->getMessage();
-						// Url::redirect(['Index/Exchange/exchange_fail', 'error'=>$e->getMessage(), 'code' => 1, 'order_number' => $order_number]);
 					}
 					break;
 				case ExchangeOrderModel::PAY_TYPE_ALIPAY:
 					$json['msg'] = '支付成功';
-					// Url::redirect(['Index/Alipay/exchange_pay', 'payment_number'=>$order_number]);
 					break;
 				case ExchangeOrderModel::PAY_TYPE_WEIXINPAY:
 					$json['msg'] = '支付成功';
-					// Url::redirect(['Index/WeiXinPay/exchange_pay', 'payment_number'=>$order_number]);
 					break;
 				default:
-					return 123435;
 					break;
 			}
 		}

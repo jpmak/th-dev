@@ -19,6 +19,9 @@ class PayWay extends React.Component {
 
 
     }
+    changeChooseId(id) {
+        this.props.changeChooseId(id)
+    }
     open() {
         $('#payWay').hide();
 
@@ -60,7 +63,7 @@ class PayWay extends React.Component {
                     </div>
                 </div>
                 </div>
-                <ChooseType userMoney={this.props.userMoney}  userBuy={this.props.userBuy} userTourism={this.props.userTourism}  item_price={ this.props.item_price}/>
+                <ChooseType changeChooseId={this.changeChooseId.bind(this)} chooseId={this.props.chooseId} userMoney={this.props.userMoney}  userBuy={this.props.userBuy} userTourism={this.props.userTourism}  item_price={ this.props.item_price}/>
                 </div>
         )
 
@@ -69,15 +72,22 @@ class PayWay extends React.Component {
 
 
 class ChooseType extends React.Component {
+    componentDidMount() {
+        this.state = {
+            currentIndex: this.props.chooseId,
+
+        }
+
+    }
     constructor(props) {
         super(props);
         this.state = {
-            currentIndex: '0',
+            currentIndex: this.props.chooseId,
             pushId: '0'
         }
     };
     cheack(index, money) {
-        let goods_price=parseInt(this.props.item_price)
+        let goods_price = parseInt(this.props.item_price)
         if (money >= goods_price && index === this.state.currentIndex) {
             return 'cur'
         } else if (money >= goods_price && index !== this.state.currentIndex) {
@@ -85,9 +95,10 @@ class ChooseType extends React.Component {
 
         } else if (money < goods_price) {
             return 'pointerNone'
-
-
         }
+
+        // return index === this.state.currentIndex ? 'cur' : '';
+
         // return index === this.state.currentIndex ? 'cur' : '';
 
     }
@@ -95,12 +106,15 @@ class ChooseType extends React.Component {
     handleClick(e, event) {
         // this.stopPropagation()
         event.stopPropagation();
-        let num = e.target.getAttribute('data-Num')
-        let id = e.target.getAttribute('data-Id')
+        // let num = e.target.getAttribute('data-Num')
+        // let id = e.target.getAttribute('data-Id')
 
         this.setState({
-            currentIndex: num,
-            pushId: id
+            currentIndex: e,
+            // pushId: id
+        }, () => {
+            console.log(this.state.currentIndex);
+
         })
 
 
@@ -114,7 +128,8 @@ class ChooseType extends React.Component {
         }
     }
     handlePush() {
-        console.log(this.state.id)
+        this.props.changeChooseId(this.state.currentIndex)
+        console.log(this.state.currentIndex)
         $('#chooseTypeWrap .payWay').hide();
         $('.cover-mask').removeClass('cover-mask-toggle').hide();
 
@@ -127,6 +142,12 @@ class ChooseType extends React.Component {
     }
     render() {
 
+        let userMoney = this.props.userMoney
+        let userTourism = this.props.userTourism
+        let userBuy = this.props.userBuy
+            // console.log(this.props.userMoney);
+            // console.log(this.props.userTourism);
+            // console.log(this.props.userBuy);
 
         return (
             <div id='chooseTypeWrap'>
@@ -135,27 +156,27 @@ class ChooseType extends React.Component {
 <a className="class th-nav-back" onClick={this.handleBack.bind(this)}> </a>
 <div className='wbox-flex payTitle'>选择积分类型</div>
 <ul className='payList'>
-<li className={this.cheack('0',this.props.userMoney)}   data-Id="balance_point" data-Num='0' data-Money={this.props.userMoney} onClick={this.handleClick.bind(this)}> 
+<li className={this.cheack('balance_point',this.props.userMoney)}   data-Id="balance_point" data-Num='0' data-Money={userMoney} onClick={this.handleClick.bind(this,'balance_point')}> 
     <label >排点积分</label>
     <p>
-       <span className='num'>{this.props.userMoney}</span>
+       <span className='num'>{userMoney}</span>
    <span  className='jf'>积分</span>
    <i className="round"></i>
    </p>
 </li>
-<li className={this.cheack('1',this.props.userTourism)} data-Id="travel_point" data-Num='1' data-Money={this.props.userBuy} onClick={this.handleClick.bind(this)}>
+<li className={this.cheack('travel_point',this.props.userTourism)} data-Id="travel_point" data-Num='1' data-Money={userBuy} onClick={this.handleClick.bind(this,'travel_point')}>
     <label >旅游积分</label>
         <p>
-       <span className='num'>{this.props.userTourism}</span>
+       <span className='num'>{userTourism}</span>
    <span className='jf'>积分</span>
    <i className="round"></i>
    </p>
 
 </li>
-<li className={this.cheack('2',this.props.userBuy)} data-Id="point" data-Num='2'  data-Money={this.props.userBuy} onClick={this.handleClick.bind(this)}> 
+<li className={this.cheack('point',this.props.userBuy)} data-Id="point" data-Num='2'  data-Money={userBuy} onClick={this.handleClick.bind(this,'point')}> 
     <label>购物积分</label>
     <p>
-       <span className='num'>{this.props.userBuy}</span>
+       <span className='num'>{userBuy}</span>
    <span  className='jf'>积分</span>
    <i className="round"></i>
    </p>

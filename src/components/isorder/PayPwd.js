@@ -36,6 +36,7 @@ class PayPwd extends React.Component {
 
         this.handleChange = (event) => {
             let val = event.target.value;
+
             this.setState({
                 value: val
             }, () => {

@@ -8,31 +8,40 @@
     }
 
     // 发起刷新
-    export function beginRefresh() {
+    export function beginRefresh(numId) {
       return (dispatch) => {
-        fetchOrderDetailGoods(1)(dispatch);
+        fetchOrderDetailGoods(numId)(dispatch);
       }
     }
 
 
 
-    export const fetchOrderDetailGoods = (page) => {
+    export const fetchOrderDetailGoods = (numId) => {
       return (dispatch) => {
         $.ajax({
           url: '/wap/?g=WapSite&c=Exchange&a=getOrderPrompt',
           dataType: 'json',
           type: 'post',
           'data': {
-            'orderId': 48
+            'orderId': numId
           },
           success: (data) => {
-
+            console.log(data.orderInfo);
             dispatch({
               type: consts.ORDERDETAIL_GOODS_SUCCESS,
-              homeLoadingStatus: 2,
-              InfoGoodsStatus: data.status,
-              InfoGoodsItems: data.lists ? data.lists : '',
-              InfoGoodsPage: page
+              orderDetailLoadingStatus: 2,
+              orderInfoItems: data.orderInfo ? data.orderInfo : '',
+              orderConsigneeItems: data.consignee ? data.consignee : '',
+              orderDelivery: data.delivery ? data.delivery : '',
+              trackInfoContext: data.delivery ? data.delivery.track.info : '',
+              trackInfoTime: data.delivery ? data.delivery.track.info : '',
+
+
+              // trackInfoContext: data.delivery ? data.delivery.track.info[0].context : '',
+              // trackInfoTime: data.delivery ? data.delivery.track.info[0].tmie : '',
+
+
+
             });
 
           },

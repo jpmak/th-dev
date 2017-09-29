@@ -3,7 +3,10 @@ import * as consts from "../consts/ActionTypes";
 const orderDetailInitState = {
   orderDetailLoadingStatus: 1, // [1]首屏加载状态 [2]非首次进去 [3]加载失败 [4]没有数据放回首页
   orderDetailGoodsStatus: 1, // 内容状态
-  orderDetailGoodsItems: [], // 列表内容
+  orderInfoItems: [], // 列表内容
+  orderConsigneeItems: [], // 列表内容
+  trackInfoContext: [], //text
+  trackInfoTime: [], //trackInfoTime
 
   y: 0
 
@@ -15,46 +18,30 @@ const ORDERDETAIL_RESTORE_COMPONENT_reducer = (state, action) => {
 }
 
 const ORDERDETAIL_GOODS_SUCCESS_reducer = (state, action) => {
-  let nextState = Object.assign({}, state);
+  let trackInfoContext = ''
+  let trackInfoTime = ''
+  if (action.trackInfoContext.length > 0) {
+    trackInfoContext = action.trackInfoContext[0].context
 
-  // nextState.orderDetailGoodsStatus = action.orderDetailGoodsStatus;
-  nextState.orderDetailLoadingStatus = 2;
-  if (action.orderDetailGoodsItems.length > 0) {
-
-    if (action.InfoGoodsPage === 1) {
-      // nextState.listLoadingStatus = 2;
-      nextState.InfoGoodsPage = action.InfoGoodsPage + 1;
-      nextState.orderDetailGoodsItems = action.orderDetailGoodsItems;
-      if (action.orderDetailGoodsItems.length < 6) {
-        nextState.pullDownStatus = 1;
-      } else {
-        nextState.pullDownStatus = 0;
-
-      }
-    } else { // 加载操作
-      if (state.pullDownStatus === 0) {
-        if (action.orderDetailGoodsItems.length < 6) {
-          nextState.pullDownStatus = 1;
-        }
-        nextState.orderDetailGoodsItems = state.orderDetailGoodsItems.concat(action.orderDetailGoodsItems);
-
-        nextState.InfoGoodsPage = action.InfoGoodsPage + 1;
-      }
-    }
-
+    trackInfoTime = action.trackInfoTime[0].time
 
   } else {
-    if (action.InfoGoodsPage === 0) {
-      console.log('null');
-      nextState.orderDetailGoodsItems = [];
-      nextState.pullDownStatus = 4;
-    }
-    if (action.InfoGoodsPage > 0 && state.pullDownStatus < 2) {
-      nextState.pullDownStatus = 2;
-
-    }
+    trackInfoContext = ''
+    trackInfoTime = ''
   }
-  return nextState;
+
+  return Object.assign({}, state, {
+    orderInfoItems: action.orderInfoItems,
+    orderConsigneeItems: action.orderConsigneeItems,
+    trackInfoContext: trackInfoContext,
+    trackInfoTime: trackInfoTime
+
+
+  });
+  return state;
+
+
+
 }
 
 const ORDERDETAIL_GOODS_FAIL_reducer = (state, action) => {

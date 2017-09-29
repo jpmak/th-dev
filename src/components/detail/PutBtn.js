@@ -10,6 +10,8 @@ class PutBtn extends React.Component {
     // onClick={this.payway.bind(this)}
     handelClick() {
         this.props.history();
+        $('html').removeClass('hidescroll');
+
     }
     render() {
         return (
