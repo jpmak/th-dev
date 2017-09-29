@@ -410,13 +410,8 @@ const mapStateToProps = state => {
         orderConsigneeItems: state.MsgOrderDetailReducer.orderConsigneeItems,
         trackInfoTime: state.MsgOrderDetailReducer.trackInfoTime,
         trackInfoContext: state.MsgOrderDetailReducer.trackInfoContext,
-
-
         y: state.MsgOrderDetailReducer.y
-
-
     }
 }
-
 
 export default connect(mapStateToProps)(OrderDetail)

@@ -1,130 +1,147 @@
 import React from 'react';
-import {
-    connect
-} from 'react-redux'
-import '../styles/userInfo.scss';
+
 
 import $ from 'jquery';
 
 import TopNav from '../components/TopNav';
 import Goback from '../components/public/Goback';
-import InfoGoods from '../components/info/InfoGoods';
 
 import {
     tryRestoreComponent,
     beginUser,
 
 } from '../actions'
-// import ResultWrap from '../components/search/ResultWrap';
-import {
-    OrderDetailTryRestoreComponent,
-    beginRefresh,
-    fetchOrderDetailGoods,
-    updateOrderDetailLoadingStatus,
-    backupIScrollY
 
-} from '../actions/orderDetail'
+class TranList extends React.Component {
 
-class OrderDetail extends React.Component {
     constructor(props) {
         super(props);
-        this.scrollTop = 0;
-        this.orderDetailHandleScroll = this.orderDetailHandleScroll.bind(this);
-    };
+        this.state = {
+            tranListItem: [],
+            cur: 0
 
+        };
+
+    };
     componentWillMount() {
+        window.scrollTo(0, 0)
         let p = new Promise(function(resolve, reject) {});
 
         if (window.localStorage.user_info != 1) {
-            p.then(this.props.history.push('/Exchange-index.html/login/orderDetail/'))
-        } else {
-
-            this.props.dispatch(OrderDetailTryRestoreComponent());
+            p.then(this.props.history.push('/Exchange-index.html/login/tranList/'))
+                // .then(window.location.href = "http://www.thgo8.me/wap/User-login-1.html")
         }
-
-
     }
-
- 
     componentDidMount() {
-        // window.addEventListener('scroll', this.orderDetailHandleScroll);
-        // if (this.props.homeLoadingStatus === 1 || this.props.userStatus === 0) {
-        //     this.props.dispatch(beginUser())
-        //     this.props.dispatch(beginRefresh())
-        // } else {
-        //     window.scrollTo(0, this.props.y)
-        // }
-
-    }
+        if (this.props.userStatus === 0) {
+            this.props.dispatch(beginUser())
 
 
-    componentWillUnmount() {
-        window.removeEventListener('scroll', this.orderDetailHandleScroll);
-        if (this.props.homeLoadingStatus === 2) { // 首屏成功刷出，则备份y
-            this.props.dispatch(backupIScrollY(this.scrollTop))
+        } else {
+            this.fetchTranList(this.props.match.params.id)
         }
-    }
-    orderDetailHandleScroll() {
-        let scrollTop = this.getScrollTop(); //滚动条滚动高度
-        this.scrollTop = scrollTop
-    }
-    getScrollTop() {
-        var scrollTop = 0;
-        if (document.documentElement && document.documentElement.scrollTop) {
-            scrollTop = document.documentElement.scrollTop;
-        } else if (document.body) {
-            scrollTop = document.body.scrollTop;
-        }
-        return scrollTop;
-    }
 
-    //search
-    beginRefresh() {
-        this.props.dispatch(updateOrderDetailLoadingStatus(1)); // 恢复loading界面
-        this.props.dispatch(beginRefresh());
 
     }
-    backupIScrollY(e) {
-        this.props.dispatch(backupIScrollY(e))
-    }
 
-    onRetryLoading() {
-        // this.props.dispatch(updateListLoadingStatus(1)); // 恢复loading界面
-        // this.props.dispatch(beginRefresh());
-    }
-    detailData(goods_name, item_price, list_image) {
-        window.localStorage.detailData = JSON.stringify({
-            'productName': goods_name,
-            'productPrice': item_price,
-            'productImg': [list_image]
-        })
-    }
+    fetchTranList(orderNum) {
+        $.ajax({
+            url: '/wap/?g=WapSite&c=Exchange&a=getOrderPrompt',
+            dataType: 'json',
+            type: 'post',
+            'data': {
+                'orderId': '161012114229844205'
+            },
+            success: (data) => {
+                if (data.status && data.delivery.track) {
+                    this.setState({
+                        tranListItem: data.delivery.track
+                    })
 
-    changeGoods() {
-        console.log(this.props.pullDownStatus);
-        this.props.dispatch(fetchOrderDetailGoods(this.props.InfoGoodsPage))
-    }
+                } else {
+                    this.setState({
+                        tranListItem: 'none'
+                    })
+                }
+            },
+            error: () => {
 
-    renderPage() {
+            }
+        });
+    }
+    rendNone() {
         return (
-            <div>
-        <TopNav titleName = "物流列表" />
-               <div className='w'>
 
-<div className='wlNoData'>
+            <div className='wlNoData'>
 <h3>暂无物流包裹</h3>
 </div>
 
-        
+        )
+
+
+    }
+
+    checkIndex(index) {
+        return index === this.state.cur ? 'log-lists cur' : 'log-lists'
+    }
+
+    renderPage() {
+        let detHtml = [];
+        let detGoods = this.state.tranListItem.info ? this.state.tranListItem.info : '';
+        let checkCur = 'log-lists';
+
+        if (detGoods != '') {
+            detHtml = detGoods.map((detGood, index) => {
+
+                return (
+                    <div className={this.checkIndex(index)} key={index}>
+                <i></i>
+                <div className="time">{detGood.time}</div>
+                <div className="txt">{detGood.context}</div>
+                </div>
+
+
+                )
+            }, this)
+        }
 
 
 
-   </div>
+        return (
+            <div>
+        <TopNav titleName = "物流列表" />
+           <div className='w'>
+           <div className="wuliu">
+                <div className="log-info">
+                <div className="log-icon">
+             
+                </div>
+                <div className="log-cont">
+                <dl>
+                <dt>物流状态</dt>
+        <dd>{this.state.tranListItem.status}</dd>
+                </dl>
+                <dl>
+                <dt>物流公司</dt>
+                <dd>{this.state.tranListItem.exp_name}</dd>
+                </dl>
+                <dl>
+                <dt>物流单号</dt>
+                <dd>{this.state.tranListItem.waybill}</dd>
+                </dl>
+                </div>
+                </div>
+                <div className="log-details">
+        {detHtml}
+                </div>
+            </div>
 
+</div>
 </div>)
 
 
     }
+
     render() {
 
 
@@ -151,47 +168,4 @@ class OrderDetail extends React.Component {
 
 
 
-class Info extends React.Component {
-    render() {
-        let userMoney = this.props.userMoney ? this.props.userMoney : '0';
-        let userTourism = this.props.userTourism ? this.props.userTourism : '0';
-        let userBuy = this.props.userBuy ? this.props.userBuy : '0';
-        return (
-            <div className='info-watch'>
-               <ul>
-          <li>
-                          <p className='num'>{userMoney}</p>
-                                <p>可用积分排点</p>
-          </li>
-                <li>
-                          <p className='num'>{userTourism} </p>
-                                <p>可用旅游积分</p>
-          </li>
-                <li>
-                          <p className='num'>{userBuy}</p>
-                                <p>可用购物积分</p>
-          </li>
-               </ul>
-               </div>
-        )
-    }
-}
-
-
-
-const mapStateToProps = state => {
-    return {
-
-        userStatus: state.MsgAppReducer.userStatus,
-
-        orderDetailLoadingStatus: state.MsgOrderDetailReducer.orderDetailLoadingStatus,
-        orderDetailGoodsStatus: state.MsgOrderDetailReducer.orderDetailGoodsStatus,
-        orderDetailGoodsItems: state.MsgOrderDetailReducer.orderDetailGoodsItems,
-        y: state.MsgOrderDetailReducer.y
-
-
-    }
-}
-
-
-export default connect(mapStateToProps)(OrderDetail)
+export default TranList
