@@ -289,6 +289,32 @@ span{
 }
     }
 }
+/*react-Modal*/
+.modalText{
+    font-size: .28rem;
+    text-align: center;
+    color:#000;
+    padding:.5rem;
+}
+a.modalBtn{
+    border: 0 none;
+    height: .7rem;
+    width: 50%;
+    display: inline-block;
+    float: left;
+    color: #fff;
+     text-align: center;
+    font-size: .28rem;
+    line-height: .7rem;
+    /*background: #d8d8d8;*/
+    vertical-align: middle;
+    color: #0066ff;
+}
+a.confirm{
+    color:#fff;
+    background: #ed1a3b;
+
+}
 
 /*积分分类*/
 @import 'brand';

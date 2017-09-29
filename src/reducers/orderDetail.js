@@ -34,7 +34,7 @@ const ORDERDETAIL_GOODS_SUCCESS_reducer = (state, action) => {
     orderInfoItems: action.orderInfoItems,
     orderConsigneeItems: action.orderConsigneeItems,
     trackInfoContext: trackInfoContext,
-    trackInfoTime: trackInfoTime
+    trackInfoTime:trackInfoTime
 
 
   });

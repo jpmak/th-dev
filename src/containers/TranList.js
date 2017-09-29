@@ -37,9 +37,9 @@ class TranList extends React.Component {
             this.props.dispatch(beginUser())
 
 
-        } else {
-            this.fetchTranList(this.props.match.params.id)
         }
+            this.fetchTranList(this.props.match.params.id)
+
 
 
     }
@@ -50,12 +50,15 @@ class TranList extends React.Component {
             dataType: 'json',
             type: 'post',
             'data': {
-                'orderId': '161012114229844205'
+                'orderId': orderNum
             },
+            // 161012114229844205
             success: (data) => {
                 if (data.status && data.delivery.track) {
                     this.setState({
                         tranListItem: data.delivery.track
+                    },()=>{
+
                     })
 
                 } else {
@@ -108,9 +111,7 @@ class TranList extends React.Component {
 
 
         return (
-            <div>
-        <TopNav titleName = "物流列表" />
-           <div className='w'>
+  
            <div className="wuliu">
                 <div className="log-info">
                 <div className="log-icon">
@@ -133,8 +134,7 @@ class TranList extends React.Component {
                 </div>
                 <div className="log-details">
         {detHtml}
-                </div>
-            </div>
+    
 
 </div>
 </div>)
@@ -150,16 +150,26 @@ class TranList extends React.Component {
         let renderHtml = [];
         // 首屏没有加载成功，那么均展示loading效果
 
-
+                    
+                    if(this.state.tranListItem.info===undefined||this.state.tranListItem.info.length===0){
+                         renderHtml = this.rendNone()
+                    }else{
+                        console.log(111)
         renderHtml = this.renderPage();
+
+                    }
 
 
         return (
-            <div>
+                   <div>
+        <TopNav titleName = "物流列表" />
+           <div className='w'>
         {
             renderHtml
         }
         </div>
+        </div>
+        
         );
 
 

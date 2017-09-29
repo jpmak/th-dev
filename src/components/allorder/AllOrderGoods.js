@@ -4,10 +4,36 @@ import $ from 'jquery';
 import LoadingLayer from '../../components/LoadingLayer/LoadingLayer';
 
 import PlaceholderComponent from './../public/Placeholder';
+import Modal from 'react-modal';
+import ReactModal from 'react-modal';
+
+
+
 
 import {
     Link
 } from 'react-router-dom'
+const customStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        background: '#fff',
+        opacity: '1',
+        color: '#fff',
+        padding: '0px',
+    border:'1px solid #fff'
+    },
+    overlay: {
+          background: 'none',
+        opacity: '1',
+
+        zIndex: '999'
+    }
+};
 class AllOrderGoods extends React.Component {
     constructor(props) {
         super(props);
@@ -28,6 +54,15 @@ class AllOrderGoods extends React.Component {
         this.isDataing = false;
         this.scrollTop = 0;
         this.allOrderHandleScroll = this.allOrderHandleScroll.bind(this);
+              this.state = {
+                 showModal: false,
+            modalIsOpen: false,
+            text: '',
+        };
+        this.openModal = this.openModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+            this.handleOpenModal = this.handleOpenModal.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
 
     };
     //     render() {
@@ -107,7 +142,35 @@ class AllOrderGoods extends React.Component {
     handleClick(goods_name, item_price, list_image) {
         this.props.detailData(goods_name, item_price, list_image)
     }
+   openModal() {
 
+
+        this.setState({
+            modalIsOpen: true
+        },()=>{
+
+        });
+    }
+    closeModal() {
+        this.setState({
+            modalIsOpen: false
+        });
+    }
+        isurePay() {
+  $('html').addClass('hidescroll');
+        this.setState({
+            showModal: true,
+            text: '你确认已收到货，并要完成订单'
+        });
+    }
+      handleOpenModal () {
+    this.setState({ showModal: true });
+  }
+  
+  handleCloseModal () {
+    this.setState({ showModal: false });
+  }
+  
     renderLoading() {
         let outerStyle = {
             height: window.innerHeight / 2
@@ -155,7 +218,7 @@ class AllOrderGoods extends React.Component {
                     <Link to={'/Exchange-index.html/orderdetail/'+allOrderGood.exchange_order_number} className='upItem' >
 
 <div className='order'>
-<div className='orderNum'><span>订单号：</span><span>{allOrderGood.exchange_order_number}</span>
+<div className='orderNum' ><span>订单号：</span><span>{allOrderGood.exchange_order_number}</span>
 </div>
 <div className='orderState'><span>{allOrderGood.cur_state} </span></div>
 </div>
@@ -211,7 +274,26 @@ class AllOrderGoods extends React.Component {
         }
         return (
             <div>
+
+<div onClick={this.isurePay.bind(this)}>        1111111111</div>
+    
                {renderHtml} 
+                <Modal isOpen={this.state.modalIsOpen}          // onAfterOpen={this.afterOpenModal}
+          // onRequestClose={this.closeModal}
+                    style={customStyles}   contentLabel="Example Modal"  >
+        <p className='modalText'>{this.state.text}</p>
+         <a className='modalBtn'>取消订单</a>
+         <a className='modalBtn confirm'>确定收货</a>
+
+
+        </Modal>
+ <ReactModal 
+           isOpen={this.state.showModal}
+           contentLabel="Minimal Modal Example"
+        >
+          <button onClick={this.handleCloseModal}>Close Modal</button>
+        </ReactModal>
+
             </div>
 
         )

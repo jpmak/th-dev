@@ -88,6 +88,7 @@ class DetBody extends React.Component {
         //     }
         // }
     componentWillMount() {
+console.log(this.state.iScrollUp)
         if (window.localStorage.detailData) {
             this.detailMsg = JSON.parse(window.localStorage.detailData);
             // this.setState({
@@ -130,14 +131,16 @@ class DetBody extends React.Component {
         this.touchRangeY = e.touches[0].pageY;
         this.movingbannerX = 0;
 
-
     }
     movIngY(e) {
         this.movingY = e.touches[0].pageY
+     
+
     }
     endMove() {
         if (Math.abs(this.touchRangeBannerX - this.movingbannerX) < 20) {
             if (this.touchRangeY - this.movingY > 20 && this.state.iScrollUp && this.movingY !== 0) {
+                console.log('haha')
                 let num = this.touchRangeY - this.movingY;
                 // console.log('Range= ' + this.touchRangeY);
                 // console.log('movingY= ' + this.movingY);

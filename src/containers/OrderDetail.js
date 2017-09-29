@@ -10,7 +10,9 @@ import TopNav from '../components/TopNav';
 import Goback from '../components/public/Goback';
 import PayPwd from '../components/isorder/PayPwd';
 import CoverMask from '../components/detail/CoverMask';
-
+import {
+    Link
+} from 'react-router-dom'
 import InfoGoods from '../components/info/InfoGoods';
 
 import {
@@ -134,7 +136,6 @@ class OrderDetail extends React.Component {
         this.props.dispatch(fetchOrderDetailGoods(this.props.InfoGoodsPage))
     }
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps.match.params.id);
         if (nextProps.match.params.id !== this.props.match.params.id) {
             this.props.dispatch(beginRefresh(nextProps.match.params.id))
 
@@ -216,18 +217,25 @@ class OrderDetail extends React.Component {
         let orderInfoItems = this.props.orderInfoItems;
         let orderConsigneeItems = this.props.orderConsigneeItems
         let trackInfoContext = this.props.trackInfoContext
+        let trackInfoTime = this.props.trackInfoTime
+
             // console.log(this.propstrackInfoContext.track.info[0].context);
         let emsHtml = [];
         let btnHtml = [];
-        console.log(orderInfoItems.cur_status);
-        if (orderInfoItems.ems_status == 0) {
-            emsHtml = (<div className="mid-cont"><div className="condition">暂无物流信息</div></div>)
-        } else {
+
+        // ||this.props.trackInfoContext!==1
+console.log(orderInfoItems.ems_status)
+console.log( this.props.trackInfoContext )
+
+       if(orderInfoItems.ems_status ==1&&this.props.trackInfoContext!==''){
+
             emsHtml = (<div className="mid-cont">
                    <div className="condition">{this.props.trackInfoContext}</div>
                         <div className="time"> {this.props.trackInfoTime}</div>
                 </div>)
 
+        }else {
+            emsHtml = (<div className="mid-cont"><div className="condition">暂无物流信息</div></div>)
         }
 
 
@@ -239,17 +247,10 @@ class OrderDetail extends React.Component {
                     <button className="pay-btn red-btn" >立即支付</button>   
                     </div>)
 
-        } else if (orderInfoItems.cur_status == '待发货') {
+        }  else if (orderInfoItems.cur_status == '待收货') {
             btnHtml = (
+             <div className="foot">
                 <button className="pay-btn red-btn" onClick={this.isurePay.bind(this)}>确认收货</button>
-            )
-
-        } else if (orderInfoItems.cur_status == '待收货') {
-            btnHtml = (
-                <div>
-                <button className="pay-btn red-btn" >查看物流</button>
-
-                <button className="pay-btn red-btn" >确认收货</button>
                 </div>
             )
 
@@ -281,21 +282,22 @@ class OrderDetail extends React.Component {
                 </div>
             </div>
 
+<Link to={'/Exchange-index.html/TranList/'+orderInfoItems.exchange_order_number}>
 <div className="seller-shipped">
      <div className="bg-icon"></div>
        {emsHtml}
   
  </div>
-
+</Link>
 
             <div className="order-details">
                 <div className="goods-details">
                     <div className="order-sub">
-                        <div className="order-sub-num">子订单号:{orderInfoItems.exchange_order_number}</div>
+                        <div className="order-sub-num"  onClick={this.isurePay.bind(this)}>子订单号:{orderInfoItems.exchange_order_number}</div>
                     </div>
                     <div className="order-lists">
                         <div className="goods-msg">
-                         <div className="icon"><img src="https://img.thgo8.com/assets/images/04/11/list_adf83bb4dc61d76b7ad775a19abd9a7ab366e1f5.jpg" alt=""/></div>
+                         <div className="icon"><img src={orderInfoItems.goods_image}/></div>
                             <div className="right-cont">
                                 <div className="goods-name">{orderInfoItems.goods_name}</div>
 
@@ -346,12 +348,11 @@ class OrderDetail extends React.Component {
                     </ul>
                 </div>
             </div>
-<div className="foot">
+
 
                
                {btnHtml}
              
-</div>
 
 
    </div> 
@@ -362,9 +363,8 @@ class OrderDetail extends React.Component {
                     style={customStyles}   contentLabel="Example Modal"  >
         <p>{this.state.text}</p>
          <button>取消订单</button>
-
          <button onClick={this.surePay.bind(this)}>确定收货</button>
-         <button onClick={this.payPwd.bind(this)}> 立即支付</button>
+
 
         </Modal>
    </div>
