@@ -243,11 +243,11 @@ class ExchangeController extends BaseController
         	$json['msg'] = '缺少参数';
         	exit(json_encode($json));
 		}
-		$cate_id = $_POST['cate_id'];
+		$cate_id = intval($_POST['cate_id']);
 		$cate_model = new ExchangeGoodsCateModel();
         $dao = Dao::instance();
-        $size = 4;
-        $page = isset($_POST['page']) ? $_POST['page'] : 0;
+        $size = empty($_POST['size']) ? 4 : intval($_POST['size']);
+        $page = empty($_POST['page']) ? 0 : intval($_POST['page']);
         $sql = 'SELECT g.goods_name,i.item_id,i.item_price,img.list_image FROM '.$dao->table('exchange_goods').' AS g LEFT JOIN '.$dao->table('exchange_goods_item').' AS i ON g.goods_id = i.goods_id LEFT JOIN '.$dao->table('exchange_goods_images').' AS img ON img.goods_id = g.goods_id WHERE g.verify = 1 and g.state = 1 and i.item_offsale = 0 and i.deleted = 0 and g.cate_id in ('.$cate_model->CategoryIDALL($cate_id).') group by g.goods_id order by g.goods_id desc LIMIT '.$page*$size.','.$size;
         $goods_all = $dao->queryAll($sql);
         if(empty($goods_all)){
@@ -796,13 +796,48 @@ class ExchangeController extends BaseController
 		$model_user = new UsersInfoModel();
 		$model_exchange_order = new ExchangeOrderModel();
 		$user = $model_user->getRow(array(
-			'field' => "payword, pay_dynamic_code, user_money",
+			'field' => "point, discharge_point, tourism, payword, pay_dynamic_code, user_money",
 			'where' => "user_id = ${user_id}"
 		));
-		try{
-			if($model_user->payPassword($pay_word, $user['pay_dynamic_code']) != $user['payword']){
-				throw new Exception("支付密码错误");
-			}
+        $model_exchange = new ExchangeModel();
+        $itemInfo = $model_exchange->getItemInfo($item_id);
+        try{
+            //检查密码
+            if($model_user->payPassword($pay_word, $user['pay_dynamic_code']) != $user['payword']){
+                throw new Exception("支付密码错误");
+            }
+            //检查积分数量
+            switch($p_type){
+                case 'balance_point' :
+                    if( $itemInfo['item_price'] > $user['discharge_point']  ){
+                        throw new Exception(Lang::get('balance_point')."不足");
+                    }
+                    break;
+                case 'travel_point' :
+                    if( $itemInfo['item_price'] > $user['tourism']  ){
+                        throw new Exception(Lang::get('travel_point')."不足");
+                    }
+                    break;
+                case 'point' :
+                    if( $itemInfo['item_price'] > $user['point'] ){
+                        throw new Exception(Lang::get('point')."不足");
+                    }
+                    break;
+                default :
+                    throw new Exception("支付类型错误");
+                    break;
+            }
+            //计算运费
+            $model_address = new UsersAddressModel();
+            $address_city = $model_address->getOne(array('field' => "city",'where' => "address_id = {$consignee_id}"));
+            $exchange_model = new ExchangeModel();
+            $weight = $itemInfo['goods_weight'];
+            $fee = $exchange_model->getFreight($address_city, $weight);
+            //检查惠积分是否足够
+            if( $fee > $user['user_money'] ){
+                throw new Exception(Lang::get('money')."不足");
+            }
+
 			//检查重复提交
 			if( $csrf != $_SESSION['getOrderInfo'] ){
                 throw new Exception("请勿重复提交");
