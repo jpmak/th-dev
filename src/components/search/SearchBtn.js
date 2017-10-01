@@ -1,4 +1,5 @@
 import React from 'react';
+import $ from 'jquery';
 
 
 // 
@@ -17,7 +18,7 @@ class SearchBtn extends React.Component {
                 this.setState({
                     value: true
                 })
-
+$('#del').hide();
                 this.props.funStoreHistory(this.props.value)
             }
         }

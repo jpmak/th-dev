@@ -8,7 +8,8 @@ class DelValue extends React.Component {
     // }
     handleDel() {
         $('#searchInput').focus();
-        this.props.handleDel()
+        this.props.handleDel();
+        $('#del').hide()
     }
     render() {
         // onClick = {

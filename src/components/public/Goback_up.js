@@ -17,6 +17,8 @@ class GobackUp extends React.Component {
         $('#headnav').removeClass('js-header');
         $('#js-list,.class,.result-wp').show();
         $('.search-wrap,.th-search-box .backbtn').hide();
+
+        
     }
 
     render() {

@@ -315,6 +315,7 @@ class GobackUp extends React.Component {
         $('#searchInput').blur();
         $('#js-list,.class,.result-wp').show();
         $('.search-wrap,.th-search-box .backbtn,.fixedSearch').hide();
+        $('#del').hide();   
     }
 
     render() {

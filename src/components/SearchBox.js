@@ -96,7 +96,7 @@ class SearchBox extends React.Component {
         <GobackUp/>
              <SearchBtn funStoreHistory={this.funStoreHistory.bind(this)} value={this.state.value}/>
                 <div className="wbox search-bar">
-                    <i className="th-search-iconbtn"></i>
+                    <lable className="th-search-iconbtn"></lable>
                          <DelValue handleDel={this.clearValue.bind(this)}/>
                     <div className="wbox-flex">
         <SearchInput  ref='SearchInput' pushValue={this.pushValue.bind(this)}  parmKeyword={ this.props.parmKeyword}  funStoreHistory={this.funStoreHistory.bind(this)} searchMsgStatus={this.state.searchMsgStatus}/>

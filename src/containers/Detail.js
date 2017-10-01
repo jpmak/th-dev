@@ -50,24 +50,20 @@ class Detail extends React.Component {
 
     }
     history() {
-        console.log(this.props.userStatus);
         if (window.localStorage.user_info != 1 || !this.props.userStatus) {
             this.props.history.push('/Exchange-index.html/login/product/' + this.props.id)
         } else {
             this.commit_exchange()
         }
-        // .then(window.location.href = "http://www.thgo8.me/wap/User-login-1.html")
     }
 
     commit_exchange() {
-            console.log(this.props.id);
             $.ajax({
                 url: '/wap/?g=WapSite&c=Exchange&a=commit_exchange',
                 dataType: 'json',
                 type: 'post',
                 'data': {
                     'item_id': this.props.id
-                        // 'item_id': this.props.id
                 },
                 success: (data) => {
                     if (data.status) {
@@ -80,9 +76,7 @@ class Detail extends React.Component {
                 }
             });
         }
-        // <DetBody goodItems={goodItems}/>
     render() {
-        console.log(this.props.item_price);
         const {
             detailLoadingStatus,
             goodStatus,

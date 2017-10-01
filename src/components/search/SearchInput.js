@@ -24,29 +24,21 @@ class SearchInput extends React.Component {
 
     }
     clearValue() {
-        // this.props.pushValue('')
         this.setState({
             value: ''
         });
-
     }
     hideContent() {
 
     }
     searchInputClick() {
         let height = window.screen.height - 100;
-
         $('#js-list,.class,.result-wp').hide();
         $('.th-search-box .backbtn,.fixedSearch').show();
-
-        // $('.th-active,.th-active body').css('overflow', 'auto');
-
         $('#AppWrap').css({
             'height': height,
             'overflow': 'hidden'
         });
-        // $('.pushHide').hide()
-
         $('.search-bar input').css('width', '80%');
         if (this.state.value !== '') {
             $('#del').show();

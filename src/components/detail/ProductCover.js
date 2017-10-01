@@ -18,7 +18,6 @@
          return index === this.state.currentIndex ? 'cur disabled' : '';
      }
      history() {
-
          this.props.history();
      }
      render() {
@@ -81,7 +80,7 @@
                 </div>
              
         <div style={{color:'#ccc',textAlign:'center'}}>{this.props.saleProp?'':'无可选属性'}</div>
-          <PutBtn history={this.history.bind(this)}/>
+          <PutBtn history={this.history.bind(this)} stock={this.props.stock}/>
        
             </div>
         </section>

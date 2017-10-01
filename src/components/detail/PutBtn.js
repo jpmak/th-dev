@@ -2,23 +2,30 @@ import React from 'react';
 import $ from 'jquery';
 
 class PutBtn extends React.Component {
-    // payway() {
-    //     $('#payWay').show();
-    //     $('.product-cover').removeClass('cover-mask-toggle').hide();
 
-    // }
-    // onClick={this.payway.bind(this)}
     handelClick() {
         this.props.history();
         $('html').removeClass('hidescroll');
 
     }
     render() {
+        console.log(this.props.stock)
+        let stock=this.props.stock;
+        let stockHtml='';
+        let stockNone='';
+        if(stock==='缺货'){
+stockHtml='缺货';
+stockNone='stockNone'
+        }else{
+stockHtml='确定兑换'
+        }
+        // <div className='pay-item'>
+
         return (
             <div className='fix-box product-payup' >
-        <div className='pay-item'>
+        <div className={'pay-item '+stockNone }>
         <div className='wbox-flex tc exchange-submit' onClick={this.handelClick.bind(this)}>
-        <a className='th-btn th-btn-assertive' >确定</a>
+        <a className='th-btn th-btn-assertive' >{stockHtml}</a>
                         </div>
                     </div>
                 </div>

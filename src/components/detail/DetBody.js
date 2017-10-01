@@ -55,6 +55,7 @@ class DetBody extends React.Component {
                 .then((res) => res.json())
                 .then((json) => {
                     this.setState({
+                    
                         prop_name: (json.prop_name) ? json.prop_name : '',
                         // saleProp: (json.saleProp) ? json.saleProp : [],
                         saleProp: json.saleProp,
@@ -65,7 +66,8 @@ class DetBody extends React.Component {
                         goods_id: json.goods.goods_id,
                         goods_body: json.goods.goods_body,
                         imgsrc: json.goods.main_image,
-                        item_name: (json.goods.item_name) ? '已选择：' + json.goods.item_name : ''
+                        item_name: (json.goods.item_name) ? '已选择：' + json.goods.item_name : '',
+
                     });
 
                     if (!json.saleProp) {
@@ -88,19 +90,24 @@ class DetBody extends React.Component {
         //     }
         // }
     componentWillMount() {
-console.log(this.state.iScrollUp)
         if (window.localStorage.detailData) {
             this.detailMsg = JSON.parse(window.localStorage.detailData);
-            // this.setState({
-            //     name: this.detailMsg.productName,
-            //     item_price: this.detailMsg.productPrice,
-            //     imgsrc: this.detailMsg.productImg
-            // });
         }
+        if(this.props.detailLoadingStatus===2){
+     
+            this.setState({
+            iScrollUp:true
+            })
+        }
+        
+   
+ 
+
     }
     componentDidMount() {
 
-        $("body").unbind("touchmove");
+
+        // $("body").unbind("touchmove");
     }
 
     componentDidUpdate() {
@@ -139,8 +146,14 @@ console.log(this.state.iScrollUp)
     }
     endMove() {
         if (Math.abs(this.touchRangeBannerX - this.movingbannerX) < 20) {
+                console.log('111='+(this.touchRangeY - this.movingY ))
+                console.log('222='+this.state.iScrollUp )
+                console.log('333='+this.movingY )
+
+
             if (this.touchRangeY - this.movingY > 20 && this.state.iScrollUp && this.movingY !== 0) {
-                console.log('haha')
+                       console.log('OOOOOOOOOOO')
+
                 let num = this.touchRangeY - this.movingY;
                 // console.log('Range= ' + this.touchRangeY);
                 // console.log('movingY= ' + this.movingY);
@@ -163,6 +176,9 @@ console.log(this.state.iScrollUp)
             })
         }
     }
+componentWillUnmount(){
+
+}
 
     pushIdStatus(id) {
         this.props.pushIdStatus(id);
@@ -171,6 +187,7 @@ console.log(this.state.iScrollUp)
         this.props.history();
     }
     render() {
+    
         let isDisplay = this.state.isDisplay ? 'block' : 'none';
         let name = this.props.name ? this.props.name : this.detailMsg.productName;
         let item_price = this.props.item_price ? this.props.item_price : this.detailMsg.productPrice;

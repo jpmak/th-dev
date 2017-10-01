@@ -12,6 +12,7 @@ class GobackUp extends React.Component {
         $('.th-search-container').addClass('on-blur');
         $('#headnav').removeClass('js-header');
         $('#js-list,.class,.result-wp').show();
+        $('#del').hide();
         $('.search-wrap,.th-search-box .backbtn,.fixedSearch').hide();
         $('#AppWrap').css({
             'height': 'auto',

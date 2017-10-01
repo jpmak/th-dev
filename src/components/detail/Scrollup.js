@@ -19,6 +19,7 @@ class Scrollup extends React.Component {
     }
 
     componentWillMount() {
+        console.log(this.state.isPushUp)
         //router显示滚动正常
         this.Det_mounted = true;
         window.scrollTo(0, 0);
@@ -108,6 +109,9 @@ class Scrollup extends React.Component {
         let clientHeight = this.getClientHeight(); //可视区域高度
         let scrollTop = this.getScrollTop(); //滚动条滚动高度
         let scrollHeight = this.getScrollHeight(); //滚动内容高度
+      
+
+
         if (scrollTop < scrollUp && this.scrollUp) {
             this.props.iScrollUp();
             $('html, body').animate({
@@ -122,6 +126,7 @@ class Scrollup extends React.Component {
         }
     }
     changeBlock() {
+
         let produtShowHeight = $('.produt-show').height();
         let headHeight = $('#headnav').height();
         let productBodyHeight = $('#productBody').height();
