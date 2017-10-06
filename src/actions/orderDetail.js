@@ -26,7 +26,6 @@
             'orderId': numId
           },
           success: (data) => {
-            console.log(data.orderInfo);
             dispatch({
               type: consts.ORDERDETAIL_GOODS_SUCCESS,
               orderDetailLoadingStatus: 2,

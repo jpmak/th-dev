@@ -28,6 +28,8 @@ import {
 class Log extends React.Component {
     constructor(props) {
         super(props);
+        this.isDataing = false;
+
         this.scrollTop = 0;
         this.loghandleScroll = this.loghandleScroll.bind(this);
     };
@@ -75,14 +77,7 @@ class Log extends React.Component {
         }
 
     }
-    loghandleScroll() {
-
-        let scrollTop = this.getScrollTop(); //滚动条滚动高度
-        this.scrollTop = scrollTop
-
-
-    }
-    getScrollTop() {
+        getScrollTop() {
         var scrollTop = 0;
         if (document.documentElement && document.documentElement.scrollTop) {
             scrollTop = document.documentElement.scrollTop;
@@ -90,6 +85,50 @@ class Log extends React.Component {
             scrollTop = document.body.scrollTop;
         }
         return scrollTop;
+    }
+        getClientHeight() {
+        var windowHeight = 0;
+        if (document.compatMode == "CSS1Compat") {
+            windowHeight = document.documentElement.clientHeight;
+        } else {
+            windowHeight = document.body.clientHeight;
+        }
+        return windowHeight;
+    }
+        getScrollHeight() {
+        var scrollHeight = 0,
+            bodyScrollHeight = 0,
+            documentScrollHeight = 0;
+        if (document.body) {
+            bodyScrollHeight = document.body.scrollHeight;
+        }
+        if (document.documentElement) {
+            documentScrollHeight = document.documentElement.scrollHeight;
+        }
+        scrollHeight = (bodyScrollHeight - documentScrollHeight > 0) ? bodyScrollHeight : documentScrollHeight;
+        return scrollHeight;
+    }
+    loghandleScroll() {
+console.log(this.isDataing)
+      
+        this.scrollTop = scrollTop
+   let bodyBox = document.getElementById('root')
+        let clientHeight = this.getClientHeight(); //可视区域高度
+        let scrollTop = this.getScrollTop(); //滚动条滚动高度
+        let scrollHeight = this.getScrollHeight(); //滚动内容高度
+        if ((clientHeight + scrollTop) == (scrollHeight) && this.props.loghandleScroll !== 0 && this.isDataing === false) {
+            this.isDataing = true;
+
+            this.changeGoods()
+
+
+        }
+
+    }
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.logList !== this.props.logList) {
+            this.isDataing = false;
+        }
     }
 
     //search
@@ -105,7 +144,6 @@ class Log extends React.Component {
 
 
     changeGoods() {
-        console.log(this.props.pullDownStatus);
         this.props.dispatch(fetchLogGoods(this.props.logGoodsPage))
     }
 

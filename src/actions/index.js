@@ -38,6 +38,7 @@
             userMoney: data.buy_info ? data.buy_info.discharge_point : '',
             userBuy: data.buy_info ? data.buy_info.point : '',
             userTourism: data.buy_info ? data.buy_info.tourism : '',
+            money:data.buy_info ? data.buy_info.user_money : '',
           });
           window.localStorage.user_info = data.status
         },

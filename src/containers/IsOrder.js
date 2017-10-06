@@ -29,6 +29,7 @@ class IsOrder extends React.Component {
                 addressItems: [],
                 orderLi: [],
                 item_price: '',
+                item_number:'',
                 csrf: '',
                 fee: '0',
                 payWay: '排点',
@@ -36,6 +37,7 @@ class IsOrder extends React.Component {
                 gray: 'gray'
 
             };
+            
             // goodsList = goodsList || this.state.goodsList;
         }
         // componentWillMount() {
@@ -74,7 +76,7 @@ class IsOrder extends React.Component {
                 this.setState({
                     addressItems: data.info.address_all,
                     item_price: data.info.goods_info.goods_price,
-
+item_number:data.info.goods_info.item_number,
                     orderLi: data.info.goods_info,
                     fee: data.info.fee,
                     csrf: data.info.csrf
@@ -97,32 +99,27 @@ class IsOrder extends React.Component {
             chooseId: id
         })
     }
+    successView(e){
+         this.props.history.push('/Exchange-index.html/successview/'+e)
+    }
     checkId(item_price) {
             let userTourism = this.props.userTourism;
             let userMoney = this.props.userMoney;
             let userBuy = this.props.userBuy;
-
-
             if (userMoney >= item_price) {
-
                 this.setState({
                     chooseId: 'balance_point'
                 })
-
-
             }
             if (userTourism >= item_price) {
                 this.setState({
                     chooseId: 'travel_point'
                 })
-
-
             }
             if (userBuy >= item_price) {
                 this.setState({
                     chooseId: 'point'
                 })
-
 
             }
         }
@@ -185,8 +182,8 @@ class IsOrder extends React.Component {
         <IsOrderLi orderLi={this.state.orderLi}/>
         <PayWay changeChooseId={this.changeChooseId.bind(this)} chooseId={this.state.chooseId} fee={this.state.fee} orderLi={this.state.orderLi} userName={this.props.userName} userMoney={this.props.userMoney}  userBuy={this.props.userBuy} userTourism={this.props.userTourism} item_price={this.state.item_price} />
             <CoverMask />
-        <PayPwd csrf={this.state.csrf} chooseId={this.state.chooseId} addressId={this.state.addressItems.address_id}/>
-<OrderFoot gray={this.state.gray}  addressItems={this.state.addressItems} csrf={this.state.csrf} fee={this.state.fee} orderLi={this.state.orderLi} userMoney={this.props.userMoney}  userBuy={this.props.userBuy} userTourism={this.props.userTourism} item_price={this.state.item_price} />
+        <PayPwd csrf={this.state.csrf} successView={this.successView.bind(this)} chooseId={this.state.chooseId} addressId={this.state.addressItems.address_id}/>
+<OrderFoot gray={this.state.gray} fee={this.state.fee} addressItems={this.state.addressItems} csrf={this.state.csrf} fee={this.state.fee} orderLi={this.state.orderLi} userMoney={this.props.userMoney}  userBuy={this.props.userBuy} userTourism={this.props.userTourism} item_price={this.state.item_price} money={this.props.money} />
 
    </div>
 
@@ -220,7 +217,9 @@ const mapStateToProps = state => {
         item_price: state.MsgDetailReducer.item_price,
         userStatus: state.MsgAppReducer.userStatus,
         userName: state.MsgAppReducer.userName,
-        userMoney: state.MsgAppReducer.userMoney, //惠积分
+        money: state.MsgAppReducer.money, //排点积分
+
+        userMoney: state.MsgAppReducer.userMoney, //排点积分
         userBuy: state.MsgAppReducer.userBuy, //购物积分
         userTourism: state.MsgAppReducer.userTourism, //旅游积分
     }

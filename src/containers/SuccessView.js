@@ -32,8 +32,13 @@ class TopNav extends React.Component {
 }
 
 class SuccessView extends React.Component {
+historyOrderDetail(){
+    this.props.history.push('/Exchange-index.html/orderDetail/'+this.props.match.params.id)
+}
+historyHome(){
+    this.props.history.push('/Exchange-index.html/')
 
-
+}
 
     renderPage() {
         return (
@@ -42,11 +47,12 @@ class SuccessView extends React.Component {
 
                <div className='w'>
 <div className="successOrder">
-                <img src="http://dev.thgo8.com/public/app_site/images/ExchangeShop/success.png" alt=""/>
+<div className='bg'></div>
+         
                 <p>恭喜您，兑换成功啦!</p>
                 <div className="button">
-                    <a className='order_details' href=''>订单详情</a>
-                    <a className='continue_exchange' href=''>继续兑换</a>
+                    <a className='order_details' onClick={this.historyOrderDetail.bind(this)}>订单详情</a>
+                    <a className='continue_exchange' onClick={this.historyHome.bind(this)}>返回兑换首页</a>
                 </div>
             </div>
 

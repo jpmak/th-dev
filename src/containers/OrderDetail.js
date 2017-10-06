@@ -3,13 +3,14 @@ import {
     connect
 } from 'react-redux'
 import '../styles/userInfo.scss';
-import Modal from 'react-modal';
+
 import $ from 'jquery';
 
 import TopNav from '../components/TopNav';
 import Goback from '../components/public/Goback';
 import PayPwd from '../components/isorder/PayPwd';
-import CoverMask from '../components/detail/CoverMask';
+import Modal from '../components/public/Modal';
+
 import {
     Link
 } from 'react-router-dom'
@@ -29,36 +30,16 @@ import {
     backupIScrollY
 
 } from '../actions/orderDetail'
-const customStyles = {
-    content: {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)',
-        background: '#000',
-        opacity: '.5',
-        color: '#fff',
-        padding: '20px'
-    },
-    overlay: {
-        background: 'none',
-        zIndex: '999'
-    }
-};
 
 class OrderDetail extends React.Component {
     constructor(props) {
         super(props);
         this.scrollTop = 0;
+        this.state={
+            ModalIicon:''
+        }
         this.orderDetailHandleScroll = this.orderDetailHandleScroll.bind(this);
-        this.state = {
-            modalIsOpen: false,
-            text: '',
-        };
-        this.openModal = this.openModal.bind(this);
-        this.closeModal = this.closeModal.bind(this);
+   
     };
 
     componentWillMount() {
@@ -74,10 +55,7 @@ class OrderDetail extends React.Component {
 
     }
 
-
     componentDidMount() {
-
-
         window.addEventListener('scroll', this.orderDetailHandleScroll);
         if (this.props.orderDetailLoadingStatus === 1 || this.props.userStatus === 0) {
             this.props.dispatch(beginUser())
@@ -132,8 +110,7 @@ class OrderDetail extends React.Component {
     }
 
     changeGoods() {
-        console.log(this.props.pullDownStatus);
-        this.props.dispatch(fetchOrderDetailGoods(this.props.InfoGoodsPage))
+        this.props.dispatch(fetchOrderDetailGoods(this.props.match.params.id))
     }
     componentWillReceiveProps(nextProps) {
         if (nextProps.match.params.id !== this.props.match.params.id) {
@@ -142,42 +119,8 @@ class OrderDetail extends React.Component {
         }
     }
 
-    openModal() {
 
-        this.setState({
-            modalIsOpen: true
-        });
-    }
-    closeModal() {
-        this.setState({
-            modalIsOpen: false
-        });
-    }
-    surePay() {
-        $.ajax({
-            url: '/wap/?g=WapSite&c=Exchange&a=finish_order',
-            dataType: 'json',
-            type: 'post',
-            'data': {
-                'order_number': this.props.orderInfoItems.exchange_order_number
-            },
-            success: (data) => {
-                if (data.OK) {
-                    this.props.dispatch(beginRefresh(this.props.match.params.id))
 
-                }
-            },
-            error: () => {
-
-            }
-        });
-    }
-    isurePay() {
-        this.setState({
-            modalIsOpen: true,
-            text: '是否确认收货'
-        });
-    }
     cancelPay() {
         $.ajax({
             url: '/wap/?g=WapSite&c=Exchange&a=cancel_order',
@@ -209,23 +152,59 @@ class OrderDetail extends React.Component {
         $('.cover-mask').addClass('cover-mask-toggle').show();
 
     }
+ orderPayBtn(){
 
-    // <div className="condition">{orderDelivery.delivery.track.info[0].context}</div>
-    //                    <div className="time"> {orderDelivery.delivery.track.info[0].time}</div>
+                this.refs.Modal.setText('确定已收到货吗?')
+        this.refs.Modal.handleOpenModal()
+    }
+ModalCallBack(){
+    this.fecthPay()
+    this.refs.Modal.handleOpenModal3();
+    this.refs.Modal.handleCloseModal()
+}
+  fecthPay(){
+ 
+          $.ajax({
+          url: '/wap/?g=WapSite&c=Exchange&a=finish_order',
+          dataType: 'json',
+          type: 'post',
+          'data': {
+            'order_number': this.props.match.params.id
+        
+          },
+          success: (data) => {
+             this.refs.Modal.handleCloseModal3();
+                  this.refs.Modal.handleOpenModal2()
+           if(data.OK){
+   this.refs.Modal.setText2('收货成功')
+this.setState({
+    ModalIicon:1
+})
+     this.changeGoods();
+   
+
+           }else{
+            this.setState({
+    ModalIicon:0
+})
+                this.refs.Modal.setText2(data.error)
+           }
+          },
+          error: () => {
+            console.log('加载失败')
+          }
+        });
+  }
+
     renderPage() {
 
         let orderInfoItems = this.props.orderInfoItems;
         let orderConsigneeItems = this.props.orderConsigneeItems
         let trackInfoContext = this.props.trackInfoContext
         let trackInfoTime = this.props.trackInfoTime
-
-            // console.log(this.propstrackInfoContext.track.info[0].context);
         let emsHtml = [];
         let btnHtml = [];
 
-        // ||this.props.trackInfoContext!==1
-console.log(orderInfoItems.ems_status)
-console.log( this.props.trackInfoContext )
 
        if(orderInfoItems.ems_status ==1&&this.props.trackInfoContext!==''){
 
@@ -250,7 +229,7 @@ console.log( this.props.trackInfoContext )
         }  else if (orderInfoItems.cur_status == '待收货') {
             btnHtml = (
              <div className="foot">
-                <button className="pay-btn red-btn" onClick={this.isurePay.bind(this)}>确认收货</button>
+                <button className="pay-btn red-btn" onClick={this.orderPayBtn.bind(this)}>确认收货</button>
                 </div>
             )
 
@@ -293,7 +272,7 @@ console.log( this.props.trackInfoContext )
             <div className="order-details">
                 <div className="goods-details">
                     <div className="order-sub">
-                        <div className="order-sub-num"  onClick={this.isurePay.bind(this)}>子订单号:{orderInfoItems.exchange_order_number}</div>
+                        <div className="order-sub-num"  >子订单号:{orderInfoItems.exchange_order_number}</div>
                     </div>
                     <div className="order-lists">
                         <div className="goods-msg">
@@ -357,16 +336,8 @@ console.log( this.props.trackInfoContext )
 
    </div> 
 <PayPwd/>
-<CoverMask/>
- <Modal isOpen={this.state.modalIsOpen}          // onAfterOpen={this.afterOpenModal}
-          // onRequestClose={this.closeModal}
-                    style={customStyles}   contentLabel="Example Modal"  >
-        <p>{this.state.text}</p>
-         <button>取消订单</button>
-         <button onClick={this.surePay.bind(this)}>确定收货</button>
+      <Modal ref='Modal'  icon={this.state.ModalIicon}  ModalCallBack={this.ModalCallBack.bind(this)}/>
 
-
-        </Modal>
    </div>
 
         )

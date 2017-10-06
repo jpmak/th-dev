@@ -19,8 +19,8 @@ class LogGoods extends React.Component {
             3: '加载失败',
             4: ''
         };
-        this.isDataing = false;
-        this.homehandleScroll = this.homehandleScroll.bind(this);
+        // this.isDataing = false;
+        // this.homehandleScroll = this.homehandleScroll.bind(this);
 
     };
     //     render() {
@@ -33,66 +33,66 @@ class LogGoods extends React.Component {
     //         </div>
     //         )
     //         
-    componentDidMount() {
-        window.addEventListener('scroll', this.homehandleScroll);
-    }
-    componentWillUnmount() {
-        window.removeEventListener('scroll', this.homehandleScroll);
-    }
-    getScrollTop() {
-        var scrollTop = 0;
-        if (document.documentElement && document.documentElement.scrollTop) {
-            scrollTop = document.documentElement.scrollTop;
-        } else if (document.body) {
-            scrollTop = document.body.scrollTop;
-        }
-        return scrollTop;
-    }
-    getClientHeight() {
-        var windowHeight = 0;
-        if (document.compatMode == "CSS1Compat") {
-            windowHeight = document.documentElement.clientHeight;
-        } else {
-            windowHeight = document.body.clientHeight;
-        }
-        return windowHeight;
-    }
-    getScrollHeight() {
-        var scrollHeight = 0,
-            bodyScrollHeight = 0,
-            documentScrollHeight = 0;
-        if (document.body) {
-            bodyScrollHeight = document.body.scrollHeight;
-        }
-        if (document.documentElement) {
-            documentScrollHeight = document.documentElement.scrollHeight;
-        }
-        scrollHeight = (bodyScrollHeight - documentScrollHeight > 0) ? bodyScrollHeight : documentScrollHeight;
-        return scrollHeight;
-    }
+    // componentDidMount() {
+    //     window.addEventListener('scroll', this.homehandleScroll);
+    // }
+    // componentWillUnmount() {
+    //     window.removeEventListener('scroll', this.homehandleScroll);
+    // }
+    // getScrollTop() {
+    //     var scrollTop = 0;
+    //     if (document.documentElement && document.documentElement.scrollTop) {
+    //         scrollTop = document.documentElement.scrollTop;
+    //     } else if (document.body) {
+    //         scrollTop = document.body.scrollTop;
+    //     }
+    //     return scrollTop;
+    // }
+    // getClientHeight() {
+    //     var windowHeight = 0;
+    //     if (document.compatMode == "CSS1Compat") {
+    //         windowHeight = document.documentElement.clientHeight;
+    //     } else {
+    //         windowHeight = document.body.clientHeight;
+    //     }
+    //     return windowHeight;
+    // }
+    // getScrollHeight() {
+    //     var scrollHeight = 0,
+    //         bodyScrollHeight = 0,
+    //         documentScrollHeight = 0;
+    //     if (document.body) {
+    //         bodyScrollHeight = document.body.scrollHeight;
+    //     }
+    //     if (document.documentElement) {
+    //         documentScrollHeight = document.documentElement.scrollHeight;
+    //     }
+    //     scrollHeight = (bodyScrollHeight - documentScrollHeight > 0) ? bodyScrollHeight : documentScrollHeight;
+    //     return scrollHeight;
+    // }
 
-    homehandleScroll() {
-
-
-        let bodyBox = document.getElementById('root')
-        let clientHeight = this.getClientHeight(); //可视区域高度
-        let scrollTop = this.getScrollTop(); //滚动条滚动高度
-        let scrollHeight = this.getScrollHeight(); //滚动内容高度
-        if ((clientHeight + scrollTop) == (scrollHeight) && this.props.LogGoodsStatus !== 0 && this.isDataing === false) {
-            console.log(11)
-            this.isDataing = true;
-            setTimeout(this.props.changeGoods(), 100)
+    // homehandleScroll() {
 
 
-        }
+    //     let bodyBox = document.getElementById('root')
+    //     let clientHeight = this.getClientHeight(); //可视区域高度
+    //     let scrollTop = this.getScrollTop(); //滚动条滚动高度
+    //     let scrollHeight = this.getScrollHeight(); //滚动内容高度
+    //     if ((clientHeight + scrollTop) == (scrollHeight) && this.props.LogGoodsStatus !== 0 && this.isDataing === false) {
+    //         console.log(11)
+    //         this.isDataing = true;
+    //         setTimeout(this.props.changeGoods(), 100)
 
 
-    }
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.LogGoods !== this.props.LogGoods) {
-            this.isDataing = false;
-        }
-    }
+    //     }
+
+
+    // }
+    // componentWillReceiveProps(nextProps) {
+    //     if (nextProps.LogGoods !== this.props.LogGoods) {
+    //         this.isDataing = false;
+    //     }
+    // }
     onRetryLoading() {
         this.props.beginRefresh();
     }

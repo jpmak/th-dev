@@ -104,33 +104,21 @@ class ResultWrap extends React.Component {
             }
             this.iScrollInstance.scrollTo(0, y);
         }
-
-
-        // const _this = this;
-
         let rs_once = parseInt($('.th-search-box').css('height'))
         this.setState({
             rs_once: rs_once
         });
         document.addEventListener('touchmove', this.PreventDefault, false);
-
-
-
     }
     funStoreUpItem(upItem) {
         window.localStorage.upItem = upItem;
     }
-
-
     /**
      * 加载完成后初始化一次iscroll
      */
     ensureIScrollInstalled() {
-
         if (this.iScrollInstance) {
-
             return this.iScrollInstance;
-
         }
         const options = {
             // 默认iscroll会拦截元素的默认事件处理函数，我们需要响应onClick，因此要配置
@@ -164,7 +152,6 @@ class ResultWrap extends React.Component {
     onTouchEnd(ev) {
         this.isTouching = false;
         this.onTouch = false;
-
 
     }
     onloadScroll() {

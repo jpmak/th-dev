@@ -2,38 +2,12 @@ import React from 'react';
 import LazyLoad from 'react-lazyload';
 import $ from 'jquery';
 import LoadingLayer from '../../components/LoadingLayer/LoadingLayer';
-
 import PlaceholderComponent from './../public/Placeholder';
-import Modal from 'react-modal';
-import ReactModal from 'react-modal';
-
-
-
-
+import Modal from '../../components/public/Modal';
 import {
     Link
 } from 'react-router-dom'
-const customStyles = {
-    content: {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)',
-        background: '#fff',
-        opacity: '1',
-        color: '#fff',
-        padding: '0px',
-    border:'1px solid #fff'
-    },
-    overlay: {
-          background: 'none',
-        opacity: '1',
 
-        zIndex: '999'
-    }
-};
 class AllOrderGoods extends React.Component {
     constructor(props) {
         super(props);
@@ -51,30 +25,16 @@ class AllOrderGoods extends React.Component {
             3: '加载失败',
             4: ''
         };
+        this.stateOrderNum='';
         this.isDataing = false;
         this.scrollTop = 0;
         this.allOrderHandleScroll = this.allOrderHandleScroll.bind(this);
-              this.state = {
-                 showModal: false,
-            modalIsOpen: false,
-            text: '',
-        };
-        this.openModal = this.openModal.bind(this);
-        this.closeModal = this.closeModal.bind(this);
-            this.handleOpenModal = this.handleOpenModal.bind(this);
-    this.handleCloseModal = this.handleCloseModal.bind(this);
+        this.state = {
+        ModalIicon:''
+       }
 
     };
-    //     render() {
-    //         return (
-    //             <div className='w'>
-    // <div className='infoTitle'>
-    // 我可兑换
-    // </div>
-    //         <div className=''></div>
-    //         </div>
-    //         )
-    //         
+ 
     componentDidMount() {
         window.addEventListener('scroll', this.allOrderHandleScroll);
     }
@@ -142,35 +102,49 @@ class AllOrderGoods extends React.Component {
     handleClick(goods_name, item_price, list_image) {
         this.props.detailData(goods_name, item_price, list_image)
     }
-   openModal() {
-
-
-        this.setState({
-            modalIsOpen: true
-        },()=>{
-
-        });
+    orderPayBtn(e){
+    this.stateOrderNum=e;
+                this.refs.Modal.setText('确定已收到货吗?')
+        this.refs.Modal.handleOpenModal()
     }
-    closeModal() {
-        this.setState({
-            modalIsOpen: false
+ModalCallBack(){
+    this.fecthPay(this.stateOrderNum)
+    this.refs.Modal.handleOpenModal3();
+    this.refs.Modal.handleCloseModal()
+}
+  fecthPay(num){
+          $.ajax({
+          url: '/wap/?g=WapSite&c=Exchange&a=finish_order',
+          dataType: 'json',
+          type: 'post',
+          'data': {
+            'order_number': num
+        
+          },
+          success: (data) => {
+             this.refs.Modal.handleCloseModal3();
+                  this.refs.Modal.handleOpenModal2()
+           if(data.OK){
+   this.refs.Modal.setText2('收货成功')
+this.setState({
+    ModalIicon:1
+})
+      this.props.get_type_goods(1,'ems')       
+   
+
+           }else{
+            this.setState({
+    ModalIicon:0
+})
+                this.refs.Modal.setText2(data.error)
+           }
+          },
+          error: () => {
+            console.log('加载失败')
+          }
         });
-    }
-        isurePay() {
-  $('html').addClass('hidescroll');
-        this.setState({
-            showModal: true,
-            text: '你确认已收到货，并要完成订单'
-        });
-    }
-      handleOpenModal () {
-    this.setState({ showModal: true });
   }
-  
-  handleCloseModal () {
-    this.setState({ showModal: false });
-  }
-  
+
     renderLoading() {
         let outerStyle = {
             height: window.innerHeight / 2
@@ -202,7 +176,10 @@ class AllOrderGoods extends React.Component {
     renderPage() {
         let bodyBox = document.getElementById('root')
         let allOrderGoodList = [];
-        let shopCostHtml = []
+        let shopCostHtml = [];
+        let btnHtml = [];
+
+        
         let allOrderGoods = this.props.allOrderList ? this.props.allOrderList : '';
         if (allOrderGoods != '') {
             allOrderGoodList = allOrderGoods.map((allOrderGood, index) => {
@@ -210,8 +187,11 @@ class AllOrderGoods extends React.Component {
                     shopCostHtml = (<span className='serve'>免服务费</span>)
                 } else {
                     shopCostHtml = (<span><span className='serve'>服务费</span><span className='num'>¥</span><span className='num'>{allOrderGood.shipping_cost}</span></span>)
-
-
+                }
+                if(allOrderGood.cur_state==='待收货'){
+                    btnHtml=( <div className='orderBtn' onClick={this.orderPayBtn.bind(this,allOrderGood.exchange_order_number)}>确定收货</div>)
+                }else{
+                    btnHtml=('')
                 }
                 return (
                     <li key={index}>
@@ -230,14 +210,15 @@ class AllOrderGoods extends React.Component {
    <span className="orderPrice">X1</span>
    </div>
    </div>
-   
+      </Link>  
    <div className='totalWrap'>
    <div className='orderTotal'>
-<div className='total'><span>总计</span> <span className='num'>{allOrderGood.t_beans}</span><span className='num'>积分</span><i className='add'>+</i> {shopCostHtml}</div>
+<div className='total'><span>总计</span> <span className='num'>{allOrderGood.t_beans}</span><span className='num'>积分</span><i className='add'>+</i> {shopCostHtml}  </div>
+{btnHtml}
    </div>
-   <div className='orderBtn'></div>
+
    </div>
-   </Link>     
+   
     </li>
                 )
             }, this)
@@ -257,6 +238,7 @@ class AllOrderGoods extends React.Component {
                    </ul>
                     </div>
               <p ref="PullDown" id="PullDown" dangerouslySetInnerHTML={{__html:this.pullDownTips[this.props.pullDownStatus]}} />
+                      <Modal ref='Modal'  icon={this.state.ModalIicon}  ModalCallBack={this.ModalCallBack.bind(this)}/>
                     </div>
         )
     }
@@ -274,26 +256,7 @@ class AllOrderGoods extends React.Component {
         }
         return (
             <div>
-
-<div onClick={this.isurePay.bind(this)}>        1111111111</div>
-    
                {renderHtml} 
-                <Modal isOpen={this.state.modalIsOpen}          // onAfterOpen={this.afterOpenModal}
-          // onRequestClose={this.closeModal}
-                    style={customStyles}   contentLabel="Example Modal"  >
-        <p className='modalText'>{this.state.text}</p>
-         <a className='modalBtn'>取消订单</a>
-         <a className='modalBtn confirm'>确定收货</a>
-
-
-        </Modal>
- <ReactModal 
-           isOpen={this.state.showModal}
-           contentLabel="Minimal Modal Example"
-        >
-          <button onClick={this.handleCloseModal}>Close Modal</button>
-        </ReactModal>
-
             </div>
 
         )

@@ -18,6 +18,7 @@ const initState = {
   userMoney: 0, //惠积分
   userBuy: 0, //购物积分
   userTourism: 0, //旅游积分
+    money:0,//惠积分
   loadingStatus: 1, // 首屏加载状态
   pageStatus: 1, //返回状态标识
   bannerItems: [], // banner列表,
@@ -41,12 +42,13 @@ const APP_RESTORE_COMPONENT_reducer = (state, action) => {
 
 
 const FETCHUSERINFO_SUCCESS_reducer = (state, action) => {
+
   return Object.assign({}, state, {
     userStatus: action.userStatus,
     userMoney: action.userMoney,
     userBuy: action.userBuy,
     userTourism: action.userTourism,
-
+    money:action.money,
     userName: action.userName
   });
 

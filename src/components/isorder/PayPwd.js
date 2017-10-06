@@ -1,38 +1,19 @@
 import React from 'react';
 import $ from 'jquery';
-import Modal from 'react-modal';
+import Modal from '../../components/public/Modal';
 
-const customStyles = {
-    content: {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)',
-        background: '#000',
-        opacity: '.5',
-        color: '#fff',
-        padding: '20px'
-    },
-    overlay: {
-        background: 'none',
-        zIndex: '999'
-    }
-};
 class PayPwd extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            modalIsOpen: false,
-            text: '',
+             ModalIicon:'',
             value: '',
-            csrf: ''
+            csrf: '',
+            orderNum:''
 
         };
         this.fetchOrderTip = true;
-        this.openModal = this.openModal.bind(this);
-        this.closeModal = this.closeModal.bind(this);
+  
 
         this.handleChange = (event) => {
             let val = event.target.value;
@@ -41,7 +22,7 @@ class PayPwd extends React.Component {
                 value: val
             }, () => {
                 if (val.length === 6 && this.fetchOrderTip) {
-                    console.log(this.state.value);
+                      this.refs.Modal.handleOpenModal3();
                     this.fetchOrder();
                     // this.fetchOrderTip = false;
 
@@ -186,9 +167,6 @@ class PayPwd extends React.Component {
 
     }
     fetchOrder() {
-
-
-
         $.ajax({
             url: '/wap/?g=WapSite&c=Exchange&a=exchangeOrder',
             dataType: 'json',
@@ -200,19 +178,49 @@ class PayPwd extends React.Component {
                 'address_id': this.props.addressId
             },
             success: (data) => {
-                this.setState({
-                    text: data.msg
+             this.refs.Modal.handleCloseModal3();
+      this.refs.Modal.handleOpenModal2();
+                if (data.status===1) {
+                       this.refs.Modal.setText2('支付成功')
+     this.setState({
+                    ModalIicon: 1
                 });
-                this.openModal();
+          this.fetchOrderPaid();
+                }else{
 
-                if (data.status) {
 
-                    console.log('OK')
+                    this.refs.Modal.setText2(data.msg)
+                         this.setState({
+                    ModalIicon: 0
+                });
+
                 }
             },
             error: () => {
-
+console.log('加载失败')
             }
+        });
+    }
+    fetchOrderPaid() {
+             $.ajax({
+          url: '/wap/?g=WapSite&c=Exchange&a=orderList',
+          dataType: 'json',
+          type: 'post',
+          'data': {
+            'page': 1,
+            'state': 'paid'
+          },
+          success: (data) => {
+           if(data.status){
+          
+            this.props.successView(data.list[0].exchange_order_number)
+
+           }
+
+          },
+          error: () => {
+           console.log('加载失败')
+          }
         });
     }
     render() {
@@ -247,11 +255,8 @@ class PayPwd extends React.Component {
                     </div>
                 </div>
                 </div>
-                    <Modal isOpen={this.state.modalIsOpen}          // onAfterOpen={this.afterOpenModal}
-          // onRequestClose={this.closeModal}
-                    style={customStyles}   contentLabel="Example Modal"  >
-        <p>{this.state.text}</p>
-        </Modal>
+      <Modal ref='Modal'  icon={this.state.ModalIicon} />
+
                 </div>
         )
 

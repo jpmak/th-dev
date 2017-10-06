@@ -1,5 +1,8 @@
 import React from 'react';
+
 import $ from 'jquery';
+import Modal from '../../components/public/Modal';
+
 import {
     Link
 } from 'react-router-dom'
@@ -12,7 +15,8 @@ class SearchResult extends React.Component {
         this.state = {
             history_Html: '',
             isCleanUp: false,
-            arrval: []
+            arrval: [],
+            ModalIcon:''
         };
     }
     componentWillMount() {
@@ -36,16 +40,40 @@ class SearchResult extends React.Component {
     }
     delbtnClick(e) {
         e.preventDefault();
-        if (window.confirm('确定要清空吗？')) {
-            this.setState({
-                arrval: []
+         this.refs.Modal.setText('确定清空历史搜索吗?')
+        this.refs.Modal.handleOpenModal()
+    
+        // if (window.confirm('确定要清空吗？')) {
+        //     this.setState({
+        //         arrval: []
+        //     });
+        //     localStorage.removeItem('searchhistory');
+        //     $('.search-wrap').hide();
+        //     this.props.searchMsgStatus_fun(false);
+        //     this.props.handleDel();
+        // }
+
+    }
+
+    ModalCallBack(){
+         this.refs.Modal.setText2('删除成功')
+        this.refs.Modal.handleCloseModal()
+        this.refs.Modal.handleOpenModal2()
+          this.setState({
+                arrval: [],
+                ModalIcon:1
             });
             localStorage.removeItem('searchhistory');
             $('.search-wrap').hide();
             this.props.searchMsgStatus_fun(false);
             this.props.handleDel();
-        }
-
+    }
+            isurePay() {
+  $('html').addClass('hidescroll');
+        this.setState({
+            showModal: true,
+            text: '你确认已收到货，并要完成订单'
+        });
     }
     handClick() {
         $('#searchInput').blur();
@@ -72,30 +100,7 @@ class SearchResult extends React.Component {
             )
             this.handClick();
         }
-        // funStoreHistory(e) {
-        //     this.state.arrval.unshift(e);
-        //     if (this.state.arrval.length > 10) {
-        //         console.log('test');
-        //         this.state.arrval.pop(10);
-        //     }
-        //     this.setState({
-        //         arrval: this.unique(this.state.arrval)
-        //     }, () => {
-        //         window.localStorage.searchhistory = JSON.stringify(this.state.arrval)
-        //     });;
-        //     this.handClick();
-        //     if (this.props.loadingStatus !== 4) {
-        //         // this.props.onloadScroll()
-        //     }
-        //     console.log('funStoreHistory');
-        //     // let p = new Promise(function(resolve, reject) {
-        //     // });
-        //     // this.props.searchNum();
-        //     // this.props.getKeyword(this.state.arrval[0])
-        //     // this.props.priceClick('')
-        //     // p.then(this.props.getKeyword(this.state.arrval[0]))
-        //     //     .then(this.props.priceClick(''))
-        // }
+       
     pushSearch(e) {
 
         this.props.searchNum();
@@ -133,8 +138,11 @@ class SearchResult extends React.Component {
             )
 
         });
+
         return (
             <div className='fixedSearch' style={{height:window.innerHeight}}>
+                            <Modal ref='Modal'  icon={this.state.ModalIcon}  ModalCallBack={this.ModalCallBack.bind(this)}/>
+            
             <div className = "search-wrap" >
             <div className="search-keywords bor-b">
                 <div className="search-keywords-name">
@@ -147,6 +155,7 @@ class SearchResult extends React.Component {
                 </div>
             </div>
             </div>
+
             </div>
         )
     }

@@ -119,7 +119,7 @@ class AllOrder extends React.Component {
 
         <AllOrderCate TypeMove={this.props.TypeMove} allOrderType={this.props.allOrderType} get_type_goods={this.get_type_goods.bind(this)}  UpDataPullUpStatus={this.UpDataPullUpStatus.bind(this)} UpDataCateType={this.UpDataCateType.bind(this)}/>
 
-        <AllOrderGoods  pullUpStatus={this.props.pullUpStatus} allOrderLoadingStatus={this.props.allOrderLoadingStatus} beginRefresh={this.beginRefresh.bind(this)} allOrderGoodsPage={this.props.allOrderGoodsPage} allOrderList={this.props.allOrderList}  pullDownStatus={this.props.pullDownStatus} changeGoods={this.changeGoods.bind(this)} backupIScrollY={this.backupIScrollY.bind(this)}/>
+        <AllOrderGoods get_type_goods={this.get_type_goods.bind(this)}   pullUpStatus={this.props.pullUpStatus} allOrderLoadingStatus={this.props.allOrderLoadingStatus} beginRefresh={this.beginRefresh.bind(this)} allOrderGoodsPage={this.props.allOrderGoodsPage} allOrderList={this.props.allOrderList}  pullDownStatus={this.props.pullDownStatus} changeGoods={this.changeGoods.bind(this)} backupIScrollY={this.backupIScrollY.bind(this)}/>
    </div>
 
 </div>)
