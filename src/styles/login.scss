@@ -1,8 +1,11 @@
 #wrapper{width:100%; margin:0 auto; }
 .rel{position: relative;}
-.form-list{width:100%; font-size:.3rem; margin-top:.475rem; border-top:1px solid #ccc;}
-.form-list li{height:1rem; line-height:1rem; border-bottom:1px solid #ccc; background:#fff;}
-.form-list li label{width:1.5rem; display:block; float:left; text-align:center; background:#fff;}
+.form-list{width:100%; font-size:.3rem; margin-top:.475rem; }
+.form-list li{height:1rem; line-height:1rem; border-bottom:1px solid #FBD1D8; background:#fff;}
+.form-list li label{width:1.5rem; display:block; float:left; text-align:center; background:#fff; text-indent:-9999px}
+.form-list li .account{background:url(../images/user_id.png) no-repeat center; background-size:.28rem .32rem;}
+.form-list li .pwd{background:url(../images/psd.png) no-repeat center; background-size:.28rem .32rem;}
+
 .form-list li input{width:5.4rem;height:.9rem;  border:none;  text-indent:0.1rem;}
 .form-list li input.in-w30{width:8.8rem;}
 .form-list li.forget{text-align:right; padding-right:1rem; background:none; border:none;}
@@ -12,12 +15,12 @@
 .form-list .prompt{color:#bfbfbf; text-indent:1rem; background:none;}
 .form-list #sms input{width:1.5rem;}
 .button {border:none;}
-.button button{line-height: .8rem;display: inline-block;height: .8rem;padding: 0 .25rem;border-radius: .05rem;font-size: .3rem;margin: .3rem;min-width: 6.9rem;border: none;}
-.button button.registered{width:2.4rem;  margin: 0 auto; display: block;min-width: 0;}
+.button button{line-height: 1rem;display: inline-block;height: 1rem;padding: 0 .25rem;font-size: .3rem;margin: .3rem;min-width: 6.9rem;border: none; border:1px solid #ed1a3b;    border-radius: .5rem; }
+.button button.registered{width:2.4rem;  margin: 0 auto; display: block;min-width: 0; border:0;}
 .button button.registered a{color:#f25d5e;}
 .button ul li{  -webkit-box-sizing: border-box}
-.button .bg-red{background:#f25d5e; color:#fff;}
-.button .bg-dark{background:#909090; color:#ccc;}
+.button .bg-red{background:#ed1a3b; color:#fff;}
+.button .bg-dark{background:#fff; color:#ed1a3b;}
 .button .bg-ccc{background:#999999; color:#fff;}
 .button .bg-fff{background:#fff; color:#f25d5e; border:1px solid #f25d5e;}
 .form-list .delete {position: absolute;right: .1rem;top: .2rem;display:none;width: .5rem;height: .5rem;

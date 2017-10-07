@@ -26,8 +26,6 @@ import TranList from './containers/TranList';
 
 
 
-
-
 import reducer from './reducers';
 
 import {

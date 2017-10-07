@@ -88,7 +88,7 @@ class Login extends React.Component {
   }
 
   componentDidMount() {
-
+    document.body.style.backgroundColor = '#fff'
     setTimeout(function() {
       if ($('#username').val() !== '') {
         $('#username').next().show();
@@ -214,18 +214,18 @@ class Login extends React.Component {
         <TopNav titleName = "登录" backEchange={this.backEchange.bind(this)}/>
         <div id="wrapper">
             <div className="user-img">
-                <div className="img-show"><img src="http://www.thgo8.me/public/wapsite/images/face.png" alt=""/></div>
+                <div className="img-show"><img src="https://www.thgo8.com/public/wapsite/images/micro_site/login/logo.png" alt=""/></div>
             </div>
             <div className="form-list login-list">
                 <ul>
                     <li className="rel">
-                        <label htmlFor="username"> 账 号 </label>
-                        <input type="text" id="username" placeholder="手机号/邮箱" />
+    <label className='account' htmlFor="username"> 账 号 </label>
+                        <input type="text" id="username" placeholder="请填写用户名或手机号码" />
                         <div id="del" className="delete"></div>
                     </li>
                     <li className="rel">
-                        <label htmlFor="pwd"> 密 码 </label>
-                        <input type="password" id="pwd" placeholder="登录密码"/>
+                        <label className='pwd' htmlFor="pwd"> 密 码 </label>
+                        <input type="password" id="pwd" placeholder="请输入登录密码"/>
                         <div id="del" className="delete"></div>
                     </li>
                     <li className='forget' ><a href="User-forgetpwd.html" >忘记密码</a></li>
@@ -234,7 +234,7 @@ class Login extends React.Component {
             <div className="button">
                 <ul>
                     <li>
-                        <button id="loginform" onClick={this.toLogin.bind(this)} className="btn bg-red bg-dark">登录</button>
+    <button id="loginform" onClick={this.toLogin.bind(this)} className="btn bg-red bg-dark">登录</button>
                     </li>
                     <li>
                         <button className="btn bg-fff registered" ><a href='www.thgo8.com'>立即注册</a></button>
