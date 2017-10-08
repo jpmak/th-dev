@@ -43,19 +43,15 @@
     export const fetchDetailGoods = (id) => {
         // pushIdStatus(id)
         return (dispatch) => {
-            //       dispatch({
-            //   type: consts.DETAIL_ID_STATUS,
-            //   id: id
-            // });
-            fetch('/wap/?g=WapSite&c=Exchange&a=get_goods_msg', {
-                    method: 'POST',
-                    headers: {
-                        "Content-Type": "application/x-www-form-urlencoded"
-                    },
-                    body: 'id=' + id
-                })
-                .then((res) => res.json())
-                .then((data) => {
+       $.ajax({
+                url: '/wap/?g=WapSite&c=Exchange&a=get_goods_msg',
+                dataType: 'json',
+                type: 'post',
+                'data': {
+                    'id': id
+                },
+                success: (data) => {
+
                     dispatch({
                         type: consts.DETAIL_GOODS_SUCCESS,
 
@@ -72,13 +68,39 @@
                         item_name: (data.goods.item_name) ? '已选择：' + data.goods.item_name : ''
                     });
 
-                })
-                // .catch(() => {
-                //   dispatch({
-                //     type: consts.DETAIL_GOODS_FAIL
+                },
+                error: () => {
+                    console.log('加载失败')
+          
+                }
+            });
+            // fetch('/wap/?g=WapSite&c=Exchange&a=get_goods_msg', {
+            //         method: 'POST',
+            //         headers: {
+            //             "Content-Type": "application/x-www-form-urlencoded"
+            //         },
+            //         body: 'id=' + id
+            //     })
+            //     .then((res) => res.json())
+            //     .then((data) => {
+            //         dispatch({
+            //             type: consts.DETAIL_GOODS_SUCCESS,
 
-            //   })
-            // })
+            //             prop_name: (data.prop_name) ? data.prop_name : '',
+            //             // saleProp: (data.saleProp) ? data.saleProp : [],
+            //             saleProp: data.saleProp,
+            //             itemUrl: (data.itemUrl) ? data.itemUrl : '',
+            //             item_price: (data.goods.item_price) ? data.goods.item_price : '',
+            //             name: data.goods.goods_name,
+            //             stock: data.goods.stock,
+            //             goods_id: data.goods.goods_id,
+            //             goods_body: data.goods.goods_body,
+            //             imgsrc: data.goods.main_image,
+            //             item_name: (data.goods.item_name) ? '已选择：' + data.goods.item_name : ''
+            //         });
+
+            //     })
+               
         }
     }
     export const fetchPropsGoods = (id) => {
@@ -102,10 +124,8 @@
 
                 },
                 error: () => {
-                    dispatch({
-                        type: consts.LOG_GOODS_FAIL
-
-                    })
+                    console.log('加载失败')
+          
                 }
             });
         }

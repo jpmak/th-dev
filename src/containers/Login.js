@@ -4,88 +4,40 @@ import './../styles/login.scss';
 import {
   connect
 } from 'react-redux'
-import Modal from 'react-modal';
 import {
 
   beginUser
 
 } from '../actions'
+import Modal from '../components/public/Modal';
+import TopNav from '../components/TopNav';
 
 import $ from 'jquery';
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    background: '#000',
-    opacity: '.5',
-    color: '#fff',
-  },
-  overlay: {
-    background: 'none',
-  }
-};
-// import {
-//     ListTryRestoreComponent,
-//     fetchListNav,
-//     fetchListGoods,
-//     beginRefresh,
-//     changeLoading,
-//     backupY,
-//     updateListLoadingStatus
-// } from '../actions/list'
-class TopNav extends React.Component {
 
-  static defaultProps = {
-    dis: 'none'
-  };
-  backEchange() {
-    this.props.backEchange()
-  }
-  render() {
-    return (
-      <div className="th-nav wbox ">
-      <a className="class th-nav-back" href="javascript:history.go(-2);"> </a>
-            <div className="th-nav-title of bg">{this.props.titleName}</div>
-            <div className="th-nav-right tr" style={{display: this.props.dis}}>
-            <a className={this.props.icon} href={this.props.icon_link}> </a>
-               {/*  <a className="jf-record-icon" href=""> </a>*/}
-            </div>
-        </div>
-    );
-  }
-}
+// class TopNav extends React.Component {
+
+//   static defaultProps = {
+//     dis: 'none'
+//   };
+//   backEchange() {
+//     this.props.backEchange()
+//   }
+//   render() {
+//     return (
+//       <div className="th-nav wbox ">
+//       <a className="class th-nav-back" href="javascript:history.go(-2);"> </a>
+//             <div className="th-nav-title of bg">{this.props.titleName}</div>
+//             <div className="th-nav-right tr" style={{display: this.props.dis}}>
+//             <a className={this.props.icon} href={this.props.icon_link}> </a>
+//                {/*  <a className="jf-record-icon" href=""> </a>*/}
+//             </div>
+//         </div>
+//     );
+//   }
+// }
 class Login extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      modalIsOpen: false,
-      text: ''
-    };
-    this.openModal = this.openModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
-  }
-  openModal() {
-    this.setState({
-        modalIsOpen: true
-      },
-      () => {
-        setTimeout(this.closeModal, 1000)
-      }
-
-    );
-  }
 
 
-
-  closeModal() {
-    this.setState({
-      modalIsOpen: false
-    });
-  }
 
   componentDidMount() {
     document.body.style.backgroundColor = '#fff'
@@ -152,21 +104,17 @@ class Login extends React.Component {
     var username = $('#username').val();
     var pwd = $('#pwd').val();
 
-
     if (username == '') {
-      this.setState({
-        text: '请填写账号信息'
-      });
-      this.openModal()
+        this.refs.Modal.setText2('请填写账号信息');
+           this.refs.Modal.handleOpenModal2();
 
       return false;
     }
 
     if (pwd == '') {
-      this.setState({
-        text: '密码不能为空'
-      });
-      this.openModal()
+        this.refs.Modal.setText2('密码不能为空')
+           this.refs.Modal.handleOpenModal2();
+
       return false;
     }
 
@@ -175,26 +123,21 @@ class Login extends React.Component {
       dataType: 'json',
       type: 'post',
       'data': {
-        //        'username': '13516557373',
-        // 'pwd': 'a6885938a'
         'username': username,
         'pwd': pwd
       },
       success: (data) => {
         if (data.returns) {
+     this.refs.Modal.setText2(data.msg)
+           this.refs.Modal.handleOpenModal2();
+
           window.localStorage.user_info = data.returns;
           this.props.dispatch(beginUser());
-          this.setState({
-            text: data.msg
-          })
-          this.openModal();
-
           this.router();
         } else {
-          this.setState({
-            text: data.msg
-          });
-          this.openModal()
+                   this.refs.Modal.setText2(data.msg)
+           this.refs.Modal.handleOpenModal2();
+
         }
       },
       error: () => {
@@ -202,16 +145,17 @@ class Login extends React.Component {
       }
     })
 
+
   }
 
   //search
 
-
+ // <TopNav titleName = "登录" backEchange={this.backEchange.bind(this)}/>
   render() {
 
     return (
       <div className="div1" id="bodyDiv">
-        <TopNav titleName = "登录" backEchange={this.backEchange.bind(this)}/>
+        <TopNav titleName = "登录" go='-2'/>
         <div id="wrapper">
             <div className="user-img">
                 <div className="img-show"><img src="https://www.thgo8.com/public/wapsite/images/micro_site/login/logo.png" alt=""/></div>
@@ -242,15 +186,8 @@ class Login extends React.Component {
                 </ul>
             </div>
         </div>
-     <Modal
-          isOpen={this.state.modalIsOpen}
-          onAfterOpen={this.afterOpenModal}
-          onRequestClose={this.closeModal}
-          style={customStyles}
-          contentLabel="Example Modal"
-        >
-        <p>{this.state.text}</p>
-        </Modal>
+         <Modal ref='Modal' />
+
         </div>
     )
 

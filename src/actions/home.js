@@ -26,7 +26,6 @@
             'page': page
           },
           success: (data) => {
-
             dispatch({
               type: consts.INFO_GOODS_SUCCESS,
               homeLoadingStatus: 2,

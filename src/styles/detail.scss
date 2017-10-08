@@ -389,7 +389,8 @@
                 & a.cur {
                     color: #fff;
                     border: 1px solid $redColor;
-                    background: $redColor
+                    background-image: linear-gradient(90deg, #FE5030, #DD2476);
+                  /*  background: $redColor*/
                 }
             }
         }

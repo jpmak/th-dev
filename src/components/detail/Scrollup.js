@@ -19,8 +19,6 @@ class Scrollup extends React.Component {
     }
 
     componentWillMount() {
-        console.log(this.state.isPushUp)
-        //router显示滚动正常
         this.Det_mounted = true;
         window.scrollTo(0, 0);
     }
@@ -33,9 +31,7 @@ class Scrollup extends React.Component {
         this.Det_mounted = false;
     }
     scrollUp1() {
-        // const _this = this;
         let mess_state = 1;
-        // let gBody = this.props.goods_body;
         var winH = $(window).height();
         $(window).scroll(function() {
             var pageH = $(document.body).height();
@@ -43,8 +39,7 @@ class Scrollup extends React.Component {
             var rate = (pageH - winH - scrollT) / winH;
             if (mess_state === 1) {
                 if (rate < 0.01) {
-                    // console.log('我是底部');
-                    // $('.scroll-up').hide();
+              
                     mess_state = 0;
                     let pbt = $('.post-body').text();
                     $('.post-body').show().html(pbt);

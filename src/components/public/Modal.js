@@ -4,6 +4,7 @@ import ReactModal from 'react-modal';
 
 const customStyles = {
     content: {
+       width:'80%',
         top: '50%',
         left: '50%',
         right: 'auto',
@@ -14,7 +15,8 @@ const customStyles = {
         opacity: '1',
         color: '#fff',
         padding: '0px',
-    border:'1px solid #fff',
+    border:'0px',
+        borderRadius: '2%',
      zIndex: '999'
     },
     overlay: {
@@ -29,6 +31,7 @@ const customStyles = {
 };
 const customStyles2 = {
     content: {
+
         top: '50%',
         left: '50%',
         right: 'auto',
@@ -40,7 +43,7 @@ const customStyles2 = {
         color: '#fff',
         padding: '0px',
     border:'0px',
-  
+    borderRadius: '2%',
      zIndex: '999'
     },
     overlay: {
@@ -98,7 +101,6 @@ class Modal extends React.Component {
     this.setState({ text: e });
     }
         setText2(e){
-        	console.log(e)
     this.setState({ text2: e });
     }
       handleOpenModal () {

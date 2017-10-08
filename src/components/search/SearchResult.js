@@ -42,16 +42,7 @@ class SearchResult extends React.Component {
         e.preventDefault();
          this.refs.Modal.setText('确定清空历史搜索吗?')
         this.refs.Modal.handleOpenModal()
-    
-        // if (window.confirm('确定要清空吗？')) {
-        //     this.setState({
-        //         arrval: []
-        //     });
-        //     localStorage.removeItem('searchhistory');
-        //     $('.search-wrap').hide();
-        //     this.props.searchMsgStatus_fun(false);
-        //     this.props.handleDel();
-        // }
+  
 
     }
 
@@ -68,13 +59,7 @@ class SearchResult extends React.Component {
             this.props.searchMsgStatus_fun(false);
             this.props.handleDel();
     }
-            isurePay() {
-  $('html').addClass('hidescroll');
-        this.setState({
-            showModal: true,
-            text: '你确认已收到货，并要完成订单'
-        });
-    }
+
     handClick() {
         $('#searchInput').blur();
         $('#js-list,.class,.result-wp').show();
@@ -102,10 +87,7 @@ class SearchResult extends React.Component {
         }
        
     pushSearch(e) {
-
         this.props.searchNum();
-        // this.props.getKeyword(e)
-
         this.props.getKeyword(this.state.arrval[0])
         this.props.priceClick('')
     }
@@ -122,13 +104,7 @@ class SearchResult extends React.Component {
         return res;
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.parmKeyword !== this.props.parmKeyword) {
-            this.setState({
-                // isCleanUp: false
-            });
-        }
-    }
+
 
     render() {
         const _this = this;

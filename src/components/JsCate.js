@@ -23,10 +23,7 @@ class JsCate extends React.Component {
 
         };
     };
-    // componentWillUnmount() {
-    //         let nul = typeof(1)
-    //         console.log(nul);
-    //     }
+
     componentDidMount() {
 
     }
@@ -141,7 +138,7 @@ class JsCate extends React.Component {
             <div>
                    <Motion style={{x: spring(this.state.move ),width:spring(this.state.liWidth),navw:spring(this.state.wrapWidth)}}>
                            {({x,width,navw}) =>
-            <div id="app-scroller"  onTouchStart={this.startMoveImg.bind(this)}  onTouchMove={this.movingImg.bind(this)}  className="app-scroller-wrap" >
+            <div id="app-scroller" onTouchStart={this.startMoveImg.bind(this)}  onTouchMove={this.movingImg.bind(this)}  className="w app-scroller-wrap" >
             <div className="app-scroller" style={{WebkitTransform: `translate3d(${navw}px, 0, 0)`,transform: `translate3d(${navw}px, 0, 0)`}} >
                             <ul className="choose-items-wp">
                             {CateList}

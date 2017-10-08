@@ -81,14 +81,7 @@ class DetBody extends React.Component {
                     console.log("加载失败");
                 });
         }
-        // getUpItem() {
-        //     if (window.localStorage.upItem) {
-        //         eventId = window.localStorage.upItem;
-        //         this.handleClick();
-        //     } else {
-        //         alert('网络异常')
-        //     }
-        // }
+
     componentWillMount() {
         if (window.localStorage.detailData) {
             this.detailMsg = JSON.parse(window.localStorage.detailData);
@@ -104,24 +97,8 @@ class DetBody extends React.Component {
  
 
     }
-    componentDidMount() {
 
 
-        // $("body").unbind("touchmove");
-    }
-
-    componentDidUpdate() {
-
-        // const _this = this
-        // $('.way-wp li').on('click', function() {
-        //     $(this).addClass('cur').siblings().removeClass('cur');
-        // });
-        // $('.select-list .items .value').on('click', function() {
-        //     $(this).addClass('cur disabled').siblings().removeClass('cur disabled');
-        //     // eventId = $(this).attr('id');
-        //     _this.handleClick();
-        // });
-    }
     iScrollUp() {
         this.setState({
             iScrollUp: !this.state.iScrollUp
@@ -141,23 +118,11 @@ class DetBody extends React.Component {
     }
     movIngY(e) {
         this.movingY = e.touches[0].pageY
-     
-
     }
     endMove() {
         if (Math.abs(this.touchRangeBannerX - this.movingbannerX) < 20) {
-                console.log('111='+(this.touchRangeY - this.movingY ))
-                console.log('222='+this.state.iScrollUp )
-                console.log('333='+this.movingY )
-
-
             if (this.touchRangeY - this.movingY > 20 && this.state.iScrollUp && this.movingY !== 0) {
-                       console.log('OOOOOOOOOOO')
-
                 let num = this.touchRangeY - this.movingY;
-                // console.log('Range= ' + this.touchRangeY);
-                // console.log('movingY= ' + this.movingY);
-                // console.log(num);
                 this.iScrollUp();
                 this.touchRangeBannerX = 0;
                 this.refs.Scrollup.changeBlock()
@@ -176,10 +141,6 @@ class DetBody extends React.Component {
             })
         }
     }
-componentWillUnmount(){
-
-}
-
     pushIdStatus(id) {
         this.props.pushIdStatus(id);
     }
@@ -191,10 +152,8 @@ componentWillUnmount(){
         let isDisplay = this.state.isDisplay ? 'block' : 'none';
         let name = this.props.name ? this.props.name : this.detailMsg.productName;
         let item_price = this.props.item_price ? this.props.item_price : this.detailMsg.productPrice;
-        // let imgsrc=this.props.imgsrc?this.props.imgsrc:this.detailMsg.productImg;
         let imgsrc = this.props.imgsrc ? this.props.imgsrc : this.detailMsg.productImg;
         let stock = this.props.stock;
-        // imgsrc={this.props.imgsrc[0]}
 
         return (
             <div>

@@ -2,10 +2,7 @@ import React from 'react';
 import {
     connect
 } from 'react-redux'
-// import '../styles/userInfo.scss';
-
 import $ from 'jquery';
-
 import TopNav from '../components/TopNav';
 import Goback from '../components/public/Goback';
 import LogGoods from '../components/log/LogGoods';
@@ -15,7 +12,6 @@ import {
     beginUser,
 
 } from '../actions'
-// import ResultWrap from '../components/search/ResultWrap';
 import {
     logTryRestoreComponent,
     beginRefresh,
@@ -39,7 +35,6 @@ class Log extends React.Component {
 
         if (window.localStorage.user_info != 1) {
             p.then(this.props.history.push('/Exchange-index.html/login/log/'))
-                // .then(window.location.href = "http://www.thgo8.me/wap/User-login-1.html")
         } else {
 
             this.props.dispatch(logTryRestoreComponent());
@@ -50,14 +45,15 @@ class Log extends React.Component {
 
 
     componentDidMount() {
+
+
         window.addEventListener('scroll', this.loghandleScroll);
         let p = new Promise(function(resolve, reject) {});
-
-
         if (this.props.logLoadingStatus === 1 || this.props.userStatus === 0) {
             this.props.dispatch(beginUser())
             this.props.dispatch(beginRefresh())
         } else {
+
             window.scrollTo(0, this.props.y)
         }
 
@@ -68,12 +64,8 @@ class Log extends React.Component {
     componentWillUnmount() {
 
         window.removeEventListener('scroll', this.loghandleScroll);
-
-
-
         if (this.props.logLoadingStatus === 2) { // 首屏成功刷出，则备份y
             this.props.dispatch(backupIScrollY(this.scrollTop))
-
         }
 
     }
@@ -109,21 +101,17 @@ class Log extends React.Component {
         return scrollHeight;
     }
     loghandleScroll() {
-console.log(this.isDataing)
-      
-        this.scrollTop = scrollTop
+        console.log()
+     
    let bodyBox = document.getElementById('root')
         let clientHeight = this.getClientHeight(); //可视区域高度
         let scrollTop = this.getScrollTop(); //滚动条滚动高度
         let scrollHeight = this.getScrollHeight(); //滚动内容高度
+           this.scrollTop = scrollTop
         if ((clientHeight + scrollTop) == (scrollHeight) && this.props.loghandleScroll !== 0 && this.isDataing === false) {
             this.isDataing = true;
-
             this.changeGoods()
-
-
         }
-
     }
     componentWillReceiveProps(nextProps) {
         if (nextProps.logList !== this.props.logList) {
@@ -162,7 +150,6 @@ console.log(this.isDataing)
 
     }
     render() {
-        console.log(this.props.logGoodsPage);
         let p = new Promise(function(resolve, reject) {});
         let renderHtml = [];
         renderHtml = this.renderPage();

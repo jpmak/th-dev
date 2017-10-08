@@ -55,17 +55,9 @@ class List extends React.Component {
         this.setState({
                 wrapHeight: windowHeight - searchBox
             })
-            // console.log(document.getElementById("boxHeight").offsetHeight);
 
     }
 
-
-
-    componentWillReceiveProps(nextProps) {
-
-
-        }
-        //search
 
     funStoreHistory(e) {
         this.refs.getarr.funStoreHistory(e)
@@ -81,11 +73,10 @@ class List extends React.Component {
         })
     }
     historyPush(e) {
-        this.props.history.push('/search/' + e)
+        this.props.history.push('/Exchange-index.html/search/' + e)
     }
     _handleClick(e) {
         this.refs.getarr.funStoreHistory(e);
-        // this.refs.getarr.pushSearch();
     }
     handleDel() {
         $('#searchInput').val('').focus();

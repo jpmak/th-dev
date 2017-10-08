@@ -19,80 +19,10 @@ class LogGoods extends React.Component {
             3: '加载失败',
             4: ''
         };
-        // this.isDataing = false;
-        // this.homehandleScroll = this.homehandleScroll.bind(this);
-
+       
     };
-    //     render() {
-    //         return (
-    //             <div className='w'>
-    // <div className='infoTitle'>
-    // 我可兑换
-    // </div>
-    //         <div className=''></div>
-    //         </div>
-    //         )
-    //         
-    // componentDidMount() {
-    //     window.addEventListener('scroll', this.homehandleScroll);
-    // }
-    // componentWillUnmount() {
-    //     window.removeEventListener('scroll', this.homehandleScroll);
-    // }
-    // getScrollTop() {
-    //     var scrollTop = 0;
-    //     if (document.documentElement && document.documentElement.scrollTop) {
-    //         scrollTop = document.documentElement.scrollTop;
-    //     } else if (document.body) {
-    //         scrollTop = document.body.scrollTop;
-    //     }
-    //     return scrollTop;
-    // }
-    // getClientHeight() {
-    //     var windowHeight = 0;
-    //     if (document.compatMode == "CSS1Compat") {
-    //         windowHeight = document.documentElement.clientHeight;
-    //     } else {
-    //         windowHeight = document.body.clientHeight;
-    //     }
-    //     return windowHeight;
-    // }
-    // getScrollHeight() {
-    //     var scrollHeight = 0,
-    //         bodyScrollHeight = 0,
-    //         documentScrollHeight = 0;
-    //     if (document.body) {
-    //         bodyScrollHeight = document.body.scrollHeight;
-    //     }
-    //     if (document.documentElement) {
-    //         documentScrollHeight = document.documentElement.scrollHeight;
-    //     }
-    //     scrollHeight = (bodyScrollHeight - documentScrollHeight > 0) ? bodyScrollHeight : documentScrollHeight;
-    //     return scrollHeight;
-    // }
+  
 
-    // homehandleScroll() {
-
-
-    //     let bodyBox = document.getElementById('root')
-    //     let clientHeight = this.getClientHeight(); //可视区域高度
-    //     let scrollTop = this.getScrollTop(); //滚动条滚动高度
-    //     let scrollHeight = this.getScrollHeight(); //滚动内容高度
-    //     if ((clientHeight + scrollTop) == (scrollHeight) && this.props.LogGoodsStatus !== 0 && this.isDataing === false) {
-    //         console.log(11)
-    //         this.isDataing = true;
-    //         setTimeout(this.props.changeGoods(), 100)
-
-
-    //     }
-
-
-    // }
-    // componentWillReceiveProps(nextProps) {
-    //     if (nextProps.LogGoods !== this.props.LogGoods) {
-    //         this.isDataing = false;
-    //     }
-    // }
     onRetryLoading() {
         this.props.beginRefresh();
     }
@@ -113,21 +43,7 @@ class LogGoods extends React.Component {
         );
     }
 
-    // <li key = {index} onClick = {this.handleClick.bind(this, LogGood.goods_name, LogGood.item_price, LogGood.list_image)}
-    //           className = {this.changeGoods ? 'add' : 'move'} >
-    //           <Link to={'/Exchange-index.html/product/'+LogGood.item_id}  className="upItem " data-id={LogGood.item_id}>
-    //       <div className="info-img">
-    //       <LazyLoad  placeholder={<PlaceholderComponent />}>
-    //       <img  src={LogGood.list_image}/>
-    //       </LazyLoad>
-    //       </div>
-    //       <div className="info-bar">
-    //       <div className="pro-title">{LogGood.goods_name}</div>
-    //       <div className="e-numb">
-    //       <span className="e-price"><em>{LogGood.item_price}</em>积分</span>
-    //       </div>
-    //       </div>
-    //       </Link> </li>
+  
     renderPage() {
         let bodyBox = document.getElementById('root')
         let LogGoodList = [];
@@ -142,7 +58,8 @@ class LogGoods extends React.Component {
 <div className='orderdate'><span>{LogGood.created}</span></div>
 </div>
 
-   <div className="info-img"><img alt="" className="lazy" src={LogGood.goods_image}/>{/*</LazyLoad>*/}</div><div className="info-bar"><div className="pro-title">{LogGood.prop_value}</div><div className="e-numb"><span className="e-price"><em>{LogGood.t_beans}</em>积分</span></div></div></Link>      </li>
+   <div className="info-img">
+       <LazyLoad  placeholder={<PlaceholderComponent />}><img alt="" className="lazy" src={LogGood.goods_image}/></LazyLoad></div><div className="info-bar"><div className="pro-title">{LogGood.prop_value}</div><div className="e-numb"><span className="e-price"><em>{LogGood.t_beans}</em>积分</span></div></div></Link>      </li>
 
 
 
@@ -168,7 +85,6 @@ class LogGoods extends React.Component {
 
 
     render() {
-        console.log(this.props.logGoodsPage);
         let renderHtml = [];
         if (this.props.logLoadingStatus !== 2) {
             renderHtml = this.renderLoading();

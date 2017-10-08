@@ -46,9 +46,6 @@ class SearchInput extends React.Component {
         if (this.props.searchMsgStatus) {
             $('.search-wrap').css('display', 'block');
         }
-        // this.props.hideContent()
-
-
     }
     componentDidMount() {
         let parmKeyword = this.props.parmKeyword ? this.props.parmKeyword : '';
@@ -63,7 +60,6 @@ class SearchInput extends React.Component {
         const value = this.state.value
         if (this.state.value !== '') {
             if (e.keyCode === 13) {
-                // this.props.historyPush(value)
                 this.props.funStoreHistory(value);
             }
             $('#del').show();

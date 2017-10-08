@@ -9,7 +9,6 @@ class PutBtn extends React.Component {
 
     }
     render() {
-        console.log(this.props.stock)
         let stock=this.props.stock;
         let stockHtml='';
         let stockNone='';
@@ -19,7 +18,6 @@ stockNone='stockNone'
         }else{
 stockHtml='确定兑换'
         }
-        // <div className='pay-item'>
 
         return (
             <div className='fix-box product-payup' >

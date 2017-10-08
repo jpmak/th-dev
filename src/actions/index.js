@@ -68,72 +68,128 @@
     }
 
     const fetchSalse = (dispatch) => {
-      fetch('/wap/?g=WapSite&c=Exchange&a=sales_volume', {
-          method: 'POST',
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-          }
-        })
-        .then((res) => res.json())
-        .then((data) => {
-
+        $.ajax({
+          url: '/wap/?g=WapSite&c=Exchange&a=sales_volume',
+          dataType: 'json',
+          type: 'post',
+          success: (data) => {
           dispatch({
             type: consts.FETCHSALSE_SUCCESS,
             salesItems: data.goods_list
           });
-
-        })
-        .catch(function(e) {
-          console.log("加载失败");
+          },
+          error: () => {
+             console.log("加载失败");
+          }
         });
+
+      // fetch('/wap/?g=WapSite&c=Exchange&a=sales_volume', {
+      //     method: 'POST',
+      //     headers: {
+      //       "Content-Type": "application/x-www-form-urlencoded"
+      //     }
+      //   })
+      //   .then((res) => res.json())
+      //   .then((data) => {
+
+      //     dispatch({
+      //       type: consts.FETCHSALSE_SUCCESS,
+      //       salesItems: data.goods_list
+      //     });
+
+      //   })
+      //   .catch(function(e) {
+      //     console.log("加载失败");
+      //   });
     }
 
 
     const fetchCateList = (dispatch, getState) => {
-      fetch('/wap/?g=WapSite&c=Exchange&a=get_cate_list', {
-          method: 'POST',
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-          }
-        })
-        .then((res) => res.json())
-        .then((data) => {
-          dispatch({
+        $.ajax({
+          url: '/wap/?g=WapSite&c=Exchange&a=get_cate_list',
+          dataType: 'json',
+          type: 'post',
+    
+          success: (data) => {
+           dispatch({
             type: consts.FETCHCATELIST_SUCCESS,
             // cateId: data.cate_list[0].cate_id
             cateList: data.cate_list,
           });
           getCateId(data.cate_list[0].cate_id)(dispatch);
           fetchCateGoods(data.cate_list[0].cate_id, 0)(dispatch);
-        })
-        .catch(function(e) {
-          console.log("加载失败");
+
+          },
+          error: () => {
+              console.log("加载失败");
+          }
         });
+
+      // fetch('/wap/?g=WapSite&c=Exchange&a=get_cate_list', {
+      //     method: 'POST',
+      //     headers: {
+      //       "Content-Type": "application/x-www-form-urlencoded"
+      //     }
+      //   })
+      //   .then((res) => res.json())
+      //   .then((data) => {
+      //     dispatch({
+      //       type: consts.FETCHCATELIST_SUCCESS,
+      //       // cateId: data.cate_list[0].cate_id
+      //       cateList: data.cate_list,
+      //     });
+      //     getCateId(data.cate_list[0].cate_id)(dispatch);
+      //     fetchCateGoods(data.cate_list[0].cate_id, 0)(dispatch);
+      //   })
+      //   .catch(function(e) {
+      //     console.log("加载失败");
+      //   });
     }
 
     export const fetchCateGoods = (id, page) => {
       return (dispatch) => {
-        fetch('/wap/?g=WapSite&c=Exchange&a=get_cate_goods', {
-            method: 'POST',
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: 'cate_id=' + id + '&page=' + page
-          })
-          .then((res) => res.json())
-          .then((data) => {
-            dispatch({
+        $.ajax({
+          url: '/wap/?g=WapSite&c=Exchange&a=get_cate_goods',
+          dataType: 'json',
+          type: 'post',
+       'data': {
+            'cate_id': id,
+            'page':page
+          },
+          success: (data) => {
+      dispatch({
               type: consts.FETCHCATEGOODS_SUCCESS,
-
               cateGoods: data.goods_list,
               pageStatus: data.status,
-
               CateGoodsPage: page
             });
-          })
-          .catch(function(e) {
-            console.log("加载失败");
-          });
+          },
+          error: () => {
+              console.log("加载失败");
+          }
+        });
+
+        // fetch('/wap/?g=WapSite&c=Exchange&a=get_cate_goods', {
+        //     method: 'POST',
+        //     headers: {
+        //       "Content-Type": "application/x-www-form-urlencoded"
+        //     },
+        //     body: 'cate_id=' + id + '&page=' + page
+        //   })
+        //   .then((res) => res.json())
+        //   .then((data) => {
+        //     dispatch({
+        //       type: consts.FETCHCATEGOODS_SUCCESS,
+
+        //       cateGoods: data.goods_list,
+        //       pageStatus: data.status,
+
+        //       CateGoodsPage: page
+        //     });
+        //   })
+        //   .catch(function(e) {
+        //     console.log("加载失败");
+        //   });
       }
     }
 
