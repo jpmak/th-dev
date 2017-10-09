@@ -59,9 +59,7 @@ const Jf = () => (
 	<div>
 	<Route exact path="/Exchange-index.html" component={App} />
 	<Route path='/Exchange-index.html/login/:router?' component={Login} />
-	
 	 <Route path="/Exchange-index.html/product/:id?" component={Detail}/>
-
 	 <Route path="/Exchange-index.html/search/:keyword" component={Searchhead} />
 	 <Route path="/Exchange-index.html/list" component={List}/>
 	 <Route path="/Exchange-index.html/home/" component={Home}/>

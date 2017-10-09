@@ -15,6 +15,8 @@
         fetchSalse(dispatch);
         fetchCateList(dispatch);
         fetchUser(dispatch);
+        fetchShare(dispatch);
+
       }
     }
 
@@ -23,7 +25,19 @@
         fetchUser(dispatch);
       }
     }
+    const fetchShare = (dispatch) => {
+      $.ajax({
+        url: '/wap/?g=WapSite&c=Exchange&a=getExchangeShare',
+        // type: 'POST',
+        dataType: 'json',
+        success: (data) => {
 
+        },
+        error: () => {
+          console.log('加载失败');
+        }
+      });
+    }
 
     const fetchUser = (dispatch) => {
       $.ajax({
@@ -38,7 +52,7 @@
             userMoney: data.buy_info ? data.buy_info.discharge_point : '',
             userBuy: data.buy_info ? data.buy_info.point : '',
             userTourism: data.buy_info ? data.buy_info.tourism : '',
-            money:data.buy_info ? data.buy_info.user_money : '',
+            money: data.buy_info ? data.buy_info.user_money : '',
           });
           window.localStorage.user_info = data.status
         },
@@ -68,20 +82,20 @@
     }
 
     const fetchSalse = (dispatch) => {
-        $.ajax({
-          url: '/wap/?g=WapSite&c=Exchange&a=sales_volume',
-          dataType: 'json',
-          type: 'post',
-          success: (data) => {
+      $.ajax({
+        url: '/wap/?g=WapSite&c=Exchange&a=sales_volume',
+        dataType: 'json',
+        type: 'post',
+        success: (data) => {
           dispatch({
             type: consts.FETCHSALSE_SUCCESS,
             salesItems: data.goods_list
           });
-          },
-          error: () => {
-             console.log("加载失败");
-          }
-        });
+        },
+        error: () => {
+          console.log("加载失败");
+        }
+      });
 
       // fetch('/wap/?g=WapSite&c=Exchange&a=sales_volume', {
       //     method: 'POST',
@@ -105,13 +119,13 @@
 
 
     const fetchCateList = (dispatch, getState) => {
-        $.ajax({
-          url: '/wap/?g=WapSite&c=Exchange&a=get_cate_list',
-          dataType: 'json',
-          type: 'post',
-    
-          success: (data) => {
-           dispatch({
+      $.ajax({
+        url: '/wap/?g=WapSite&c=Exchange&a=get_cate_list',
+        dataType: 'json',
+        type: 'post',
+
+        success: (data) => {
+          dispatch({
             type: consts.FETCHCATELIST_SUCCESS,
             // cateId: data.cate_list[0].cate_id
             cateList: data.cate_list,
@@ -119,11 +133,11 @@
           getCateId(data.cate_list[0].cate_id)(dispatch);
           fetchCateGoods(data.cate_list[0].cate_id, 0)(dispatch);
 
-          },
-          error: () => {
-              console.log("加载失败");
-          }
-        });
+        },
+        error: () => {
+          console.log("加载失败");
+        }
+      });
 
       // fetch('/wap/?g=WapSite&c=Exchange&a=get_cate_list', {
       //     method: 'POST',
@@ -152,12 +166,13 @@
           url: '/wap/?g=WapSite&c=Exchange&a=get_cate_goods',
           dataType: 'json',
           type: 'post',
-       'data': {
+          'data': {
             'cate_id': id,
-            'page':page
+            'page': page,
+            'size': 6
           },
           success: (data) => {
-      dispatch({
+            dispatch({
               type: consts.FETCHCATEGOODS_SUCCESS,
               cateGoods: data.goods_list,
               pageStatus: data.status,
@@ -165,7 +180,7 @@
             });
           },
           error: () => {
-              console.log("加载失败");
+            console.log("加载失败");
           }
         });
 

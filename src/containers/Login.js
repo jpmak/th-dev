@@ -14,27 +14,6 @@ import TopNav from '../components/TopNav';
 
 import $ from 'jquery';
 
-// class TopNav extends React.Component {
-
-//   static defaultProps = {
-//     dis: 'none'
-//   };
-//   backEchange() {
-//     this.props.backEchange()
-//   }
-//   render() {
-//     return (
-//       <div className="th-nav wbox ">
-//       <a className="class th-nav-back" href="javascript:history.go(-2);"> </a>
-//             <div className="th-nav-title of bg">{this.props.titleName}</div>
-//             <div className="th-nav-right tr" style={{display: this.props.dis}}>
-//             <a className={this.props.icon} href={this.props.icon_link}> </a>
-//                {/*  <a className="jf-record-icon" href=""> </a>*/}
-//             </div>
-//         </div>
-//     );
-//   }
-// }
 class Login extends React.Component {
 
 
@@ -105,15 +84,15 @@ class Login extends React.Component {
     var pwd = $('#pwd').val();
 
     if (username == '') {
-        this.refs.Modal.setText2('请填写账号信息');
-           this.refs.Modal.handleOpenModal2();
+      this.refs.Modal.setText2('请填写账号信息');
+      this.refs.Modal.handleOpenModal2();
 
       return false;
     }
 
     if (pwd == '') {
-        this.refs.Modal.setText2('密码不能为空')
-           this.refs.Modal.handleOpenModal2();
+      this.refs.Modal.setText2('密码不能为空')
+      this.refs.Modal.handleOpenModal2();
 
       return false;
     }
@@ -128,15 +107,15 @@ class Login extends React.Component {
       },
       success: (data) => {
         if (data.returns) {
-     this.refs.Modal.setText2(data.msg)
-           this.refs.Modal.handleOpenModal2();
+          this.refs.Modal.setText2(data.msg)
+          this.refs.Modal.handleOpenModal2();
 
           window.localStorage.user_info = data.returns;
           this.props.dispatch(beginUser());
           this.router();
         } else {
-                   this.refs.Modal.setText2(data.msg)
-           this.refs.Modal.handleOpenModal2();
+          this.refs.Modal.setText2(data.msg)
+          this.refs.Modal.handleOpenModal2();
 
         }
       },
@@ -150,7 +129,7 @@ class Login extends React.Component {
 
   //search
 
- // <TopNav titleName = "登录" backEchange={this.backEchange.bind(this)}/>
+  // <TopNav titleName = "登录" backEchange={this.backEchange.bind(this)}/>
   render() {
 
     return (
@@ -172,7 +151,7 @@ class Login extends React.Component {
                         <input type="password" id="pwd" placeholder="请输入登录密码"/>
                         <div id="del" className="delete"></div>
                     </li>
-                    <li className='forget' ><a href="User-forgetpwd.html" >忘记密码</a></li>
+                    <li className='forget' ><a href="https://www.thgo8.com/wap/Login-forgetpwd.html" >忘记密码</a></li>
                 </ul>
             </div>
             <div className="button">
@@ -181,7 +160,7 @@ class Login extends React.Component {
     <button id="loginform" onClick={this.toLogin.bind(this)} className="btn bg-red bg-dark">登录</button>
                     </li>
                     <li>
-                        <button className="btn bg-fff registered" ><a href='www.thgo8.com'>立即注册</a></button>
+                        <button className="btn bg-fff registered" ><a href='https://www.thgo8.com/wap/Login-register.html'>立即注册</a></button>
                     </li>
                 </ul>
             </div>

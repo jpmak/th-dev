@@ -62,11 +62,13 @@ class JsCate extends React.Component {
 
         let nav_w = parseFloat($('.app-scroller li').eq(index).width())
         let fn_w = ($('.app-scroller-wrap').width() - nav_w) / 2;
+
         if (widths <= fn_w || fl_w <= flb_w) {
             this.setState({
                 wrapWidth: 0
             });
         } else if (fn_w - widths <= flb_w - fl_w) {
+
             this.setState({
                 wrapWidth: flb_w - fl_w
             });
@@ -86,6 +88,7 @@ class JsCate extends React.Component {
     }
     startMoveImg(e) {
         this.touchRange = e.touches[0].pageX;
+
         this.touchLeft = this.state.wrapWidth
     }
     movingImg(e) {
@@ -98,11 +101,13 @@ class JsCate extends React.Component {
                     wrapWidth: 0
                 })
             } else if (this.touchLeft + moving - this.touchRange <= screenWidth - addWidth) {
+                console.log(addWidth - screenWidth);
                 this.setState({
                     wrapWidth: -(addWidth - screenWidth)
                 })
 
             } else {
+
                 this.setState({
                     wrapWidth: this.touchLeft + moving - this.touchRange
                 })
@@ -122,7 +127,9 @@ class JsCate extends React.Component {
         }
     }
     render() {
-        // if (this.props.loadingStatus === 1) {
+
+
+
         if (!this.onClick) {
             let nav_w = $('.app-scroller li').first().width();
             $('.choose-items-wp p').width(nav_w);
@@ -136,10 +143,10 @@ class JsCate extends React.Component {
         }, this)
         return (
             <div>
-                   <Motion style={{x: spring(this.state.move ),width:spring(this.state.liWidth),navw:spring(this.state.wrapWidth)}}>
+        <Motion style={{x: spring(this.state.move),width:spring(this.state.liWidth),navw:spring(this.state.wrapWidth)}}>
                            {({x,width,navw}) =>
-            <div id="app-scroller" onTouchStart={this.startMoveImg.bind(this)}  onTouchMove={this.movingImg.bind(this)}  className="w app-scroller-wrap" >
-            <div className="app-scroller" style={{WebkitTransform: `translate3d(${navw}px, 0, 0)`,transform: `translate3d(${navw}px, 0, 0)`}} >
+            <div id="app-scroller"  className="app-scroller-wrap" onTouchStart={this.startMoveImg.bind(this)}  onTouchMove={this.movingImg.bind(this)}>
+            <div className="app-scroller" style={{WebkitTransform: `translate3d(${this.state.wrapWidth}px, 0, 0)`,transform: `translate3d(${this.state.wrapWidth}px, 0, 0)`}} >
                             <ul className="choose-items-wp">
                             {CateList}
             <p style={{WebkitTransform: `translate3d(${x}px, 0, 0)`,transform: `translate3d(${x}px, 0, 0)`,width:`${width}px`}}><b></b></p>
