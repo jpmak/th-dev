@@ -113,8 +113,10 @@ class OrderDetail extends React.Component {
         this.props.dispatch(fetchOrderDetailGoods(this.props.match.params.id))
     }
     componentWillReceiveProps(nextProps) {
+        console.log(nextProps.match.params.id)
         if (nextProps.match.params.id !== this.props.match.params.id) {
             this.props.dispatch(beginRefresh(nextProps.match.params.id))
+       
 
         }
     }

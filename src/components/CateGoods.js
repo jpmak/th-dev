@@ -2,6 +2,8 @@ import React from 'react';
 import $ from 'jquery';
 import LazyLoad from 'react-lazyload';
 import PlaceholderComponent from './public/Placeholder';
+import DataNone from '../components/public/DataNone';
+
 import {
     Link
 } from 'react-router-dom'
@@ -156,7 +158,7 @@ class CateGoods extends React.Component {
                 )
             }, this)
         } else if (this.props.pageStatus == 0 && CateGoods == 0) {
-            CateGoodList = (<div className="none-data"></div>);
+            CateGoodList = <DataNone />;
         }
 
         return (

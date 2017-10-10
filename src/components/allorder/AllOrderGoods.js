@@ -4,6 +4,8 @@ import $ from 'jquery';
 import LoadingLayer from '../../components/LoadingLayer/LoadingLayer';
 import PlaceholderComponent from './../public/Placeholder';
 import Modal from '../../components/public/Modal';
+import DataNone from '../../components/public/DataNone';
+
 import {
     Link
 } from 'react-router-dom'
@@ -224,7 +226,7 @@ this.setState({
             }, this)
         } else if (this.props.allOrderGoodsPage == 1 && allOrderGoods.length == 0) {
 
-            allOrderGoodList = (<div className="none-data"></div>);
+            allOrderGoodList = <DataNone/>;
         }
 
         return (

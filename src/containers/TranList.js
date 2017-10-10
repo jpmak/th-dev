@@ -5,6 +5,8 @@ import $ from 'jquery';
 
 import TopNav from '../components/TopNav';
 import Goback from '../components/public/Goback';
+import DataNone from '../components/public/DataNone';
+
 
 import {
     tryRestoreComponent,
@@ -71,17 +73,6 @@ class TranList extends React.Component {
 
             }
         });
-    }
-    rendNone() {
-        return (
-
-            <div className='wlNoData'>
-<h3>暂无物流包裹</h3>
-</div>
-
-        )
-
-
     }
 
     checkIndex(index) {
@@ -152,9 +143,9 @@ class TranList extends React.Component {
 
                     
                     if(this.state.tranListItem.info===undefined||this.state.tranListItem.info.length===0){
-                         renderHtml = this.rendNone()
+                         renderHtml = <DataNone tip='暂无物流信息'/>
                     }else{
-                        console.log(111)
+                     
         renderHtml = this.renderPage();
 
                     }

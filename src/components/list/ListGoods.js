@@ -1,6 +1,7 @@
 import React from 'react';
 import LazyLoad from 'react-lazyload';
 import ChangeLoading from '../public/changLoading';
+import DataNone from '../../components/public/DataNone';
 import {
     Link
 } from 'react-router-dom'
@@ -37,7 +38,7 @@ class ListGoods extends React.Component {
                 let liGood = good.thcate.map(function(liThcate, index) {
                     return (
                         <li  key={index}>
-                    <Link to={'/Exchange-index.html/search/'+liThcate.cate_id+'&list'} onClick={self.goodsFun.bind(self,liThcate.cate_id)}>
+                    <Link to={'/Exchange-index.html/search/'+liThcate.cate_id+'@list'} onClick={self.goodsFun.bind(self,liThcate.cate_id)}>
                     <LazyLoad   height={10} offset={10}>
                              <img  src={liThcate.cate_thumb}/>
                                    </LazyLoad>
@@ -57,7 +58,8 @@ class ListGoods extends React.Component {
                 )
             })
         } else if (this.props.goodStatus == 0 && ListGoods == 0) {
-            ListGood = (<div className="none-data" style={{width:'auto'}}></div>)
+
+            ListGood = <DataNone/>
 
         }
         return (

@@ -1,29 +1,22 @@
 import React from 'react';
 import '../../styles/iscroll.css';
 import iScroll from 'iscroll/build/iscroll-probe'
+import DataNone from '../../components/public/DataNone';
+
 import $ from 'jquery';
-// import {
-//     connect
-// } from 'react-redux'
+
 
 import {
 
     Link
 } from 'react-router-dom';
 import ResultSort from '../search/ResultSort';
-// import PageMask from '../LoadingLayer/PageMask';
 
 import LoadingLayer from '../LoadingLayer/LoadingLayer';
-// import loadingImg from '../LoadingLayer/loading.svg';
 class ResultWrap extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            // pullDownStatus: 3,
-            // pullUpStatus: 5,
-            // pageStatus: 1,
-            // goodsHtml: [],
-            // goodsList: [],
             opacity: true,
             rs_once: ''
         }
@@ -86,7 +79,7 @@ class ResultWrap extends React.Component {
     componentDidMount() {
         // 首次进入列表页，那么异步加载数据
         let parmKeyword = this.props.parmKeyword;
-        let list = parmKeyword.indexOf('&list');
+        let list = parmKeyword.indexOf('@list');
         let listNum = parseInt(parmKeyword)
 
         if (this.props.loadingStatus === 1) {
@@ -360,7 +353,7 @@ class ResultWrap extends React.Component {
                 );
             })
         } else {
-            lis = (<div className="none-data"></div>);
+            lis = <DataNone tip='没有找到相关商品'/>;
         }
         // <div dangerouslySetInnerHTML={{__html:this.liHtml[this.props.pageStatus]}} />
         // <PageMask isDis='none'/>

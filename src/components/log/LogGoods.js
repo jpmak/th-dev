@@ -2,6 +2,7 @@ import React from 'react';
 import LazyLoad from 'react-lazyload';
 import $ from 'jquery';
 import LoadingLayer from '../../components/LoadingLayer/LoadingLayer';
+import DataNone from '../../components/public/DataNone';
 
 import PlaceholderComponent from './../public/Placeholder';
 
@@ -66,7 +67,7 @@ class LogGoods extends React.Component {
                 )
             }, this)
         } else if (this.props.logGoodsPage == 0 && LogGoods == 0) {
-            LogGoodList = (<div className="none-data"></div>);
+            LogGoodList =<DataNone/>;
         }
 
         return (

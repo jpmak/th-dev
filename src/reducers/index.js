@@ -126,7 +126,7 @@ const FETCHCATEGOODS_SUCCESS_reducer = (state, action) => {
     if (action.CateGoodsPage === 0) { // 刷新操作
       nextState.cateGoods = action.cateGoods;
       nextState.CateGoodsPage = action.CateGoodsPage + 1;
-      if (action.cateGoods.length < 4) {
+      if (action.cateGoods.length < 6) {
         nextState.pullDownStatus = 1;
       } else {
         nextState.pullDownStatus = 0;
@@ -135,7 +135,7 @@ const FETCHCATEGOODS_SUCCESS_reducer = (state, action) => {
 
     } else { // 加载操作
       if (state.pullDownStatus === 0) {
-        if (action.cateGoods.length < 4) {
+        if (action.cateGoods.length < 6) {
           nextState.pullDownStatus = 1;
         }
         nextState.cateGoods = state.cateGoods.concat(action.cateGoods);
