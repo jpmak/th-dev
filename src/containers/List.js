@@ -5,7 +5,6 @@ import {
 import $ from 'jquery';
 import Goback from '../components/public/Goback';
 import LoadingLayer from '../components/LoadingLayer/LoadingLayer';
-// import ResultWrap from '../components/search/ResultWrap';
 import SearchInput from '../components/search/SearchInput';
 import DelValue from '../components/search/DelValue';
 import SearchBtn from '../components/search/SearchBtn';
@@ -24,6 +23,9 @@ import {
 import {
     updateLoadingStatus,
 } from '../actions/search'
+import {
+    beginShare,
+} from '../actions/wxchat'
 class List extends React.Component {
     constructor(props) {
         super(props);
@@ -46,15 +48,16 @@ class List extends React.Component {
 
     }
     componentDidMount() {
+        this.props.dispatch(beginShare('list'));
+
         if (this.props.listLoadingStatus === 1) {
             this.props.dispatch(beginRefresh());
         }
         let windowHeight = window.screen.height;
         let searchBox = document.getElementById("boxHeight").offsetHeight;
-
         this.setState({
-                wrapHeight: windowHeight - searchBox
-            })
+            wrapHeight: windowHeight - searchBox
+        })
 
     }
 
@@ -95,7 +98,7 @@ class List extends React.Component {
         this.props.dispatch(fetchListGoods(index, id));
 
     }
-    backupY(e){
+    backupY(e) {
         this.props.dispatch(backupY(e));
 
     }
@@ -208,7 +211,7 @@ const mapStateToProps = state => {
         goodStatus: state.MsgListReducer.goodStatus,
         goodItems: state.MsgListReducer.goodItems,
         changeLoading: state.MsgListReducer.changeLoading,
-        y:state.MsgListReducer.y
+        y: state.MsgListReducer.y
     }
 }
 

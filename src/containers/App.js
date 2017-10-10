@@ -11,6 +11,8 @@ import SlickBanner2 from '../components/SlickBanner2';
 import SalesWrapper from '../components/SalesWrapper';
 import JsCate from '../components/JsCate';
 import FooterNav from '../components/FooterNav';
+import WechatSdk from '../components/public/WechatSdk';
+
 import {
 	tryRestoreComponent,
 	beginRefresh,
@@ -26,7 +28,9 @@ import {
 import {
 	detailInit,
 } from '../actions/detail'
-
+import {
+	beginShare,
+} from '../actions/wxchat'
 
 
 class App extends React.Component {
@@ -38,6 +42,7 @@ class App extends React.Component {
 		if (this.props.loadingStatus === 1) {
 			this.props.dispatch(beginRefresh())
 		}
+		this.props.dispatch(beginShare())
 
 	}
 
@@ -72,10 +77,6 @@ class App extends React.Component {
 		this.props.dispatch(liMove(index, widths, width))
 	}
 	render() {
-		// console.log(this.props.UserTourism)
-		//    console.log(this.props.UserMoney)
-		//    console.log(this.props.userBuy)
-		//    console.log(this.props.userStatus)
 		const {
 			loadingStatus,
 			bannerItems,
@@ -120,6 +121,7 @@ class App extends React.Component {
 		<footer id='nav '>
             <FooterNav/>
             </footer>
+		<WechatSdk appId={this.props.appId} timestamp={this.props.timestamp} nonceStr={this.props.nonceStr} signature={this.props.signature} jsApiList={this.props.jsApiList}/>
 </div>
 		);
 	}
@@ -147,7 +149,12 @@ const mapStateToProps = state => {
 		pageStatus: state.MsgAppReducer.pageStatus,
 		CateGoodsPage: state.MsgAppReducer.CateGoodsPage,
 		moveWidths: state.MsgAppReducer.moveWidths,
-		liWidth: state.MsgAppReducer.liWidth
+		liWidth: state.MsgAppReducer.liWidth,
+		appId: state.MsgAppReducer.appId,
+		timestamp: state.MsgAppReducer.timestamp,
+		nonceStr: state.MsgAppReducer.nonceStr,
+		signature: state.MsgAppReducer.signature,
+		jsApiList: state.MsgAppReducer.jsApiList
 	}
 }
 

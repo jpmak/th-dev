@@ -1,4 +1,6 @@
     import * as consts from "../consts/ActionTypes";
+    import $ from 'jquery';
+
     export function ListTryRestoreComponent() {
       return {
         type: consts.LIST_RESTORE_COMPONENT
@@ -13,61 +15,108 @@
     }
 
     const fetchListNav = (dispatch, getState) => {
-      fetch('/wap/?g=WapSite&c=Exchange&a=get_cate_list', {
-          method: 'POST',
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-          }
-        })
-        .then((res) => res.json())
-        .then((data) => {
+
+      $.ajax({
+        url: '/wap/?g=WapSite&c=Exchange&a=get_cate_list',
+        type: 'POST',
+        dataType: 'json',
+        success: (data) => {
           dispatch({
             type: consts.LIST_NAV_SUCCESS,
             navStatus: data.status,
             navItems: data.cate_list,
 
           });
-
           fetchListGoods(0, data.cate_list[0].cate_id)(dispatch);
-        })
 
-      .catch(() => {
-        dispatch({
-          type: consts.LIST_NAV_FAIL,
+        },
+        error: () => {
+          dispatch({
+            type: consts.LIST_NAV_FAIL,
+          });
+        }
+      });
+      // fetch('/wap/?g=WapSite&c=Exchange&a=get_cate_list', {
+      //     method: 'POST',
+      //     headers: {
+      //       "Content-Type": "application/x-www-form-urlencoded"
+      //     }
+      //   })
+      //   .then((res) => res.json())
+      //   .then((data) => {
+      //     dispatch({
+      //       type: consts.LIST_NAV_SUCCESS,
+      //       navStatus: data.status,
+      //       navItems: data.cate_list,
 
-        });
-      })
+      //     });
+
+      //     fetchListGoods(0, data.cate_list[0].cate_id)(dispatch);
+      //   })
+
+      // .catch(() => {
+      //   dispatch({
+      //     type: consts.LIST_NAV_FAIL,
+
+      //   });
+      // })
     }
 
 
 
     export const fetchListGoods = (e, id) => {
         return (dispatch) => {
-          fetch('/wap/?g=WapSite&c=Exchange&a=get_cate_child', {
-              method: 'POST',
-              headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-              },
-              body: 'cate_id=' + id
-            })
-            .then((res) => res.json())
-            .then((data) => {
 
+          $.ajax({
+            url: '/wap/?g=WapSite&c=Exchange&a=get_cate_child',
+            type: 'POST',
+            dataType: 'json',
+            'data': {
+              'cate_id': id
+            },
+            success: (data) => {
               dispatch({
                 pushIndex: e,
                 type: consts.LIST_GOODS_SUCCESS,
                 goodItems: data.cate_list,
               });
-
               changeLoading(0);
 
-            })
-            .catch(() => {
+            },
+            error: () => {
               dispatch({
-                type: consts.LIST_GOODS_FAIL
+                type: consts.LIST_GOODS_FAIL,
+              });
+            }
+          });
 
-              })
-            })
+
+
+          // fetch('/wap/?g=WapSite&c=Exchange&a=get_cate_child', {
+          //     method: 'POST',
+          //     headers: {
+          //       "Content-Type": "application/x-www-form-urlencoded"
+          //     },
+          //     body: 'cate_id=' + id
+          //   })
+          //   .then((res) => res.json())
+          //   .then((data) => {
+
+          //     dispatch({
+          //       pushIndex: e,
+          //       type: consts.LIST_GOODS_SUCCESS,
+          //       goodItems: data.cate_list,
+          //     });
+
+          //     changeLoading(0);
+
+          //   })
+          //   .catch(() => {
+          //     dispatch({
+          //       type: consts.LIST_GOODS_FAIL
+
+          //     })
+          //   })
         }
       }
       // 更新loading状态
@@ -85,11 +134,9 @@
       };
     }
 
-      export const backupY=(y)=> {
+    export const backupY = (y) => {
       return {
         type: consts.LIST_BACKUP_Y,
         y: y
       };
     }
-
-

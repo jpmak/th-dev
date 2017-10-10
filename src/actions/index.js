@@ -1,5 +1,6 @@
     import $ from 'jquery';
     import './search.js'
+    // import wx from 'react-jweixin';
     import * as consts from "../consts/ActionTypes";
     export function tryRestoreComponent() {
       return {
@@ -8,14 +9,13 @@
     }
     // 发起刷新
     export const beginRefresh = () => {
-      return (dispatch) => {
+      return (dispatch, config) => {
 
         // 异步网络请求
         fetchBanner(dispatch);
         fetchSalse(dispatch);
         fetchCateList(dispatch);
         fetchUser(dispatch);
-        fetchShare(dispatch);
 
       }
     }
@@ -25,19 +25,14 @@
         fetchUser(dispatch);
       }
     }
-    const fetchShare = (dispatch) => {
-      $.ajax({
-        url: '/wap/?g=WapSite&c=Exchange&a=getExchangeShare',
-        // type: 'POST',
-        dataType: 'json',
-        success: (data) => {
 
-        },
-        error: () => {
-          console.log('加载失败');
-        }
-      });
-    }
+    // let config = wx.config();
+    // console.log(config)
+    // 
+    // const fetchWx = (shareMessageJson) => {
+    //   console.log(shareMessageJson)
+    //   window.wxConfig(shareMessageJson, 1);
+    // }
 
     const fetchUser = (dispatch) => {
       $.ajax({

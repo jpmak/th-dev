@@ -18,7 +18,7 @@ const initState = {
   userMoney: 0, //惠积分
   userBuy: 0, //购物积分
   userTourism: 0, //旅游积分
-    money:0,//惠积分
+  money: 0, //惠积分
   loadingStatus: 1, // 首屏加载状态
   pageStatus: 1, //返回状态标识
   bannerItems: [], // banner列表,
@@ -33,6 +33,7 @@ const initState = {
   pullDownStatus: 4, //下加载状态
   moveWidths: 0, //块状移动长度
   liWidth: 0 //块状长度
+
 };
 
 const APP_RESTORE_COMPONENT_reducer = (state, action) => {
@@ -48,7 +49,7 @@ const FETCHUSERINFO_SUCCESS_reducer = (state, action) => {
     userMoney: action.userMoney,
     userBuy: action.userBuy,
     userTourism: action.userTourism,
-    money:action.money,
+    money: action.money,
     userName: action.userName
   });
 
@@ -92,6 +93,17 @@ const UPDATE_PULLUP_STATUS_reducer = (state, action) => {
   });
   return state;
 }
+
+const FETCHSHARE_SUCCESS_reducer = (state, action) => {
+  return Object.assign({}, state, {
+    appId: action.appId,
+    timestamp: action.timestamp,
+    nonceStr: action.nonceStr,
+    signature: action.signature
+  });
+  return state;
+}
+
 
 
 const UPDATE_LIEVENT_STATUS_reducer = (state, action) => {
@@ -166,6 +178,7 @@ export const MsgAppReducer = (state = initState, action) => {
       return UPDATE_PULLUP_STATUS_reducer(state, action);
     case consts.UPDATE_LIEVENT_STATUS:
       return UPDATE_LIEVENT_STATUS_reducer(state, action);
+
 
     default:
       return state; // 返回当前默认state或者当前state
