@@ -27,7 +27,9 @@ import {
 
 
 } from '../actions/search'
-
+import {
+    detailInit,
+} from '../actions/detail'
 // import {
 //     bindActionCreators
 // } from 'redux'
@@ -202,6 +204,10 @@ class Searchhead extends React.Component {
         }, 0);
 
     }
+    detailInit(){
+        this.props.dispatch(detailInit())
+        
+    }
     beginLoad() {
         this.props.dispatch(beginLoad())
 
@@ -295,7 +301,7 @@ class Searchhead extends React.Component {
 
         </div>
 
-            <ResultWrap ref = "getload" value={this.state.value} items = {items} status = {status} _keywordClick={this._keywordClick.bind(this)}  parmKeyword={ this.props.match.params.keyword}  y = {y}  price={price}  searchNum={searchNum}    backupIScrollY = {this.backupIScrollY.bind(this)} pageStatus = {pageStatus}  tryRestoreComponent = {this.tryRestoreComponent.bind(this)}
+            <ResultWrap ref = "getload" detailInit={this.detailInit.bind(this)} value={this.state.value} items = {items} status = {status} _keywordClick={this._keywordClick.bind(this)}  parmKeyword={ this.props.match.params.keyword}  y = {y}  price={price}  searchNum={searchNum}    backupIScrollY = {this.backupIScrollY.bind(this)} pageStatus = {pageStatus}  tryRestoreComponent = {this.tryRestoreComponent.bind(this)}
                       defaultClick = {this.defaultClick.bind(this)}  cate_idClick={this.cate_idClick.bind(this)} priceClick = {this.priceClick.bind(this)}
                volumeClick = {this.volumeClick.bind(this)}  beginRefresh = {this.beginRefresh.bind(this)}
             beginLoad = {this.beginLoad.bind(this)}    updateLoadingStatus = {this.updateLoadingStatus.bind(this)}

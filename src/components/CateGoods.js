@@ -123,8 +123,8 @@ class CateGoods extends React.Component {
             this.changeGoods = true
         })
     }
-    handleClick(goods_name, item_price, list_image) {
-        this.props.detailData(goods_name, item_price, list_image)
+    handleClick(goods_name, exchange_points,item_price, list_image) {
+        this.props.detailData(goods_name,exchange_points, item_price, list_image)
     }
     componentWillReceiveProps(nextProps) {
         if (nextProps.cateGoods !== this.props.cateGoods) {
@@ -137,9 +137,17 @@ class CateGoods extends React.Component {
         let CateGoods = this.props.cateGoods;
         if (CateGoods != '') {
             CateGoodList = CateGoods.map((CateGood, index) => {
+                       let item_price=parseFloat(CateGood.item_price)
+        let pointsHtml='';
+            if(item_price!==0){
+               pointsHtml=(<span className='point'><span className='add'>+</span><em className='money'>¥</em>{CateGood.item_price}</span>) 
+            }else{
+                    pointsHtml=(<span></span>) 
+            
+            }
                 return (
 
-                    <li  key={index} onClick={this.handleClick.bind(this,CateGood.goods_name,CateGood.item_price,CateGood.list_image)}
+                    <li  key={index} onClick={this.handleClick.bind(this,CateGood.goods_name,CateGood.exchange_points,CateGood.item_price,CateGood.list_image)}
                      className={this.changeGoods?'add':'move'}> 
                 <Link to={'/Exchange-index.html/product/'+CateGood.item_id}  className="upItem " data-id={CateGood.item_id}>
                 <div className="info-img">
@@ -150,7 +158,8 @@ class CateGoods extends React.Component {
                 <div className="info-bar">
                 <div className="pro-title">{CateGood.goods_name}</div>
                 <div className="e-numb">
-                <span className="e-price"><em>{CateGood.item_price}</em>积分</span>
+                <span className="e-price"><em className='moneyPrice'>{CateGood.exchange_points}</em>积分</span>
+             {pointsHtml}
                 </div>
                 </div>
                 </Link>

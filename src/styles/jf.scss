@@ -176,8 +176,8 @@ a.th-btn.th-btn-assertive.th-btn-outline {
         height: 2.2rem;
         -webkit-overflow-scrolling: touch;
         li {
-            width: 1.4rem;
-            height: 1.4rem;
+            width: 2rem;
+            height: 2rem;
 
             display: inline-block;
             margin: 0 .1rem 0 .2rem;
@@ -185,8 +185,8 @@ a.th-btn.th-btn-assertive.th-btn-outline {
                 display: block;
             }
             .info-img {
-                width: 1.4rem;
-                height: 1.4rem;
+                width:2rem;
+                height: 2rem;
                 position: relative;
                 display: table-cell;
                 text-align: center;
@@ -194,8 +194,8 @@ a.th-btn.th-btn-assertive.th-btn-outline {
                 text-align: center;
                 background-color: #fff;
                 img {
-                    max-width: 1.4rem;
-                    max-height: 1.4 rem;
+                    max-width: 2rem;
+                    max-height: 2rem;
                     vertical-align: middle;
                     text-align: center;
                 }
@@ -228,7 +228,7 @@ a.th-btn.th-btn-assertive.th-btn-outline {
             .info-bar {
                 // padding: 0 .28rem 0;
                 overflow: hidden;
-                width: 1.4rem;
+                width: 2rem;
                 background-color: #fff;
                 .pro-title {
 
@@ -240,11 +240,32 @@ a.th-btn.th-btn-assertive.th-btn-outline {
                 }
                 .e-numb {
                     color: $yellowColor;
-                    font-size: .18rem;
-                    text-align: left;
+                    text-align: center;
+                .e-price
+                  {  
+                    font-size: .12rem;
                     em {
-                        font-weight: bold;
-                        font-size: .4rem; // padding-right: .08rem;
+                     font-weight: bold;
+                     font-size: .28rem; 
+
+                                      }
+                                  }
+
+                    .point{
+                          font-weight: bold;
+                     font-size: .28rem; 
+                     .add{
+                          font-weight: normal;
+
+                        color:#000;
+                        padding:0 .05rem; 
+                    }
+                    .money{
+                    font-size: .28rem;
+                        font-weight: 500;
+                        padding-right:0.08rem; 
+
+                    }
                     }
                 }
             }

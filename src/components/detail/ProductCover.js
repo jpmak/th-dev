@@ -55,7 +55,14 @@
          } else {
              salePropHeight = '40%'
          }
-
+let item_price=this.props.item_price
+        let priceHtml='';
+            if(item_price!==0){
+               priceHtml=(<span className='point'><span className='add'>+</span><em className='money'>¥</em>{item_price}</span>) 
+            }else{
+                    priceHtml=(<span></span>) 
+            
+            }
          return (
              <section className="product-cover" style={{height:salePropHeight}}>
         <div className="wbox-flex">
@@ -65,7 +72,8 @@
         <div className="cover-head wbox">
         <div className="img-box "><img src={imgsrc} alt=""/></div>
         <div className="product wbox-flex">
-        <p className="num">¥<em>{this.props.item_price}</em><span>积分</span></p>
+        <p className="num"><em>{this.props.exchange_points}</em><span>积分</span>{priceHtml}</p>
+
         <p className="remaining">剩余库存: <em id="stock">{this.props.stock}</em></p>
         <p className="select">{this.props.item_name}</p>
                     </div>

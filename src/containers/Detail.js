@@ -88,6 +88,7 @@ class Detail extends React.Component {
             stock,
             item_price,
             item_name,
+            exchange_points,
             goods_id,
             goods_body
         } = this.props
@@ -95,7 +96,7 @@ class Detail extends React.Component {
             <div className = "th-block">
         	<header id = "headnav" >
         	<TopNav titleName = "商品详情" border = "0" color='#fbfbfb'/></header><div id = "detwrap" ></div> 
-        	<DetBody history={this.history.bind(this)} pushIdStatus={this.pushIdStatus.bind(this)}  id={this.props.match.params.id} detailLoadingStatus={detailLoadingStatus} name = { name } saleProp = { saleProp } prop_name = { prop_name } itemUrl = { itemUrl } imgsrc = { imgsrc } stock = { stock } item_price = { item_price } item_name = { item_name } goods_id = { goods_id } goods_body = {goods_body} goodStatus={goodStatus}/>
+        	<DetBody history={this.history.bind(this)} pushIdStatus={this.pushIdStatus.bind(this)}  id={this.props.match.params.id} exchange_points={exchange_points} detailLoadingStatus={detailLoadingStatus} name = { name } saleProp = { saleProp } prop_name = { prop_name } itemUrl = { itemUrl } imgsrc = { imgsrc } stock = { stock } item_price = { item_price } item_name = { item_name } goods_id = { goods_id } goods_body = {goods_body} goodStatus={goodStatus}/>
         	</div>
         )
     }
@@ -115,6 +116,7 @@ const mapStateToProps = state => {
         imgsrc: state.MsgDetailReducer.imgsrc,
         stock: state.MsgDetailReducer.stock,
         item_price: state.MsgDetailReducer.item_price,
+        exchange_points: state.MsgDetailReducer.exchange_points,
         item_name: state.MsgDetailReducer.item_name,
         goods_id: state.MsgDetailReducer.goods_id,
         goods_body: state.MsgDetailReducer.goods_body,

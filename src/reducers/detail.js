@@ -12,6 +12,7 @@ const detailInitState = {
     item_price: null, //积分数量
     item_name: '',
     goods_id: '',
+    exchange_points:'',
     goods_body: '',
     detailLoadingStatus: 1, // 首屏加载状态
     y: 0, // 上一次滚动偏移量
@@ -37,6 +38,7 @@ const DETAIL_GOODS_SUCCESS_reducer = (state, action) => {
         saleProp: action.saleProp,
         prop_name: action.prop_name,
         itemUrl: action.itemUrl,
+        exchange_points:action.exchange_points,
         imgsrc: action.imgsrc,
         stock: action.stock,
         item_price: action.item_price,
@@ -52,8 +54,9 @@ const DETAIL_PROPS_SUCCESS_reducer = (state, action) => {
 
         stock: action.stock,
         item_price: action.item_price,
+        exchange_points:action.exchange_points,
         item_name: action.item_name,
-        itemUrl: action.itemUrl
+        itemUrl: action.itemUrl,
 
     });
     return state;

@@ -147,6 +147,22 @@
         .unit {
             font-size: .26rem;
         }
+        .point{
+             font-weight: 500;
+                    font-size: .48rem;
+
+            .add{
+                padding: 0 .08rem;
+             font-weight: bold;
+                color:#000;
+                    font-size: .26rem;
+            }
+            .money{
+                  font-weight: bold;
+              margin-right: .1rem;
+                    font-size: .30rem;
+            }
+        }
     }
     // .product-pay-way {
     //     padding-bottom: .39rem;
@@ -346,6 +362,20 @@
                     em {
                         font-size: .4rem;
                         margin-right: .1rem;
+                    }
+                    .point{
+                                font-size: .4rem;
+                    }
+                    .add{
+                        color:#000;
+                        padding: 0  .08rem;
+                        font-weight: 500;
+                            font-size: .28rem;
+                    }
+                    .money{
+                            font-size: .28rem;
+                        margin-right: 0.1rem;
+
                     }
                 }
             }

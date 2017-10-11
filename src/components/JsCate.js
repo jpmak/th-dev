@@ -115,21 +115,16 @@ class JsCate extends React.Component {
         }
     }
 
-    detailData(goods_name, item_price, list_image) {
-        this.props.detailData(goods_name, item_price, list_image)
+    detailData(goods_name,exchange_points, item_price, list_image) {
+        this.props.detailData(goods_name,exchange_points, item_price, list_image)
     }
     componentWillReceiveProps(nextProps) {
-
         if (nextProps.loadingStatus !== this.props.loadingStatus) {
-
             let nav_w = $('.app-scroller li').first().width();
             this.props.liMove(0, 0, nav_w)
         }
     }
     render() {
-
-
-
         if (!this.onClick) {
             let nav_w = $('.app-scroller li').first().width();
             $('.choose-items-wp p').width(nav_w);

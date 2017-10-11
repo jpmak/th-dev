@@ -63,12 +63,12 @@ class App extends React.Component {
 	UpDataPullUpStatus(e) {
 		this.props.dispatch(pullUpStatus(e))
 	}
-	detailData(goods_name, item_price, list_image) {
-		// this.props.dispatch(LocalDetailData(goods_name, item_price, list_image))
+	detailData(goods_name,exchange_points, item_price, list_image) {
 		this.props.dispatch(detailInit())
 
 		window.localStorage.detailData = JSON.stringify({
 			'productName': goods_name,
+			'productPoints': exchange_points,
 			'productPrice': item_price,
 			'productImg': [list_image]
 		})

@@ -284,10 +284,35 @@
                         .tag-price {
                             color: #ccc
                         }
+                       .e-price{ 
+                                               font-weight: 500;
+
                         em {
-                            font-size: .28rem;
-                            padding-right: .08rem;
-                        }
+                                                   font-size: .28rem;
+                                                   padding-right: .08rem;
+                                               }
+                                                 .moneyPrice{
+                                           font-size: .28rem;
+                                               font-weight: bold;
+                                               padding-right:0.08rem; 
+                       
+                                           }}
+                          .point{
+                        font-weight: bold;
+
+                     font-size: .28rem; 
+                     .add{
+                          font-weight:normal;
+                        color:#000;
+                        padding:0 .1rem; 
+                    }
+                    .money{
+                    font-size: .28rem;
+                        font-weight: 500;
+                        padding-right:0.08rem; 
+
+                    }
+                    }   
                     }
                 }
             }

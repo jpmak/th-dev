@@ -319,9 +319,11 @@ class ResultWrap extends React.Component {
     priceClick(e) {
         this.props.priceClick(e);
     }
-    detailData(goods_name, item_price, list_image) {
+    detailData(goods_name, exchange_points,item_price, list_image) {
+        this.props.detailInit()
         window.localStorage.detailData = JSON.stringify({
             'productName': goods_name,
+            'productPoints': exchange_points,
             'productPrice': item_price,
             'productImg': [list_image]
         })
@@ -345,10 +347,18 @@ class ResultWrap extends React.Component {
         let lis = [];
         if (this.props.items !== 0) {
             lis = this.props.items.map((goods, index) => {
+let pointsHtml=''
+                  let item_price=parseFloat(goods.item_price)
+            if(item_price!==0){
+               pointsHtml=(<span className='point'><span className='add'>+</span><em className='money'>¥</em>{goods.item_price}</span>) 
+            }else{
+                    pointsHtml=(<span></span>) 
+            
+            }
                 return (
 
 
-                    <li key={index} onClick={this.detailData.bind(this,goods.goods_name,goods.item_price,goods.list_image)}><Link to={'/Exchange-index.html/product/'+goods.item_id} className='upItem' data-id={goods.item_id}><div className="info-img">{/*<LazyLoad offset={100} once>*/}<img alt="" className="lazy" src={goods.list_image}/>{/*</LazyLoad>*/}</div><div className="info-bar"><div className="pro-title">{goods.goods_name}</div><div className="e-numb"><span className="e-price"><em>{goods.item_price}</em>积分</span></div></div></Link>      </li>
+                    <li key={index} onClick={this.detailData.bind(this,goods.goods_name,goods.exchange_points,goods.item_price,goods.list_image)}><Link to={'/Exchange-index.html/product/'+goods.item_id} className='upItem' data-id={goods.item_id}><div className="info-img">{/*<LazyLoad offset={100} once>*/}<img alt="" className="lazy" src={goods.list_image}/>{/*</LazyLoad>*/}</div><div className="info-bar"><div className="pro-title">{goods.goods_name}</div><div className="e-numb"><span className="e-price"><em  className='moneyPrice'>{goods.exchange_points}</em>积分</span>{pointsHtml}</div></div></Link>      </li>
 
                 );
             })

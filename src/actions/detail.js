@@ -60,6 +60,8 @@
                         saleProp: data.saleProp,
                         itemUrl: (data.itemUrl) ? data.itemUrl : '',
                         item_price: (data.goods.item_price) ? data.goods.item_price : '',
+                        exchange_points:(data.goods.exchange_points)?data.goods.exchange_points :0,
+
                         name: data.goods.goods_name,
                         stock: data.goods.stock,
                         goods_id: data.goods.goods_id,
@@ -119,6 +121,8 @@
                         item_price: data.goods.item_price,
                         stock: data.goods.stock,
                         item_name: (data.goods.item_name) ? '已选择：' + data.goods.item_name : '',
+                        exchange_points:(data.goods.exchange_points)?data.goods.exchange_points :0,
+                        
                         itemUrl: data.itemUrl ? data.itemUrl : ''
                     });
 
