@@ -104,10 +104,9 @@ class ChooseType extends React.Component {
     }
 
     handleClick(e, event) {
-        // this.stopPropagation()
+
         event.stopPropagation();
-        // let num = e.target.getAttribute('data-Num')
-        // let id = e.target.getAttribute('data-Id')
+
 
         this.setState({
             currentIndex: e,

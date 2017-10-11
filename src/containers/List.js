@@ -11,6 +11,8 @@ import SearchBtn from '../components/search/SearchBtn';
 import SearchResult from '../components/search/SearchResult';
 import ListNav from '../components/list/ListNav';
 import ListGoods from '../components/list/ListGoods';
+import Modal from '../components/public/Modal';
+
 import {
     ListTryRestoreComponent,
     fetchListNav,
@@ -97,6 +99,7 @@ class List extends React.Component {
 
         this.props.dispatch(fetchListGoods(index, id));
 
+
     }
     backupY(e) {
         this.props.dispatch(backupY(e));
@@ -104,6 +107,7 @@ class List extends React.Component {
     }
 
     changeLoading(e) {
+        this.refs.Modal.handleOpenModal3()
 
         this.props.dispatch(changeLoading(e));
 
@@ -112,10 +116,19 @@ class List extends React.Component {
         this.props.dispatch(updateListLoadingStatus(1)); // 恢复loading界面
         this.props.dispatch(beginRefresh());
     }
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.changeLoading !== this.props.changeLoading) {
+            if (nextProps.changeLoading === 0) {
+                this.refs.Modal.handleCloseModal3()
+            }
+        }
+    }
+
     renderLoading() {
         let outerStyle = {
             height: window.innerHeight
         };
+
         return (
             <div>
                 <LoadingLayer outerStyle={outerStyle} onRetry={this.onRetryLoading.bind(this)}
@@ -130,6 +143,7 @@ class List extends React.Component {
         <div className="list-wrap wbox" style={{height:this.state.wrapHeight}}>
         <ListNav navItems={this.props.navItems} pushIndex={this.props.pushIndex} navStatus={this.props.navStatus} height={this.state.wrapHeight} listGoods={this.getListGoods.bind(this)} changeLoading={this.changeLoading.bind(this)}/>
         <ListGoods y={this.props.y} listLoadingStatus={this.props.listLoadingStatus} backupY={this.backupY.bind(this)} goodItems={this.props.goodItems} changeLoading={this.props.changeLoading}  height={this.state.wrapHeight} goodStatus={this.props.goodStatus} goodsFun={this.funStoreHistory.bind(this)}/>
+        <Modal ref='Modal' />
         </div>
     </div>);
 

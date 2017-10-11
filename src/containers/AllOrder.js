@@ -114,7 +114,7 @@ class AllOrder extends React.Component {
 
         return (
             <div >
-        <TopNav titleName = "兑换订单" />
+        <TopNav titleName = "兑换订单" border='0' color='#fbfbfb' />
                <div className='w'>
 
         <AllOrderCate TypeMove={this.props.TypeMove} allOrderType={this.props.allOrderType} get_type_goods={this.get_type_goods.bind(this)}  UpDataPullUpStatus={this.UpDataPullUpStatus.bind(this)} UpDataCateType={this.UpDataCateType.bind(this)}/>

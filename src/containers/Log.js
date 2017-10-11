@@ -69,7 +69,7 @@ class Log extends React.Component {
         }
 
     }
-        getScrollTop() {
+    getScrollTop() {
         var scrollTop = 0;
         if (document.documentElement && document.documentElement.scrollTop) {
             scrollTop = document.documentElement.scrollTop;
@@ -78,7 +78,7 @@ class Log extends React.Component {
         }
         return scrollTop;
     }
-        getClientHeight() {
+    getClientHeight() {
         var windowHeight = 0;
         if (document.compatMode == "CSS1Compat") {
             windowHeight = document.documentElement.clientHeight;
@@ -87,7 +87,7 @@ class Log extends React.Component {
         }
         return windowHeight;
     }
-        getScrollHeight() {
+    getScrollHeight() {
         var scrollHeight = 0,
             bodyScrollHeight = 0,
             documentScrollHeight = 0;
@@ -102,12 +102,12 @@ class Log extends React.Component {
     }
     loghandleScroll() {
         console.log()
-     
-   let bodyBox = document.getElementById('root')
+
+        let bodyBox = document.getElementById('root')
         let clientHeight = this.getClientHeight(); //可视区域高度
         let scrollTop = this.getScrollTop(); //滚动条滚动高度
         let scrollHeight = this.getScrollHeight(); //滚动内容高度
-           this.scrollTop = scrollTop
+        this.scrollTop = scrollTop
         if ((clientHeight + scrollTop) == (scrollHeight) && this.props.loghandleScroll !== 0 && this.isDataing === false) {
             this.isDataing = true;
             this.changeGoods()
@@ -138,7 +138,7 @@ class Log extends React.Component {
     renderPage() {
         return (
             <div >
-        <TopNav titleName = "兑换记录" />
+        <TopNav titleName = "兑换记录" color='#fbfbfb' border='0'/>
 
                <div className='w'>
 

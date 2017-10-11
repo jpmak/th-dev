@@ -127,14 +127,12 @@ class Login extends React.Component {
 
   }
 
-  //search
 
-  // <TopNav titleName = "登录" backEchange={this.backEchange.bind(this)}/>
   render() {
 
     return (
       <div className="div1" id="bodyDiv">
-        <TopNav titleName = "登录" go='-2'/>
+        <TopNav titleName = "登录" go='-2' border='0' color='#fbfbfb'/>
         <div id="wrapper">
             <div className="user-img">
                 <div className="img-show"><img src="https://www.thgo8.com/public/wapsite/images/micro_site/login/logo.png" alt=""/></div>
@@ -143,7 +141,7 @@ class Login extends React.Component {
                 <ul>
                     <li className="rel">
     <label className='account' htmlFor="username"> 账 号 </label>
-                        <input type="text" id="username" placeholder="请填写用户名或手机号码" />
+                        <input type="text" id="username" placeholder="请填写用户名或手机号码" autoFocus  />
                         <div id="del" className="delete"></div>
                     </li>
                     <li className="rel">

@@ -6,21 +6,21 @@ import {
     Link
 } from 'react-router-dom'
 class ListGoods extends React.Component {
-        componentDidMount() {
-        let ListGoods=document.getElementById('list-label');
-            if (this.props.listLoadingStatus === 2) { // 首屏成功刷出，则备份y
-                        ListGoods.scrollTop=this.props.y;
+    componentDidMount() {
+        let ListGoods = document.getElementById('list-label');
+        if (this.props.listLoadingStatus === 2) { // 首屏成功刷出，则备份y
+            ListGoods.scrollTop = this.props.y;
         }
     }
 
-    
-                componentWillUnmount() {
-   let ListGoods=document.getElementById('list-label');
-          let top = ListGoods.scrollTop;
-                     if (this.props.listLoadingStatus === 2) { // 首屏成功刷出，则备份y
-        this.props.backupY(top);
+
+    componentWillUnmount() {
+        let ListGoods = document.getElementById('list-label');
+        let top = ListGoods.scrollTop;
+        if (this.props.listLoadingStatus === 2) { // 首屏成功刷出，则备份y
+            this.props.backupY(top);
         }
-   
+
     }
 
 
@@ -31,7 +31,7 @@ class ListGoods extends React.Component {
     render() {
         const self = this
         let ListGood = [];
-        let ListGoods = this.props.goodItems;
+        let ListGoods = this.props.goodItems ? this.props.goodItems : 0;
         if (ListGoods !== 0) {
             ListGood = ListGoods.map(function(good, index) {
 
@@ -57,7 +57,7 @@ class ListGoods extends React.Component {
                 </dl>
                 )
             })
-        } else if (this.props.goodStatus == 0 && ListGoods == 0) {
+        } else {
 
             ListGood = <DataNone/>
 

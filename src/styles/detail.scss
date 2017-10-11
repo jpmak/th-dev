@@ -455,6 +455,9 @@ vertical-align: middle;
     font-size: .4rem;
     line-height: 1rem;
 }
+// #chooseTypeWrap .payWay{
+//     height:5rem;
+// }
 .payList{
     li{
         display: block;
@@ -494,8 +497,8 @@ vertical-align: middle;
                      color: $redColor;
                      .round {
                          border: 1px solid $redColor;
-                         background: url($bg+'c-ok.png') no-repeat;
-                         background-size: .23rem .23rem;
+                         background: url($bg+'c-ok.png') no-repeat center 0;
+                         background-size: .22rem .22rem;
                      }
                  }
      p {

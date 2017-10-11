@@ -6,56 +6,32 @@ class PayPwd extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-             ModalIicon:'',
+            ModalIicon: '',
             value: '',
             csrf: '',
-            orderNum:''
+            orderNum: ''
 
         };
         this.fetchOrderTip = true;
-  
-
         this.handleChange = (event) => {
             let val = event.target.value;
-
             this.setState({
                 value: val
             }, () => {
                 if (val.length === 6 && this.fetchOrderTip) {
-                      this.refs.Modal.handleOpenModal3();
+                    this.refs.Modal.handleOpenModal3();
                     this.fetchOrder();
-                    // this.fetchOrderTip = false;
-
                 }
-
             });
-
-
         }
     }
-    openModal() {
 
-        this.setState({
-                modalIsOpen: true
-            },
-            () => {
-                $("#payPassword_rsainput").keyup()
-                setTimeout(this.closeModal, 2000)
-            }
-
-        );
-    }
-    closeModal() {
-        this.setState({
-            modalIsOpen: false
-        }, () => {
-            $("#payPassword_rsainput").keyup()
-        });
-    }
 
     componentDidMount() {
+
         let _self = this
         var payPassword = $("#payPassword_container");
+
         var _this = payPassword.find('i');
         var k = 0;
         var j = 0;
@@ -124,12 +100,7 @@ class PayPwd extends React.Component {
                 this.value = _val.replace(/\D/g, '');
             }
             var _val = this.value;
-            // if (_val.length === 6 && _self.fetchOrderTip) {
 
-            //     _self.fetchOrder(_val);
-
-            //     // _self.fetchOrder(_val)
-            // }
         });
     }
     fetchCref() {
@@ -152,17 +123,11 @@ class PayPwd extends React.Component {
         });
     }
 
-    close() {
 
-
-    }
     clean() {
+        this.cleanInput();
         // $("#payPassword_rsainput").attr("value", "");
-
-
-
         $('#payWay').show();
-
         $('#paypwd').hide();
 
     }
@@ -178,50 +143,64 @@ class PayPwd extends React.Component {
                 'address_id': this.props.addressId
             },
             success: (data) => {
-             this.refs.Modal.handleCloseModal3();
-      this.refs.Modal.handleOpenModal2();
-                if (data.status===1) {
-                       this.refs.Modal.setText2('支付成功')
-     this.setState({
-                    ModalIicon: 1
-                });
-          this.fetchOrderPaid();
-                }else{
+                this.refs.Modal.handleOpenModal2();
+                this.refs.Modal.handleCloseModal3();
+
+                if (data.status === 1) {
+                    this.refs.Modal.setText2('支付成功')
+                    this.setState({
+                        ModalIicon: 1
+                    });
+                    this.fetchOrderPaid();
+                } else {
 
 
                     this.refs.Modal.setText2(data.msg)
-                         this.setState({
-                    ModalIicon: 0
-                });
+                    this.setState({
+                        ModalIicon: 0
+                    }, () => {
+                        this.cleanInput()
+                    });
+
 
                 }
+
+
             },
             error: () => {
-console.log('加载失败')
+                console.log('加载失败')
             }
         });
     }
+    cleanInput() {
+
+        $('.sixDigitPassword-box b').css('visibility', 'hidden')
+        $('#cardwrap').css('left', '0')
+        $("#payPassword_rsainput").val('');
+    }
     fetchOrderPaid() {
-             $.ajax({
-          url: '/wap/?g=WapSite&c=Exchange&a=orderList',
-          dataType: 'json',
-          type: 'post',
-          'data': {
-            'page': 1,
-            'state': 'paid'
-          },
-          success: (data) => {
-           if(data.status){
-          
-            this.props.successView(data.list[0].exchange_order_number)
+        $.ajax({
+            url: '/wap/?g=WapSite&c=Exchange&a=orderList',
+            dataType: 'json',
+            type: 'post',
+            'data': {
+                'page': 1,
+                'state': 'paid'
+            },
+            success: (data) => {
+                if (data.status) {
+                    this.props.successView(data.list[0].exchange_order_number)
 
-           }
+                }
 
-          },
-          error: () => {
-           console.log('加载失败')
-          }
+            },
+            error: () => {
+                console.log('加载失败')
+            }
         });
+    }
+    focus() {
+        $('#payPassword_rsainput').focus()
     }
     render() {
         return (
@@ -231,13 +210,13 @@ console.log('加载失败')
 
         <div className="ups-cont paid-pwd">
         <a className="class th-nav-back" onClick={this.clean.bind(this)}> </a>
-        <div className='wbox-flex payTitle'>输入支付密码</div>
+        <div className='wbox-flex payTitle' onClick={this.focus.bind(this)}>输入支付密码</div>
 
      
                     <div id="payPassword_container" className="alieditContainer clearfix" data-busy="0">
                         <div className="i-block" data-error="i_error">
                             <div className="i-block six-password">
-                                <input className="i-text sixDigitPassword" id="payPassword_rsainput" type="tel" name="payPassword_rsainput" maxLength="6" onChange={this.handleChange}/>
+                                <input  className="i-text sixDigitPassword" id="payPassword_rsainput" type="tel" name="payPassword_rsainput" maxLength="6"  onKeyUp={this.handleChange}/>
                                 <div tabIndex="0" className="sixDigitPassword-box">
                                     <i><b style={{visibility: 'hidden'}}></b></i>
                                     <i><b style={{visibility: 'hidden'}}></b></i>
@@ -251,7 +230,7 @@ console.log('加载失败')
                         </div>
                     </div>
                     <div className="tips">
-                        <a href="User-payword.html" className="forget-psd">忘记密码?</a>
+                        <a href="https://www.thgo8.com/wap/User-forgetPayword.html" className="forget-psd">忘记密码?</a>
                     </div>
                 </div>
                 </div>

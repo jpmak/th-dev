@@ -46,26 +46,11 @@ class Home extends React.Component {
 
     }
 
-    checkout() {
-        if (window.localStorage.user_info != 1) {
-            console.log('test');
-            // this.props.dispatch(beginRefresh());
-        }
-    }
+
     componentDidMount() {
-
         window.addEventListener('scroll', this.homehandleScroll);
-
         let p = new Promise(function(resolve, reject) {});
-        // if (window.localStorage.user_info != 1) {
-        //     p.then(this.props.dispatch(beginUser()))
-        //         .then(window.location.href = "http://www.thgo8.me/wap/User-login-1.html")
-        // }
 
-
-        // if (this.props.userStatus === 0) {
-        //     this.props.dispatch(beginUser())
-        // }
         if (this.props.homeLoadingStatus === 1 || this.props.userStatus === 0) {
             this.props.dispatch(beginUser())
             this.props.dispatch(beginRefresh())
@@ -79,11 +64,7 @@ class Home extends React.Component {
 
 
     componentWillUnmount() {
-
         window.removeEventListener('scroll', this.homehandleScroll);
-
-
-
         if (this.props.homeLoadingStatus === 2) { // 首屏成功刷出，则备份y
             this.props.dispatch(backupIScrollY(this.scrollTop))
 
@@ -91,11 +72,8 @@ class Home extends React.Component {
 
     }
     homehandleScroll() {
-
         let scrollTop = this.getScrollTop(); //滚动条滚动高度
         this.scrollTop = scrollTop
-
-
     }
     getScrollTop() {
         var scrollTop = 0;
@@ -137,7 +115,7 @@ class Home extends React.Component {
     renderPage() {
         return (
             <div id='home'>
-        <TopNav titleName = "我的积分" />
+        <TopNav titleName = "我的积分" color='#FBFBFB' border='0'/>
 <Info userBuy={this.props.userBuy}  userMoney={this.props.userMoney} userTourism={this.props.userTourism}/>
                <div className='w'>
  <div className='infoTitle'>
@@ -152,7 +130,7 @@ class Home extends React.Component {
 
     }
     render() {
-     
+
 
 
         let p = new Promise(function(resolve, reject) {});
