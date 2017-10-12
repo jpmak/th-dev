@@ -27,16 +27,16 @@ class AllOrderGoods extends React.Component {
             3: '加载失败',
             4: ''
         };
-        this.stateOrderNum='';
+        this.stateOrderNum = '';
         this.isDataing = false;
         this.scrollTop = 0;
         this.allOrderHandleScroll = this.allOrderHandleScroll.bind(this);
         this.state = {
-        ModalIicon:''
-       }
+            ModalIicon: ''
+        }
 
     };
- 
+
     componentDidMount() {
         window.addEventListener('scroll', this.allOrderHandleScroll);
     }
@@ -104,48 +104,48 @@ class AllOrderGoods extends React.Component {
     handleClick(goods_name, item_price, list_image) {
         this.props.detailData(goods_name, item_price, list_image)
     }
-    orderPayBtn(e){
-    this.stateOrderNum=e;
-                this.refs.Modal.setText('确定已收到货吗?')
+    orderPayBtn(e) {
+        this.stateOrderNum = e;
+        this.refs.Modal.setText('确定已收到货吗?')
         this.refs.Modal.handleOpenModal()
     }
-ModalCallBack(){
-    this.fecthPay(this.stateOrderNum)
-    this.refs.Modal.handleOpenModal3();
-    this.refs.Modal.handleCloseModal()
-}
-  fecthPay(num){
-          $.ajax({
-          url: '/wap/?g=WapSite&c=Exchange&a=finish_order',
-          dataType: 'json',
-          type: 'post',
-          'data': {
-            'order_number': num
-        
-          },
-          success: (data) => {
-             this.refs.Modal.handleCloseModal3();
-                  this.refs.Modal.handleOpenModal2()
-           if(data.OK){
-   this.refs.Modal.setText2('收货成功')
-this.setState({
-    ModalIicon:1
-})
-      this.props.get_type_goods(1,'ems')       
-   
+    ModalCallBack() {
+        this.fecthPay(this.stateOrderNum)
+        this.refs.Modal.handleOpenModal3();
+        this.refs.Modal.handleCloseModal()
+    }
+    fecthPay(num) {
+        $.ajax({
+            url: '/wap/?g=WapSite&c=Exchange&a=finish_order',
+            dataType: 'json',
+            type: 'post',
+            'data': {
+                'order_number': num
 
-           }else{
-            this.setState({
-    ModalIicon:0
-})
-                this.refs.Modal.setText2(data.error)
-           }
-          },
-          error: () => {
-            console.log('加载失败')
-          }
+            },
+            success: (data) => {
+                this.refs.Modal.handleCloseModal3();
+                this.refs.Modal.handleOpenModal2()
+                if (data.OK) {
+                    this.refs.Modal.setText2('收货成功')
+                    this.setState({
+                        ModalIicon: 1
+                    })
+                    this.props.get_type_goods(1, this.props.allOrderType)
+
+
+                } else {
+                    this.setState({
+                        ModalIicon: 0
+                    })
+                    this.refs.Modal.setText2(data.error)
+                }
+            },
+            error: () => {
+                console.log('加载失败')
+            }
         });
-  }
+    }
 
     renderLoading() {
         let outerStyle = {
@@ -160,41 +160,36 @@ this.setState({
         );
     }
 
-    // <li key = {index} onClick = {this.handleClick.bind(this, allOrderGood.goods_name, allOrderGood.item_price, allOrderGood.list_image)}
-    //           className = {this.changeGoods ? 'add' : 'move'} >
-    //           <Link to={'/Exchange-index.html/product/'+LogGood.item_id}  className="upItem " data-id={LogGood.item_id}>
-    //       <div className="info-img">
-    //       <LazyLoad  placeholder={<PlaceholderComponent />}>
-    //       <img  src={LogGood.list_image}/>
-    //       </LazyLoad>
-    //       </div>
-    //       <div className="info-bar">
-    //       <div className="pro-title">{LogGood.goods_name}</div>
-    //       <div className="e-numb">
-    //       <span className="e-price"><em>{LogGood.item_price}</em>积分</span>
-    //       </div>
-    //       </div>
-    //       </Link> </li>
+
     renderPage() {
         let bodyBox = document.getElementById('root')
         let allOrderGoodList = [];
         let shopCostHtml = [];
         let btnHtml = [];
 
-        
+
         let allOrderGoods = this.props.allOrderList ? this.props.allOrderList : '';
         if (allOrderGoods != '') {
             allOrderGoodList = allOrderGoods.map((allOrderGood, index) => {
                 if (allOrderGood.shipping_cost == '0.00') {
-                    shopCostHtml = (<span className='serve'>免服务费</span>)
+                    shopCostHtml = (<span className='serve'>免运费</span>)
                 } else {
-                    shopCostHtml = (<span><span className='serve'>服务费</span><span className='num'>¥</span><span className='num'>{allOrderGood.shipping_cost}</span></span>)
+                    shopCostHtml = (<span><span className='serve'>运费</span><span className='num'>¥</span><span className='num'>{allOrderGood.shipping_cost}</span></span>)
                 }
-                if(allOrderGood.cur_state==='待收货'){
-                    btnHtml=( <div className='orderBtn' onClick={this.orderPayBtn.bind(this,allOrderGood.exchange_order_number)}>确定收货</div>)
-                }else{
-                    btnHtml=('')
+                if (allOrderGood.cur_state === '待收货') {
+                    btnHtml = (<div className='orderBtn' onClick={this.orderPayBtn.bind(this,allOrderGood.exchange_order_number)}>确定收货</div>)
+                } else {
+                    btnHtml = ('')
                 }
+                let priceHtml = ''
+                let item_price = parseFloat(allOrderGood.price)
+                if (item_price !== 0) {
+                    priceHtml = (<span className='point'><span className='add'>+</span><em className='money'>¥</em>{allOrderGood.price}</span>)
+                } else {
+                    priceHtml = (<span></span>)
+
+                }
+
                 return (
                     <li key={index}>
                     <Link to={'/Exchange-index.html/orderdetail/'+allOrderGood.exchange_order_number} className='upItem' >
@@ -208,14 +203,17 @@ this.setState({
    <div className="info-img"><img alt="" className="lazy" src={allOrderGood.goods_image}/>{/*</LazyLoad>*/}</div>
    <div className="info-bar">
    <div className="pro-title">{allOrderGood.goods_name}</div>
-   <div className="e-numb"><span className="e-price"><em>{allOrderGood.t_beans}</em>积分</span>
+   <div className="e-numb"><span className="e-price"><em className='moneyPrice'>{allOrderGood.t_beans}</em>积分</span>
+                {
+                    priceHtml
+                }
    <span className="orderPrice">X1</span>
    </div>
    </div>
       </Link>  
    <div className='totalWrap'>
    <div className='orderTotal'>
-<div className='total'><span>总计</span> <span className='num'>{allOrderGood.t_beans}</span><span className='num'>积分</span><i className='add'>+</i> {shopCostHtml}  </div>
+<div className='total'><span>总计</span> <span className='num'>{allOrderGood.t_beans}</span><span className='num'>积分</span>{priceHtml} <i className='add'>+</i> {shopCostHtml}  </div>
 {btnHtml}
    </div>
 

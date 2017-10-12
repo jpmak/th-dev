@@ -23,16 +23,7 @@ class InfoGoods extends React.Component {
         this.homehandleScroll = this.homehandleScroll.bind(this);
 
     };
-    //     render() {
-    //         return (
-    //             <div className='w'>
-    // <div className='infoTitle'>
-    // 我可兑换
-    // </div>
-    //         <div className=''></div>
-    //         </div>
-    //         )
-    //         
+
     componentDidMount() {
         window.addEventListener('scroll', this.homehandleScroll);
     }
@@ -120,6 +111,14 @@ class InfoGoods extends React.Component {
         let InfoGoods = this.props.InfoGoods;
         if (InfoGoods != '') {
             InfoGoodList = InfoGoods.map((InfoGood, index) => {
+                let item_price = parseFloat(InfoGood.item_price)
+                let priceHtml = '';
+                if (item_price !== 0) {
+                    priceHtml = (<span className='point'><span className='add'>+</span><em className='money'>¥</em>{InfoGood.item_price}</span>)
+                } else {
+                    priceHtml = (<span></span>)
+
+                }
                 return (
                     <li key = {index} onClick = {this.handleClick.bind(this, InfoGood.goods_name, InfoGood.item_price, InfoGood.list_image)}
                     className = {this.changeGoods ? 'add' : 'move'} >
@@ -132,7 +131,10 @@ class InfoGoods extends React.Component {
                 <div className="info-bar">
                 <div className="pro-title">{InfoGood.goods_name}</div>
                 <div className="e-numb">
-                <span className="e-price"><em>{InfoGood.item_price}</em>积分</span>
+                <span className="e-price"><em>{InfoGood.exchange_points?InfoGood.exchange_points:0}</em>积分</span>
+                {
+                    priceHtml
+                }
                 </div>
                 </div>
                 </Link> </li>

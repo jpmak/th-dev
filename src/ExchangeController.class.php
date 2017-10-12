@@ -18,15 +18,7 @@ class ExchangeController extends BaseController
 		}
 		krsort($history_arr);
 		$this->assign('search_history',$history_arr);
-		$this->display('WapSite/jf/public/index');
-	}
-
-	public function loginExchange(){
-		$user_info = new UsersInfoModel();
-		$user = $user_info->getRow(array('field'=>'user_id,nickname,user_name','where'=>'user_id = 2'));
-		$_SESSION['user']['user_id'] = $user['user_id'];
-		$_SESSION['user']['nickname'] = $user['nickname'];
-		exit(json_encode($_SESSION['user'])); 
+		$this->display();
 	}
 
 	public function search_history(){
@@ -85,6 +77,18 @@ class ExchangeController extends BaseController
 		exit(json_encode($json));
 	}
 
+	//获取兑换商城分享配置
+	public function getExchangeShare(){
+        $viewType = empty($_POST['viewType']) ? '' : trim($_POST['viewType']);
+        $ids = empty($_POST['ids']) ? 0 : intval($_POST['ids']);
+        $wx_model = new WeiXinModel();
+        //配置分类内容
+        $share_config = $wx_model->excgabgeShareConfig($viewType,$ids);
+        //获取配置
+        $share_param = $wx_model->getExchangeConfigParam($share_config['link'],$share_config);
+        exit(json_encode($share_param));
+    }
+
 	//获取用户积分信息
 	public function user_info(){
 		if( empty($_SESSION['user']) ){
@@ -113,7 +117,7 @@ class ExchangeController extends BaseController
         $size = empty($_POST['size']) ? 6 : intval($_POST['size']);
         $page = empty($_POST['page']) ? 1 : intval($_POST['page']);
         $dao = Dao::instance();
-        $sql = 'SELECT g.goods_id,g.goods_name,i.item_id,i.item_price,img.list_image FROM '.$dao->table('exchange_goods').' AS g';
+        $sql = 'SELECT g.goods_id,g.goods_name,i.item_id,i.item_price,i.exchange_points,img.list_image FROM '.$dao->table('exchange_goods').' AS g';
         $sql .= ' LEFT JOIN '.$dao->table('exchange_goods_item').' AS i ON g.goods_id = i.goods_id';
         $sql .= ' LEFT JOIN '.$dao->table('exchange_goods_images').' AS img ON img.goods_id = g.goods_id';
         $sql .= ' WHERE g.verify = 1 AND g.state = 1 AND g.deleted = 0 AND i.item_offsale = 0 AND i.deleted = 0 AND ( g.goods_price <= '.$point_info['point'].' OR g.goods_price <= '.$point_info['tourism'].' OR g.goods_price <= '.$point_info['discharge_point'].' ) GROUP BY g.goods_id ORDER BY g.goods_id DESC LIMIT '.$page*$size.','.$size;
@@ -190,7 +194,7 @@ class ExchangeController extends BaseController
 		$size = 10;
 		$page = empty($_POST['page']) ? '0' : $_POST['page'];
 		$dao = Dao::instance();
-		$sql = 'SELECT g.goods_id,g.goods_name,i.item_id,i.item_price,img.list_image FROM '.$dao->table('exchange_goods').' AS g LEFT JOIN '.$dao->table('exchange_goods_item').' AS i ON g.goods_id = i.goods_id LEFT JOIN '.$dao->table('exchange_goods_images').' AS img ON img.goods_id = g.goods_id WHERE g.verify = 1 AND g.state = 1 AND g.deleted = 0 AND i.item_offsale = 0 AND i.deleted = 0 '.$keysql.' GROUP BY g.goods_id '.$orderBy.' LIMIT '.$page*$size.','.$size;
+		$sql = 'SELECT g.goods_id,g.goods_name,i.item_id,i.item_price,i.exchange_points,img.list_image FROM '.$dao->table('exchange_goods').' AS g LEFT JOIN '.$dao->table('exchange_goods_item').' AS i ON g.goods_id = i.goods_id LEFT JOIN '.$dao->table('exchange_goods_images').' AS img ON img.goods_id = g.goods_id WHERE g.verify = 1 AND g.state = 1 AND g.deleted = 0 AND i.item_offsale = 0 AND i.deleted = 0 '.$keysql.' GROUP BY g.goods_id '.$orderBy.' LIMIT '.$page*$size.','.$size;
 		$goods_all = $dao->queryAll($sql);
 		if( empty($goods_all) ){
 			$json['status'] = 0;
@@ -207,7 +211,7 @@ class ExchangeController extends BaseController
         //获取排行榜显示数量
         // $sql = 'SELECT * FROM '.$dao->table('site_setting').' WHERE name = \'exchange_Leaderboard_sum\'';
         // $board_sum = $dao->queryOne($sql);
-        $sql = 'SELECT g.goods_name,g.sales_volume,i.item_id,i.item_price,img.list_image FROM '.$dao->table('exchange_goods').' AS g ';
+        $sql = 'SELECT g.goods_name,g.sales_volume,i.item_id,i.item_price,i.exchange_points,img.list_image FROM '.$dao->table('exchange_goods').' AS g ';
         $sql .= 'LEFT JOIN '.$dao->table('exchange_goods_item').' AS i ON g.goods_id = i.goods_id ';
         $sql .= 'LEFT JOIN '.$dao->table('exchange_goods_images').' AS img ON g.goods_id = img.goods_id ';
         $sql .= 'WHERE g.verify = 1 AND g.state = 1 AND g.deleted = 0 AND i.item_offsale = 0 AND i.deleted = 0 group by g.goods_id ';
@@ -248,7 +252,7 @@ class ExchangeController extends BaseController
         $dao = Dao::instance();
         $size = empty($_POST['size']) ? 4 : intval($_POST['size']);
         $page = empty($_POST['page']) ? 0 : intval($_POST['page']);
-        $sql = 'SELECT g.goods_name,i.item_id,i.item_price,img.list_image FROM '.$dao->table('exchange_goods').' AS g LEFT JOIN '.$dao->table('exchange_goods_item').' AS i ON g.goods_id = i.goods_id LEFT JOIN '.$dao->table('exchange_goods_images').' AS img ON img.goods_id = g.goods_id WHERE g.verify = 1 and g.state = 1 and i.item_offsale = 0 and i.deleted = 0 and g.cate_id in ('.$cate_model->CategoryIDALL($cate_id).') group by g.goods_id order by g.goods_id desc LIMIT '.$page*$size.','.$size;
+        $sql = 'SELECT g.goods_name,i.item_id,i.item_price,i.exchange_points,img.list_image FROM '.$dao->table('exchange_goods').' AS g LEFT JOIN '.$dao->table('exchange_goods_item').' AS i ON g.goods_id = i.goods_id LEFT JOIN '.$dao->table('exchange_goods_images').' AS img ON img.goods_id = g.goods_id WHERE g.verify = 1 and g.state = 1 and i.item_offsale = 0 and i.deleted = 0 and g.cate_id in ('.$cate_model->CategoryIDALL($cate_id).') group by g.goods_id order by g.goods_id desc LIMIT '.$page*$size.','.$size;
         $goods_all = $dao->queryAll($sql);
         if(empty($goods_all)){
         	$json['status'] = 0;
@@ -780,15 +784,20 @@ class ExchangeController extends BaseController
 		$user = $this->checkLogin();
 		$user_id = $user['user_id'];
 		$item_id = Session::get("exchange_item_id");
+		$json['status'] = 0;
 		if( empty($item_id) ){
-            exit(json_encode(array('status'=>0,'msg'=>'下单页失效')));
+            $json['status'] = 2;
+            $json['msg'] = '下单页失效';
+            exit(json_encode($json));
         }
 		$p_type = trim($_POST['p_type']);
 		$consignee_id = intval($_POST['address_id']);
 		$pay_word = trim($_POST['payPwd']);
 		$csrf = trim($_POST['csrf']);
 		if( empty($p_type) || empty($consignee_id) || empty($pay_word) || empty($csrf) ){
-            exit(json_encode(array('status'=>0,'msg'=>'网络连接失败，请稍后再试')));
+            $json['status'] = 0;
+            $json['msg'] = '网络连接失败，请稍后再试';
+            exit(json_encode($json));
         }
 		$pay_type = ExchangeOrderModel::PAY_TYPE_BALANCE;
 		// 下单
@@ -810,16 +819,19 @@ class ExchangeController extends BaseController
             switch($p_type){
                 case 'balance_point' :
                     if( $itemInfo['item_price'] > $user['discharge_point']  ){
+                        $json['status'] = 4;
                         throw new Exception(Lang::get('balance_point')."不足");
                     }
                     break;
                 case 'travel_point' :
                     if( $itemInfo['item_price'] > $user['tourism']  ){
+                        $json['status'] = 4;
                         throw new Exception(Lang::get('travel_point')."不足");
                     }
                     break;
                 case 'point' :
                     if( $itemInfo['item_price'] > $user['point'] ){
+                        $json['status'] = 4;
                         throw new Exception(Lang::get('point')."不足");
                     }
                     break;
@@ -835,6 +847,7 @@ class ExchangeController extends BaseController
             $fee = $exchange_model->getFreight($address_city, $weight);
             //检查惠积分是否足够
             if( $fee > $user['user_money'] ){
+                $json['status'] = 3;
                 throw new Exception(Lang::get('money')."不足");
             }
 
@@ -849,7 +862,8 @@ class ExchangeController extends BaseController
             $model_exchange_order->commit();
         }catch (Exception $e){
             $model_exchange_order->rollback();
-            exit(json_encode(array('status'=>1,'msg'=>$e->getMessage())));
+            $json['msg'] = $e->getMessage();
+            exit(json_encode($json));
 		}
 		exit(json_encode($this->pay($order_number, $pay_type)));
 	}
@@ -899,10 +913,10 @@ class ExchangeController extends BaseController
 							throw new Exception("找不到兑换订单：${order_number}");
 						}
 						$model_user_money = new UsersMoneyModel();
-						if($model_user_money->change_money($order['user_id'], UsersMoneyModel::OUT, $order['shipping_cost'], "支付兑换订单：${order_number}运费") === false){
+						if($model_user_money->change_money($order['user_id'], UsersMoneyModel::OUT, bcadd($order['shipping_cost'],$order['total_price'],2), "支付兑换订单：${order_number}运费") === false){
 							throw new Exception("支付兑换订单：${order_number}运费失败");
 						}
-						if($model_exchange_order->pay_success($order_number, $order['shipping_cost'], ExchangeOrderModel::PAY_TYPE_BALANCE) !== true){
+						if($model_exchange_order->pay_success($order_number, bcadd($order['shipping_cost'],$order['total_price'],2), ExchangeOrderModel::PAY_TYPE_BALANCE) !== true){
 							throw new Exception("兑换订单：${order_number}运费支付失败");
 						}
 						$model_user->commit();

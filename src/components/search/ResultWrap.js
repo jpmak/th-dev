@@ -7,7 +7,6 @@ import $ from 'jquery';
 
 
 import {
-
     Link
 } from 'react-router-dom';
 import ResultSort from '../search/ResultSort';
@@ -104,11 +103,11 @@ class ResultWrap extends React.Component {
         document.addEventListener('touchmove', this.PreventDefault, false);
     }
     funStoreUpItem(upItem) {
-        window.localStorage.upItem = upItem;
-    }
-    /**
-     * 加载完成后初始化一次iscroll
-     */
+            window.localStorage.upItem = upItem;
+        }
+        /**
+         * 加载完成后初始化一次iscroll
+         */
     ensureIScrollInstalled() {
         if (this.iScrollInstance) {
             return this.iScrollInstance;
@@ -158,8 +157,6 @@ class ResultWrap extends React.Component {
                 this.isToDown = true;
                 this.props.updatePullDownStatus(2);
             } else {
-                // this.isToDown = true;
-
                 this.props.updatePullDownStatus(1);
             }
         }
@@ -180,14 +177,8 @@ class ResultWrap extends React.Component {
     onScroll() {
         const _this = this;
         const rs_once = this.state.rs_once;
-
-        // console.log(this.iScrollInstance.y);
-        // console.log(this.props.loadingStatus);
-
         let isy = this.iScrollInstance.y;
-        if (this.onTouch) {
-
-        }
+        if (this.onTouch) {}
         let pullDown = $(this.refs.PullDown);
         // 上拉区域
         if (isy > -1 * pullDown.height()) {
@@ -196,7 +187,6 @@ class ResultWrap extends React.Component {
         } else {
             this.props.updatePullDownStatus(0);
         }
-
         //顶部导航收缩
         if (this.t < isy && this.isToUp && isy > this.iScrollInstance.maxScrollY) {
             this.isToDown = true;
@@ -214,16 +204,13 @@ class ResultWrap extends React.Component {
         } else if (this.t > isy && this.isToDown && isy <= -200) {
             this.isToDown = false;
             this.isToUp = true;
-
             $('.result-sort').stop().animate({
                 top: $('.result-sort').height() - rs_once + 'px'
             }, 200);
             $('.th-search-container').stop().animate({
                 top: -rs_once + 'px'
             }, 200);
-
             //向下
-
         }
         setTimeout(function() {
             _this.t = _this.iScrollInstance.y;
@@ -233,8 +220,6 @@ class ResultWrap extends React.Component {
         if (this.props.pullUpStatus !== 4 && this.props.pullUpStatus !== 8)
             if (this.iScrollInstance.y <= this.iScrollInstance.maxScrollY + 5) {
                 this.onPullUp();
-            } else {
-                // this.props.updatePullUpStatus(0);
             }
             // 下拉区域
         if (this.iScrollInstance.y <= this.iScrollInstance.maxScrollY + 5 && this.props.pageStatus !== 0) {
@@ -251,8 +236,6 @@ class ResultWrap extends React.Component {
             if (this.props.pullDownStatus <= 1) { // 没有发起刷新,那么弹回去
                 this.iScrollInstance.scrollTo(0, -1 * $(this.refs.PullDown).height(), 200);
             } else if (this.props.pullDownStatus === 2) {
-                // 发起了刷新,
-                // 那么更新状态
                 this.props.beginRefresh();
             }
         }
@@ -270,13 +253,9 @@ class ResultWrap extends React.Component {
         return true;
     }
 
-
     componentDidUpdate() {
         const _this = this;
 
-        // this.setState({
-        //     rs_once: rs_once
-        // });
         // 加载屏结束,才可以初始化iscroll
         $('.result-sort li.icons-list').on('click', function() {
             _this.iScrollInstance.refresh();
@@ -319,7 +298,7 @@ class ResultWrap extends React.Component {
     priceClick(e) {
         this.props.priceClick(e);
     }
-    detailData(goods_name, exchange_points,item_price, list_image) {
+    detailData(goods_name, exchange_points, item_price, list_image) {
         this.props.detailInit()
         window.localStorage.detailData = JSON.stringify({
             'productName': goods_name,
@@ -347,27 +326,24 @@ class ResultWrap extends React.Component {
         let lis = [];
         if (this.props.items !== 0) {
             lis = this.props.items.map((goods, index) => {
-let pointsHtml=''
-                  let item_price=parseFloat(goods.item_price)
-            if(item_price!==0){
-               pointsHtml=(<span className='point'><span className='add'>+</span><em className='money'>¥</em>{goods.item_price}</span>) 
-            }else{
-                    pointsHtml=(<span></span>) 
-            
-            }
+                let pointsHtml = ''
+                let item_price = parseFloat(goods.item_price)
+                if (item_price !== 0) {
+                    pointsHtml = (<span className='point'><span className='add'>+</span><em className='money'>¥</em>{goods.item_price}</span>)
+                } else {
+                    pointsHtml = (<span></span>)
+
+                }
                 return (
 
 
-                    <li key={index} onClick={this.detailData.bind(this,goods.goods_name,goods.exchange_points,goods.item_price,goods.list_image)}><Link to={'/Exchange-index.html/product/'+goods.item_id} className='upItem' data-id={goods.item_id}><div className="info-img">{/*<LazyLoad offset={100} once>*/}<img alt="" className="lazy" src={goods.list_image}/>{/*</LazyLoad>*/}</div><div className="info-bar"><div className="pro-title">{goods.goods_name}</div><div className="e-numb"><span className="e-price"><em  className='moneyPrice'>{goods.exchange_points}</em>积分</span>{pointsHtml}</div></div></Link>      </li>
+                <li key={index} onClick={this.detailData.bind(this,goods.goods_name,goods.exchange_points,goods.item_price,goods.list_image)}><Link to={'/Exchange-index.html/product/'+goods.item_id} className='upItem' data-id={goods.item_id}><div className="info-img">{/*<LazyLoad offset={100} once>*/}<img alt="" className="lazy" src={goods.list_image}/>{/*</LazyLoad>*/}</div><div className="info-bar"><div className="pro-title">{goods.goods_name}</div><div className="e-numb"><span className="e-price"><em  className='moneyPrice'>{goods.exchange_points}</em>积分</span>{pointsHtml}</div></div></Link>      </li>
 
                 );
             })
         } else {
             lis = <DataNone tip='没有找到相关商品'/>;
         }
-        // <div dangerouslySetInnerHTML={{__html:this.liHtml[this.props.pageStatus]}} />
-        // <PageMask isDis='none'/>
-
         return (
             <div className="w result-wp" >
      

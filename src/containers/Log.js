@@ -20,49 +20,36 @@ import {
     backupIScrollY
 
 } from '../actions/log'
-
 class Log extends React.Component {
     constructor(props) {
         super(props);
         this.isDataing = false;
-
         this.scrollTop = 0;
         this.loghandleScroll = this.loghandleScroll.bind(this);
     };
-
     componentWillMount() {
         let p = new Promise(function(resolve, reject) {});
 
         if (window.localStorage.user_info != 1) {
             p.then(this.props.history.push('/Exchange-index.html/login/log/'))
         } else {
-
             this.props.dispatch(logTryRestoreComponent());
         }
-
-
     }
 
-
     componentDidMount() {
-
-
         window.addEventListener('scroll', this.loghandleScroll);
         let p = new Promise(function(resolve, reject) {});
         if (this.props.logLoadingStatus === 1 || this.props.userStatus === 0) {
             this.props.dispatch(beginUser())
             this.props.dispatch(beginRefresh())
         } else {
-
             window.scrollTo(0, this.props.y)
         }
-
-
     }
 
 
     componentWillUnmount() {
-
         window.removeEventListener('scroll', this.loghandleScroll);
         if (this.props.logLoadingStatus === 2) { // 首屏成功刷出，则备份y
             this.props.dispatch(backupIScrollY(this.scrollTop))

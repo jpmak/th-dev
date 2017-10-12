@@ -35,11 +35,11 @@ class OrderDetail extends React.Component {
     constructor(props) {
         super(props);
         this.scrollTop = 0;
-        this.state={
-            ModalIicon:''
+        this.state = {
+            ModalIicon: ''
         }
         this.orderDetailHandleScroll = this.orderDetailHandleScroll.bind(this);
-   
+
     };
 
     componentWillMount() {
@@ -116,7 +116,7 @@ class OrderDetail extends React.Component {
         console.log(nextProps.match.params.id)
         if (nextProps.match.params.id !== this.props.match.params.id) {
             this.props.dispatch(beginRefresh(nextProps.match.params.id))
-       
+
 
         }
     }
@@ -154,49 +154,49 @@ class OrderDetail extends React.Component {
         $('.cover-mask').addClass('cover-mask-toggle').show();
 
     }
- orderPayBtn(){
+    orderPayBtn() {
 
-                this.refs.Modal.setText('确定已收到货吗?')
+        this.refs.Modal.setText('确定已收到货吗?')
         this.refs.Modal.handleOpenModal()
     }
-ModalCallBack(){
-    this.fecthPay()
-    this.refs.Modal.handleOpenModal3();
-    this.refs.Modal.handleCloseModal()
-}
-  fecthPay(){
- 
-          $.ajax({
-          url: '/wap/?g=WapSite&c=Exchange&a=finish_order',
-          dataType: 'json',
-          type: 'post',
-          'data': {
-            'order_number': this.props.match.params.id
-        
-          },
-          success: (data) => {
-             this.refs.Modal.handleCloseModal3();
-                  this.refs.Modal.handleOpenModal2()
-           if(data.OK){
-   this.refs.Modal.setText2('收货成功')
-this.setState({
-    ModalIicon:1
-})
-     this.changeGoods();
-   
+    ModalCallBack() {
+        this.fecthPay()
+        this.refs.Modal.handleOpenModal3();
+        this.refs.Modal.handleCloseModal()
+    }
+    fecthPay() {
 
-           }else{
-            this.setState({
-    ModalIicon:0
-})
-                this.refs.Modal.setText2(data.error)
-           }
-          },
-          error: () => {
-            console.log('加载失败')
-          }
+        $.ajax({
+            url: '/wap/?g=WapSite&c=Exchange&a=finish_order',
+            dataType: 'json',
+            type: 'post',
+            'data': {
+                'order_number': this.props.match.params.id
+
+            },
+            success: (data) => {
+                this.refs.Modal.handleCloseModal3();
+                this.refs.Modal.handleOpenModal2()
+                if (data.OK) {
+                    this.refs.Modal.setText2('收货成功')
+                    this.setState({
+                        ModalIicon: 1
+                    })
+                    this.changeGoods();
+
+
+                } else {
+                    this.setState({
+                        ModalIicon: 0
+                    })
+                    this.refs.Modal.setText2(data.error)
+                }
+            },
+            error: () => {
+                console.log('加载失败')
+            }
         });
-  }
+    }
 
     renderPage() {
 
@@ -208,14 +208,14 @@ this.setState({
         let btnHtml = [];
 
 
-       if(orderInfoItems.ems_status ==1&&this.props.trackInfoContext!==''){
+        if (orderInfoItems.ems_status == 1 && this.props.trackInfoContext !== '') {
 
             emsHtml = (<div className="mid-cont">
                    <div className="condition">{this.props.trackInfoContext}</div>
                         <div className="time"> {this.props.trackInfoTime}</div>
                 </div>)
 
-        }else {
+        } else {
             emsHtml = (<div className="mid-cont"><div className="condition">暂无物流信息</div></div>)
         }
 
@@ -228,14 +228,23 @@ this.setState({
                     <button className="pay-btn red-btn" >立即支付</button>   
                     </div>)
 
-        }  else if (orderInfoItems.cur_status == '待收货') {
+        } else if (orderInfoItems.cur_status == '待收货') {
             btnHtml = (
-             <div className="foot">
+                <div className="foot">
                 <button className="pay-btn red-btn" onClick={this.orderPayBtn.bind(this)}>确认收货</button>
                 </div>
             )
 
         }
+        let priceHtml = ''
+        let item_price = parseFloat(orderInfoItems.total_price)
+        if (item_price !== 0) {
+            priceHtml = (<span className='totalPrice'><span className='add'>+</span><em className='money'>¥</em>{orderInfoItems.total_price}</span>)
+        } else {
+            priceHtml = (<span></span>)
+
+        }
+
         return (
             <div>
 
@@ -276,6 +285,7 @@ this.setState({
                     <div className="order-sub">
                         <div className="order-sub-num"  >子订单号:{orderInfoItems.exchange_order_number}</div>
                     </div>
+                    <Link to={'/Exchange-index.html/product/'+orderInfoItems.item_id} >
                     <div className="order-lists">
                         <div className="goods-msg">
                          <div className="icon"><img src={orderInfoItems.goods_image}/></div>
@@ -286,10 +296,14 @@ this.setState({
                                     <div className="norm" style={{float:'left'}}>{orderInfoItems.prop_value}</div>
                                     <div className="amount" style={{float:'right'}}>× 1</div>
                                 </div>
-                                <div className="price">{orderInfoItems.t_beans}</div>
+
+        <div className="price">
+<span className="e-price"><em className='moneyPrice'>  {orderInfoItems.t_beans}</em>积分</span>
+      {priceHtml}</div>
                             </div>
                         </div>
                                             </div>
+</Link>
                                         <div className="shop-tit" >
                         <div className="title">
                             <i></i>
@@ -319,7 +333,7 @@ this.setState({
                         <li className="char-lists">
                             <label htmlFor="">实付 (含运费)</label>
                             
-                            <p className="act-paid">¥  {orderInfoItems.shipping_cost}</p>
+                            <p className="act-paid">¥  {parseFloat(orderInfoItems.shipping_cost)+parseFloat(orderInfoItems.total_price)}</p>
                         </li>
                     </ul>
                     <ul className="place-msg">

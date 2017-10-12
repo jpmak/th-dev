@@ -20,9 +20,9 @@ class LogGoods extends React.Component {
             3: '加载失败',
             4: ''
         };
-       
+
     };
-  
+
 
     onRetryLoading() {
         this.props.beginRefresh();
@@ -44,15 +44,35 @@ class LogGoods extends React.Component {
         );
     }
 
-  
+
     renderPage() {
         let bodyBox = document.getElementById('root')
         let LogGoodList = [];
         let LogGoods = this.props.logList ? this.props.logList : '';
         if (LogGoods != '') {
             LogGoodList = LogGoods.map((LogGood, index) => {
+                let valueHtml = '';
+                if (LogGood.prop_value) {
+                    valueHtml = (<div className="prop_value-title"><span>颜色分类：{LogGood.prop_value}</span></div>)
+                } else {
+                    valueHtml = ('');
+                }
+                let item_price = parseFloat(LogGood.total_price)
+                let priceHtml = '';
+                if (item_price !== 0) {
+                    priceHtml = (<span className='point'><span className='add'>+</span><em className='money'>¥</em>{LogGood.total_price}</span>)
+                } else {
+                    priceHtml = (<span></span>)
+
+                }
+                let shopCostHtml = '';
+                if (LogGood.shipping_cost == '0.00') {
+                    shopCostHtml = (<span className='serve'><span className='add'>+</span>免运费</span>)
+                } else {
+                    shopCostHtml = (<span  className='serve'><span className='add'>+</span><span className='serve'>运费</span><span className='num'>¥</span><span className='num'>{LogGood.shipping_cost}</span></span>)
+                }
                 return (
-                    <li key={index}><Link to={'/Exchange-index.html/product/'+LogGood.item_id} className='upItem' data-id={LogGood.user_id}>
+                    <li key={index}><Link to={'/Exchange-index.html/orderdetail/'+LogGood.exchange_order_number} className='upItem' data-id={LogGood.user_id}>
 
 <div className='order'>
 <div className='orderNum'><span>订单号：</span><span>{LogGood.exchange_order_number}</span></div>
@@ -60,14 +80,18 @@ class LogGoods extends React.Component {
 </div>
 
    <div className="info-img">
-       <LazyLoad  placeholder={<PlaceholderComponent />}><img alt="" className="lazy" src={LogGood.goods_image}/></LazyLoad></div><div className="info-bar"><div className="pro-title">{LogGood.prop_value}</div><div className="e-numb"><span className="e-price"><em>{LogGood.t_beans}</em>积分</span></div></div></Link>      </li>
+       <LazyLoad  placeholder={<PlaceholderComponent />}><img alt="" className="lazy" src={LogGood.goods_image}/></LazyLoad></div><div className="info-bar"><div className="pro-title">{LogGood.goods_name}</div>
+                {
+                    valueHtml
+                }
+                <div className="e-numb"><span className="e-price"><em className='moneyPrice'>{LogGood.t_beans}</em>积分</span>{priceHtml}{shopCostHtml}</div> </div></Link > </li>
 
 
 
                 )
             }, this)
         } else if (this.props.logGoodsPage == 0 && LogGoods == 0) {
-            LogGoodList =<DataNone/>;
+            LogGoodList = <DataNone/>;
         }
 
         return (
