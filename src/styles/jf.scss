@@ -59,7 +59,9 @@ a.th-btn.th-btn-assertive.th-btn-outline {
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);
 }
-
+.headerTop{
+    position:fixed;
+}
 // 搜索样式
 @import 'jf_search';
 .jf-floor-banner .swiper-container {

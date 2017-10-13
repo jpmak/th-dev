@@ -204,9 +204,9 @@ class Searchhead extends React.Component {
         }, 0);
 
     }
-    detailInit(){
+    detailInit() {
         this.props.dispatch(detailInit())
-        
+
     }
     beginLoad() {
         this.props.dispatch(beginLoad())
@@ -242,8 +242,6 @@ class Searchhead extends React.Component {
     }
 
     render() {
-
-        const _this = this;
         const {
             items,
             status,
@@ -321,7 +319,7 @@ class GobackUp extends React.Component {
         $('#searchInput').blur();
         $('#js-list,.class,.result-wp').show();
         $('.search-wrap,.th-search-box .backbtn,.fixedSearch').hide();
-        $('#del').hide();   
+        $('#del').hide();
     }
 
     render() {

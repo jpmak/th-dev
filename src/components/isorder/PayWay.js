@@ -8,7 +8,6 @@ class PayWay extends React.Component {
             'balance_point': '排点积分',
             'travel_point': '旅游积分',
             'point': '购物积分'
-
         };
     }
     chooseType() {
@@ -20,11 +19,14 @@ class PayWay extends React.Component {
     }
     open() {
         this.props.open();
-        // $("#payPassword_rsainput").keyup();
         $('#payWay').hide();
         $('#paypwd').show();
     }
     render() {
+        let fee = parseFloat(this.props.fee);
+        let item_price = parseFloat(this.props.item_price);
+        let totalPrice = fee + item_price
+
         return (
             <div>
             <div id='payWay' className="payWay">
@@ -36,7 +38,7 @@ class PayWay extends React.Component {
 <ul className='payList'>
 <li >
     <label >支付服务费</label>
-    <p className="payMoney"><em>¥</em><span>{this.props.fee?this.props.fee:0}</span></p>
+    <p className="payMoney"><em>¥</em><span>{totalPrice}</span></p>
 </li>
 <li>
     <label >付款账号</label>
@@ -77,26 +79,14 @@ class ChooseType extends React.Component {
     };
     cheack(type, money) {
 
-            let item_price = this.props.item_price
+        let item_price = this.props.item_price
 
-            if (type === this.props.chooseId && money >= item_price) {
-                return 'cur'
-            } else if (money < item_price) {
-                return 'pointerNone'
-            }
+        if (type === this.props.chooseId && money >= item_price) {
+            return 'cur'
+        } else if (money < item_price) {
+            return 'pointerNone'
         }
-        // cheack(type, money) {
-        //     let item_price = parseInt(this.props.item_price)
-        //     if (money >= item_price && index === this.state.currentIndex) {
-        //         return 'cur'
-        //     } else if (money >= item_price && index !== this.state.currentIndex) {
-        //         return '    '
-
-    //     } else if (money < item_price) {
-    //         return 'pointerNone'
-    //     }
-
-    // }
+    }
 
     handleClick(type) {
         this.props.changeChooseId(type)

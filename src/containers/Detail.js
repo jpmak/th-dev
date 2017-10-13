@@ -16,19 +16,12 @@ import {
 import {
     beginUser
 } from '../actions'
-// const R_det = ({
-// 	match
-// }) => (
-// 	<div className="th-block">
-//         <header id="headnav"><TopNav titleName = "产品详情"	icon = "jf-record-icon"	dis = "none" /></header>
-// <div id="detwrap"><DetBody paramsId={match.params.id}/></div>
-//     </div>
-// )
+
 class Detail extends React.Component {
     componentWillMount() {
         if (this.props.detailLoadingStatus === 2 && this.props.id === this.props.match.params.id) {
             this.props.dispatch(detailTryRestoreComponent());
-        } else if (window.localStorage.user_info != 1 || this.props.userStatus === 0) {
+        } else if (window.localStorage.user_info !== 1 || this.props.userStatus === 0) {
             this.props.dispatch(beginUser());
         }
 
@@ -50,7 +43,7 @@ class Detail extends React.Component {
 
     }
     history() {
-        if (window.localStorage.user_info != 1 || !this.props.userStatus) {
+        if (window.localStorage.user_info !== 1 || !this.props.userStatus) {
             this.props.history.push('/Exchange-index.html/login/product/' + this.props.id)
         } else {
             this.commit_exchange()

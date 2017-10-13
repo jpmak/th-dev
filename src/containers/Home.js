@@ -3,19 +3,13 @@ import {
     connect
 } from 'react-redux'
 import '../styles/userInfo.scss';
-
-import $ from 'jquery';
-
 import TopNav from '../components/TopNav';
 import Goback from '../components/public/Goback';
 import InfoGoods from '../components/info/InfoGoods';
-
 import {
     tryRestoreComponent,
     beginUser,
-
 } from '../actions'
-// import ResultWrap from '../components/search/ResultWrap';
 import {
     InfoTryRestoreComponent,
     beginRefresh,
@@ -108,7 +102,7 @@ class Home extends React.Component {
     }
 
     changeGoods() {
-        console.log(this.props.pullDownStatus);
+
         this.props.dispatch(fetchInfoGoods(this.props.InfoGoodsPage))
     }
 

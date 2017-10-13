@@ -171,6 +171,12 @@ class AllOrderGoods extends React.Component {
         let allOrderGoods = this.props.allOrderList ? this.props.allOrderList : '';
         if (allOrderGoods != '') {
             allOrderGoodList = allOrderGoods.map((allOrderGood, index) => {
+                let valueHtml = '';
+                if (allOrderGood.prop_value) {
+                    valueHtml = (<div className="prop_value-title"><span>颜色分类：{allOrderGood.prop_value}</span></div>)
+                } else {
+                    valueHtml = ('');
+                }
                 if (allOrderGood.shipping_cost == '0.00') {
                     shopCostHtml = (<span className='serve'>免运费</span>)
                 } else {
@@ -203,6 +209,9 @@ class AllOrderGoods extends React.Component {
    <div className="info-img"><img alt="" className="lazy" src={allOrderGood.goods_image}/>{/*</LazyLoad>*/}</div>
    <div className="info-bar">
    <div className="pro-title">{allOrderGood.goods_name}</div>
+       {
+                    valueHtml
+                }
    <div className="e-numb"><span className="e-price"><em className='moneyPrice'>{allOrderGood.t_beans}</em>积分</span>
                 {
                     priceHtml

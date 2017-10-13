@@ -378,7 +378,7 @@
                         }
                         .serve {
                             color: #000;
-                            font-size: .18rem;
+                            font-size: .28rem;
                             margin-right:.05rem;
                             .num{
                             font-size: .28rem;
@@ -1025,10 +1025,9 @@
                 .total-wrap {
                     display: inline-block;
                     vertical-align: middle;
-                    margin-left: .20rem;
+                    margin-left: .1rem;
                     .total {
                         font-size: .22rem;
-
                         color: #ED1A3B;
                         .num {
                             font-size: .40rem;
@@ -1043,7 +1042,7 @@
             }
             .settle {
 
-                width: 2.40rem;
+                width: 1.6rem;
                 height: 100%;
                 background-image: linear-gradient(90deg, #FE5030, #DD2476);
                 color: #fff;
@@ -1058,11 +1057,11 @@
             width: 7.1rem;
             padding: 0 .2rem;
             bottom: 1.2rem;
-            height: .48rem;
+            height: .60rem;
             margin-left: -3.75rem;
             left: 50%;
-            line-height: .48rem;
-            background: #fdf0e6;
+            line-height: .60rem;
+            background: #fffdf0;
 
             a {
 
@@ -1070,7 +1069,7 @@
                 color: #ff6600;
                 i {
                     float: left;
-                    margin-top: .08rem;
+                    margin-top: .12rem;
                     display: inline-block;
                     width: .32rem;
                     height: .32rem;

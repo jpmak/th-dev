@@ -4,6 +4,8 @@ import $ from 'jquery';
 import LoadingLayer from '../../components/LoadingLayer/LoadingLayer';
 
 import PlaceholderComponent from './../public/Placeholder';
+import DataNone from '../../components/public/DataNone';
+
 
 import {
     Link
@@ -70,14 +72,9 @@ class InfoGoods extends React.Component {
         let scrollTop = this.getScrollTop(); //滚动条滚动高度
         let scrollHeight = this.getScrollHeight(); //滚动内容高度
         if ((clientHeight + scrollTop) == (scrollHeight) && this.props.InfoGoodsStatus !== 0 && this.isDataing === false) {
-            console.log(11)
             this.isDataing = true;
             setTimeout(this.props.changeGoods(), 100)
-
-
         }
-
-
     }
     componentWillReceiveProps(nextProps) {
         if (nextProps.InfoGoods !== this.props.InfoGoods) {
@@ -141,7 +138,7 @@ class InfoGoods extends React.Component {
                 )
             }, this)
         } else if (this.props.InfoGoodsPage == 1 && InfoGoods == 0) {
-            InfoGoodList = (<div className="none-data"></div>);
+            InfoGoodList = (<DataNone/>);
         }
 
         return (

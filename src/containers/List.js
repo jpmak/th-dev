@@ -15,7 +15,6 @@ import Modal from '../components/public/Modal';
 
 import {
     ListTryRestoreComponent,
-    fetchListNav,
     fetchListGoods,
     beginRefresh,
     changeLoading,

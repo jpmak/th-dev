@@ -35,11 +35,11 @@ class Login extends React.Component {
       if (uVal !== "" && pVal !== "") {
         $(this).next().show();
         $('#loginform').removeClass('bg-dark');
-      } else if (uVal == "" && pVal !== "") {
+      } else if (uVal === "" && pVal !== "") {
         $('#loginform').addClass('bg-dark');
         $('#username').next().hide();
         $('#pwd').next().show();
-      } else if (uVal !== "" && pVal == "") {
+      } else if (uVal !== "" && pVal === "") {
         $('#loginform').addClass('bg-dark');
         $('#username').next().show();
         $('#pwd').next().hide();
@@ -83,14 +83,14 @@ class Login extends React.Component {
     var username = $('#username').val();
     var pwd = $('#pwd').val();
 
-    if (username == '') {
+    if (username === '') {
       this.refs.Modal.setText2('请填写账号信息');
       this.refs.Modal.handleOpenModal2();
 
       return false;
     }
 
-    if (pwd == '') {
+    if (pwd === '') {
       this.refs.Modal.setText2('密码不能为空')
       this.refs.Modal.handleOpenModal2();
 

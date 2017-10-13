@@ -3,14 +3,11 @@ import {
     connect
 } from 'react-redux'
 import '../styles/userInfo.scss';
-
 import $ from 'jquery';
-
 import TopNav from '../components/TopNav';
 import Goback from '../components/public/Goback';
 import PayPwd from '../components/isorder/PayPwd';
 import Modal from '../components/public/Modal';
-
 import {
     Link
 } from 'react-router-dom'
@@ -19,16 +16,13 @@ import InfoGoods from '../components/info/InfoGoods';
 import {
     tryRestoreComponent,
     beginUser,
-
 } from '../actions'
-// import ResultWrap from '../components/search/ResultWrap';
 import {
     OrderDetailTryRestoreComponent,
     beginRefresh,
     fetchOrderDetailGoods,
     updateOrderDetailLoadingStatus,
     backupIScrollY
-
 } from '../actions/orderDetail'
 
 class OrderDetail extends React.Component {
@@ -39,7 +33,6 @@ class OrderDetail extends React.Component {
             ModalIicon: ''
         }
         this.orderDetailHandleScroll = this.orderDetailHandleScroll.bind(this);
-
     };
 
     componentWillMount() {
@@ -97,10 +90,7 @@ class OrderDetail extends React.Component {
         this.props.dispatch(backupIScrollY(e))
     }
 
-    onRetryLoading() {
-        // this.props.dispatch(updateListLoadingStatus(1)); // 恢复loading界面
-        // this.props.dispatch(beginRefresh());
-    }
+
     detailData(goods_name, item_price, list_image) {
         window.localStorage.detailData = JSON.stringify({
             'productName': goods_name,
@@ -113,15 +103,10 @@ class OrderDetail extends React.Component {
         this.props.dispatch(fetchOrderDetailGoods(this.props.match.params.id))
     }
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps.match.params.id)
         if (nextProps.match.params.id !== this.props.match.params.id) {
             this.props.dispatch(beginRefresh(nextProps.match.params.id))
-
-
         }
     }
-
-
 
     cancelPay() {
         $.ajax({
@@ -312,7 +297,7 @@ class OrderDetail extends React.Component {
                     <ul className="charges">
                         <li className="char-lists">
                             <label htmlFor="">运费：</label>
-                            <p className="freight">¥ {orderInfoItems.shipping_cost}</p>
+                            <p className="freight">+¥ {orderInfoItems.shipping_cost}</p>
                         </li>
                         <li className="char-lists">
                             <label htmlFor="">借贷券：</label>
@@ -333,7 +318,7 @@ class OrderDetail extends React.Component {
                         <li className="char-lists">
                             <label htmlFor="">实付 (含运费)</label>
                             
-                            <p className="act-paid">¥  {parseFloat(orderInfoItems.shipping_cost)+parseFloat(orderInfoItems.total_price)}</p>
+                            <p className="act-paid">¥ {parseFloat(orderInfoItems.shipping_cost?orderInfoItems.shipping_cost:0)+parseFloat(orderInfoItems.total_price?orderInfoItems.total_price:0)}</p>
                         </li>
                     </ul>
                     <ul className="place-msg">
@@ -343,35 +328,19 @@ class OrderDetail extends React.Component {
                     </ul>
                 </div>
             </div>
-
-
-               
                {btnHtml}
-             
-
-
    </div> 
 <PayPwd/>
       <Modal ref='Modal'  icon={this.state.ModalIicon}  ModalCallBack={this.ModalCallBack.bind(this)}/>
-
    </div>
-
         )
-
-
     }
     render() {
-
-
 
         let p = new Promise(function(resolve, reject) {});
         let renderHtml = [];
         // 首屏没有加载成功，那么均展示loading效果
-
-
         renderHtml = this.renderPage();
-
-
         return (
             <div>
         {
@@ -379,18 +348,12 @@ class OrderDetail extends React.Component {
         }
         </div>
         );
-
-
     }
 }
 
-
-
 const mapStateToProps = state => {
     return {
-
         userStatus: state.MsgAppReducer.userStatus,
-
         orderDetailLoadingStatus: state.MsgOrderDetailReducer.orderDetailLoadingStatus,
         orderDetailGoodsStatus: state.MsgOrderDetailReducer.orderDetailGoodsStatus,
         orderInfoItems: state.MsgOrderDetailReducer.orderInfoItems,

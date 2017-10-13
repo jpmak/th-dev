@@ -2,7 +2,6 @@ import React from 'react';
 import {
 	connect
 } from 'react-redux'
-import $ from 'jquery';
 
 import TopNav from '../components/TopNav';
 import SearchBox from '../components/SearchBox';
@@ -63,7 +62,7 @@ class App extends React.Component {
 	UpDataPullUpStatus(e) {
 		this.props.dispatch(pullUpStatus(e))
 	}
-	detailData(goods_name,exchange_points, item_price, list_image) {
+	detailData(goods_name, exchange_points, item_price, list_image) {
 		this.props.dispatch(detailInit())
 
 		window.localStorage.detailData = JSON.stringify({
@@ -158,7 +157,4 @@ const mapStateToProps = state => {
 	}
 }
 
-// function mapDispatchToProps(actions, dispatch) {
-// 	return bindActionCreators(actions, dispatch);
-// }
 export default connect(mapStateToProps)(App)
