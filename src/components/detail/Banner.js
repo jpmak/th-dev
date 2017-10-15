@@ -43,7 +43,7 @@ class Banner extends React.Component {
 
 
         });
-        if (!repos.length) {
+        if (!repos) {
             repoList = <div></div>
         }
         // console.log(repos)

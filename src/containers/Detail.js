@@ -18,8 +18,15 @@ import {
 } from '../actions'
 
 class Detail extends React.Component {
+        constructor(props) {
+        super(props);
+        this.detailMsg ='';
+    }
     componentWillMount() {
-        console.log(this.props.userStatus)
+             if (window.localStorage.detailData) {
+            this.detailMsg = JSON.parse(window.localStorage.detailData);
+        }
+        document.title =this.detailMsg?this.detailMsg.productName:'商品详情';
         if (this.props.detailLoadingStatus === 2 && this.props.id === this.props.match.params.id) {
             this.props.dispatch(detailTryRestoreComponent());
         } else if (window.localStorage.user_info != 1 || this.props.userStatus === 0) {

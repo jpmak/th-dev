@@ -39,6 +39,7 @@ class List extends React.Component {
         };
     }
     componentWillMount() {
+        document.title = '积分商品分类'
         this.props.dispatch(updateLoadingStatus(1)); //重置搜索页的loading状态
         this.props.dispatch(ListTryRestoreComponent());
         if (window.localStorage.searchhistory) {

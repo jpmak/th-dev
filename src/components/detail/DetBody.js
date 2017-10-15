@@ -149,10 +149,10 @@ class DetBody extends React.Component {
     }
     render() {
         let isDisplay = this.state.isDisplay ? 'block' : 'none';
-        let name = this.props.name ? this.props.name : this.detailMsg.productName;
-        let item_prices = this.props.item_price ? this.props.item_price : this.detailMsg.productPrice;
-       let exchange_points= this.props.exchange_points ? this.props.exchange_points : this.detailMsg.productPoints;
-        let imgsrc = this.props.imgsrc ? this.props.imgsrc : this.detailMsg.productImg;
+        let name =this.detailMsg?this.detailMsg.productName:this.props.name ;
+        let item_prices =this.detailMsg?this.detailMsg.productPrice: this.props.item_price;
+       let exchange_points=this.detailMsg?this.detailMsg.productPoints:this.props.exchange_points;
+        let imgsrc = this.detailMsg?this.detailMsg.productImg: this.props.imgsrc;
         let stock = this.props.stock;
  let item_price=parseFloat(item_prices)
         let priceHtml='';
