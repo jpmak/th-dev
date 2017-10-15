@@ -1,7 +1,5 @@
 import React from 'react';
 import $ from 'jquery';
-import LazyLoad from 'react-lazyload';
-
 class Scrollup extends React.Component {
     constructor(props) {
         super(props);
@@ -71,7 +69,7 @@ class Scrollup extends React.Component {
     }
     getClientHeight() {
         var windowHeight = 0;
-        if (document.compatMode == "CSS1Compat") {
+        if (document.compatMode === "CSS1Compat") {
             windowHeight = document.documentElement.clientHeight;
         } else {
             windowHeight = document.body.clientHeight;
@@ -100,10 +98,7 @@ class Scrollup extends React.Component {
         let productBodyHeight = $('#productBody').height();
         let scrollUp = produtShowHeight + headHeight - productBodyHeight;
         // let scrollwrap = document.getElementById('scrollwrap').offsetHeight
-        let bodyBox = document.getElementById('root')
-        let clientHeight = this.getClientHeight(); //可视区域高度
         let scrollTop = this.getScrollTop(); //滚动条滚动高度
-        let scrollHeight = this.getScrollHeight(); //滚动内容高度
       
 
 
@@ -146,12 +141,11 @@ class Scrollup extends React.Component {
         let goods_body = this.props.goods_body ? this.props.goods_body : '<div class="none-data"></div>'
         return (
 
-            // <LazyLoad >
+    
             <div id='productBody' style={{'display':this.state.isPushUp,'height':this.state.height+'px'}} onTouchStart={this.startMove.bind(this)} onTouchMove={this.movIng.bind(this)}  onTouchEnd={this.endMove.bind(this)}>
         <div className="items" dangerouslySetInnerHTML={{__html:goods_body}} />
             </div>
 
-            // </LazyLoad>
 
 
         )

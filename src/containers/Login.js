@@ -15,8 +15,18 @@ import TopNav from '../components/TopNav';
 import $ from 'jquery';
 
 class Login extends React.Component {
+    constructor(props) {
+        super(props);
+        this.go = '-1';
+    };
+    componentWillMount() {
+      if(this.props.userStatus===1){
+        this.go='-1'
+      }else{
+        this.go='-2'
 
-
+      }
+    }
 
   componentDidMount() {
     document.body.style.backgroundColor = '#fff'
@@ -65,10 +75,12 @@ class Login extends React.Component {
     let id = this.props.id
     if (router) {
       if (router === 'product') {
+        console.log(router)
         this.props.history.push('/Exchange-index.html/' +
           router + '/' + id)
 
       } else {
+        console.log(router)
         this.props.history.push('/Exchange-index.html/' +
           router)
       }
@@ -112,7 +124,8 @@ class Login extends React.Component {
 
           window.localStorage.user_info = data.returns;
           this.props.dispatch(beginUser());
-          this.router();
+          setTimeout(this.router(),800)
+          // this.router();
         } else {
           this.refs.Modal.setText2(data.msg)
           this.refs.Modal.handleOpenModal2();
@@ -126,13 +139,15 @@ class Login extends React.Component {
 
 
   }
-
+// checkGo(){
+//   return: this.go=this.go?'-1':'-2'
+// }
 
   render() {
 
     return (
       <div className="div1" id="bodyDiv">
-        <TopNav titleName = "登录" go='-2' border='0' color='#fbfbfb'/>
+        <TopNav titleName = "登录" go={this.go} border='0' color='#fbfbfb'/>
         <div id="wrapper">
             <div className="user-img">
                 <div className="img-show"><img src="https://www.thgo8.com/public/wapsite/images/micro_site/login/logo.png" alt=""/></div>
@@ -176,6 +191,7 @@ class Login extends React.Component {
 
 const mapStateToProps = state => {
   return {
+   userStatus: state.MsgAppReducer.userStatus,
     id: state.MsgDetailReducer.id
   }
 }

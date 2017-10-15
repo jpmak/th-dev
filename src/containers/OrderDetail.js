@@ -5,16 +5,16 @@ import {
 import '../styles/userInfo.scss';
 import $ from 'jquery';
 import TopNav from '../components/TopNav';
-import Goback from '../components/public/Goback';
+
 import PayPwd from '../components/isorder/PayPwd';
 import Modal from '../components/public/Modal';
 import {
     Link
 } from 'react-router-dom'
-import InfoGoods from '../components/info/InfoGoods';
+
 
 import {
-    tryRestoreComponent,
+
     beginUser,
 } from '../actions'
 import {
@@ -39,6 +39,7 @@ class OrderDetail extends React.Component {
         let p = new Promise(function(resolve, reject) {});
 
         if (window.localStorage.user_info != 1) {
+            // 转换数字
             p.then(this.props.history.push('/Exchange-index.html/login/orderDetail/'))
         } else {
 
@@ -193,7 +194,7 @@ class OrderDetail extends React.Component {
         let btnHtml = [];
 
 
-        if (orderInfoItems.ems_status == 1 && this.props.trackInfoContext !== '') {
+        if (orderInfoItems.ems_status === 1 && this.props.trackInfoContext !== '') {
 
             emsHtml = (<div className="mid-cont">
                    <div className="condition">{this.props.trackInfoContext}</div>
@@ -206,14 +207,14 @@ class OrderDetail extends React.Component {
 
 
 
-        if (orderInfoItems.cur_status == '待付款') {
+        if (orderInfoItems.cur_status === '待付款') {
             btnHtml = (
                 <div>
                     <button className="order-cancel"  onClick={this.cancelPay.bind(this)} >取消订单</button>
                     <button className="pay-btn red-btn" >立即支付</button>   
                     </div>)
 
-        } else if (orderInfoItems.cur_status == '待收货') {
+        } else if (orderInfoItems.cur_status === '待收货') {
             btnHtml = (
                 <div className="foot">
                 <button className="pay-btn red-btn" onClick={this.orderPayBtn.bind(this)}>确认收货</button>
@@ -336,8 +337,6 @@ class OrderDetail extends React.Component {
         )
     }
     render() {
-
-        let p = new Promise(function(resolve, reject) {});
         let renderHtml = [];
         // 首屏没有加载成功，那么均展示loading效果
         renderHtml = this.renderPage();

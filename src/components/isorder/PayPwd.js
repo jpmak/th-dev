@@ -29,14 +29,14 @@ class PayPwd extends React.Component {
 
     componentDidMount() {
 
-        let _self = this
+    
         var payPassword = $("#payPassword_container");
 
         var _this = payPassword.find('i');
         var k = 0;
         var j = 0;
         var l = '';
-        var password = '';
+      
         var _cardwrap = $('#cardwrap');
 
         //点击隐藏的input密码框,在6个显示的密码框的第一个框显示光标
@@ -99,29 +99,11 @@ class PayPwd extends React.Component {
                 var _val = this.value;
                 this.value = _val.replace(/\D/g, '');
             }
-            var _val = this.value;
+            
 
         });
     }
-    fetchCref() {
-        $.ajax({
-            url: '/wap/?g=WapSite&c=Exchange&a=get_order_info',
-            dataType: 'json',
-            type: 'post',
-            'data': {
-                'item_id': 291
-            },
-            success: (data) => {
-                this.setState({
-                    csrf: data.info.csrf
-                });
 
-            },
-            error: () => {
-                console.log('网络异常');
-            }
-        });
-    }
 
 
     clean() {

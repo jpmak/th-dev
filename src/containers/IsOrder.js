@@ -1,7 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 import TopNav from '../components/TopNav';
-import Goback from '../components/public/Goback';
+
 import IsOrderAddress from '../components/isorder/IsOrderAddress';
 import IsOrderLi from '../components/isorder/IsOrderLi';
 import OrderFoot from '../components/isorder/OrderFoot';
@@ -39,6 +39,7 @@ class IsOrder extends React.Component {
     }
 
     componentWillMount() {
+        
         if (!this.props.userStatus) {
             this.props.dispatch(beginUser())
         }
@@ -123,7 +124,7 @@ class IsOrder extends React.Component {
         <PayWay open={this.openPay.bind(this)} changeChooseId={this.changeChooseId.bind(this)} chooseId={this.state.chooseId} fee={this.state.fee}  item_price={this.state.item_price}  orderLi={this.state.orderLi} userName={this.props.userName} userMoney={this.props.userMoney}  userBuy={this.props.userBuy} userTourism={this.props.userTourism}  />
             <CoverMask />
         <PayPwd ref='PayPwd' csrf={this.state.csrf}  item_price={this.state.item_price} successView={this.successView.bind(this)} chooseId={this.state.chooseId} addressId={this.state.addressItems.address_id}/>
-        <OrderFoot exchange_points={this.state.exchange_points} gray={this.state.gray} addressItems={this.state.addressItems} csrf={this.state.csrf} fee={this.state.fee} orderLi={this.state.orderLi} userMoney={this.props.userMoney}  userBuy={this.props.userBuy} userTourism={this.props.userTourism} item_price={this.state.item_price} fee={this.state.fee}  money={this.props.money} />
+        <OrderFoot exchange_points={this.state.exchange_points} gray={this.state.gray} addressItems={this.state.addressItems} csrf={this.state.csrf} fee={this.state.fee} orderLi={this.state.orderLi} userMoney={this.props.userMoney}  userBuy={this.props.userBuy} userTourism={this.props.userTourism} item_price={this.state.item_price}  money={this.props.money} />
 
    </div>
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import $ from 'jquery';
 
 class IsOrderLi extends React.Component {
 
@@ -23,14 +22,8 @@ class IsOrderLi extends React.Component {
 			<div className="app-pd-list hor-list order">
                    <ul >
      <li  className='upItem'>
-{/*
 
-<div className='order shop' >
-<div className='orderNum '><i></i><span>{this.props.orderLi.main_image}</span></div>
-
-</div>
-*/}
-   <div className="info-img"><img src={this.props.orderLi.main_image}/></div><div className="info-bar">
+   <div className="info-img"><img alt='' src={this.props.orderLi.main_image}/></div><div className="info-bar">
    <div className="pro-title">{this.props.orderLi.goods_name}</div>
        {
                     valueHtml

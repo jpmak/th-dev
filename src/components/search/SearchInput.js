@@ -51,6 +51,7 @@ class SearchInput extends React.Component {
         let parmKeyword = this.props.parmKeyword ? this.props.parmKeyword : '';
         let list = parmKeyword.indexOf('&list');
         if (list != -1) {
+            //转换类型
             this.setState({
                 value: ''
             })

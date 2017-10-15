@@ -2,13 +2,13 @@ import React from 'react';
 import {
     connect
 } from 'react-redux'
-import $ from 'jquery';
+
 import TopNav from '../components/TopNav';
-import Goback from '../components/public/Goback';
+
 import AllOrderCate from '../components/allorder/AllOrderCate';
 import AllOrderGoods from '../components/allorder/AllOrderGoods';
 import {
-    tryRestoreComponent,
+
     beginUser,
 } from '../actions'
 import {
@@ -30,6 +30,7 @@ class AllOrder extends React.Component {
         let p = new Promise(function(resolve, reject) {});
 
         if (window.localStorage.user_info != 1) {
+            //类型转换
             p.then(this.props.history.push('/Exchange-index.html/login/allorder/'))
         } else {
             this.props.dispatch(allOrderTryRestoreComponent());
@@ -37,7 +38,7 @@ class AllOrder extends React.Component {
     }
 
     componentDidMount() {
-        let p = new Promise(function(resolve, reject) {});
+
         if (this.props.allOrderLoadingStatus === 1 || this.props.userStatus === 0) {
             this.props.dispatch(beginUser())
             this.props.dispatch(beginRefresh())
@@ -86,7 +87,7 @@ class AllOrder extends React.Component {
 
     }
     render() {
-        let p = new Promise(function(resolve, reject) {});
+
         let renderHtml = [];
         renderHtml = this.renderPage();
         return (

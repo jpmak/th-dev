@@ -2,13 +2,13 @@ import React from 'react';
 import {
     connect
 } from 'react-redux'
-import $ from 'jquery';
+
 import TopNav from '../components/TopNav';
-import Goback from '../components/public/Goback';
+
 import LogGoods from '../components/log/LogGoods';
 
 import {
-    tryRestoreComponent,
+
     beginUser,
 
 } from '../actions'
@@ -31,6 +31,7 @@ class Log extends React.Component {
         let p = new Promise(function(resolve, reject) {});
 
         if (window.localStorage.user_info != 1) {
+            // 转换数字
             p.then(this.props.history.push('/Exchange-index.html/login/log/'))
         } else {
             this.props.dispatch(logTryRestoreComponent());
@@ -39,7 +40,7 @@ class Log extends React.Component {
 
     componentDidMount() {
         window.addEventListener('scroll', this.loghandleScroll);
-        let p = new Promise(function(resolve, reject) {});
+    
         if (this.props.logLoadingStatus === 1 || this.props.userStatus === 0) {
             this.props.dispatch(beginUser())
             this.props.dispatch(beginRefresh())
@@ -67,7 +68,7 @@ class Log extends React.Component {
     }
     getClientHeight() {
         var windowHeight = 0;
-        if (document.compatMode == "CSS1Compat") {
+        if (document.compatMode === "CSS1Compat") {
             windowHeight = document.documentElement.clientHeight;
         } else {
             windowHeight = document.body.clientHeight;
@@ -90,12 +91,12 @@ class Log extends React.Component {
     loghandleScroll() {
         console.log()
 
-        let bodyBox = document.getElementById('root')
+       
         let clientHeight = this.getClientHeight(); //可视区域高度
         let scrollTop = this.getScrollTop(); //滚动条滚动高度
         let scrollHeight = this.getScrollHeight(); //滚动内容高度
         this.scrollTop = scrollTop
-        if ((clientHeight + scrollTop) == (scrollHeight) && this.props.loghandleScroll !== 0 && this.isDataing === false) {
+        if ((clientHeight + scrollTop) === (scrollHeight) && this.props.loghandleScroll !== 0 && this.isDataing === false) {
             this.isDataing = true;
             this.changeGoods()
         }
@@ -137,7 +138,6 @@ class Log extends React.Component {
 
     }
     render() {
-        let p = new Promise(function(resolve, reject) {});
         let renderHtml = [];
         renderHtml = this.renderPage();
         return (

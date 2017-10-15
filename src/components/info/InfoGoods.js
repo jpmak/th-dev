@@ -1,6 +1,6 @@
 import React from 'react';
 import LazyLoad from 'react-lazyload';
-import $ from 'jquery';
+
 import LoadingLayer from '../../components/LoadingLayer/LoadingLayer';
 
 import PlaceholderComponent from './../public/Placeholder';
@@ -43,7 +43,7 @@ class InfoGoods extends React.Component {
     }
     getClientHeight() {
         var windowHeight = 0;
-        if (document.compatMode == "CSS1Compat") {
+        if (document.compatMode === "CSS1Compat") {
             windowHeight = document.documentElement.clientHeight;
         } else {
             windowHeight = document.body.clientHeight;
@@ -67,11 +67,11 @@ class InfoGoods extends React.Component {
     homehandleScroll() {
 
 
-        let bodyBox = document.getElementById('root')
+   
         let clientHeight = this.getClientHeight(); //可视区域高度
         let scrollTop = this.getScrollTop(); //滚动条滚动高度
         let scrollHeight = this.getScrollHeight(); //滚动内容高度
-        if ((clientHeight + scrollTop) == (scrollHeight) && this.props.InfoGoodsStatus !== 0 && this.isDataing === false) {
+        if ((clientHeight + scrollTop) === (scrollHeight) && this.props.InfoGoodsStatus !== 0 && this.isDataing === false) {
             this.isDataing = true;
             setTimeout(this.props.changeGoods(), 100)
         }
@@ -103,10 +103,10 @@ class InfoGoods extends React.Component {
 
 
     renderPage() {
-        let bodyBox = document.getElementById('root')
+ 
         let InfoGoodList = [];
         let InfoGoods = this.props.InfoGoods;
-        if (InfoGoods != '') {
+        if (InfoGoods !== '') {
             InfoGoodList = InfoGoods.map((InfoGood, index) => {
                 let item_price = parseFloat(InfoGood.item_price)
                 let priceHtml = '';
@@ -122,7 +122,7 @@ class InfoGoods extends React.Component {
                     <Link to={'/Exchange-index.html/product/'+InfoGood.item_id}  className="upItem " data-id={InfoGood.item_id}>
                 <div className="info-img">
                 <LazyLoad  placeholder={<PlaceholderComponent />}>
-                <img  src={InfoGood.list_image}/>
+                <img alt=''  src={InfoGood.list_image}/>
                 </LazyLoad>
                 </div>
                 <div className="info-bar">
@@ -137,7 +137,7 @@ class InfoGoods extends React.Component {
                 </Link> </li>
                 )
             }, this)
-        } else if (this.props.InfoGoodsPage == 1 && InfoGoods == 0) {
+        } else if (this.props.InfoGoodsPage === 1 && InfoGoods === 0) {
             InfoGoodList = (<DataNone/>);
         }
 

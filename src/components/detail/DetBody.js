@@ -1,5 +1,5 @@
 import React from 'react';
-import $ from 'jquery';
+
 import Banner from './Banner';
 import FixBtn from './FixBtn';
 import BottomTipFloor from './BottomTipFloor';
@@ -123,7 +123,6 @@ class DetBody extends React.Component {
     endMove() {
         if (Math.abs(this.touchRangeBannerX - this.movingbannerX) < 20) {
             if (this.touchRangeY - this.movingY > 20 && this.state.iScrollUp && this.movingY !== 0) {
-                let num = this.touchRangeY - this.movingY;
                 this.iScrollUp();
                 this.touchRangeBannerX = 0;
                 this.refs.Scrollup.changeBlock()

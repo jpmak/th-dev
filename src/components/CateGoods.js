@@ -61,7 +61,7 @@ class CateGoods extends React.Component {
     }
     getClientHeight() {
         var windowHeight = 0;
-        if (document.compatMode == "CSS1Compat") {
+        if (document.compatMode === "CSS1Compat") {
             windowHeight = document.documentElement.clientHeight;
         } else {
             windowHeight = document.body.clientHeight;
@@ -84,7 +84,7 @@ class CateGoods extends React.Component {
 
     handleScroll() {
         let scrollwrap = document.getElementById('scrollwrap').offsetHeight
-        let bodyBox = document.getElementById('root')
+
         let clientHeight = this.getClientHeight(); //可视区域高度
         let scrollTop = this.getScrollTop(); //滚动条滚动高度
         let scrollHeight = this.getScrollHeight(); //滚动内容高度
@@ -106,7 +106,7 @@ class CateGoods extends React.Component {
         }
 
 
-        if ((clientHeight + scrollTop) == (scrollHeight) && this.props.pageStatus == 1 && this.isDataing === false) {
+        if ((clientHeight + scrollTop) === (scrollHeight) && this.props.pageStatus == 1 && this.isDataing === false) {
             this.isDataing = true;
             this.props.changeGoods();
 
@@ -132,10 +132,10 @@ class CateGoods extends React.Component {
         }
     }
     renderPage() {
-        let bodyBox = document.getElementById('root')
+ 
         let CateGoodList = [];
         let CateGoods = this.props.cateGoods;
-        if (CateGoods != '') {
+        if (CateGoods !== '') {
             CateGoodList = CateGoods.map((CateGood, index) => {
                        let item_price=parseFloat(CateGood.item_price)
         let pointsHtml='';
@@ -152,7 +152,7 @@ class CateGoods extends React.Component {
                 <Link to={'/Exchange-index.html/product/'+CateGood.item_id}  className="upItem " data-id={CateGood.item_id}>
                 <div className="info-img">
                 <LazyLoad  placeholder={<PlaceholderComponent />}>
-                <img  src={CateGood.list_image}/>
+                <img alt=''  src={CateGood.list_image}/>
                 </LazyLoad>
                 </div>
                 <div className="info-bar">
@@ -166,7 +166,7 @@ class CateGoods extends React.Component {
                  </li>
                 )
             }, this)
-        } else if (this.props.pageStatus == 0 && CateGoods == 0) {
+        } else if (this.props.pageStatus === 0 && CateGoods === 0) {
             CateGoodList = <DataNone />;
         }
 

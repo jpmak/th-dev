@@ -4,10 +4,10 @@ import {
 } from 'react-redux'
 import '../styles/userInfo.scss';
 import TopNav from '../components/TopNav';
-import Goback from '../components/public/Goback';
+
 import InfoGoods from '../components/info/InfoGoods';
 import {
-    tryRestoreComponent,
+
     beginUser,
 } from '../actions'
 import {
@@ -28,8 +28,8 @@ class Home extends React.Component {
 
     componentWillMount() {
         let p = new Promise(function(resolve, reject) {});
-
         if (window.localStorage.user_info != 1) {
+            //转换数字
             p.then(this.props.history.push('/Exchange-index.html/login/home/'))
                 // .then(window.location.href = "http://www.thgo8.me/wap/User-login-1.html")
         } else {
@@ -37,13 +37,12 @@ class Home extends React.Component {
             this.props.dispatch(InfoTryRestoreComponent());
         }
 
-
     }
 
 
     componentDidMount() {
         window.addEventListener('scroll', this.homehandleScroll);
-        let p = new Promise(function(resolve, reject) {});
+      
 
         if (this.props.homeLoadingStatus === 1 || this.props.userStatus === 0) {
             this.props.dispatch(beginUser())
@@ -124,17 +123,8 @@ class Home extends React.Component {
 
     }
     render() {
-
-
-
-        let p = new Promise(function(resolve, reject) {});
         let renderHtml = [];
-        // 首屏没有加载成功，那么均展示loading效果
-
-
         renderHtml = this.renderPage();
-
-
         return (
             <div>
         {

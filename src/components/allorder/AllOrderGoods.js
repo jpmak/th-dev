@@ -1,8 +1,8 @@
 import React from 'react';
-import LazyLoad from 'react-lazyload';
+
 import $ from 'jquery';
 import LoadingLayer from '../../components/LoadingLayer/LoadingLayer';
-import PlaceholderComponent from './../public/Placeholder';
+
 import Modal from '../../components/public/Modal';
 import DataNone from '../../components/public/DataNone';
 
@@ -56,7 +56,7 @@ class AllOrderGoods extends React.Component {
     }
     getClientHeight() {
         var windowHeight = 0;
-        if (document.compatMode == "CSS1Compat") {
+        if (document.compatMode === "CSS1Compat") {
             windowHeight = document.documentElement.clientHeight;
         } else {
             windowHeight = document.body.clientHeight;
@@ -78,11 +78,11 @@ class AllOrderGoods extends React.Component {
     }
 
     allOrderHandleScroll() {
-        let bodyBox = document.getElementById('root')
+    
         let clientHeight = this.getClientHeight(); //可视区域高度
         let scrollTop = this.getScrollTop(); //滚动条滚动高度
         let scrollHeight = this.getScrollHeight(); //滚动内容高度
-        if ((clientHeight + scrollTop) == (scrollHeight) && this.props.allOrderGoodsStatus !== 0 && this.isDataing === false) {
+        if ((clientHeight + scrollTop) === (scrollHeight) && this.props.allOrderGoodsStatus !== 0 && this.isDataing === false) {
             this.isDataing = true;
 
             this.props.changeGoods()
@@ -162,14 +162,14 @@ class AllOrderGoods extends React.Component {
 
 
     renderPage() {
-        let bodyBox = document.getElementById('root')
+
         let allOrderGoodList = [];
         let shopCostHtml = [];
         let btnHtml = [];
 
 
         let allOrderGoods = this.props.allOrderList ? this.props.allOrderList : '';
-        if (allOrderGoods != '') {
+        if (allOrderGoods !== '') {
             allOrderGoodList = allOrderGoods.map((allOrderGood, index) => {
                 let valueHtml = '';
                 if (allOrderGood.prop_value) {
@@ -177,7 +177,7 @@ class AllOrderGoods extends React.Component {
                 } else {
                     valueHtml = ('');
                 }
-                if (allOrderGood.shipping_cost == '0.00') {
+                if (allOrderGood.shipping_cost === '0.00') {
                     shopCostHtml = (<span className='serve'>免运费</span>)
                 } else {
                     shopCostHtml = (<span><span className='serve'>运费</span><span className='num'>¥</span><span className='num'>{allOrderGood.shipping_cost}</span></span>)
@@ -231,7 +231,7 @@ class AllOrderGoods extends React.Component {
     </li>
                 )
             }, this)
-        } else if (this.props.allOrderGoodsPage == 1 && allOrderGoods.length == 0) {
+        } else if (this.props.allOrderGoodsPage === 1 && allOrderGoods.length === 0) {
 
             allOrderGoodList = <DataNone/>;
         }

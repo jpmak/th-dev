@@ -1,6 +1,6 @@
 import React from 'react';
 import LazyLoad from 'react-lazyload';
-import ChangeLoading from '../public/changLoading';
+// import ChangeLoading from '../public/changLoading';
 import DataNone from '../../components/public/DataNone';
 import {
     Link
@@ -65,7 +65,7 @@ class ListGoods extends React.Component {
         return (
 
             <div id="js-list-img" className="list-details wbox-flex ">
-        <ChangeLoading changeLoading={this.props.changeLoading}/>
+  
                 <div className="list-detail">
                     <div id='list-label' className="list-label list-label-img " style={{overflowY: 'scroll',position: 'relative',height:this.props.height}}>
                     {ListGood}

@@ -3,9 +3,7 @@ import React from 'react';
 import $ from 'jquery';
 import Modal from '../../components/public/Modal';
 
-import {
-    Link
-} from 'react-router-dom'
+
 class SearchResult extends React.Component {
     constructor(props, context) {
         super(props, context);

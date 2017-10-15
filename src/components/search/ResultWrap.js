@@ -83,6 +83,7 @@ class ResultWrap extends React.Component {
 
         if (this.props.loadingStatus === 1) {
             if (list != -1) {
+                //转换类型
                 this.props.cate_idClick(listNum)
             } else {
                 this.props._keywordClick(this.props.parmKeyword)

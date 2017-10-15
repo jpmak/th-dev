@@ -19,9 +19,11 @@ import {
 
 class Detail extends React.Component {
     componentWillMount() {
+        console.log(this.props.userStatus)
         if (this.props.detailLoadingStatus === 2 && this.props.id === this.props.match.params.id) {
             this.props.dispatch(detailTryRestoreComponent());
-        } else if (window.localStorage.user_info !== 1 || this.props.userStatus === 0) {
+        } else if (window.localStorage.user_info != 1 || this.props.userStatus === 0) {
+            //转换类型
             this.props.dispatch(beginUser());
         }
 
@@ -43,7 +45,7 @@ class Detail extends React.Component {
 
     }
     history() {
-        if (window.localStorage.user_info !== 1 || !this.props.userStatus) {
+        if (window.localStorage.user_info != 1 || !this.props.userStatus) {
             this.props.history.push('/Exchange-index.html/login/product/' + this.props.id)
         } else {
             this.commit_exchange()

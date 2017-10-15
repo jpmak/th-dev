@@ -61,13 +61,13 @@ const DETAIL_PROPS_SUCCESS_reducer = (state, action) => {
     });
     return state;
 }
-const DETAIL_GOODS_FAIL_reducer = (state, action) => {
-    // 首屏加载失败, 那么需要展示loading fail效果
-    return Object.assign({}, state, {
-        detailloadingStatus: 3
-    });
-    return state;
-}
+// const DETAIL_GOODS_FAIL_reducer = (state, action) => {
+//     // 首屏加载失败, 那么需要展示loading fail效果
+//     return Object.assign({}, state, {
+//         detailloadingStatus: 3
+//     });
+//     return state;
+// }
 
 const DETAIL_ID_STATUS_reducer = (state, action) => {
     return Object.assign({}, state, {

@@ -1,5 +1,5 @@
 import React from 'react';
-import Goback from './Goback';
+
 import $ from 'jquery';
 
 class GobackUp extends React.Component {

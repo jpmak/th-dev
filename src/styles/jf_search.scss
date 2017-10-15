@@ -339,7 +339,10 @@
                     margin: .08rem auto;
                     width: 1.5rem;
                     height: 1.5rem;
+                      background: url($bg+'loadingBg.jpg') no-repeat;
+            background-size: 1.5rem 1.5rem;
                     object-fit: cover;
+                border: 0;
                 }
                 a {
                     display: block;

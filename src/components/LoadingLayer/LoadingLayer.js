@@ -1,5 +1,4 @@
 import React from 'react';
-import $ from 'jquery';
 import style from './LoadingLayer.css';
 
 
@@ -16,7 +15,7 @@ export default class LoadingLayer extends React.Component {
             0; // 0: wait for loading 1: isLoading, 2: loading ok 3:loading fail
 
         let loadingTips = (<span>开始加载</span>);
-        if (loadingStatus == 1) {
+        if (loadingStatus === 1) {
             loadingTips = (
                 <div className='overlayLoader'>
             <div className='loader'>
@@ -30,9 +29,9 @@ export default class LoadingLayer extends React.Component {
                     </div>
                 </div>
             );
-        } else if (loadingStatus == 2) {
+        } else if (loadingStatus === 2) {
             loadingTips = (<span>加载完成</span>);
-        } else if (loadingStatus == 3) {
+        } else if (loadingStatus === 3) {
 
             loadingTips = (<div><p className='error_404'></p><p className='f36'>服务竟然出错了</p><p className='f24'>别紧张，试试看刷新页面~</p><p className='broder_f36' onClick={onRetry}>重新加载</p></div>);
             // loadingTips = (<div><span></span><span>服务竟然出错了</span><p>别紧张，试试看刷新页面~</p><p>重新加载</p></div>);
@@ -53,8 +52,3 @@ export default class LoadingLayer extends React.Component {
     }
 }
 
-LoadingLayer.contextTypes = {
-    router: () => {
-        React.PropTypes.object.isRequired
-    }
-};

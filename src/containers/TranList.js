@@ -4,12 +4,12 @@ import React from 'react';
 import $ from 'jquery';
 
 import TopNav from '../components/TopNav';
-import Goback from '../components/public/Goback';
+
 import DataNone from '../components/public/DataNone';
 
 
 import {
-    tryRestoreComponent,
+
     beginUser,
 
 } from '../actions'
@@ -29,9 +29,9 @@ class TranList extends React.Component {
         window.scrollTo(0, 0)
         let p = new Promise(function(resolve, reject) {});
 
-        if (window.localStorage.user_info != 1) {
+        if (window.localStorage.user_info !==1) {
+            //转换数字
             p.then(this.props.history.push('/Exchange-index.html/login/tranList/'))
-                // .then(window.location.href = "http://www.thgo8.me/wap/User-login-1.html")
         }
     }
     componentDidMount() {
@@ -82,9 +82,9 @@ class TranList extends React.Component {
     renderPage() {
         let detHtml = [];
         let detGoods = this.state.tranListItem.info ? this.state.tranListItem.info : '';
-        let checkCur = 'log-lists';
+   
 
-        if (detGoods != '') {
+        if (detGoods !== '') {
             detHtml = detGoods.map((detGood, index) => {
 
                 return (
@@ -134,23 +134,12 @@ class TranList extends React.Component {
     }
 
     render() {
-
-
-
-        let p = new Promise(function(resolve, reject) {});
         let renderHtml = [];
-        // 首屏没有加载成功，那么均展示loading效果
-
-                    
                     if(this.state.tranListItem.info===undefined||this.state.tranListItem.info.length===0){
                          renderHtml = <DataNone tip='暂无物流信息'/>
                     }else{
-                     
         renderHtml = this.renderPage();
-
                     }
-
-
         return (
                    <div>
         <TopNav titleName = "物流列表" />
