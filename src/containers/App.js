@@ -34,7 +34,7 @@ import {
 
 class App extends React.Component {
 	componentWillMount() {
-        document.title = '积分商城首页'
+		document.title = '积分商城'
 		this.props.dispatch(updateLoadingStatus(1)); //清空搜索status
 		this.props.dispatch(tryRestoreComponent());
 	}

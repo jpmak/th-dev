@@ -123,8 +123,8 @@ class CateGoods extends React.Component {
             this.changeGoods = true
         })
     }
-    handleClick(goods_name, exchange_points,item_price, list_image) {
-        this.props.detailData(goods_name,exchange_points, item_price, list_image)
+    handleClick(goods_name, exchange_points, item_price, list_image) {
+        this.props.detailData(goods_name, exchange_points, item_price, list_image)
     }
     componentWillReceiveProps(nextProps) {
         if (nextProps.cateGoods !== this.props.cateGoods) {
@@ -132,21 +132,19 @@ class CateGoods extends React.Component {
         }
     }
     renderPage() {
- 
+
         let CateGoodList = [];
         let CateGoods = this.props.cateGoods;
-        if (CateGoods !== '') {
+        if (CateGoods.length > 0) {
             CateGoodList = CateGoods.map((CateGood, index) => {
-                       let item_price=parseFloat(CateGood.item_price)
-        let pointsHtml='';
-            if(item_price!==0){
-               pointsHtml=(<span className='point'><span className='add'>+</span><em className='money'>¥</em>{CateGood.item_price}</span>) 
-            }else{
-                    pointsHtml=(<span></span>) 
-            
-            }
+                let item_price = parseFloat(CateGood.item_price)
+                let pointsHtml = '';
+                if (item_price !== 0) {
+                    pointsHtml = (<span className='point'><span className='add'>+</span><em className='money'>¥</em>{CateGood.item_price}</span>)
+                } else {
+                    pointsHtml = (<span></span>)
+                }
                 return (
-
                     <li  key={index} onClick={this.handleClick.bind(this,CateGood.goods_name,CateGood.exchange_points,CateGood.item_price,CateGood.list_image)}
                      className={this.changeGoods?'add':'move'}> 
                 <Link to={'/Exchange-index.html/product/'+CateGood.item_id}  className="upItem " data-id={CateGood.item_id}>
@@ -166,7 +164,7 @@ class CateGoods extends React.Component {
                  </li>
                 )
             }, this)
-        } else if (this.props.pageStatus === 0 && CateGoods === 0) {
+        } else if (this.props.pageStatus === 0 && !CateGoods.length) {
             CateGoodList = <DataNone />;
         }
 
@@ -190,6 +188,7 @@ class CateGoods extends React.Component {
         )
     }
     render() {
+
         return this.renderPage()
     }
 }

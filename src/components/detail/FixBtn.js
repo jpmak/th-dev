@@ -11,7 +11,7 @@ class FixBtn extends React.Component {
     }
 
     cover() {
-        // this.props.iScrollUp();
+
         $('.product-cover').addClass('cover-toggle').show();
         $('.cover-mask').addClass('cover-mask-toggle').show();
         $('html').addClass('hidescroll');
@@ -19,15 +19,15 @@ class FixBtn extends React.Component {
 
     render() {
         // onClick={this.cover.bind(this)}
-        let stock = this.props.stock ;
+        let stock = this.props.stock;
         let stockTips = '';
         let stockClass = 'stockNone'
         if (stock === 0) {
             stockTips = '缺货';
 
-        } else if(stock === null){
-stockTips='加载中'
-        }else {
+        } else if (stock === null) {
+            stockTips = '加载中'
+        } else {
             stockTips = '立即兑换'
             stockClass = '';
         }

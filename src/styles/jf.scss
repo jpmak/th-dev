@@ -124,7 +124,7 @@ a.th-btn.th-btn-assertive.th-btn-outline {
     background: #fff;
     z-index: 1;
     width: 100%;
-    padding-top: .2rem;
+    padding:.14rem 0; 
     -webkit-overflow-scrolling: touch;
 }
 
@@ -138,6 +138,7 @@ a.th-btn.th-btn-assertive.th-btn-outline {
     width: 100%;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
+    &::-webkit-scrollbar { display: none; }
 }
 
 .hor-view {
@@ -245,7 +246,7 @@ a.th-btn.th-btn-assertive.th-btn-outline {
                     text-align: center;
                 .e-price
                   {  
-                    font-size: .12rem;
+                    font-size: .16rem;
                     em {
                      font-weight: bold;
                      font-size: .28rem; 

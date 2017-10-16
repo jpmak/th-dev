@@ -36,6 +36,7 @@ class OrderDetail extends React.Component {
     };
 
     componentWillMount() {
+        document.title = '订单详情'
         let p = new Promise(function(resolve, reject) {});
 
         if (window.localStorage.user_info != 1) {

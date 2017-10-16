@@ -3,13 +3,16 @@ import TopNav from '../components/TopNav';
 
 
 class SuccessView extends React.Component {
-historyOrderDetail(){
-    this.props.history.push('/Exchange-index.html/orderDetail/'+this.props.match.params.id)
-}
-historyHome(){
-    this.props.history.push('/Exchange-index.html/')
+    componentWillMount() {
+        document.title = '支付成功'
+    }
+    historyOrderDetail() {
+        this.props.history.push('/Exchange-index.html/orderDetail/' + this.props.match.params.id)
+    }
+    historyHome() {
+        this.props.history.push('/Exchange-index.html/')
 
-}
+    }
 
     renderPage() {
         return (

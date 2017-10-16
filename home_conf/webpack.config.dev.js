@@ -232,15 +232,20 @@ module.exports = {
       {
         test: [/\.scss$/, /\.sass$/],
         use: [
-         // loader: ExtractTextPlugin.extract("style-loader", "css-loader?sourceMap!sass-loader?&outputStyle=expanded&sourceMap=true&sourceMapContents=true!autoprefixer-loader")
-        {
-          loader: "style-loader" // creates style nodes from JS strings 
-        }, 
-        {
-          loader: "css-loader?sourceMap" // translates CSS into CommonJS 
-        }, {
-          loader: "sass-loader?&outputStyle=expanded&sourceMap=true&sourceMapContents=true" // compiles Sass to CSS 
-        }
+          // loader: ExtractTextPlugin.extract("style-loader", "css-loader?sourceMap!sass-loader?&outputStyle=expanded&sourceMap=true&sourceMapContents=true!autoprefixer-loader")
+          {
+            loader: "style-loader" // creates style nodes from JS strings 
+          }, {
+
+            loader: "css-loader?sourceMap" // translates CSS into CommonJS 
+              // loader: "css-loader" // translates CSS into CommonJS 
+
+            // 
+          }, {
+            loader: "sass-loader?&outputStyle=expanded&sourceMap=true&sourceMapContents=true" // compiles Sass to CSS 
+              // loader: "sass-loader" // compiles Sass to CSS 
+
+          }
         ]
       },
 
@@ -252,9 +257,9 @@ module.exports = {
             options: {
               importLoaders: 1,
               minimize: true // css压缩
-              
+
             },
-      
+
           }, {
             loader: require.resolve('postcss-loader'),
             options: {

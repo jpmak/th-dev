@@ -80,7 +80,8 @@ class Searchhead extends React.Component {
         this.refs.getarr.funStoreHistory(e)
     }
     historyPush(e) {
-        console.log(1);
+        document.title = e + ' - 商品搜索-通惠购'
+
         this.props.history.push('/Exchange-index.html/search/' + e)
     }
     pushValue(e) {
@@ -106,6 +107,7 @@ class Searchhead extends React.Component {
         }
     }
     componentWillMount() {
+        document.title = this.props.match.params.keyword + ' - 商品搜索-通惠购'
 
         this.funloadHistory();
         if (window.localStorage.searchhistory) {

@@ -55,7 +55,7 @@ class OrderFoot extends React.Component {
 		let userTourism = this.props.userTourism;
 		let userMoney = this.props.userMoney;
 		let userBuy = this.props.userBuy;
-		let exchange_points = this.props.exchange_points;
+		let exchange_points = parseFloat(this.props.exchange_points);
 		let item_price = parseFloat(this.props.item_price);
 		let money = this.props.money;
 		let fee = parseFloat(this.props.fee);

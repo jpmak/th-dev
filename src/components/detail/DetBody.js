@@ -44,58 +44,57 @@ class DetBody extends React.Component {
     }
 
     handleClick() {
-            fetch('/wap/?g=WapSite&c=Exchange&a=get_goods_msg', {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/x-www-form-urlencoded"
-                    },
-                    body: 'id=' + this.props.paramsId
+        fetch('/wap/?g=WapSite&c=Exchange&a=get_goods_msg', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: 'id=' + this.props.paramsId
 
-                })
-                .then((res) => res.json())
-                .then((json) => {
-                    this.setState({
-                    
-                        prop_name: (json.prop_name) ? json.prop_name : '',
-                        // saleProp: (json.saleProp) ? json.saleProp : [],
-                        saleProp: json.saleProp,
-                        itemUrl: (json.itemUrl) ? json.itemUrl : '',
-                        item_price: json.goods.item_price,
-                        exchange_points:(json.goods.exchange_points)?json.goods.exchange_points :0,
-                        name: json.goods.goods_name,
-                        stock: json.goods.stock,
-                        goods_id: json.goods.goods_id,
-                        goods_body: json.goods.goods_body,
-                        imgsrc: json.goods.main_image,
-                        item_name: (json.goods.item_name) ? '已选择：' + json.goods.item_name : '',
+            })
+            .then((res) => res.json())
+            .then((json) => {
+                this.setState({
 
-                    });
+                    prop_name: (json.prop_name) ? json.prop_name : '',
+                    // saleProp: (json.saleProp) ? json.saleProp : [],
+                    saleProp: json.saleProp,
+                    itemUrl: (json.itemUrl) ? json.itemUrl : '',
+                    item_price: json.goods.item_price,
+                    exchange_points: (json.goods.exchange_points) ? json.goods.exchange_points : 0,
+                    name: json.goods.goods_name,
+                    stock: json.goods.stock,
+                    goods_id: json.goods.goods_id,
+                    goods_body: json.goods.goods_body,
+                    imgsrc: json.goods.main_image,
+                    item_name: (json.goods.item_name) ? '已选择：' + json.goods.item_name : '',
 
-                    if (!json.saleProp) {
-                        this.setState({
-                            isDisplay: false
-                        });
-                    }
-
-                })
-                .catch(function(e) {
-                    console.log("加载失败");
                 });
-        }
+
+                if (!json.saleProp) {
+                    this.setState({
+                        isDisplay: false
+                    });
+                }
+
+            })
+            .catch(function(e) {
+                console.log("加载失败");
+            });
+    }
 
     componentWillMount() {
         if (window.localStorage.detailData) {
             this.detailMsg = JSON.parse(window.localStorage.detailData);
         }
-        if(this.props.detailLoadingStatus===2){
-     
+        if (this.props.detailLoadingStatus === 2) {
+
             this.setState({
-            iScrollUp:true
+                iScrollUp: true
             })
         }
-        
-   
- 
+
+
 
     }
 
@@ -123,9 +122,13 @@ class DetBody extends React.Component {
     endMove() {
         if (Math.abs(this.touchRangeBannerX - this.movingbannerX) < 20) {
             if (this.touchRangeY - this.movingY > 20 && this.state.iScrollUp && this.movingY !== 0) {
+                // console.log(this.state.iScrollUp);
                 this.iScrollUp();
+
+                this.refs.Scrollup.changeBlock();
                 this.touchRangeBannerX = 0;
-                this.refs.Scrollup.changeBlock()
+                this.movingY = 0;
+
             }
         } else {
             this.touchRangeBannerX = 0;
@@ -149,19 +152,19 @@ class DetBody extends React.Component {
     }
     render() {
         let isDisplay = this.state.isDisplay ? 'block' : 'none';
-        let name =this.detailMsg?this.detailMsg.productName:this.props.name ;
-        let item_prices =this.detailMsg?this.detailMsg.productPrice: this.props.item_price;
-       let exchange_points=this.detailMsg?this.detailMsg.productPoints:this.props.exchange_points;
-        let imgsrc = this.detailMsg?this.detailMsg.productImg: this.props.imgsrc;
+        let name = this.detailMsg ? this.detailMsg.productName : this.props.name;
+        let item_prices = this.detailMsg ? this.detailMsg.productPrice : this.props.item_price;
+        let exchange_points = this.detailMsg ? this.detailMsg.productPoints : this.props.exchange_points;
+        let imgsrc = this.detailMsg ? this.detailMsg.productImg : this.props.imgsrc;
         let stock = this.props.stock;
- let item_price=parseFloat(item_prices)
-        let priceHtml='';
-            if(item_price!==0){
-               priceHtml=(<span className='point'><span className='add'>+</span><em className='money'>¥</em>{item_price}</span>) 
-            }else{
-                    priceHtml=(<span></span>) 
-            
-            }
+        let item_price = parseFloat(item_prices)
+        let priceHtml = '';
+        if (item_price !== 0) {
+            priceHtml = (<span className='point'><span className='add'>+</span><em className='money'>¥</em>{item_price}</span>)
+        } else {
+            priceHtml = (<span></span>)
+
+        }
         return (
             <div>
             <div className="produt-show" style={{position:'relative'}} onTouchStart={this.startMoveY.bind(this)} onTouchMove={this.movIngY.bind(this)}  onTouchEnd={this.endMove.bind(this)}>

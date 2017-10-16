@@ -34,12 +34,15 @@ class IsOrder extends React.Component {
             fee: '0',
             payWay: '排点',
             chooseId: 'balance_point',
-            gray: 'gray'
+            gray: 'gray',
+            main_image: ''
         };
     }
 
     componentWillMount() {
-        
+        document.title = '确认订单'
+
+
         if (!this.props.userStatus) {
             this.props.dispatch(beginUser())
         }
@@ -64,6 +67,7 @@ class IsOrder extends React.Component {
                     item_number: data.info.goods_info.item_number,
                     exchange_points: data.info.goods_info.exchange_points,
                     orderLi: data.info.goods_info,
+                    main_image: data.info.goods_info.main_image[0],
                     fee: data.info.fee,
                     csrf: data.info.csrf
                 }, () => {
@@ -120,7 +124,7 @@ class IsOrder extends React.Component {
         <TopNav titleName = "确认订单"  border='0'/>
                <div className='w'>
         <IsOrderAddress addressItems={this.state.addressItems}/>
-        <IsOrderLi orderLi={this.state.orderLi}/>
+        <IsOrderLi orderLi={this.state.orderLi} main_image={this.state.main_image}/>
         <PayWay open={this.openPay.bind(this)} changeChooseId={this.changeChooseId.bind(this)} chooseId={this.state.chooseId} fee={this.state.fee}  item_price={this.state.item_price}  orderLi={this.state.orderLi} userName={this.props.userName} userMoney={this.props.userMoney}  userBuy={this.props.userBuy} userTourism={this.props.userTourism}  />
             <CoverMask />
         <PayPwd ref='PayPwd' csrf={this.state.csrf}  item_price={this.state.item_price} successView={this.successView.bind(this)} chooseId={this.state.chooseId} addressId={this.state.addressItems.address_id}/>

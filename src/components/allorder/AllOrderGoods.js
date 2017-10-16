@@ -78,7 +78,7 @@ class AllOrderGoods extends React.Component {
     }
 
     allOrderHandleScroll() {
-    
+
         let clientHeight = this.getClientHeight(); //可视区域高度
         let scrollTop = this.getScrollTop(); //滚动条滚动高度
         let scrollHeight = this.getScrollHeight(); //滚动内容高度
@@ -99,6 +99,7 @@ class AllOrderGoods extends React.Component {
         }
     }
     onRetryLoading() {
+        console.log(111);
         this.props.beginRefresh();
     }
     handleClick(goods_name, item_price, list_image) {
@@ -169,7 +170,7 @@ class AllOrderGoods extends React.Component {
 
 
         let allOrderGoods = this.props.allOrderList ? this.props.allOrderList : '';
-        if (allOrderGoods !== '') {
+        if (allOrderGoods.length > 0) {
             allOrderGoodList = allOrderGoods.map((allOrderGood, index) => {
                 let valueHtml = '';
                 if (allOrderGood.prop_value) {
@@ -231,7 +232,7 @@ class AllOrderGoods extends React.Component {
     </li>
                 )
             }, this)
-        } else if (this.props.allOrderGoodsPage === 1 && allOrderGoods.length === 0) {
+        } else if (this.props.allOrderGoodsPage === 1 && !allOrderGoods.length) {
 
             allOrderGoodList = <DataNone/>;
         }
@@ -254,10 +255,17 @@ class AllOrderGoods extends React.Component {
 
 
     render() {
+        console.log(this.props.allOrderLoadingStatus);
+        console.log(this.props.userStatus);
+
         // console.log(this.props.allOrderGoodsPage);
         let renderHtml = [];
-        if (this.props.allOrderLoadingStatus !== 2) {
+        if (this.props.allOrderLoadingStatus !== 2 && this.props.userStatus === 1) {
             renderHtml = this.renderLoading();
+        } else if (this.props.allOrderLoadingStatus === 3 && this.props.userStatus === 0) {
+            renderHtml = (<div></div>);
+            //跳去跳转页面
+
         } else {
 
             renderHtml = this.renderPage();

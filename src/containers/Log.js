@@ -28,6 +28,8 @@ class Log extends React.Component {
         this.loghandleScroll = this.loghandleScroll.bind(this);
     };
     componentWillMount() {
+        document.title = '兑换记录'
+
         let p = new Promise(function(resolve, reject) {});
 
         if (window.localStorage.user_info != 1) {
@@ -40,7 +42,7 @@ class Log extends React.Component {
 
     componentDidMount() {
         window.addEventListener('scroll', this.loghandleScroll);
-    
+
         if (this.props.logLoadingStatus === 1 || this.props.userStatus === 0) {
             this.props.dispatch(beginUser())
             this.props.dispatch(beginRefresh())
@@ -91,7 +93,7 @@ class Log extends React.Component {
     loghandleScroll() {
         console.log()
 
-       
+
         let clientHeight = this.getClientHeight(); //可视区域高度
         let scrollTop = this.getScrollTop(); //滚动条滚动高度
         let scrollHeight = this.getScrollHeight(); //滚动内容高度

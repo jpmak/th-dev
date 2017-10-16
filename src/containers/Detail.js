@@ -18,15 +18,15 @@ import {
 } from '../actions'
 
 class Detail extends React.Component {
-        constructor(props) {
+    constructor(props) {
         super(props);
-        this.detailMsg ='';
+        this.detailMsg = '';
     }
     componentWillMount() {
-             if (window.localStorage.detailData) {
+        if (window.localStorage.detailData) {
             this.detailMsg = JSON.parse(window.localStorage.detailData);
         }
-        document.title =this.detailMsg?this.detailMsg.productName:'商品详情';
+        document.title = this.detailMsg ? this.detailMsg.productName : '商品详情';
         if (this.props.detailLoadingStatus === 2 && this.props.id === this.props.match.params.id) {
             this.props.dispatch(detailTryRestoreComponent());
         } else if (window.localStorage.user_info != 1 || this.props.userStatus === 0) {
@@ -97,7 +97,7 @@ class Detail extends React.Component {
         return (
             <div className = "th-block">
         	<header id = "headnav" >
-        	<TopNav titleName = "商品详情" border = "0" color='#fbfbfb'/></header><div id = "detwrap" ></div> 
+        <TopNav titleName = "商品详情" go='-1' border = "0" color='#fbfbfb'/> < /header><div id = "detwrap" ></div >
         	<DetBody history={this.history.bind(this)} pushIdStatus={this.pushIdStatus.bind(this)}  id={this.props.match.params.id} exchange_points={exchange_points} detailLoadingStatus={detailLoadingStatus} name = { name } saleProp = { saleProp } prop_name = { prop_name } itemUrl = { itemUrl } imgsrc = { imgsrc } stock = { stock } item_price = { item_price } item_name = { item_name } goods_id = { goods_id } goods_body = {goods_body} goodStatus={goodStatus}/>
         	</div>
         )

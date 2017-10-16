@@ -28,6 +28,7 @@ class AllOrder extends React.Component {
     };
     componentWillMount() {
         let p = new Promise(function(resolve, reject) {});
+        document.title = '兑换订单'
 
         if (window.localStorage.user_info != 1) {
             //类型转换
@@ -40,9 +41,11 @@ class AllOrder extends React.Component {
     componentDidMount() {
 
         if (this.props.allOrderLoadingStatus === 1 || this.props.userStatus === 0) {
+
             this.props.dispatch(beginUser())
             this.props.dispatch(beginRefresh())
         } else {
+
             window.scrollTo(0, this.props.y)
         }
     }
@@ -54,7 +57,9 @@ class AllOrder extends React.Component {
         }
         //search
     beginRefresh() {
-        this.props.dispatch(updateAllOrderLoadingStatus(1)); // 恢复loading界面
+
+        this.props.dispatch(beginUser())
+
         this.props.dispatch(beginRefresh());
     }
     backupIScrollY(e) {
@@ -81,7 +86,7 @@ class AllOrder extends React.Component {
                <div className='w'  >
         <AllOrderCate TypeMove={this.props.TypeMove} allOrderType={this.props.allOrderType} get_type_goods={this.get_type_goods.bind(this)}  UpDataPullUpStatus={this.UpDataPullUpStatus.bind(this)} UpDataCateType={this.UpDataCateType.bind(this)}/>
 
-        <AllOrderGoods allOrderType={this.props.allOrderType} get_type_goods={this.get_type_goods.bind(this)}   pullUpStatus={this.props.pullUpStatus} allOrderLoadingStatus={this.props.allOrderLoadingStatus} beginRefresh={this.beginRefresh.bind(this)} allOrderGoodsPage={this.props.allOrderGoodsPage} allOrderList={this.props.allOrderList}  pullDownStatus={this.props.pullDownStatus} changeGoods={this.changeGoods.bind(this)} backupIScrollY={this.backupIScrollY.bind(this)}/>
+        <AllOrderGoods userStatus={this.props.userStatus} allOrderType={this.props.allOrderType} get_type_goods={this.get_type_goods.bind(this)}   pullUpStatus={this.props.pullUpStatus} allOrderLoadingStatus={this.props.allOrderLoadingStatus} beginRefresh={this.beginRefresh.bind(this)} allOrderGoodsPage={this.props.allOrderGoodsPage} allOrderList={this.props.allOrderList}  pullDownStatus={this.props.pullDownStatus} changeGoods={this.changeGoods.bind(this)} backupIScrollY={this.backupIScrollY.bind(this)}/>
    </div>
 </div>)
 

@@ -15,18 +15,23 @@ import TopNav from '../components/TopNav';
 import $ from 'jquery';
 
 class Login extends React.Component {
-    constructor(props) {
-        super(props);
-        this.go = '-1';
-    };
-    componentWillMount() {
-      if(this.props.userStatus===1){
-        this.go='-1'
-      }else{
-        this.go='-2'
+  constructor(props) {
+    super(props);
+    this.go = '-1';
+  };
+  componentWillMount() {
+    document.title = '登录'
+    const params = this.props.match.params
+    const router = params.router
+    if (this.props.userStatus === 1) {
+      this.go = '-1'
+    } else if (router === 'product') {
+      this.go = '-1'
+    } else {
+      this.go = '-2'
 
-      }
     }
+  }
 
   componentDidMount() {
     document.body.style.backgroundColor = '#fff'
@@ -64,6 +69,9 @@ class Login extends React.Component {
     });
 
   }
+  componentWillUnmount() {
+    document.body.style.backgroundColor = '#f5f5f5'
+  }
   backEchange() {
     this.props.history.push('/Exchange-index.html/')
 
@@ -75,12 +83,11 @@ class Login extends React.Component {
     let id = this.props.id
     if (router) {
       if (router === 'product') {
-        console.log(router)
+
         this.props.history.push('/Exchange-index.html/' +
           router + '/' + id)
 
       } else {
-        console.log(router)
         this.props.history.push('/Exchange-index.html/' +
           router)
       }
@@ -92,56 +99,62 @@ class Login extends React.Component {
     }
   }
   toLogin() {
-    var username = $('#username').val();
-    var pwd = $('#pwd').val();
+      let p = new Promise(function(resolve, reject) {});
+      var username = $('#username').val();
+      var pwd = $('#pwd').val();
 
-    if (username === '') {
-      this.refs.Modal.setText2('请填写账号信息');
-      this.refs.Modal.handleOpenModal2();
+      if (username === '') {
+        this.refs.Modal.setText2('请填写账号信息');
+        this.refs.Modal.handleOpenModal2();
 
-      return false;
-    }
-
-    if (pwd === '') {
-      this.refs.Modal.setText2('密码不能为空')
-      this.refs.Modal.handleOpenModal2();
-
-      return false;
-    }
-
-    $.ajax({
-      url: '/wap/?g=WapSite&c=Login&a=checkin',
-      dataType: 'json',
-      type: 'post',
-      'data': {
-        'username': username,
-        'pwd': pwd
-      },
-      success: (data) => {
-        if (data.returns) {
-          this.refs.Modal.setText2(data.msg)
-          this.refs.Modal.handleOpenModal2();
-
-          window.localStorage.user_info = data.returns;
-          this.props.dispatch(beginUser());
-          setTimeout(this.router(),800)
-          // this.router();
-        } else {
-          this.refs.Modal.setText2(data.msg)
-          this.refs.Modal.handleOpenModal2();
-
-        }
-      },
-      error: () => {
-        console.log('加载失败')
+        return false;
       }
-    })
+
+      if (pwd === '') {
+        this.refs.Modal.setText2('密码不能为空')
+        this.refs.Modal.handleOpenModal2();
+
+        return false;
+      }
+
+      $.ajax({
+        url: '/wap/?g=WapSite&c=Login&a=checkin',
+        dataType: 'json',
+        type: 'post',
+        'data': {
+          'username': '13516557373',
+          'pwd': '030465'
+            // 'username': username,
+            // 'pwd': pwd
+        },
+        success: (data) => {
+          if (data.returns) {
+            this.refs.Modal.setText2(data.msg)
+            this.refs.Modal.handleOpenModal2();
+
+            window.localStorage.user_info = data.returns;
+            this.props.dispatch(beginUser());
 
 
-  }
-// checkGo(){
-//   return: this.go=this.go?'-1':'-2'
-// }
+            setTimeout(() => {
+              this.router()
+            }, 1000)
+          } else {
+            this.refs.Modal.setText2(data.msg)
+            this.refs.Modal.handleOpenModal2();
+
+          }
+        },
+        error: () => {
+          console.log('加载失败')
+        }
+      })
+
+
+    }
+    // checkGo(){
+    //   return: this.go=this.go?'-1':'-2'
+    // }
 
   render() {
 
@@ -191,7 +204,7 @@ class Login extends React.Component {
 
 const mapStateToProps = state => {
   return {
-   userStatus: state.MsgAppReducer.userStatus,
+    userStatus: state.MsgAppReducer.userStatus,
     id: state.MsgDetailReducer.id
   }
 }

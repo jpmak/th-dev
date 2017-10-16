@@ -11,7 +11,7 @@ class ResultSort extends React.Component {
             indexColor: '',
             volumeColor: ''
         }
-        this.priceCss=''
+        this.priceCss = ''
     }
     componentDidUpdate() {
 
@@ -22,7 +22,7 @@ class ResultSort extends React.Component {
         $('.result-sort li').not('.icons-list').on('click', function() {
 
             $(this).addClass('cur').siblings().removeClass('cur');
-      
+
         });
 
         $('.result-sort li.icons-list').on('click', function() {
@@ -67,13 +67,12 @@ class ResultSort extends React.Component {
             indexColor: '#666',
             volumeColor: '#666'
 
-        },()=>{
-            this.priceCss=this.state.price? 'asc' : 'desc'
-            console.log(this.priceCss)
-        this.props.priceClick(this.priceCss)
-            
+        }, () => {
+            this.priceCss = this.state.price ? 'asc' : 'desc'
+            this.props.priceClick(this.priceCss)
+
         })
-     
+
     }
     componentWillReceiveProps(nextProps) {
         if (nextProps.price === '') {
@@ -91,7 +90,7 @@ class ResultSort extends React.Component {
 
     }
     render() {
-    
+
         return (
             <div className="result-sort">
             <li className="cur" onClick={this.defaultClick.bind(this)} style={{'color':this.state.indexColor}}>综合</li>

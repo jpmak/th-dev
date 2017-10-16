@@ -23,7 +23,7 @@ class IsOrderLi extends React.Component {
                    <ul >
      <li  className='upItem'>
 
-   <div className="info-img"><img alt='' src={this.props.orderLi.main_image}/></div><div className="info-bar">
+   <div className="info-img"><img alt='' src={this.props.main_image}/></div><div className="info-bar">
    <div className="pro-title">{this.props.orderLi.goods_name}</div>
        {
                     valueHtml

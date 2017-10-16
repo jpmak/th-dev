@@ -67,7 +67,7 @@ class InfoGoods extends React.Component {
     homehandleScroll() {
 
 
-   
+
         let clientHeight = this.getClientHeight(); //可视区域高度
         let scrollTop = this.getScrollTop(); //滚动条滚动高度
         let scrollHeight = this.getScrollHeight(); //滚动内容高度
@@ -84,8 +84,8 @@ class InfoGoods extends React.Component {
     onRetryLoading() {
         this.props.beginRefresh();
     }
-    handleClick(goods_name, item_price, list_image) {
-        this.props.detailData(goods_name, item_price, list_image)
+    handleClick(goods_name, exchange_points, item_price, list_image) {
+        this.props.detailData(goods_name, exchange_points, item_price, list_image)
     }
 
     renderLoading() {
@@ -103,10 +103,11 @@ class InfoGoods extends React.Component {
 
 
     renderPage() {
- 
+
         let InfoGoodList = [];
         let InfoGoods = this.props.InfoGoods;
-        if (InfoGoods !== '') {
+        if (InfoGoods.length > 0) {
+
             InfoGoodList = InfoGoods.map((InfoGood, index) => {
                 let item_price = parseFloat(InfoGood.item_price)
                 let priceHtml = '';
@@ -117,7 +118,7 @@ class InfoGoods extends React.Component {
 
                 }
                 return (
-                    <li key = {index} onClick = {this.handleClick.bind(this, InfoGood.goods_name, InfoGood.item_price, InfoGood.list_image)}
+                    <li key = {index} onClick = {this.handleClick.bind(this, InfoGood.goods_name,InfoGood.exchange_points,InfoGood.item_price, InfoGood.list_image)}
                     className = {this.changeGoods ? 'add' : 'move'} >
                     <Link to={'/Exchange-index.html/product/'+InfoGood.item_id}  className="upItem " data-id={InfoGood.item_id}>
                 <div className="info-img">
@@ -137,7 +138,7 @@ class InfoGoods extends React.Component {
                 </Link> </li>
                 )
             }, this)
-        } else if (this.props.InfoGoodsPage === 1 && InfoGoods === 0) {
+        } else if (this.props.InfoGoodsPage === 1 && !InfoGoods.length) {
             InfoGoodList = (<DataNone/>);
         }
 

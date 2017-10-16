@@ -28,24 +28,7 @@ class Scrollup extends React.Component {
 
         this.Det_mounted = false;
     }
-    scrollUp1() {
-        let mess_state = 1;
-        var winH = $(window).height();
-        $(window).scroll(function() {
-            var pageH = $(document.body).height();
-            var scrollT = $(window).scrollTop();
-            var rate = (pageH - winH - scrollT) / winH;
-            if (mess_state === 1) {
-                if (rate < 0.01) {
-              
-                    mess_state = 0;
-                    let pbt = $('.post-body').text();
-                    $('.post-body').show().html(pbt);
-                }
-            }
-        });
 
-    }
     startMove(e) {
         this.touchRange = e.touches[0].pageY;
     }
@@ -99,7 +82,7 @@ class Scrollup extends React.Component {
         let scrollUp = produtShowHeight + headHeight - productBodyHeight;
         // let scrollwrap = document.getElementById('scrollwrap').offsetHeight
         let scrollTop = this.getScrollTop(); //滚动条滚动高度
-      
+
 
 
         if (scrollTop < scrollUp && this.scrollUp) {
@@ -141,7 +124,7 @@ class Scrollup extends React.Component {
         let goods_body = this.props.goods_body ? this.props.goods_body : '<div class="none-data"></div>'
         return (
 
-    
+
             <div id='productBody' style={{'display':this.state.isPushUp,'height':this.state.height+'px'}} onTouchStart={this.startMove.bind(this)} onTouchMove={this.movIng.bind(this)}  onTouchEnd={this.endMove.bind(this)}>
         <div className="items" dangerouslySetInnerHTML={{__html:goods_body}} />
             </div>

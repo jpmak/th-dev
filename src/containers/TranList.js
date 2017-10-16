@@ -26,10 +26,11 @@ class TranList extends React.Component {
 
     };
     componentWillMount() {
+        document.title = '物流信息'
         window.scrollTo(0, 0)
         let p = new Promise(function(resolve, reject) {});
 
-        if (window.localStorage.user_info !==1) {
+        if (window.localStorage.user_info != 1) {
             //转换数字
             p.then(this.props.history.push('/Exchange-index.html/login/tranList/'))
         }
@@ -38,9 +39,8 @@ class TranList extends React.Component {
         if (this.props.userStatus === 0) {
             this.props.dispatch(beginUser())
 
-
         }
-            this.fetchTranList(this.props.match.params.id)
+        this.fetchTranList(this.props.match.params.id)
 
 
 
@@ -59,7 +59,7 @@ class TranList extends React.Component {
                 if (data.status && data.delivery.track) {
                     this.setState({
                         tranListItem: data.delivery.track
-                    },()=>{
+                    }, () => {
 
                     })
 
@@ -82,7 +82,7 @@ class TranList extends React.Component {
     renderPage() {
         let detHtml = [];
         let detGoods = this.state.tranListItem.info ? this.state.tranListItem.info : '';
-   
+
 
         if (detGoods !== '') {
             detHtml = detGoods.map((detGood, index) => {
@@ -102,8 +102,8 @@ class TranList extends React.Component {
 
 
         return (
-  
-           <div className="wuliu">
+
+            <div className="wuliu">
                 <div className="log-info">
                 <div className="log-icon">
              
@@ -135,21 +135,21 @@ class TranList extends React.Component {
 
     render() {
         let renderHtml = [];
-                    if(this.state.tranListItem.info===undefined||this.state.tranListItem.info.length===0){
-                         renderHtml = <DataNone tip='暂无物流信息'/>
-                    }else{
-        renderHtml = this.renderPage();
-                    }
+        if (this.state.tranListItem.info === undefined || this.state.tranListItem.info.length === 0) {
+            renderHtml = <DataNone tip='暂无物流信息'/>
+        } else {
+            renderHtml = this.renderPage();
+        }
         return (
-                   <div>
-        <TopNav titleName = "物流列表" />
+            <div>
+        <TopNav titleName = "物流列表" go='-1'/>
            <div className='w'>
         {
             renderHtml
         }
         </div>
         </div>
-        
+
         );
 
 

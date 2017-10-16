@@ -27,23 +27,18 @@ class Home extends React.Component {
     };
 
     componentWillMount() {
+        document.title = '我的积分'
         let p = new Promise(function(resolve, reject) {});
         if (window.localStorage.user_info != 1) {
             //转换数字
             p.then(this.props.history.push('/Exchange-index.html/login/home/'))
-                // .then(window.location.href = "http://www.thgo8.me/wap/User-login-1.html")
         } else {
-
             this.props.dispatch(InfoTryRestoreComponent());
         }
-
     }
-
 
     componentDidMount() {
         window.addEventListener('scroll', this.homehandleScroll);
-      
-
         if (this.props.homeLoadingStatus === 1 || this.props.userStatus === 0) {
             this.props.dispatch(beginUser())
             this.props.dispatch(beginRefresh())
@@ -92,9 +87,10 @@ class Home extends React.Component {
         // this.props.dispatch(updateListLoadingStatus(1)); // 恢复loading界面
         // this.props.dispatch(beginRefresh());
     }
-    detailData(goods_name, item_price, list_image) {
+    detailData(goods_name, exchange_points, item_price, list_image) {
         window.localStorage.detailData = JSON.stringify({
             'productName': goods_name,
+            'productPoints': exchange_points,
             'productPrice': item_price,
             'productImg': [list_image]
         })
