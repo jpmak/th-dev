@@ -23,6 +23,7 @@ import SuccessView from './containers/SuccessView';
 import AllOrder from './containers/AllOrder';
 import OrderDetail from './containers/OrderDetail';
 import TranList from './containers/TranList';
+import NotFoundPage from './containers/404';
 
 
 
@@ -56,7 +57,7 @@ const Jf = () => (
 	<Route exact path="/Exchange-index.html"  component={App} />
 	<Route path='/Exchange-index.html/login/:router?' component={Login} />
 	 <Route path="/Exchange-index.html/product/:id?" component={Detail}/>
-	 <Route path="/Exchange-index.html/search/:keyword" component={Searchhead} />
+	 <Route path="/Exchange-index.html/search/:keyword?" component={Searchhead} />
 	 <Route path="/Exchange-index.html/list" component={List}/>
 	 <Route path="/Exchange-index.html/home/" component={Home}/>
 	 <Route path="/Exchange-index.html/log/" component={Log}/>
@@ -65,6 +66,8 @@ const Jf = () => (
 	 <Route path="/Exchange-index.html/allorder/" component={AllOrder}/>
 	 <Route path="/Exchange-index.html/orderdetail/:id?" component={OrderDetail}/>
 	 <Route path="/Exchange-index.html/TranList/:id?" component={TranList}/>
+	 <Route path="/Exchange-index.html/404/" component={NotFoundPage}/>
+
 
 
 

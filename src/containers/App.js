@@ -13,12 +13,14 @@ import FooterNav from '../components/FooterNav';
 import WechatSdk from '../components/public/WechatSdk';
 
 import {
+	scrollUp,
 	tryRestoreComponent,
 	beginRefresh,
 	fetchCateGoods,
 	getCateId,
 	pullUpStatus,
-	liMove
+	liMove,
+	backupIScrollY
 } from '../actions'
 import {
 	updateLoadingStatus,
@@ -33,22 +35,53 @@ import {
 
 
 class App extends React.Component {
+	constructor(props) {
+		super(props);
+		this.scrollTop = 0;
+		this.isDataing = false;
+		this.appHandleScroll = this.appHandleScroll.bind(this);
+
+	};
 	componentWillMount() {
 		document.title = '积分商城'
 		this.props.dispatch(updateLoadingStatus(1)); //清空搜索status
 		this.props.dispatch(tryRestoreComponent());
 	}
 	componentDidMount() {
+		window.addEventListener('scroll', this.appHandleScroll);
+
 		if (this.props.loadingStatus === 1) {
 			this.props.dispatch(beginRefresh())
+		} else {
+			window.scrollTo(0, this.props.y)
 		}
 		this.props.dispatch(beginShare())
 
 	}
-
+	componentWillUnmount() {
+		window.removeEventListener('scroll', this.appHandleScroll);
+		if (this.props.loadingStatus === 2) { // 首屏成功刷出，则备份y
+			this.props.dispatch(backupIScrollY(this.scrollTop))
+		}
+	}
+	appHandleScroll() {
+		let clientHeight = this.props.dispatch(scrollUp.getClientHeight())
+		let scrollTop = this.props.dispatch(scrollUp.getScrollTop()); //滚动条滚动高度
+		let scrollHeight = this.props.dispatch(scrollUp.getScrollHeight()); //滚动内容高度
+		this.refs.JsCate.fixWrap(scrollTop)
+		this.scrollTop = scrollTop
+		if ((clientHeight + scrollTop) === (scrollHeight) && this.isDataing === false) {
+			this.isDataing = true;
+			this.changeGoods()
+		}
+	}
 	get_cate_goods(index, id, page) {
 		// this.props.dispatch(getCateId(id))
 		this.props.dispatch(fetchCateGoods(index, id, page))
+	}
+	changeIsData(e) {
+		console.log(e);
+		this.isDataing = e
 	}
 	changeGoods(e, page) {
 		if (this.props.pullUpStatus !== 0) {
@@ -115,7 +148,7 @@ class App extends React.Component {
 		</div>
 		</div>
 			<div className='w'>
-		<JsCate UpDataCateId={this.UpDataCateId.bind(this)}  loadingStatus={loadingStatus} detailData={this.detailData.bind(this)} cateList={cateList} cateGoods={cateGoods} liWidth={liWidth} moveWidths={moveWidths} pushIndex={pushIndex} pageStatus={pageStatus} pullDownStatus={pullDownStatus} pullUpStatus={pullUpStatus} UpDataPullUpStatus={this.UpDataPullUpStatus.bind(this)} get_cate_goods={this.get_cate_goods.bind(this)} changeGoods={this.changeGoods.bind(this)} liMove={this.liMove.bind(this)}/>
+		<JsCate ref='JsCate' changeIsData={this.changeIsData.bind(this)} UpDataCateId={this.UpDataCateId.bind(this)}  loadingStatus={loadingStatus} detailData={this.detailData.bind(this)} cateList={cateList} cateGoods={cateGoods} liWidth={liWidth} moveWidths={moveWidths} pushIndex={pushIndex} pageStatus={pageStatus} pullDownStatus={pullDownStatus} pullUpStatus={pullUpStatus} UpDataPullUpStatus={this.UpDataPullUpStatus.bind(this)} get_cate_goods={this.get_cate_goods.bind(this)} changeGoods={this.changeGoods.bind(this)} liMove={this.liMove.bind(this)}/>
 
             </div>
 		<footer id='nav '>
@@ -133,6 +166,8 @@ const mapStateToProps = state => {
 	return {
 		searchLoadingStatus: state.MsgListPageReducer.loadingStatus,
 		loadingStatus: state.MsgAppReducer.loadingStatus,
+		y: state.MsgAppReducer.y,
+
 		userStatus: state.MsgAppReducer.userStatus,
 		userMoney: state.MsgAppReducer.userMoney,
 		userBuy: state.MsgAppReducer.userBuy,

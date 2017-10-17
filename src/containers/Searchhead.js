@@ -81,7 +81,6 @@ class Searchhead extends React.Component {
     }
     historyPush(e) {
         document.title = e + ' - 商品搜索-通惠购'
-
         this.props.history.push('/Exchange-index.html/search/' + e)
     }
     pushValue(e) {
@@ -107,7 +106,7 @@ class Searchhead extends React.Component {
         }
     }
     componentWillMount() {
-        document.title = this.props.match.params.keyword + ' - 商品搜索-通惠购'
+        document.title = this.props.match.params.keyword ? this.props.match.params.keyword : '' + ' - 商品搜索-通惠购'
 
         this.funloadHistory();
         if (window.localStorage.searchhistory) {

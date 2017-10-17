@@ -24,9 +24,6 @@ class JsCate extends React.Component {
         };
     };
 
-    componentDidMount() {
-
-    }
     handleClick(index, id) {
 
         let scrollwrap = document.getElementById('scrollwrap').offsetHeight
@@ -114,9 +111,14 @@ class JsCate extends React.Component {
             }
         }
     }
-
-    detailData(goods_name,exchange_points, item_price, list_image) {
-        this.props.detailData(goods_name,exchange_points, item_price, list_image)
+    changeIsData(e) {
+        this.props.changeIsData(e)
+    }
+    detailData(goods_name, exchange_points, item_price, list_image) {
+        this.props.detailData(goods_name, exchange_points, item_price, list_image)
+    }
+    fixWrap(e) {
+        this.refs.CateGoods.handleScroll(e)
     }
     componentWillReceiveProps(nextProps) {
         if (nextProps.loadingStatus !== this.props.loadingStatus) {
@@ -150,7 +152,7 @@ class JsCate extends React.Component {
                     </div>
 }
         </Motion>
-        <CateGoods ref='CateGoods' detailData={this.detailData.bind(this)} cateGoods={this.props.cateGoods} pageStatus={this.props.pageStatus} pullUpStatus={this.props.pullUpStatus} pullDownStatus={this.props.pullDownStatus} changeGoods={this.props.changeGoods} />
+        <CateGoods ref='CateGoods' changeIsData={this.changeIsData.bind(this)} ref='CateGoods' detailData={this.detailData.bind(this)} cateGoods={this.props.cateGoods} pageStatus={this.props.pageStatus} pullUpStatus={this.props.pullUpStatus} pullDownStatus={this.props.pullDownStatus} changeGoods={this.props.changeGoods} />
     
 
       

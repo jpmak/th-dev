@@ -44,7 +44,9 @@ class LogGoods extends React.Component {
         );
     }
 
-
+    history() {
+        this.props.history()
+    }
     renderPage() {
         let bodyBox = document.getElementById('root')
         let LogGoodList = [];
@@ -72,7 +74,8 @@ class LogGoods extends React.Component {
                     shopCostHtml = (<span  className='serve'><span className='add'>+</span><span className='serve'>运费</span><span className='num'>¥</span><span className='num'>{LogGood.shipping_cost}</span></span>)
                 }
                 return (
-                    <li key={index}><Link to={'/Exchange-index.html/orderdetail/'+LogGood.exchange_order_number} className='upItem' data-id={LogGood.user_id}>
+                    <li key={index}>
+                    <Link to={'/Exchange-index.html/orderdetail/'+LogGood.exchange_order_number} className='upItem' data-id={LogGood.user_id}>
 
 <div className='order'>
 <div className='orderNum'><span>订单号：</span><span>{LogGood.exchange_order_number}</span></div>
@@ -84,10 +87,7 @@ class LogGoods extends React.Component {
                 {
                     valueHtml
                 }
-                <div className="e-numb"><span className="e-price"><em className='moneyPrice'>{LogGood.t_beans}</em>积分</span>{priceHtml}{shopCostHtml}</div> </div></Link > </li>
-
-
-
+                <div className="e-numb"><span className="e-price"><em className='moneyPrice'>{LogGood.t_beans}</em>积分</span>{priceHtml}{shopCostHtml}</div> </div></Link> </li>
                 )
             }, this)
         } else if (this.props.logGoodsPage == 0 && LogGoods == 0) {
@@ -95,11 +95,9 @@ class LogGoods extends React.Component {
         }
 
         return (
-
             <div className="app-pd-wp"  style={{paddingBottom:'0'}}>
                 <div className="app-pd-list hor-list order">
                    <ul >
-     
                 {LogGoodList}
                    </ul>
                     </div>
@@ -111,12 +109,13 @@ class LogGoods extends React.Component {
 
     render() {
         let renderHtml = [];
-        if (this.props.logLoadingStatus !== 2) {
+        if (this.props.logLoadingStatus !== 2 && this.props.userStatus === 1) {
             renderHtml = this.renderLoading();
+        } else if (this.props.logLoadingStatus === 3 && this.props.userStatus === 0) {
+            renderHtml = this.history();
+            //跳去跳转页面
         } else {
-
             renderHtml = this.renderPage();
-
         }
         return (
             <div>

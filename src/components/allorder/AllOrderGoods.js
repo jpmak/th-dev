@@ -28,78 +28,20 @@ class AllOrderGoods extends React.Component {
             4: ''
         };
         this.stateOrderNum = '';
-        this.isDataing = false;
-        this.scrollTop = 0;
-        this.allOrderHandleScroll = this.allOrderHandleScroll.bind(this);
         this.state = {
             ModalIicon: ''
         }
 
     };
 
-    componentDidMount() {
-        window.addEventListener('scroll', this.allOrderHandleScroll);
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('scroll', this.allOrderhandleScroll);
-
-    }
-    getScrollTop() {
-        var scrollTop = 0;
-        if (document.documentElement && document.documentElement.scrollTop) {
-            scrollTop = document.documentElement.scrollTop;
-        } else if (document.body) {
-            scrollTop = document.body.scrollTop;
-        }
-        return scrollTop;
-    }
-    getClientHeight() {
-        var windowHeight = 0;
-        if (document.compatMode === "CSS1Compat") {
-            windowHeight = document.documentElement.clientHeight;
-        } else {
-            windowHeight = document.body.clientHeight;
-        }
-        return windowHeight;
-    }
-    getScrollHeight() {
-        var scrollHeight = 0,
-            bodyScrollHeight = 0,
-            documentScrollHeight = 0;
-        if (document.body) {
-            bodyScrollHeight = document.body.scrollHeight;
-        }
-        if (document.documentElement) {
-            documentScrollHeight = document.documentElement.scrollHeight;
-        }
-        scrollHeight = (bodyScrollHeight - documentScrollHeight > 0) ? bodyScrollHeight : documentScrollHeight;
-        return scrollHeight;
-    }
-
-    allOrderHandleScroll() {
-
-        let clientHeight = this.getClientHeight(); //可视区域高度
-        let scrollTop = this.getScrollTop(); //滚动条滚动高度
-        let scrollHeight = this.getScrollHeight(); //滚动内容高度
-        if ((clientHeight + scrollTop) === (scrollHeight) && this.props.allOrderGoodsStatus !== 0 && this.isDataing === false) {
-            this.isDataing = true;
-
-            this.props.changeGoods()
 
 
-        }
-        this.scrollTop = scrollTop
-        this.props.backupIScrollY(this.scrollTop)
-            // console.log(this.scrollTop);
-    }
     componentWillReceiveProps(nextProps) {
         if (nextProps.allOrderList !== this.props.allOrderList) {
-            this.isDataing = false;
+            this.props.changeIsData(false);
         }
     }
     onRetryLoading() {
-        console.log(111);
         this.props.beginRefresh();
     }
     handleClick(goods_name, item_price, list_image) {
@@ -161,7 +103,9 @@ class AllOrderGoods extends React.Component {
         );
     }
 
-
+    history() {
+        this.props.history()
+    }
     renderPage() {
 
         let allOrderGoodList = [];
@@ -200,7 +144,6 @@ class AllOrderGoods extends React.Component {
                 return (
                     <li key={index}>
                     <Link to={'/Exchange-index.html/orderdetail/'+allOrderGood.exchange_order_number} className='upItem' >
-
 <div className='order'>
 <div className='orderNum' ><span>订单号：</span><span>{allOrderGood.exchange_order_number}</span>
 </div>
@@ -239,7 +182,7 @@ class AllOrderGoods extends React.Component {
 
         return (
 
-            <div className="app-pd-wp"  style={{paddingBottom:'0'}}>
+            <div className="app-pd-wp pt88" style={{paddingBottom:'0'}}>
                     <p ref="PullUp" id="PullUp" dangerouslySetInnerHTML={{__html:this.pullUpTips[this.props.pullUpStatus]}} />
                 <div className="app-pd-list hor-list order">
                    <ul >
@@ -255,19 +198,13 @@ class AllOrderGoods extends React.Component {
 
 
     render() {
-        console.log(this.props.allOrderLoadingStatus);
-        console.log(this.props.userStatus);
-
-        // console.log(this.props.allOrderGoodsPage);
         let renderHtml = [];
         if (this.props.allOrderLoadingStatus !== 2 && this.props.userStatus === 1) {
             renderHtml = this.renderLoading();
         } else if (this.props.allOrderLoadingStatus === 3 && this.props.userStatus === 0) {
-            renderHtml = (<div></div>);
+            renderHtml = this.history();
             //跳去跳转页面
-
         } else {
-
             renderHtml = this.renderPage();
 
         }

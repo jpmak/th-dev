@@ -42,6 +42,7 @@ class AllOrderCate extends React.Component {
         return type === this.state.currentIndex ? 'filter-item cur' : 'filter-item';
     }
     handleClick(type) {
+        window.scrollTo(0, 0)
         this.setState({
             currentIndex: type,
         });
@@ -55,7 +56,7 @@ class AllOrderCate extends React.Component {
         return (
             <div className='titleWrap w33'>
                             <ul className="nav title-list cf">
-                    <li className={this.cheack('')} onClick={this.handleClick.bind(this,'')}>全部</li>
+        <li className={'w33 '+this.cheack('')} onClick={this.handleClick.bind(this,'')}>全部</li>
                     <li className={this.cheack('paid')} onClick={this.handleClick.bind(this,'paid')}>待发货</li>
                     <li className={this.cheack('ems')} onClick={this.handleClick.bind(this,'ems')}>待收货</li>
                     <p style={{left:this.props.TypeMove}}><b></b></p>

@@ -20,12 +20,7 @@ export default class LoadingLayer extends React.Component {
                 <div className='overlayLoader'>
             <div className='loader'>
                         <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
+                   
                     </div>
                 </div>
             );
@@ -51,4 +46,3 @@ export default class LoadingLayer extends React.Component {
         );
     }
 }
-

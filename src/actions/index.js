@@ -232,3 +232,51 @@
         });
       }
     }
+    export const backupIScrollY = (y) => {
+      return {
+        type: consts.APP_BACKUP_ISCROLL_Y,
+        y: y
+      };
+    }
+
+    export const scrollUp = {
+      getScrollTop: () => {
+        return (dispatch) => {
+          var scrollTop = 0;
+          if (document.documentElement && document.documentElement.scrollTop) {
+            scrollTop = document.documentElement.scrollTop;
+          } else if (document.body) {
+            scrollTop = document.body.scrollTop;
+          }
+          return scrollTop;
+        }
+      },
+      getClientHeight: () => {
+        return (dispatch) => {
+          var windowHeight = 0;
+          if (document.compatMode === "CSS1Compat") {
+            windowHeight = document.documentElement.clientHeight;
+          } else {
+            windowHeight = document.body.clientHeight;
+          }
+
+          return windowHeight;
+        }
+      },
+      getScrollHeight: () => {
+        return (dispatch) => {
+          var scrollHeight = 0,
+            bodyScrollHeight = 0,
+            documentScrollHeight = 0;
+          if (document.body) {
+            bodyScrollHeight = document.body.scrollHeight;
+          }
+          if (document.documentElement) {
+            documentScrollHeight = document.documentElement.scrollHeight;
+          }
+          scrollHeight = (bodyScrollHeight - documentScrollHeight > 0) ? bodyScrollHeight : documentScrollHeight;
+          return scrollHeight;
+        }
+      }
+
+    }

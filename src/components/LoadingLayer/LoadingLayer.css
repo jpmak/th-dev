@@ -40,6 +40,8 @@
     margin: auto;
     width: 97px;
     height: 97px;
+        background: url(./monkeyBg.png) center no-repeat;
+    background-size: 97px 97px;
     animation-name: rotateAnim;
     -o-animation-name: rotateAnim;
     -ms-animation-name: rotateAnim;
@@ -74,7 +76,7 @@
     bottom: 0;
     margin: auto;
 }
-.loader div:nth-child(odd) {
+/*.loader div:nth-child(odd) {
     border-top: none;
     border-left: none;
 }
@@ -123,7 +125,7 @@
     top: 6px;
     width: 49px;
     height: 49px;
-}
+}*/
 
 
 @keyframes rotateAnim {

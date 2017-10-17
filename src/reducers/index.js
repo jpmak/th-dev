@@ -32,7 +32,8 @@ const initState = {
   pullUpStatus: 0, //上加载状态
   pullDownStatus: 4, //下加载状态
   moveWidths: 0, //块状移动长度
-  liWidth: 0 //块状长度
+  liWidth: 0, //块状长度
+  y: 0
 
 };
 
@@ -94,6 +95,12 @@ const UPDATE_PULLUP_STATUS_reducer = (state, action) => {
   return state;
 }
 
+const APP_BACKUP_ISCROLL_Y_reducer = (state, action) => {
+  return Object.assign({}, state, {
+    y: action.y
+  });
+  return state;
+}
 const FETCHSHARE_SUCCESS_reducer = (state, action) => {
   return Object.assign({}, state, {
     appId: action.appId,
@@ -178,7 +185,8 @@ export const MsgAppReducer = (state = initState, action) => {
       return UPDATE_PULLUP_STATUS_reducer(state, action);
     case consts.UPDATE_LIEVENT_STATUS:
       return UPDATE_LIEVENT_STATUS_reducer(state, action);
-
+    case consts.APP_BACKUP_ISCROLL_Y:
+      return APP_BACKUP_ISCROLL_Y_reducer(state, action);
 
     default:
       return state; // 返回当前默认state或者当前state
