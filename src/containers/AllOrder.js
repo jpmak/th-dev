@@ -109,7 +109,7 @@ class AllOrder extends React.Component {
                <div className='w pt88'>
 
 
-        <AllOrderGoods ref='AllOrderGoods'  changeIsData={this.changeIsData.bind(this)}  history={this.history.bind(this)} userStatus={this.props.userStatus} allOrderType={this.props.allOrderType} get_type_goods={this.get_type_goods.bind(this)}   pullUpStatus={this.props.pullUpStatus} allOrderLoadingStatus={this.props.allOrderLoadingStatus} beginRefresh={this.beginRefresh.bind(this)} allOrderGoodsPage={this.props.allOrderGoodsPage} allOrderList={this.props.allOrderList}  pullDownStatus={this.props.pullDownStatus} changeGoods={this.changeGoods.bind(this)} />
+        <AllOrderGoods ref='AllOrderGoods' baseUrl={this.props.baseUrl}  changeIsData={this.changeIsData.bind(this)}  history={this.history.bind(this)} userStatus={this.props.userStatus} allOrderType={this.props.allOrderType} get_type_goods={this.get_type_goods.bind(this)}   pullUpStatus={this.props.pullUpStatus} allOrderLoadingStatus={this.props.allOrderLoadingStatus} beginRefresh={this.beginRefresh.bind(this)} allOrderGoodsPage={this.props.allOrderGoodsPage} allOrderList={this.props.allOrderList}  pullDownStatus={this.props.pullDownStatus} changeGoods={this.changeGoods.bind(this)} />
    </div>
 </div>)
 
@@ -134,6 +134,7 @@ class AllOrder extends React.Component {
 
 const mapStateToProps = state => {
     return {
+        baseUrl:state.MsgAppReducer.baseUrl,
         userStatus: state.MsgAppReducer.userStatus,
         allOrderLoadingStatus: state.MsgAllOrderReducer.allOrderLoadingStatus,
         allOrderGoodsStatus: state.MsgAllOrderReducer.allOrderGoodsStatus,

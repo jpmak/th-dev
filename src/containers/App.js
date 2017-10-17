@@ -124,6 +124,7 @@ class App extends React.Component {
 			liWidth,
 			moveWidths
 		} = this.props
+		
 		return (
 			<div id='AppWrap'>
 		<div id='scrollwrap' >
@@ -134,7 +135,7 @@ class App extends React.Component {
 		
 		<div className='w'>
 		<div id='search' style={{ zIndex:'200'}}>
-		<SearchBox loadingStatus={this.props.loadingStatus} parmKeyword={this.props.match.params.keyword} history={this.props.history} />
+		<SearchBox baseUrl={this.props.baseUrl} loadingStatus={this.props.loadingStatus} parmKeyword={this.props.match.params.keyword} history={this.props.history} />
 		</div>
 		<div id="AppBanner">
 		<SlickBanner bannerItems={bannerItems}/>
@@ -164,10 +165,10 @@ class App extends React.Component {
 
 const mapStateToProps = state => {
 	return {
+        baseUrl:state.MsgAppReducer.baseUrl,
 		searchLoadingStatus: state.MsgListPageReducer.loadingStatus,
 		loadingStatus: state.MsgAppReducer.loadingStatus,
 		y: state.MsgAppReducer.y,
-
 		userStatus: state.MsgAppReducer.userStatus,
 		userMoney: state.MsgAppReducer.userMoney,
 		userBuy: state.MsgAppReducer.userBuy,

@@ -87,22 +87,23 @@ module.exports = function(proxy, allowedHost) {
             disableDotRule: true,
         },
         //跨域设置
-        proxy: {
-            '/wap': {
-                target: 'http://dev.thgo8.com',
+        // proxy: {
+        //     '/wa': {
+        //         // target: 'http://dev.thgo8.com',
 
-                changeOrigin: true,
-                secure: false,
-                pathRewrite: {
-                    '^/wap': '/wap'
-                },
-                router: {
-                    // when request.headers.host == 'dev.localhost:3000', 
-                    // override target 'http://www.example.org' to 'http://localhost:8000' 
-                    // 'http://192.168.1.160:8000/': 'http://dev.thgo8.com'
-                }
-            }
-        },
+        //         // changeOrigin: true,
+        //         // secure: false,
+        //         // pathRewrite: {
+        //         //     '^/wap': '/wap'
+        //         // },
+        //         router: {
+        //             target: 'http://dev.thgo8.com',
+        //             // when request.headers.host == 'dev.localhost:3000', 
+        //             // override target 'http://www.example.org' to 'http://localhost:8000' 
+        //             // 'http://192.168.1.160:8000/': 'http://dev.thgo8.com'
+        //         }
+        //     }
+        // },
         public: allowedHost,
 
         setup(app) {

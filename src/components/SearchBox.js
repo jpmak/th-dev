@@ -91,7 +91,7 @@ class SearchBox extends React.Component {
             <div className="th-search-container on-blur" style={{position:'relative',zIndex:'200'}}>
             <div className="th-search-box">
                 <div className="th-search-shadow"></div>
-                      <SortsBtn />
+                      <SortsBtn baseUrl={this.props.baseUrl}/>
   
         <GobackUp/>
              <SearchBtn funStoreHistory={this.funStoreHistory.bind(this)} value={this.state.value}/>

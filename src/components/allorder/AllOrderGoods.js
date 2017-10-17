@@ -143,7 +143,7 @@ class AllOrderGoods extends React.Component {
 
                 return (
                     <li key={index}>
-                    <Link to={'/Exchange-index.html/orderdetail/'+allOrderGood.exchange_order_number} className='upItem' >
+                    <Link to={this.props.baseUrl+'/orderdetail/'+allOrderGood.exchange_order_number} className='upItem' >
 <div className='order'>
 <div className='orderNum' ><span>订单号：</span><span>{allOrderGood.exchange_order_number}</span>
 </div>
