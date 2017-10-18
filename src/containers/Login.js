@@ -73,88 +73,83 @@ class Login extends React.Component {
     document.body.style.backgroundColor = '#f5f5f5'
   }
   backEchange() {
-    this.props.history.push('/Exchange-index.html/')
+    this.props.history.push(this.props.baseUrl + '/')
 
   }
   router() {
-
     const params = this.props.match.params
     const router = params.router
     let id = this.props.id
     if (router) {
       if (router === 'product') {
 
-        this.props.history.push('/Exchange-index.html/' +
-          router + '/' + id)
+        this.props.history.push(this.props.baseUrl + '/' + router + '/' + id)
 
       } else {
-        this.props.history.push('/Exchange-index.html/' +
-          router)
+        this.props.history.push(this.props.baseUrl + '/' + router)
       }
 
     } else {
 
       //跳转到用户主页
-      this.props.history.push('/Exchange-index.html/')
+      this.props.history.push(this.props.baseUrl + '/')
     }
   }
   toLogin() {
-      let p = new Promise(function(resolve, reject) {});
-      var username = $('#username').val();
-      var pwd = $('#pwd').val();
+    let p = new Promise(function(resolve, reject) {});
+    var username = $('#username').val();
+    var pwd = $('#pwd').val();
 
-      if (username === '') {
-        this.refs.Modal.setText2('请填写账号信息');
-        this.refs.Modal.handleOpenModal2();
+    if (username === '') {
+      this.refs.Modal.setText2('请填写账号信息');
+      this.refs.Modal.handleOpenModal2();
 
-        return false;
-      }
-
-      if (pwd === '') {
-        this.refs.Modal.setText2('密码不能为空')
-        this.refs.Modal.handleOpenModal2();
-
-        return false;
-      }
-
-      $.ajax({
-        url: '/wap/?g=WapSite&c=Login&a=checkin',
-        dataType: 'json',
-        type: 'post',
-        'data': {
-          'username': '13516557373',
-          'pwd': '030465'
-            // 'username': username,
-            // 'pwd': pwd
-        },
-        success: (data) => {
-          if (data.returns) {
-            this.refs.Modal.setText2(data.msg)
-            this.refs.Modal.handleOpenModal2();
-
-            window.localStorage.user_info = data.returns;
-            this.props.dispatch(beginUser());
-
-
-            setTimeout(() => {
-              this.router()
-            }, 1000)
-          } else {
-            this.refs.Modal.setText2(data.msg)
-            this.refs.Modal.handleOpenModal2();
-
-          }
-        },
-        error: () => {
-          console.log('加载失败')
-        }
-      })
-
-
+      return false;
     }
-    // checkGo(){
-    //   return: this.go=this.go?'-1':'-2'
-    // }
+
+    if (pwd === '') {
+      this.refs.Modal.setText2('密码不能为空')
+      this.refs.Modal.handleOpenModal2();
+
+      return false;
+    }
+
+    $.ajax({
+      url: '/wap/?g=WapSite&c=Login&a=checkin',
+      dataType: 'json',
+      type: 'post',
+      'data': {
+        'username': '13516557373',
+        'pwd': '030465'
+          // 'username': username,
+          // 'pwd': pwd
+      },
+      success: (data) => {
+        if (data.returns) {
+          this.refs.Modal.setText2(data.msg)
+          this.refs.Modal.handleOpenModal2();
+
+          window.localStorage.user_info = data.returns;
+          this.props.dispatch(beginUser());
+
+
+          setTimeout(() => {
+            this.router()
+          }, 1000)
+        } else {
+          this.refs.Modal.setText2(data.msg)
+          this.refs.Modal.handleOpenModal2();
+
+        }
+      },
+      error: () => {
+        console.log('加载失败')
+      }
+    })
+
+
+  }
+
 
   render() {
 
@@ -204,6 +199,7 @@ class Login extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    baseUrl: state.MsgAppReducer.baseUrl,
     userStatus: state.MsgAppReducer.userStatus,
     id: state.MsgDetailReducer.id
   }

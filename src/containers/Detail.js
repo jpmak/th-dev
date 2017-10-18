@@ -53,7 +53,8 @@ class Detail extends React.Component {
     }
     history() {
         if (window.localStorage.user_info != 1 || !this.props.userStatus) {
-            this.props.history.push('/Exchange-index.html/login/product/' + this.props.id)
+            console.log('test');
+            this.props.history.push(this.props.baseUrl + '/login/product/' + this.props.id)
         } else {
             this.commit_exchange()
         }
@@ -69,7 +70,7 @@ class Detail extends React.Component {
             },
             success: (data) => {
                 if (data.status) {
-                    this.props.history.push('/Exchange-index.html/IsOrder/' + this.props.match.params.id)
+                    this.props.history.push(this.props.baseUrl + '/IsOrder/' + this.props.match.params.id)
                 }
 
             },
@@ -105,9 +106,9 @@ class Detail extends React.Component {
 }
 const mapStateToProps = state => {
     return {
+        baseUrl: state.MsgAppReducer.baseUrl,
         userStatus: state.MsgAppReducer.userStatus,
         userName: state.MsgAppReducer.userName,
-
         id: state.MsgDetailReducer.id,
         detailLoadingStatus: state.MsgDetailReducer.detailLoadingStatus,
         goodStatus: state.MsgDetailReducer.goodStatus,

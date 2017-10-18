@@ -42,13 +42,14 @@ class SalesWrapper extends React.Component {
             }
         }
     }
-    handleClick(goods_name,exchange_points, item_price, list_image) {
-        this.props.detailData(goods_name,exchange_points, item_price, list_image)
+    handleClick(goods_name, exchange_points, item_price, list_image) {
+        this.props.detailData(goods_name, exchange_points, item_price, list_image)
     }
     render() {
-        const _this = this;
+
+
         let goodsHtmls = this.props.salesItems;
-        let goodsList = goodsHtmls.map(function(goods, index) {
+        let goodsList = goodsHtmls.map((goods, index) => {
             var sales_top = ' '
             switch (index) {
                 case 0:
@@ -63,17 +64,17 @@ class SalesWrapper extends React.Component {
                 default:
                     sales_top = 'top';
             }
-            let item_price=parseFloat(goods.item_price)
-let pointsHtml=''
-            if(item_price!==0){
-               pointsHtml=(<span className='point'><span className='add'>+</span><em className='money'>¥</em>{goods.item_price}</span>) 
-            }else{
-                    pointsHtml=(<span></span>) 
-            
+            let item_price = parseFloat(goods.item_price)
+            let pointsHtml = ''
+            if (item_price !== 0) {
+                pointsHtml = (<span className='point'><span className='add'>+</span><em className='money'>¥</em>{goods.item_price}</span>)
+            } else {
+                pointsHtml = (<span></span>)
+
             }
             return (
 
-                <li  key={index} onClick={_this.handleClick.bind(_this,goods.goods_name,goods.exchange_points,goods.item_price,goods.list_image)}><Link to={'/Exchange-index.html/product/'+goods.item_id} className="upItem" data-id={goods.item_id}  ><div className="info-img"><div className={sales_top}></div>
+                <li  key={index} onClick={this.handleClick.bind(this,goods.goods_name,goods.exchange_points,goods.item_price,goods.list_image)}><Link to={this.props.baseUrl+'/product/'+goods.item_id} className="upItem" data-id={goods.item_id}  ><div className="info-img"><div className={sales_top}></div>
                 <img alt='' src={goods.list_image}  />
                 </div><div className="info-bar"><div className="e-numb"><span className="e-price"><em>{goods.exchange_points} </em>积分</span>{pointsHtml}</div></div></Link> </li>
 

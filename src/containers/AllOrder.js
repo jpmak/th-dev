@@ -34,7 +34,7 @@ class AllOrder extends React.Component {
         document.title = '兑换订单'
         if (window.localStorage.user_info != 1) {
             //类型转换
-            this.props.history.push('/Exchange-index.html/login/allorder/')
+            this.props.history.push(this.props.baseUrl + '/login/allorder/')
         } else {
             this.props.dispatch(allOrderTryRestoreComponent());
         }
@@ -99,7 +99,7 @@ class AllOrder extends React.Component {
         this.props.dispatch(fetchAllOrderGoods(page, type))
     }
     history() {
-        this.props.history.push('/Exchange-index.html/login/allorder')
+        this.props.history.push(this.props.baseUrl + '/login/allorder')
     }
     renderPage() {
         return (
@@ -134,7 +134,7 @@ class AllOrder extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        baseUrl:state.MsgAppReducer.baseUrl,
+        baseUrl: state.MsgAppReducer.baseUrl,
         userStatus: state.MsgAppReducer.userStatus,
         allOrderLoadingStatus: state.MsgAllOrderReducer.allOrderLoadingStatus,
         allOrderGoodsStatus: state.MsgAllOrderReducer.allOrderGoodsStatus,

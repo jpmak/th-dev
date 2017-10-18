@@ -1,0 +1,1079 @@
+input,
+button,
+select,
+textarea
+{
+    outline: 0;
+}
+
+input
+{
+    width: 100%;
+
+    vertical-align: inherit;
+
+    border: 0 none;
+}
+
+.f24
+{
+    font-size: .48rem;
+}
+
+.ml30
+{
+    margin-left: .6rem;
+}
+
+.h100
+{
+    height: 100%;
+}
+
+.m30
+{
+    margin: .6rem;
+}
+
+.mt2
+{
+    margin-top: .4rem;
+}
+
+.mtb3
+{
+    margin: .6rem 0;
+}
+
+.plr3
+{
+    padding: 0 .6rem;
+}
+
+.pt600
+{
+    padding-top: 12rem;
+}
+
+
+.bortp
+{
+    border-top: 1px solid #ddd;
+}
+
+.th-block
+{
+    background-color: #fff;
+}
+
+.th-none
+{
+    background-color: #f5f5f5;
+}
+
+.pay-block
+{
+    line-height: 1.76rem;
+
+    box-sizing: content-box;
+    height: 1.76rem;
+    margin-left: .6rem;
+}
+
+.r_icon
+{
+    width: 13.8rem;
+    height: .2rem;
+    margin-bottom: -.02rem;
+    padding: 0 .6rem;
+
+    background-image: -webkit-gradient(linear, 50% 0, 50% 100%, color-stop(0, #f64e6a), color-stop(100%, #f64e6a));
+
+    -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyFpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpCMkZBMEIwQzUyRDcxMUU2QUU2NDk2QjM3NTQ4M0FBQSIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpCMkZBMEIwRDUyRDcxMUU2QUU2NDk2QjM3NTQ4M0FBQSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkIyRkEwQjBBNTJENzExRTZBRTY0OTZCMzc1NDgzQUFBIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkIyRkEwQjBCNTJENzExRTZBRTY0OTZCMzc1NDgzQUFBIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+KzDiDAAAAQhJREFUeNqskjFLA0EUhGfebWIlqJDCWsg/EGzUzsLKTkghCtpZ2CfY+BO0s7XQysbe1n9ibxVzt+85uQshEAslN/BY2J39dt7uMk5uEBHwKiMXQPYMAhtuGBA8ALCn2kKjTwY+wHin8YnOCiS67GgpakPCggRAENcabwXtYVnrYejLdKb9I4cPE9LLosHmoIiOMr7qxHtBf4M1itkQ2HHg2cMfm0nWlWLmqop4c8QR64W/yeStwi/hZSpoF7oK2Dh/YxzlSKn+BZtDdYc5/HyCclBiUre8rZR3WEEUlGEPhK0ZDVfE6lKoTWQ7Nb3YIdrTsYm83wZp2qXeYXf6D79U3ZYS5h8BBgDCjVjCEgS7mQAAAABJRU5ErkJggg==);
+    -webkit-mask-size: .48rem .2rem;
+}
+
+.payWrap
+{
+    margin: .6rem 0;
+    padding: 1rem 0;
+
+    border-top: 1px solid #d8d8d8;
+}
+
+.payId
+{
+    padding: 0 .6rem;
+}
+
+.payId .payacc
+{
+    width: 13.8rem;
+    padding: .22rem;
+
+    background-color: #f64e6a;
+}
+
+.payId .payacc .payrun
+{
+    height: 2.4rem;
+
+    border: 1px dashed #ca374f;
+}
+
+.payId .payacc .payrun p
+{
+    font-size: .6rem;
+    line-height: 2.4rem;
+
+    padding-left: .8rem;
+
+    color: #fff;
+}
+
+.payId .payacc .payrun em
+{
+    padding: 0 .18rem;
+}
+
+.payId .pay-current
+{
+    font-size: .48rem;
+    line-height: 1.6rem;
+
+    width: 13.8rem;
+    height: 1.6rem;
+    padding: 0 .22rem;
+
+    text-align: right;
+
+    color: #f64e6a;
+    border: 1px solid #d8d8d8;
+}
+
+.payId .pay-current em
+{
+    font-size: .6rem;
+
+    padding: 0 .18rem;
+}
+
+
+/*优惠券选项*/
+
+.yhjlist
+{
+    padding: 0 .6rem;
+}
+
+.yhjlist .yhj-acc
+{
+    width: 13.8rem;
+    height: 3.74rem;
+    padding: .22rem;
+
+    background-color: #f64e6a;
+}
+
+.yhj-run
+{
+    height: 3.3rem;
+
+    border: 1px dashed #ca374f;
+    background: url(../images/user/yhj_j.png) right top no-repeat;
+    background-size: 2rem 2rem;
+}
+
+.yhj-run .yhj-run-l
+{
+    float: left;
+    overflow: hidden;
+
+    width: 6rem;
+}
+
+.yhj-run .yhj-run-l em
+{
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.yhj-run .yhj-run-l p
+{
+    font-size: 1rem;
+    line-height: 3.3rem;
+
+    height: 3.2rem;
+    padding-left: .8rem;
+
+    text-align: left;
+
+    color: #fff;
+}
+
+.yhj-run .yhj-run-r
+{
+    float: right;
+
+    width: 7rem;
+    height: 3.3rem;
+    padding-top: .6rem;
+
+    color: #fff;
+}
+
+.yhj-run .yhj-run-r p
+{
+    line-height: .8rem;
+
+    overflow: hidden;
+
+    height: .8rem;
+
+    text-align: left;
+}
+
+.yhj-run .yhj-run-r p.time
+{
+    text-align: right;
+}
+
+.yhj-run em
+{
+    padding: 0 .18rem;
+}
+
+.yhj-current
+{
+    font-size: .48rem;
+
+    width: 13.8rem;
+    height: 1.6rem;
+    padding: 0 .22rem;
+
+    text-align: center;
+
+    border: 1px solid #d8d8d8;
+    border-top: none;
+    background-color: #fff;
+}
+
+.yhj-current span
+{
+    line-height: 1.6rem;
+
+    display: block;
+
+    height: 1.6rem;
+
+    color: #f64e6a;
+}
+
+.yhj-current span:after
+{
+    display: inline-block;
+
+    width: .62rem;
+    height: .62rem;
+    margin-left: .1rem;
+
+    content: '';
+    vertical-align: text-bottom;
+
+    background-image: -webkit-gradient(linear, 50% 0, 50% 100%, color-stop(0, #f64e6a), color-stop(100%, #f64e6a));
+
+    -webkit-mask: url(../images/user/to_r.png) no-repeat;
+    -webkit-mask-size: .6rem .6rem;
+}
+
+.ntn .yhj-current span:after
+{
+    display: none;
+}
+
+.yhj-current i
+{
+    display: inline-block;
+
+    width: .7rem;
+    height: .7rem;
+    margin: .4rem 0 0 .2rem;
+}
+
+
+/*优惠券color*/
+
+.yellow .yhj-acc
+{
+    background: #ffcc60;
+}
+
+.yellow .yhj-run
+{
+    border: 1px dashed #ce8c00;
+}
+
+.yellow .r_icon
+{
+    background-image: -webkit-gradient(linear, 50% 0, 50% 100%, color-stop(0, #ffcc60), color-stop(100%, #ffcc60));
+}
+
+.yellow .yhj-current span
+{
+    color: #ffcc60;
+}
+
+.yellow .yhj-current span:after
+{
+    background-image: -webkit-gradient(linear, 50% 0, 50% 100%, color-stop(0, #ffcc60), color-stop(100%, #ffcc60));
+}
+
+.green .yhj-acc
+{
+    background: #80cbcc;
+}
+
+.green .yhj-run
+{
+    border: 1px dashed #2a7a7b;
+}
+
+.green .r_icon
+{
+    background-image: -webkit-gradient(linear, 50% 0, 50% 100%, color-stop(0, #80cbcc), color-stop(100%, #80cbcc));
+}
+
+.green .yhj-current span
+{
+    color: #80cbcc;
+}
+
+.green .yhj-current span:after
+{
+    background-image: -webkit-gradient(linear, 50% 0, 50% 100%, color-stop(0, #80cbcc), color-stop(100%, #80cbcc));
+}
+
+.gray .yhj-acc
+{
+    background: #afafaf;
+}
+
+.gray .yhj-run
+{
+    border: 1px dashed #666;
+}
+
+.gray .r_icon
+{
+    background-image: -webkit-gradient(linear, 50% 0, 50% 100%, color-stop(0, #afafaf), color-stop(100%, #afafaf));
+}
+
+.gray .yhj-current span
+{
+    color: #afafaf;
+}
+
+.gray .yhj-current span:after
+{
+    background-image: -webkit-gradient(linear, 50% 0, 50% 100%, color-stop(0, #afafaf), color-stop(100%, #afafaf));
+}
+
+
+/*选项卡*/
+
+.pay-result-list
+{
+    padding: .28rem .28rem 0;
+
+    background-color: #f5f5f5;
+}
+.pay-result-list li
+{
+    margin-bottom: .22rem;
+    padding: .28rem;
+
+    border-radius: .14rem;
+    background-color: #fff;
+}
+.pay-result-list .listwrap
+{
+    padding: 0 .56rem;
+
+    color: #666;
+    border: 1px solid #d8d8d8;
+    border-radius: .14rem;
+}
+.pay-result-list .listli
+{
+    font-size: .48rem;
+    line-height: 1.78rem;
+
+    display: -webkit-box;
+    display: -webkit-flex;
+    display:         flex;
+
+    height: 1.78rem;
+
+    border-bottom: 1px solid #d8d8d8;
+}
+
+.pay-result-list .listli .ico
+{
+    display: inline-block;
+
+    width: .76rem;
+    height: .76rem;
+    margin-top: .45rem;
+
+    background-repeat: no-repeat;
+    background-position: center 0;
+    background-size: .7rem .7rem;
+}
+.pay-result-list .listli .time-icon
+{
+    background-image: url(../images/user/yc_t.png);
+}
+.pay-result-list .listli .sj-icon
+{
+    background-image: url(../images/user/yc_sj.png);
+}
+.pay-result-list .listli .je-icon
+{
+    background-image: url(../images/user/yc_je.png);
+}
+.pay-result-list .listli .ye-icon
+{
+    background-image: url(../images/user/yc_ye.png);
+}
+
+
+.pay-result-list .listli .tit-name
+{
+    width: 2.8rem;
+    padding: 0 .4rem;
+}
+.pay-result-list .listli .tit-set
+{
+    overflow: hidden;
+
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.pay-result-list .brn
+{
+    border: none;
+}
+
+.yck-result .info
+{
+    font-size: .6rem;
+
+    width: 15rem;
+    height: 15rem;
+    margin-bottom: 1rem;
+
+    text-align: center;
+
+    color: #f64e6a;
+    background-repeat: no-repeat;
+    background-position: center  ;
+    background-size: 8.8rem 8.8rem;
+}
+.yck-result .info em
+{
+    padding: 0 .18rem;
+}
+.yck-result .okbg
+{
+    background-image: url(../images/user/yck_ok.jpg);
+}
+.yck-result .btnblack
+{
+    line-height: 2.12rem;
+
+    width: 5.32rem;
+    height: 2.12rem;
+    margin: 0 auto;
+
+    text-align: center;
+
+    color: #fff;
+    background: url(../images/user/btnblack.png);
+    background-size: 5.32rem 2.12rem;
+}
+
+
+
+/*排点*/
+
+.pd_pink
+{
+    background: #f25d5e;
+}
+
+.pd-dian
+{
+    width: 15rem;
+    height: 8rem;
+    padding-top: 3rem;
+
+    text-align: center;
+
+    color: #fff;
+    background: url(../images/user/pai.png) no-repeat center;
+    background-size: 6.7rem 5.56rem;
+}
+
+.pd-dian .num
+{
+    font-size: 1.4rem;
+    line-height: 1.4rem;
+
+    height: 1.4rem;
+}
+
+.pd-dian .name
+{
+    font-size: .72rem;
+}
+
+.pd-list
+{
+    width: 15rem;
+    height: 4rem;
+    padding-top: 1.2rem;
+
+    background: url(../images/user/pd_list.png) no-repeat center;
+    background-size: 15rem 4rem;
+}
+
+.pd-list .info-watch
+{
+    width: 15rem;
+    height: 1.3rem;
+}
+
+.pd-list .info-watch li
+{
+    font-size: .48rem;
+
+    display: block;
+    float: left;
+
+    width: 5rem;
+
+    text-align: center;
+
+    border-right: 1px solid #fff;
+}
+
+.pd-list .info-watch .num
+{
+    font-size: 1.04rem;
+    line-height: 1.04rem;
+
+    height: 1.04rem;
+}
+
+.pd-list .info-watch .glod
+{
+    background: url(../images/user/pd_g.png) no-repeat center;
+    background-size: .96rem .84rem;
+}
+
+.pd-list .info-watch li a
+{
+    color: #fff;
+}
+
+.pd-list .info-watch li:last-child
+{
+    border-right: 0;
+}
+
+.pa-2big .pdds p
+{
+    color: #f22d03;
+}
+
+.pa-2big .zfl p
+{
+    color: #ff9622;
+}
+
+.pa-2big .pdjf p
+{
+    color: #ffbb16;
+}
+
+.pa-2big .dtfl p
+{
+    color: #4cafee;
+}
+
+.pd-info{ background: #fff;}
+.pd-info,.jf-info
+{
+    width: 7.48rem;
+    height: 6.1rem;
+
+    text-align: center;
+
+
+}
+
+.pd-line
+{
+    width: 7.48rem;
+    height: 1.8rem;
+
+    text-align: center;
+
+    background: #fff;
+}
+
+.pd-info p,.jf-info p
+{
+    font-size: .48rem;
+}
+
+.pd-info .num,.jf-info .num
+{
+    font-size: 1.04rem;
+    line-height: 1rem;
+
+    height: 2.6rem;
+    padding-top: 1.6rem;
+}
+
+.pd-info .tit,.pd-line .tit,.jf-info .tit
+{
+    font-size: .56rem;
+
+    padding-top: .6rem;
+
+    color: #333;
+}
+.jf-info .tit{
+    color:#fff;
+}
+.pd-ztd
+{
+    text-align: center;
+}
+
+.pd-ztd .pd-dian
+{
+    width: 15rem;
+    height: 7.5rem;
+    padding-top: 3rem;
+
+    text-align: center;
+
+    color: #fff;
+    background: url(../images/user/dian_r.png) no-repeat center;
+    background-size: 6.7rem 5.56rem;
+}
+
+.pd-ztd .pd-dian .num
+{
+    line-height: 3rem;
+}
+
+.pd-ztd .name
+{
+    font-size: .72rem;
+
+    color: #fff;
+}
+
+.pd-getcard-wrap
+{
+    position: relative;
+
+    background: #f2f2f2;
+}
+
+.pd-getcard
+{
+    position: relative;
+
+    width: 15rem;
+    height: 8rem;
+    padding-top: 3rem;
+
+    text-align: center;
+
+    color: #fff;
+    background: url(../images/user/houbi.png) no-repeat center;
+    background-size: 6.7rem 5.56rem;
+}
+
+.pd-getcard .num
+{
+    font-size: 1.28rem;
+
+    color: #f22d03;
+}
+
+.pd-getcard .name
+{
+    font-size: .48rem;
+
+    color: #666;
+}
+
+.pd-getcard-wrap .b-bg
+{
+    position: absolute;
+    bottom: -.5rem;
+    left: 50%;
+
+    width: 15rem;
+    height: 1.72rem;
+    margin-left: -7.5rem;
+
+    background: url(../images/user/card-bg.png) no-repeat center;
+    background-size: 15rem 1.72rem;
+}
+
+.pd-tip
+{
+    font-size: .6rem;
+
+    padding-top: 2rem;
+
+    text-align: center;
+
+    color: #666;
+}
+
+
+/*签到金币*/
+
+.s_mon
+{
+    width: 15rem;
+    height: 9.84rem;
+    margin-top: 40%;
+
+    background: url(../images/user/sign_monkey.png) center no-repeat;
+    background-size: 12rem 9.84rem;
+}
+
+.sign_g
+{
+    width: 15rem;
+
+    background: url(../images/user/sign_yuncai.png) center 0 no-repeat;
+    background-size: 15rem 9.96rem;
+}
+
+.sign_g .btnwrap
+{
+    padding: 4rem 0 8%;
+}
+
+.sign_g .btnblack
+{
+    line-height: 2.12rem;
+
+    width: 5.32rem;
+    height: 2.12rem;
+    margin: 0 auto;
+
+    text-align: center;
+
+    color: #f54049;
+    background-image: -webkit-gradient(linear, 50% 0, 50% 100%, color-stop(0, #fff), color-stop(100%, #fff));
+
+    -webkit-mask: url(../images/user/btnblack.png) no-repeat;
+    -webkit-mask-size: 5.32rem 2.12rem;
+}
+
+.sign-glob
+{
+    position: absolute;
+    top: 3rem;
+    left: 1rem;
+
+    text-align: left;
+
+    color: #f54049;
+}
+
+.sign-glob .num
+{
+    font-size: 1.6rem;
+    font-weight: bold;
+    line-height: 2rem;
+}
+
+.sign-glob .tit
+{
+    font-size: .48rem;
+    line-height: .4rem;
+}
+
+.th-nav-mon
+{
+    position: fixed;
+    top: .6rem;
+    left: .6rem;
+
+    width: 1.3rem;
+    height: 1.5rem;
+}
+
+.th-nav-mon a
+{
+    display: inline-block;
+    overflow: hidden;
+
+    width: 1.3rem;
+    height: 1.3rem;
+
+    text-indent: -100rem;
+
+    border-radius: 50%;
+    background: rgba(0, 0, 0, .2);
+}
+
+.th-nav-mon:before
+{
+    position: absolute;
+    z-index: -1;
+    top: .4rem;
+    left: .5rem;
+
+    display: inline-block;
+
+    width: .48rem;
+    height: .48rem;
+
+    content: '';
+    -webkit-transform: rotate(-45deg);
+
+    border: solid #000;
+    border-width: 1px 0 0 1px;
+}
+
+
+/*通豆兑换*/
+
+.tdWrap
+{
+    width: 13.8rem;
+    margin: .6rem;
+
+    border-radius: .2rem;
+    background: #e75353;
+}
+
+.tdWrap .tdrun
+{
+    font-size: .56rem;
+    line-height: 3.56rem;
+
+    height: 3.62rem;
+    padding-left: .6rem;
+
+    color: #fff;
+}
+
+.tdWrap .tdrun em
+{
+    padding-left: .4rem;
+}
+
+.tdWrap .tdinput
+{
+    height: 2.2rem;
+
+    border-radius: 0 0 .2rem .2rem;
+    background: #f25d5e;
+}
+
+.tdWrap .tdinput input
+{
+    font-size: .48rem;
+    line-height: 1.0rem;
+
+    height: 1.0rem;
+    padding: .6rem;
+
+    border-radius: .2rem;
+}
+
+a.th-btn-yellow
+{
+    color: #fff;
+    background: #fdc633;
+}
+
+
+/*直推会员*/
+
+.zt-hot-pro
+{
+    overflow: hidden;
+
+    width: 15rem;
+    margin: .4rem auto 0;
+    padding-bottom: .4rem;
+
+    border-top: 1px solid #ddd;
+}
+
+.zt-hot-pro li
+{
+    float: left;
+
+    width: 14.2rem;
+    height: 2.8rem;
+    margin: .4rem .4rem 0;
+
+    border-bottom: 1px solid #ddd;
+    background: #fff;
+}
+
+.zt-hot-pro li .img
+{
+    position: relative;
+
+    float: left;
+
+    margin: 0 .4rem 0 0;
+}
+
+.zt-hot-pro .img-occupied img
+{
+    width: 2.4rem;
+    height: 2.4rem;
+
+    border-radius: .1rem;
+}
+
+.zt-hot-pro li .txt .name
+{
+    font-size: .64rem;
+    font-weight: 2000;
+    line-height: 1rem;
+
+    height: .8rem;
+
+    color: #000;
+}
+
+.zt-hot-pro li .txt .price
+{
+    overflow: hidden;
+
+    height: 3rem;
+    padding-top: .24rem;
+    padding-bottom: .4rem;
+}
+
+.zt-hot-pro li .txt .price .fc-num
+{
+    line-height: .6rem;
+
+    display: block;
+    overflow: hidden;
+}
+
+.zt-hot-pro li .txt .price .fc-num em
+{
+    font-size: .48rem;
+    font-weight: 300;
+    font-weight: normal;
+
+    margin: 0 .6rem 0 0;
+
+    color: #737373;
+}
+
+.zt-hot-pro li .txt .price .fc-num em i
+{
+    margin-left: .2rem;
+}
+
+.bestlist li
+{
+    position: relative;
+}
+
+.bestlist li .fc-num em i.lev
+{
+    font-size: .56rem;
+
+    color: #f5a623;
+}
+
+.bestlist li .fc-num em i.num
+{
+    color: #fd293a;
+}
+
+.bestlist li .img .gold
+{
+    position: absolute;
+    top: -.4rem;
+    left: -.2rem;
+    width: 1.12rem;
+    height: 1.28rem;
+}
+
+.bestlist li .img .gold1
+{
+    background: url(../images/user/gold1.png);
+    background-size: 1.12rem 1.28rem;
+}
+
+.bestlist li .img .gold2
+{
+    background: url(../images/user/gold2.png);
+    background-size: 1.12rem 1.28rem;
+}
+
+.bestlist li .img .gold3
+{
+    background: url(../images/user/gold3.png);
+    background-size: 1.12rem 1.28rem;
+}
+
+.amendid
+{
+    margin-top: 1rem;
+    padding: .6rem 0 0 .6rem;
+}
+
+.amendid .name
+{
+    font-size: .48rem;
+
+    padding-bottom: .2rem;
+
+    color: #819398;
+}
+
+.amendid input
+{
+    font-size: .56rem;
+    line-height: 1.76rem;
+
+    box-sizing: content-box;
+    width: 13.2rem;
+    height: 1.76rem;
+    padding-left: .6rem;
+
+    background: #f2f2f2;
+}
+
+.th-btn-red
+{
+    color: #fff;
+    background: #f25d5e;
+}
+.amendid .pink{color: #f25d5e;}

@@ -76,11 +76,9 @@ class App extends React.Component {
 		}
 	}
 	get_cate_goods(index, id, page) {
-		// this.props.dispatch(getCateId(id))
 		this.props.dispatch(fetchCateGoods(index, id, page))
 	}
 	changeIsData(e) {
-		console.log(e);
 		this.isDataing = e
 	}
 	changeGoods(e, page) {
@@ -110,6 +108,7 @@ class App extends React.Component {
 		this.props.dispatch(liMove(index, widths, width))
 	}
 	render() {
+
 		const {
 			loadingStatus,
 			bannerItems,
@@ -122,9 +121,10 @@ class App extends React.Component {
 			pullDownStatus,
 			pageStatus,
 			liWidth,
-			moveWidths
+			moveWidths,
+			baseUrl
 		} = this.props
-		
+
 		return (
 			<div id='AppWrap'>
 		<div id='scrollwrap' >
@@ -135,13 +135,13 @@ class App extends React.Component {
 		
 		<div className='w'>
 		<div id='search' style={{ zIndex:'200'}}>
-		<SearchBox baseUrl={this.props.baseUrl} loadingStatus={this.props.loadingStatus} parmKeyword={this.props.match.params.keyword} history={this.props.history} />
+		<SearchBox baseUrl={baseUrl} loadingStatus={this.props.loadingStatus} parmKeyword={this.props.match.params.keyword} history={this.props.history} />
 		</div>
 		<div id="AppBanner">
 		<SlickBanner bannerItems={bannerItems}/>
 		</div>
 		<div className='jf-bsell-box'>
-        <SalesWrapper salesItems={salesItems} detailData={this.detailData.bind(this)}/>
+        <SalesWrapper baseUrl={baseUrl} salesItems={salesItems} detailData={this.detailData.bind(this)}/>
         </div>
   		<div id="AppBanner_2">
 		<SlickBanner2 bannerItems_2={bannerItems_2}/>
@@ -149,11 +149,11 @@ class App extends React.Component {
 		</div>
 		</div>
 			<div className='w'>
-		<JsCate ref='JsCate' changeIsData={this.changeIsData.bind(this)} UpDataCateId={this.UpDataCateId.bind(this)}  loadingStatus={loadingStatus} detailData={this.detailData.bind(this)} cateList={cateList} cateGoods={cateGoods} liWidth={liWidth} moveWidths={moveWidths} pushIndex={pushIndex} pageStatus={pageStatus} pullDownStatus={pullDownStatus} pullUpStatus={pullUpStatus} UpDataPullUpStatus={this.UpDataPullUpStatus.bind(this)} get_cate_goods={this.get_cate_goods.bind(this)} changeGoods={this.changeGoods.bind(this)} liMove={this.liMove.bind(this)}/>
+		<JsCate baseUrl={baseUrl} ref='JsCate' changeIsData={this.changeIsData.bind(this)} UpDataCateId={this.UpDataCateId.bind(this)}  loadingStatus={loadingStatus} detailData={this.detailData.bind(this)} cateList={cateList} cateGoods={cateGoods} liWidth={liWidth} moveWidths={moveWidths} pushIndex={pushIndex} pageStatus={pageStatus} pullDownStatus={pullDownStatus} pullUpStatus={pullUpStatus} UpDataPullUpStatus={this.UpDataPullUpStatus.bind(this)} get_cate_goods={this.get_cate_goods.bind(this)} changeGoods={this.changeGoods.bind(this)} liMove={this.liMove.bind(this)}/>
 
             </div>
 		<footer id='nav '>
-            <FooterNav/>
+            <FooterNav baseUrl={baseUrl}/>
             </footer>
 		<WechatSdk appId={this.props.appId} timestamp={this.props.timestamp} nonceStr={this.props.nonceStr} signature={this.props.signature} jsApiList={this.props.jsApiList}/>
 </div>
@@ -165,7 +165,7 @@ class App extends React.Component {
 
 const mapStateToProps = state => {
 	return {
-        baseUrl:state.MsgAppReducer.baseUrl,
+		baseUrl: state.MsgAppReducer.baseUrl,
 		searchLoadingStatus: state.MsgListPageReducer.loadingStatus,
 		loadingStatus: state.MsgAppReducer.loadingStatus,
 		y: state.MsgAppReducer.y,

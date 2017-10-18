@@ -23,7 +23,7 @@ import SuccessView from './containers/SuccessView';
 import AllOrder from './containers/AllOrder';
 import OrderDetail from './containers/OrderDetail';
 import TranList from './containers/TranList';
-import NotFoundPage from './containers/404';
+import NotFoundPage from './containers/NotFoundPage';
 
 
 
@@ -51,14 +51,14 @@ const store = createStore(
 	applyMiddleware(...middleware)
 )
 
-const baseUrl='/wa/Exchange-index.html';
+const baseUrl = '/wa/Exchange-index.html';
 const Jf = () => (
 	<Router>
 	<div>
 	<Route exact path={baseUrl}  component={App} />
 	<Route path={baseUrl+ '/login/:router?'}  component={Login} />
 	 <Route path={baseUrl+'/product/:id?'} component={Detail}/>
-	 <Route path={baseUrl+'/earch/:keyword?'} component={Searchhead} />
+	 <Route path={baseUrl+'/search/:keyword?'} component={Searchhead} />
 	 <Route path={baseUrl +'/list/'} component={List}/>
 	 <Route path={baseUrl+'/home/'} component={Home}/>
 	 <Route path={baseUrl+'/log/'} component={Log}/>

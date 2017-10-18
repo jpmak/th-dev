@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="wap-font-scale" content="no">
+    <meta name="keywords" content="我的优惠券">
+    <meta name="description" content="我的优惠券">
+    <title>我的优惠券</title>
+    <link rel="stylesheet" type="text/css" href="../css/th-common.css">
+    <link rel="stylesheet" type="text/css" href="../css/yck.css">
+</head>
+
+<body class="brand">
+    <header>
+        <div class="th-nav wbox">
+            <div class="th-nav-back"><a href="javascript:history.go(-1);">返回</a></div>
+            <div class="th-nav-title of bg">我的优惠券</div>
+        </div>
+    </header>
+    <div class="w">
+        <div class="th-main ">
+            <div id="example-one" class="w33">
+                <ul class="nav title-list cf">
+                    <li class="filter-item on">未使用(3)</li>
+                    <li class="filter-item">已使用(1)</li>
+                    <li class="filter-item">已过期(1)</li>
+                    <p><b></b></p>
+                </ul>
+                <div class="list-wrap">
+                    <div class="product show">
+                        <ul>
+                            <li class="mtb3">
+                                <a href="">
+                                    <div class="yhjlist plr3 red">
+                                        <div class="r_icon"> </div>
+                                        <div class="yhj-acc">
+                                            <div class="yhj-run">
+                                                <div class="yhj-run-l">
+                                                    <p>¥<em>20</em></p>
+                                                </div>
+                                                <div class="yhj-run-r">
+                                                    <p class="s-name f38  bold">歌莉娅官方旗舰歌莉娅官方旗舰店店</p>
+                                                    <p class="if f30">使用条件:<em>满1000减200</em></p>
+                                                    <p class="time f24 mt10"><em>2015.12.15</em>-<em>2018.12.15</em></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="yhj-current"><span>马上使用</span></div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="mtb3">
+                                <a href="">
+                                    <div class="yhjlist plr3 yellow">
+                                        <div class="r_icon"> </div>
+                                        <div class="yhj-acc">
+                                            <div class="yhj-run">
+                                                <div class="yhj-run-l">
+                                                    <p>¥<em>2000</em></p>
+                                                </div>
+                                                <div class="yhj-run-r">
+                                                    <p class="s-name f38  bold">歌莉娅官方旗舰歌莉娅官方旗舰店店</p>
+                                                    <p class="if f30">使用条件:<em>满1000减200</em></p>
+                                                    <p class="time f24 mt10"><em>2015.12.15</em>-<em>2018.12.15</em></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="yhj-current"><span>马上使用</span></div>
+                                    </div>
+                                </a>
+                            </li>
+                       
+                        </ul>
+                    </div>
+                    <div class="product">
+                        <ul>
+                            <li style="width:15rem;height:15rem;background:url(../images/kong.png) center  no-repeat;">
+                           
+                            </li>
+                        </ul>
+                    </div>
+                 <div class="product">
+                        <ul>
+                            <li class="mtb3">
+                                <a href="">
+                                    <div class="yhjlist plr3 gray ntn">
+                                        <div class="r_icon"> </div>
+                                        <div class="yhj-acc">
+                                            <div class="yhj-run">
+                                                <div class="yhj-run-l">
+                                                    <p>¥<em>2000</em></p>
+                                                </div>
+                                                <div class="yhj-run-r">
+                                                    <p class="s-name f38  bold">歌莉娅官方旗舰歌莉娅官方旗舰店店</p>
+                                                    <p class="if f30">使用条件:<em>满1000减200</em></p>
+                                                    <p class="time f24 mt10"><em>2015.12.15</em>-<em>2018.12.15</em></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="yhj-current"><span>优惠券已过使用权限</span></div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--选择地区弹层-->
+    <!--遮罩层-->
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+    
+
+        $('.title-list li').mouseover(function() {
+            var liindex = $('.title-list li').index(this);
+            $(this).addClass('on').siblings().removeClass('on');
+            $('.list-wrap div.product').eq(liindex).fadeIn(150).siblings('div.product').hide();
+            var liWidth = $('.title-list li').width();
+            $('#example-one .title-list p').stop(false, true).animate({
+                'left': liindex * liWidth + 'px'
+            }, 300);
+        });
+
+
+    });
+    </script>
+</body>
+
+</html>

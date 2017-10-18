@@ -13,7 +13,7 @@ class TopNav extends React.Component {
         let fixed = +this.props.fixed ? 'th-nav-list' : ''
         return (
             <div className={'th-nav wbox '+fixed} style={{background:color,borderBottom:+border+'px solid #DCDCDC'}}>
-               <Goback go={this.props.go}/>
+               <Goback go={this.props.go} isNone={this.props.isNone?this.props.isNone:''}/>
             <div className="th-nav-title of bg">{this.props.titleName}</div>
             <div className="th-nav-right tr" style={{display: this.props.dis}}>
             <a className={this.props.icon} href={this.props.icon_link}> </a>

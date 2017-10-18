@@ -80,8 +80,8 @@ class ResultWrap extends React.Component {
         let parmKeyword = this.props.parmKeyword ? this.props.parmKeyword : ' ';
         let list = parmKeyword.indexOf('@list');
         let listNum = parseInt(parmKeyword)
-        // if(this.props.parmKeyword){
-        //  let listNum = parseInt(parmKeyword)
+            // if(this.props.parmKeyword){
+            //  let listNum = parseInt(parmKeyword)
 
         // }
         if (this.props.loadingStatus === 1) {
@@ -341,7 +341,7 @@ class ResultWrap extends React.Component {
                 return (
 
 
-                    <li key={index} onClick={this.detailData.bind(this,goods.goods_name,goods.exchange_points,goods.item_price,goods.list_image)}><Link to={'/Exchange-index.html/product/'+goods.item_id} className='upItem' data-id={goods.item_id}><div className="info-img">{/*<LazyLoad offset={100} once>*/}<img alt="" className="lazy" src={goods.list_image}/>{/*</LazyLoad>*/}</div><div className="info-bar"><div className="pro-title">{goods.goods_name}</div><div className="e-numb"><span className="e-price"><em  className='moneyPrice'>{goods.exchange_points}</em>积分</span>{pointsHtml}</div></div></Link>      </li>
+                    <li key={index} onClick={this.detailData.bind(this,goods.goods_name,goods.exchange_points,goods.item_price,goods.list_image)}><Link to={this.props.baseUrl+'/product/'+goods.item_id} className='upItem' data-id={goods.item_id}><div className="info-img">{/*<LazyLoad offset={100} once>*/}<img alt="" className="lazy" src={goods.list_image}/>{/*</LazyLoad>*/}</div><div className="info-bar"><div className="pro-title">{goods.goods_name}</div><div className="e-numb"><span className="e-price"><em  className='moneyPrice'>{goods.exchange_points}</em>积分</span>{pointsHtml}</div></div></Link>      </li>
 
                 );
             })

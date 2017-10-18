@@ -329,21 +329,20 @@ a.th-btn.th-btn-assertive.th-btn-outline {
 .modalOk{
     width: .48rem;
     height: .48rem;
-    margin-bottom: .5rem;
     display: block;
     text-align: center;
-    margin:0 auto;
+    margin:0 auto .2rem;
       background: url($bg+'ok.png') no-repeat;
       background-size: .48rem .48rem;
 }
 .modalError{
     width: .48rem;
     height: .48rem;
-    margin-bottom: .5rem;
+
 
     display: block;
     text-align: center;
-    margin:0 auto;
+    margin:0 auto .2rem;
       background: url($bg+'error.png') no-repeat;
       background-size: .48rem .48rem;
 }
@@ -393,7 +392,43 @@ a.confirm {
     color: #fff;
     background: #ed1a3b;
 }
+       .NoData,.NotFound {
+            width: 3.75rem;
+            height: 3.75rem;
+            margin-top: 1.2rem;
+            margin: 0 auto;
+            text-align: center;
+            padding: 1rem 0;
+            color: #E7940C;
+            h3 {
+                height: .5rem;
+                font-size: .40rem;
+                line-height: .5rem;
+                margin-top: 4.30rem;
+                font-weight: 500;
+            }
+        }
+ .NoData{
+            background: url(../images/noCollection.png) no-repeat center;
+            background-size: 3.75rem 3.75rem;
 
+ }
+ .NotFound {
+            background: url(../images/404.png) no-repeat center .5rem;
+            background-size: 3.75rem 3.66rem;
+            height: auto;
+   padding:.4rem 0;
+              h3 {display:inline-block}
+.broder_f36 {
+    border-radius: 50px;
+    border: 1px #000 solid;
+    width: 1.8rem;
+    color: #000;
+
+    margin: .22rem auto;
+    padding: .06rem .12rem;
+}
+ }
 
 /*积分分类*/
 

@@ -152,7 +152,7 @@ class JsCate extends React.Component {
                     </div>
 }
         </Motion>
-        <CateGoods ref='CateGoods' changeIsData={this.changeIsData.bind(this)} ref='CateGoods' detailData={this.detailData.bind(this)} cateGoods={this.props.cateGoods} pageStatus={this.props.pageStatus} pullUpStatus={this.props.pullUpStatus} pullDownStatus={this.props.pullDownStatus} changeGoods={this.props.changeGoods} />
+        <CateGoods ref='CateGoods' baseUrl={this.props.baseUrl} changeIsData={this.changeIsData.bind(this)} ref='CateGoods' detailData={this.detailData.bind(this)} cateGoods={this.props.cateGoods} pageStatus={this.props.pageStatus} pullUpStatus={this.props.pullUpStatus} pullDownStatus={this.props.pullDownStatus} changeGoods={this.props.changeGoods} />
     
 
       

@@ -75,7 +75,7 @@ class LogGoods extends React.Component {
                 }
                 return (
                     <li key={index}>
-                    <Link to={'/Exchange-index.html/orderdetail/'+LogGood.exchange_order_number} className='upItem' data-id={LogGood.user_id}>
+                    <Link to={this.props.baseUrl+'/orderdetail/'+LogGood.exchange_order_number} className='upItem' data-id={LogGood.user_id}>
 
 <div className='order'>
 <div className='orderNum'><span>订单号：</span><span>{LogGood.exchange_order_number}</span></div>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="wap-font-scale" content="no">
+    <meta name="keywords" content="新增地址">
+    <meta name="description" content="新增地址">
+    <title>新增地址</title>
+    <link rel="stylesheet" type="text/css" href="../css/th-common.css">
+    <link rel="stylesheet" type="text/css" href="../css/myth.css">
+</head>
+
+<body class="brand">
+    <header>
+        <div class="th-nav wbox">
+            <div class="th-nav-back"><a href="javascript:history.go(-1);">返回</a></div>
+            <div class="th-nav-title of bg">新增地址</div>
+  
+        </div>
+    </header>
+    <div class="w">
+        <div class="th-main">
+            <ul class="form-list th-block  form-list-reset">
+                <li class="input-block wbox">
+                    <p>收货人</p>
+                    <div class="wbox-flex ml30">
+                        <input id="addr-name" maxlength="12" type="text" autocomplete="off" placeholder="收货人姓名">
+                    </div>
+                </li>
+                <li class="input-block wbox">
+                    <p>手机号码</p>
+                    <div class="wbox-flex ml30">
+                        <input id="addr-tel" maxlength="11" type="text" autocomplete="off" placeholder="收货人手机号码">
+                    </div>
+                </li>
+            </ul>
+            <div class="fl-space"></div>
+            <ul class="form-list th-block  form-list-reset">
+                <li class="input-block wbox">
+                    <p>所在地区</p>
+                    <div id="expressArea" href="javascript:void(0)" class="to-address wbox-flex ml30">
+                    <span></span><span></span><span></span>
+                    </div>
+                    <div class="arrow arrow-right"></div>
+                </li>
+                <li class="input-block wbox">
+                    <p>详细地址</p>
+                    <div class="wbox-flex ml30">
+                        <input id="addr-detailAddress" maxlength="50" type="text" autocomplete="off" placeholder="请填写详细地址">
+                    </div>
+                </li>
+                <li class="input-block wbox">
+                    <p>设为默认地址</p>
+                    <div class="wbox-flex">
+                        <input type="checkbox" class="input-reset th-checkbox">
+                    </div>
+                </li>
+            </ul>
+            <a id="NickName" href="javascript:void(0)" class="js-btn th-btn th-btn-big  th-btn-block m30 th-btn-dark th-btn-positive">保存并使用</a>
+        </div>
+    </div>
+    <!--选择地区弹层-->
+    <section id="areaLayer" class="express-area-box">
+        <header>
+            <h3>选择地区</h3>
+            <a id="backUp" class="back" href="javascript:void(0)" title="返回"></a>
+            <a id="closeArea" class="close" href="javascript:void(0)" title="关闭"></a>
+        </header>
+        <article id="areaBox">
+            <ul id="areaList" class="area-list"></ul>
+        </article>
+    </section>
+    <!--遮罩层-->
+    <div id="areaMask" class="mask"></div>
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.min.js"></script>
+    <script src="../js/jquery.area.js"></script>
+    <script type="text/javascript " src="js/myth.js "></script>
+</body>
+
+</html>

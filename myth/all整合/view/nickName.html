@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="wap-font-scale" content="no">
+    <meta name="keywords" content="修改个人资料">
+    <meta name="description" content="修改个人资料">
+    <title>修改个人资料</title>
+    <link rel="stylesheet" type="text/css" href="../css/th-common.css">
+    <link rel="stylesheet" type="text/css" href="../css/myth.css">
+</head>
+
+<body>
+    <header>
+        <div class="th-nav wbox">
+            <div class="th-nav-back"><a href="javascript:history.go(-1);">返回</a></div>
+            <div class="th-nav-title of bg">昵称</div>
+            <div class="th-nav-right tr pr">
+                <img onclick="$('#sub-title').toggle();$('#screenIfmNav').toggle();" src="../images/more.png" style="width:1rem;">
+                <ul class="nav-more-list" id="sub-title">
+                    <li><a class="nav-more-icon home-icon" href="">首页</a></li>
+                    <li><a class="nav-more-icon cart-icon" href="">购物车</a></li>
+                    <li><a class="nav-more-icon search-icon" href="">全部分类</a></li>
+                    <li><a class="nav-more-icon cate-icon" href="">搜索</a></li>
+                    <li><a class="nav-more-icon ebuy-icon" href="">我的通惠</a></li>
+                    <li><a class="nav-more-icon refresh-icon" href="javascript:location.reload()">刷新</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="w">
+        <div class="th-main">
+            <div class="input-block pr p30 wbox mt30 sn-block f28 " style="background:#fff;">
+                <div class="wbox-flex">
+                    <input id="sample" type="text" autocomplete="off" placeholder="设置个性昵称（不超过20字）">
+                </div>
+                <em class="delete"></em>
+            </div>
+            <p class="p30 gray9 mt20 f24">4-20个字符，可由中英文、数字组成。</p>
+            <a id="NickName" href="javascript:void(0)" class="js-btn th-btn th-btn-big  th-btn-block m30 th-btn-dark th-btn-positive">保存</a>
+        </div>
+    </div>
+    </div>
+    <div class="alertMak" >
+    <div class="alert-box ">昵称长度4-20个字符昵称长昵</div>
+
+
+    </div>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript" src="js/myth.js"></script>
+</body>
+
+</html>

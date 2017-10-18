@@ -41,7 +41,7 @@ class OrderDetail extends React.Component {
 
         if (window.localStorage.user_info != 1) {
             // 转换数字
-            p.then(this.props.history.push('/Exchange-index.html/login/orderDetail/'))
+            p.then(this.props.history.push(this.props.baseUrl + '/login/orderDetail/'))
         } else {
 
             this.props.dispatch(OrderDetailTryRestoreComponent());
@@ -93,9 +93,10 @@ class OrderDetail extends React.Component {
     }
 
 
-    detailData(goods_name, item_price, list_image) {
+    detailData(goods_name, exchange_points, item_price, list_image) {
         window.localStorage.detailData = JSON.stringify({
             'productName': goods_name,
+            'productPoints': exchange_points,
             'productPrice': item_price,
             'productImg': [list_image]
         })
@@ -259,7 +260,7 @@ class OrderDetail extends React.Component {
                 </div>
             </div>
 
-<Link to={'/Exchange-index.html/TranList/'+orderInfoItems.exchange_order_number}>
+<Link to={this.props.baseUrl+'/TranList/'+orderInfoItems.exchange_order_number}>
 <div className="seller-shipped">
      <div className="bg-icon"></div>
        {emsHtml}
@@ -272,7 +273,7 @@ class OrderDetail extends React.Component {
                     <div className="order-sub">
                         <div className="order-sub-num"  >子订单号:{orderInfoItems.exchange_order_number}</div>
                     </div>
-                    <Link to={'/Exchange-index.html/product/'+orderInfoItems.item_id} >
+                    <Link to={this.props.baseUrl+'/product/'+orderInfoItems.item_id} onClick={this.detailData.bind(this, orderInfoItems.goods_name,orderInfoItems.t_beans,orderInfoItems.price, orderInfoItems.goods_image)}>
                     <div className="order-lists">
                         <div className="goods-msg">
                          <div className="icon"><img src={orderInfoItems.goods_image}/></div>
@@ -353,6 +354,7 @@ class OrderDetail extends React.Component {
 
 const mapStateToProps = state => {
     return {
+        baseUrl: state.MsgAppReducer.baseUrl,
         userStatus: state.MsgAppReducer.userStatus,
         orderDetailLoadingStatus: state.MsgOrderDetailReducer.orderDetailLoadingStatus,
         orderDetailGoodsStatus: state.MsgOrderDetailReducer.orderDetailGoodsStatus,

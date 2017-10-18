@@ -6,9 +6,11 @@ class Goback extends React.Component {
 		window.history.go(go)
 	}
 	render() {
+		let isNone = this.props.isNone ? 'none' : 'block'
+
 		return (
 
-			<a className="class th-nav-back" onClick={this.go.bind(this)}></a>
+			<a className="class th-nav-back" onClick={this.go.bind(this)} style={{display:isNone}}></a>
 		)
 
 

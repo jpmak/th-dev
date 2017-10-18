@@ -2,7 +2,9 @@ import React from 'react';
 
 
 import $ from 'jquery';
-
+import {
+    connect
+} from 'react-redux'
 import TopNav from '../components/TopNav';
 
 import DataNone from '../components/public/DataNone';
@@ -32,7 +34,7 @@ class TranList extends React.Component {
 
         if (window.localStorage.user_info != 1) {
             //转换数字
-            p.then(this.props.history.push('/Exchange-index.html/login/tranList/'))
+            p.then(this.props.history.push(this.props.baseUrl + '/login/tranList/'))
         }
     }
     componentDidMount() {
@@ -155,7 +157,10 @@ class TranList extends React.Component {
 
     }
 }
+const mapStateToProps = state => {
+    return {
+        baseUrl: state.MsgAppReducer.baseUrl,
+    }
+}
 
-
-
-export default TranList
+export default connect(mapStateToProps)(TranList)

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="wap-font-scale" content="no">
+    <meta name="keywords" content="兑换积分">
+    <meta name="description" content="兑换积分">
+    <title>兑换积分</title>
+    <link rel="stylesheet" type="text/css" href="../css/th-common.css">
+    <link rel="stylesheet" type="text/css" href="../css/yck.css">
+    <link rel="stylesheet" type="text/css" href="../css/dialog_password.css">
+</head>
+
+<body class="th-block">
+    <header>
+        <div class="th-nav wbox">
+            <div class="th-nav-back"><a href="javascript:history.go(-1);">返回</a></div>
+            <div class="th-nav-title of bg">兑换积分</div>
+        </div>
+    </header>
+    <div class="w">
+        <div class="th-main  th-btn-red">
+            <div class="pa-2big hor-view">
+                <div class="jf-info  th-btn-red">
+                    <p class="num">88</p>
+                    <p class="unit">个</p>
+                    <p class="tit">通豆</p>
+                </div>
+                <div class="hor-gap" style="margin:1.2rem 0; height:3.7rem; border-left:1px solid #fff; background:#f5f5f5;"></div>
+                <div class="jf-info  th-btn-red">
+                    <p class="num">1200</p>
+                    <p class="unit">分</p>
+                    <p class="tit">积分</p>
+                </div>
+            </div>
+        </div>
+        <div class="th-main pay amendid">
+            <div class="name pink">注: 100通豆=1积分</div>
+            <div class="wbox">
+                <div class="wbox-flex">
+                    <input id="payup" style="" maxlength="50" type="text" autocomplete="off" placeholder="填写兑换积分的数量" value="">
+                </div>
+            </div>
+        </div>
+        <div class="th-block ">
+            <a id="NickName" href="javascript:void(0) " class="js-btn th-btn th-btn-big th-btn-block m30 th-btn-dark th-btn-red ">确认</a>
+        </div>
+    </div>
+    <!-- 弹出支付密码 -->
+     <!-- <span id="" class="help-block ">支付密码</span> -->
+<!--      <div class="dialog_password">
+            <div class="name">
+                <span>支付密码</span>
+            </div>
+            <div id="payPassword_container" class="alieditContainer clearfix" data-busy="0">
+                <div class="i-block" data-error="i_error">
+                    <div class="i-block six-password">
+                        <input class="i-text sixDigitPassword" id="payPassword_rsainput" type="tel" autocomplete="off" required="required" value="" name="payPassword_rsainput" data-role="sixDigitPassword" tabindex="" maxlength="6" minlength="6" aria-required="true">
+                        <div tabindex="0" class="sixDigitPassword-box">
+                            <i style="border-color: transparent;" class=""><b style="visibility: hidden;"></b></i>
+                            <i><b style="visibility: hidden;"></b></i>
+                            <i><b style="visibility: hidden;"></b></i>
+                            <i><b style="visibility: hidden;"></b></i>
+                            <i><b style="visibility: hidden;"></b></i>
+                            <i><b style="visibility: hidden;"></b></i>
+                            <span style=" left: 0px; visibility: hidden;" id="cardwrap" data-role="cardwrap"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a id="paybtn " href="javascript:void(0) "  class="js-pay-btn pay-btn-pink pay-btn-dark">支付</a>
+        </div>
+ <div class="dialog_overlay dark"></div>  -->
+</body>
+
+<script src="../js/jquery.min.js"></script>
+<script src="../js/jquery-validate.js"></script>
+<script src="../js/dialog-password.js"></script>
+<script>
+
+var dialogHtml = '\
+ <div class="dialog_password">\
+            <div class="name">\
+                <span>支付密码</span>\
+            </div>\
+            <div id="payPassword_container" class="alieditContainer clearfix" data-busy="0">\
+                <div class="i-block" data-error="i_error">\
+                    <div class="i-block six-password">\
+                        <input class="i-text sixDigitPassword" id="payPassword_rsainput" type="tel" autocomplete="off" required="required" value="" name="payPassword_rsainput" data-role="sixDigitPassword" tabindex="" maxlength="6" minlength="6" aria-required="true">\
+                        <div tabindex="0" class="sixDigitPassword-box">\
+                            <i style="border-color: transparent;" class=""><b style="visibility: hidden;"></b></i>\
+                            <i><b style="visibility: hidden;"></b></i>\
+                            <i><b style="visibility: hidden;"></b></i>\
+                            <i><b style="visibility: hidden;"></b></i>\
+                            <i><b style="visibility: hidden;"></b></i>\
+                            <i><b style="visibility: hidden;"></b></i>\
+                            <span style=" left: 0px; visibility: hidden;" id="cardwrap" data-role="cardwrap"></span>\
+                        </div>\
+                    </div>\
+                </div>\
+            </div>\
+            <a id="paybtn " href="javascript:void(0) "  class="js-pay-btn pay-btn-pink pay-btn-dark">支付</a>\
+        </div>\
+ <div class="dialog_overlay dark "></div>';
+
+   $('body').append(dialogHtml);
+
+    $(function() {
+
+
+       $(".js-btn,.dialog_overlay").click(function() {
+            $(".dialog_overlay,.dialog_password").toggle();
+        });
+        $(".i-text").keyup(function(){
+    var len=this.value.length;
+     if(len==6){
+ $(".js-pay-btn").removeClass('pay-btn-dark');
+
+     }else{
+      $(".js-pay-btn").addClass('pay-btn-dark');  
+     }
+
+});
+});
+
+
+</script>
+
+</html>

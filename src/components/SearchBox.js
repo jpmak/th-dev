@@ -67,7 +67,7 @@ class SearchBox extends React.Component {
     }
 
     historyPush(e) {
-        this.props.history.push('/Exchange-index.html/search/' + e)
+        this.props.history.push(this.props.baseUrl + '/search/' + e)
 
     }
     searchMsgStatus_fun(e) {
@@ -76,16 +76,9 @@ class SearchBox extends React.Component {
         });
     }
     pushHide() {
-            this.props.pushHide();
-        }
-        // searchNum() {
-        //     this.props.searchNum();
-        // }
-        // keywordClick(e) {
-        //     this.props.keywordClick(e)
-        // }
-        // 
-        // ,'height': window.screen.height 
+        this.props.pushHide();
+    }
+
     render() {
         return (
             <div className="th-search-container on-blur" style={{position:'relative',zIndex:'200'}}>

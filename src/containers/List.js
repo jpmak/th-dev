@@ -78,7 +78,7 @@ class List extends React.Component {
         })
     }
     historyPush(e) {
-        this.props.history.push('/Exchange-index.html/search/' + e)
+        this.props.history.push(this.props.baseUrl + '/search/' + e)
     }
     _handleClick(e) {
         this.refs.getarr.funStoreHistory(e);
@@ -142,7 +142,7 @@ class List extends React.Component {
             <div id="js-list">
         <div className="list-wrap wbox" style={{height:this.state.wrapHeight}}>
         <ListNav navItems={this.props.navItems} pushIndex={this.props.pushIndex} navStatus={this.props.navStatus} height={this.state.wrapHeight} listGoods={this.getListGoods.bind(this)} changeLoading={this.changeLoading.bind(this)}/>
-        <ListGoods y={this.props.y} listLoadingStatus={this.props.listLoadingStatus} backupY={this.backupY.bind(this)} goodItems={this.props.goodItems} changeLoading={this.props.changeLoading}  height={this.state.wrapHeight} goodStatus={this.props.goodStatus} goodsFun={this.funStoreHistory.bind(this)}/>
+        <ListGoods baseUrl={this.props.baseUrl} y={this.props.y} listLoadingStatus={this.props.listLoadingStatus} backupY={this.backupY.bind(this)} goodItems={this.props.goodItems} changeLoading={this.props.changeLoading}  height={this.state.wrapHeight} goodStatus={this.props.goodStatus} goodsFun={this.funStoreHistory.bind(this)}/>
         <Modal ref='Modal' />
         </div>
     </div>);
@@ -218,6 +218,7 @@ class GobackUp extends React.Component {
 
 const mapStateToProps = state => {
     return {
+        baseUrl: state.MsgAppReducer.baseUrl,
         listLoadingStatus: state.MsgListReducer.listLoadingStatus,
         navStatus: state.MsgListReducer.navStatus,
         navItems: state.MsgListReducer.navItems,

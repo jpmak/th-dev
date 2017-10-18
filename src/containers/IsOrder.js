@@ -90,7 +90,7 @@ class IsOrder extends React.Component {
         })
     }
     successView(e) {
-        this.props.history.push('/Exchange-index.html/successview/' + e)
+        this.props.history.push(this.props.baseUrl + '/successview/' + e)
     }
     checkId(exchange_points) {
         let userTourism = this.props.userTourism;
@@ -118,6 +118,7 @@ class IsOrder extends React.Component {
         setTimeout(this.refs.PayPwd.focus, 0)
 
     }
+
     renderPage() {
         return (
             <div >
@@ -150,6 +151,7 @@ class IsOrder extends React.Component {
 }
 const mapStateToProps = state => {
     return {
+        baseUrl: state.MsgAppReducer.baseUrl,
         id: state.MsgDetailReducer.id,
         item_price: state.MsgDetailReducer.item_price,
         exchange_points: state.MsgDetailReducer.exchange_points,

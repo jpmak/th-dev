@@ -32,7 +32,7 @@ class Log extends React.Component {
 
         if (window.localStorage.user_info != 1) {
             // 转换数字
-            this.props.history.push('/Exchange-index.html/login/log/')
+            this.props.history.push(this.props.baseUrl + '/login/log/')
         } else {
             this.props.dispatch(logTryRestoreComponent());
         }
@@ -92,7 +92,7 @@ class Log extends React.Component {
         this.props.dispatch(fetchLogGoods(this.props.logGoodsPage))
     }
     history() {
-        this.props.history.push('/Exchange-index.html/login/log')
+        this.props.history.push(this.props.baseUrl + '/login/log')
     }
     renderPage() {
         return (
@@ -101,7 +101,7 @@ class Log extends React.Component {
 
                <div className='w pt88'>
 
-        <LogGoods userStatus={this.props.userStatus} history={this.history.bind(this)} logLoadingStatus={this.props.logLoadingStatus} beginRefresh={this.beginRefresh.bind(this)} logGoodsPage={this.props.logGoodsPage} logList={this.props.logList}  pullDownStatus={this.props.pullDownStatus} changeGoods={this.changeGoods.bind(this)}/>
+        <LogGoods baseUrl={this.props.baseUrl} userStatus={this.props.userStatus} history={this.history.bind(this)} logLoadingStatus={this.props.logLoadingStatus} beginRefresh={this.beginRefresh.bind(this)} logGoodsPage={this.props.logGoodsPage} logList={this.props.logList}  pullDownStatus={this.props.pullDownStatus} changeGoods={this.changeGoods.bind(this)}/>
    </div>
 
 </div>)
@@ -127,6 +127,7 @@ class Log extends React.Component {
 
 const mapStateToProps = state => {
     return {
+        baseUrl: state.MsgAppReducer.baseUrl,
         userStatus: state.MsgAppReducer.userStatus,
         logLoadingStatus: state.MsgLogReducer.logLoadingStatus,
         LogGoodsStatus: state.MsgLogReducer.LogGoodsStatus,

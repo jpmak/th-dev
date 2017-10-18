@@ -116,8 +116,7 @@ class Modal extends React.Component {
   handleOpenModal2() {
     this.setState({
       showModal2: true
-    }, () => {
-      setTimeout((this.handleCloseModal2), 800)
+}, () => {      setTimeout((this.handleCloseModal2), 800)
     });
   }
   handleOpenModal3() {

@@ -1,16 +1,18 @@
 import React from 'react';
 import TopNav from '../components/TopNav';
-
+import {
+    connect
+} from 'react-redux'
 
 class SuccessView extends React.Component {
     componentWillMount() {
         document.title = '支付成功'
     }
     historyOrderDetail() {
-        this.props.history.push('/Exchange-index.html/orderDetail/' + this.props.match.params.id)
+        this.props.history.push(this.props.baseUrl + '/orderDetail/' + this.props.match.params.id)
     }
     historyHome() {
-        this.props.history.push('/Exchange-index.html/')
+        this.props.history.push(this.props.baseUrl + '/')
 
     }
 
@@ -52,6 +54,9 @@ class SuccessView extends React.Component {
     }
 }
 
-
-
-export default SuccessView
+const mapStateToProps = state => {
+    return {
+        baseUrl: state.MsgAppReducer.baseUrl,
+    }
+}
+export default connect(mapStateToProps)(SuccessView)

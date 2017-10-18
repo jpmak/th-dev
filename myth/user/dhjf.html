@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="wap-font-scale" content="no">
+    <meta name="keywords" content="兑换积分">
+    <meta name="description" content="兑换积分">
+    <title>兑换积分</title>
+    <link rel="stylesheet" type="text/css" href="../css/th-common.css">
+    <link rel="stylesheet" type="text/css" href="../css/yck.css">
+    <style>
+    .dialog_password {
+        height: 7rem;
+        width: 13.4rem;
+        background: #fff;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 100;
+        margin: auto;
+        border-radius: .2rem;
+        padding: .6rem;
+    }
+    
+    .dialog_password .name {
+        color: #333;
+        display: block;
+        font-size: .56rem;
+        text-align: center;
+        margin-bottom: .4rem;
+    }
+    
+    .pay-btn-pink {
+        width: 8rem;
+        text-align: center;
+        margin: .5rem 2rem;
+        color: #fff;
+        background: #f25d5e;
+        line-height: 1.6rem;
+        display: inline-block;
+        height: 1.6rem;
+        padding: 0 .5rem;
+        border-radius: .1rem;
+    }
+    
+    .pay-btn-dark {
+        background: #909090;
+        color: #ccc;
+    }
+   .clearfix:after {
+        clear: both;
+    }
+    
+    .clearfix:before,
+    .clearfix:after {
+        content: " ";
+        display: table;
+    }
+    
+    .alieditContainer {
+        position: relative;
+    }
+    
+    .sixDigitPassword {
+        position: absolute;
+        top: 0;
+        height: 2rem;
+        color: #fff;
+        font-size: 12px;
+        -webkit-box-sizing: content-box;
+        box-sizing: content-box;
+        -webkit-user-select: initial;
+        outline: 'none';
+        z-index: 999;
+        opacity: 0;
+        filter: alpha(opacity=0);
+    }
+    
+    .sixDigitPassword-box {
+        width: 12.1rem;
+        cursor: text;
+        background: #fff;
+        outline: none;
+        position: relative;
+        padding: .4rem 0;
+        height: 2rem;
+        border: 1px solid #ddd;
+        border-radius: 2px;
+    }
+    
+    .sixDigitPassword-box i {
+        float: left;
+        display: block;
+        padding: .4rem 0;
+        width: 2rem;
+        height: 1.2rem;
+        border-left: 1px solid #cccccc;
+    }
+    
+    .sixDigitPassword-box .active {
+        background: url('../images/user/password-blink.gif') no-repeat center center;
+    }
+    
+    .sixDigitPassword-box b {
+        display: block;
+        margin: 0 auto;
+        width: 7px;
+        height: 7px;
+        overflow: hidden;
+        visibility: hidden;
+        background: url('../images/user/passeord-dot.png') no-repeat;
+    }
+    
+    .sixDigitPassword-box span {
+        position: absolute;
+        display: block;
+        left: 0px;
+        top: 0px;
+        height: 1rem;
+        border: 1px solid rgba(82, 168, 236, .8);
+        border: 1px solid #00ffff\9;
+        border-radius: 2px;
+        visibility: hidden;
+        -webkit-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.75), 0 0 8px rgba(82, 168, 236, 0.6);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+    }
+    
+    .ui-securitycore .ui-form-item .ui-form-explain {
+        margin-top: 8px;
+    }
+    
+    .i-block {
+        display: inline-block;
+    }
+    
+    .six-password {
+        position: relative;
+        height: 2rem;
+        width: 12.4rem;
+        overflow: hidden;
+        vertical-align: middle;
+    }
+    
+    #cardwrap {
+        color: #000;
+        height: 1.92rem;
+        width: 2rem;
+    }
+    </style>
+</head>
+
+<body class="th-block">
+    <header>
+        <div class="th-nav wbox">
+            <div class="th-nav-back"><a href="javascript:history.go(-1);">返回</a></div>
+            <div class="th-nav-title of bg">兑换积分</div>
+        </div>
+    </header>
+    <div class="w">
+        <div class="th-main  th-btn-red">
+            <div class="pa-2big hor-view">
+                <div class="jf-info  th-btn-red">
+                    <p class="num">88</p>
+                    <p class="unit">个</p>
+                    <p class="tit">通豆</p>
+                </div>
+                <div class="hor-gap" style="margin:1.2rem 0; height:3.7rem; border-left:1px solid #fff; background:#fff;"></div>
+                <div class="jf-info  th-btn-red">
+                    <p class="num">1200</p>
+                    <p class="unit">分</p>
+                    <p class="tit">积分</p>
+                </div>
+            </div>
+        </div>
+        <div class="th-main pay amendid">
+            <div class="name pink">注: 100通豆=1积分</div>
+            <div class="wbox">
+                <div class="wbox-flex">
+                    <input id="payup" style="" maxlength="50" type="text" autocomplete="off" placeholder="填写兑换积分的数量" value="">
+                </div>
+            </div>
+        </div>
+        <div class="th-block ">
+            <a id="NickName " href="javascript:void(0) " class="js-btn th-btn th-btn-big th-btn-block m30 th-btn-dark th-btn-red ">确认</a>
+        </div>
+    </div>
+    <!-- 弹出支付密码 -->
+    <form action="" method="post" name="payPassword" id="form_paypsw">
+        <div class="dialog_password ">
+            <span id="payPassword_rsainput-error" class="help-block name">支付密码</span>
+            <!--             <div class="">支付密码</div> -->
+            <div id="payPassword_container" class="alieditContainer clearfix" data-busy="0">
+                <div class="i-block" data-error="i_error">
+                    <div class="i-block six-password">
+                        <input class="i-text sixDigitPassword" id="payPassword_rsainput" type="password" autocomplete="off" required="required" value="" name="payPassword_rsainput" data-role="sixDigitPassword" tabindex="" maxlength="6" minlength="6" aria-required="true">
+                        <div tabindex="0" class="sixDigitPassword-box">
+                            <i style="border-color: transparent;" class=""><b style="visibility: hidden;"></b></i>
+                            <i><b style="visibility: hidden;"></b></i>
+                            <i><b style="visibility: hidden;"></b></i>
+                            <i><b style="visibility: hidden;"></b></i>
+                            <i><b style="visibility: hidden;"></b></i>
+                            <i><b style="visibility: hidden;"></b></i>
+                            <span style=" left: 0px; visibility: hidden;" id="cardwrap" data-role="cardwrap"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--       <div class="input-block wbox ">
+
+            <div class="wbox-flex ">
+                <input  type="number" maxlength="1" value="">
+            </div>
+            <div class="wbox-flex ">
+                <input type="password " readonly value="">
+            </div>
+            <div class="wbox-flex ">
+                <input  type="password " readonly=" ">
+            </div>
+            <div class="wbox-flex ">
+                <input  type="password " readonly=" ">
+            </div>
+            <div class="wbox-flex ">
+                <input type="password " readonly=" ">
+            </div>
+            <div class="wbox-flex border-n ">
+                <input type="password " readonly=" ">
+            </div>
+        </div> -->
+            <a id="paybtn " href="javascript:void(0) " class="js-btn pay-btn-pink pay-btn-dark">支付</a>
+        </div>
+    </form>
+    <div class="dialog_overlay dark " style="display:block "></div>
+</body>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/jquery-validate.js"></script>
+<script type="text/javascript">
+var _formPay = $('#form_paypsw');
+
+_formPay.validate({
+    rules: {
+        'payPassword_rsainput': {
+            'minlength': 6,
+            'maxlength': 6,
+            required: true,
+            digits: true,
+            numPassword: true,
+            echoNum: true
+        }
+    },
+
+    messages: {
+        'payPassword_rsainput': {
+            'required': '请填写支付密码',
+            'maxlength': '密码最多为{0}个字符',
+            'minlength': '密码最少为{0}个字符',
+            'digits': '密码只能为数字',
+            'numPassword': '连号不可用，相同数字不可用',
+            'echoNum': '连号不可用，相同数字不可用'
+        }
+    },
+    // errorPlacement: function(error, element) {
+    //     element.closest('div[data-error="i_error"]').append(error);
+    // },
+    submitHandler: function(form) {
+        var _form = $(form);
+        form.submit();
+
+    }
+});
+
+var payPassword = $("#payPassword_container"),
+    _this = payPassword.find('i'),
+    k = 0,
+    j = 0,
+    password = '',
+    _cardwrap = $('#cardwrap');
+//点击隐藏的input密码框,在6个显示的密码框的第一个框显示光标
+payPassword.on('focus', "input[name='payPassword_rsainput']", function() {
+
+    var _this = payPassword.find('i');
+    if (payPassword.attr('data-busy') === '0') {
+        //在第一个密码框中添加光标样式
+        _this.eq(k).addClass("active");
+        _cardwrap.css('visibility', 'visible');
+        payPassword.attr('data-busy', '1');
+    }
+    if (payPassword.attr('data-busy') === '5') {
+        //在第一个密码框中添加光标样式
+
+        payPassword.attr('data-busy', '1');
+    }
+
+});
+//change时去除输入框的高亮，用户再次输入密码时需再次点击
+payPassword.on('change', "input[name='payPassword_rsainput']", function() {
+    _cardwrap.css('visibility', 'hidden');
+    _this.eq(k).removeClass("active");
+    payPassword.attr('data-busy', '0');
+}).on('blur', "input[name='payPassword_rsainput']", function() {
+
+    _cardwrap.css('visibility', 'hidden');
+    _this.eq(k).removeClass("active");
+    payPassword.attr('data-busy', '0');
+
+});
+
+//使用keyup事件，绑定键盘上的数字按键和backspace按键
+payPassword.on('keyup', "input[name='payPassword_rsainput']", function(e) {
+
+    var e = (e) ? e : window.event;
+
+    //键盘上的数字键按下才可以输入
+    if (e.keyCode == 8 || (e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105)) {
+        k = this.value.length; //输入框里面的密码长度
+        l = _this.size(); //6
+
+        for (; l--;) {
+
+            //输入到第几个密码框，第几个密码框就显示高亮和光标（在输入框内有2个数字密码，第三个密码框要显示高亮和光标，之前的显示黑点后面的显示空白，输入和删除都一样）
+            if (l === k) {
+                _this.eq(l).addClass("active");
+                _this.eq(l).find('b').css('visibility', 'hidden');
+
+            } else {
+                _this.eq(l).removeClass("active");
+                _this.eq(l).find('b').css('visibility', l < k ? 'visible' : 'hidden');
+
+            }
+
+            if (k === 6) {
+                j = 5;
+            } else {
+                j = k;
+            }
+            $('#cardwrap').css('left', j * 2 + 'rem');
+
+        }
+    } else {
+        //输入其他字符，直接清空
+        var _val = this.value;
+        this.value = _val.replace(/\D/g, '');
+    }
+});
+</script>
+
+</html>

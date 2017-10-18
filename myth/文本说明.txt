@@ -1,0 +1,29 @@
+T:5\7
+P:0\1\2\3\4\\6\8
+
+
+开发者测试账号：
+youyo188
+123456
+
+/* http://dev.thgo8.com/wapsite2/?control=usercenter */
+
+D:\git-project\016人民通惠\backend\development\view\WapSite\User
+
+最新
+http://dev.thgo8.com/wapsite.php/c-User-a-center.html   
+http://dev.thgo8.com/?g=WapSite&c=User&a=integral
+
+
+
+
+
+
+/mnt/www/developer/wapsite2/view	
+
+优惠券
+http://dev.thgo8.com/?g=WapSite&c=User&a=coupon
+
+
+json  (intergral=>controller)
+http://dev.thgo8.com/?g=WapSite&c=User&a=integral

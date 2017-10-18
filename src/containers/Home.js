@@ -31,7 +31,7 @@ class Home extends React.Component {
         let p = new Promise(function(resolve, reject) {});
         if (window.localStorage.user_info != 1) {
             //转换数字
-            p.then(this.props.history.push('/Exchange-index.html/login/home/'))
+            p.then(this.props.history.push(this.props.baseUrl + '/login/home/'))
         } else {
             this.props.dispatch(InfoTryRestoreComponent());
         }
@@ -111,7 +111,7 @@ class Home extends React.Component {
    我可兑换
    </div>
 
-        <InfoGoods homeLoadingStatus={this.props.homeLoadingStatus} beginRefresh={this.beginRefresh.bind(this)} InfoGoodsPage={this.props.InfoGoodsPage} InfoGoods={this.props.InfoGoodsItems} detailData={this.detailData.bind(this)} pullDownStatus={this.props.pullDownStatus} changeGoods={this.changeGoods.bind(this)}/>
+        <InfoGoods baseUrl={this.props.baseUrl} homeLoadingStatus={this.props.homeLoadingStatus} beginRefresh={this.beginRefresh.bind(this)} InfoGoodsPage={this.props.InfoGoodsPage} InfoGoods={this.props.InfoGoodsItems} detailData={this.detailData.bind(this)} pullDownStatus={this.props.pullDownStatus} changeGoods={this.changeGoods.bind(this)}/>
    </div>
 
 </div>)
@@ -165,7 +165,7 @@ class Info extends React.Component {
 
 const mapStateToProps = state => {
     return {
-
+        baseUrl: state.MsgAppReducer.baseUrl,
         userStatus: state.MsgAppReducer.userStatus,
         userBuy: state.MsgAppReducer.userBuy,
         userMoney: state.MsgAppReducer.userMoney,

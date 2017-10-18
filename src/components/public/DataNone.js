@@ -2,10 +2,11 @@ import React from 'react';
 class DataNone extends React.Component {
 
 	render() {
-		let tip=this.props.tip?this.props.tip:'没有相关数据'
+		let tip = this.props.tip ? this.props.tip : '没有相关数据'
 		return (
-<div className='NoData'>	
+			<div className='NoData'>	
 			<h3>{tip}</h3>
+	
 			</div>
 		)
 

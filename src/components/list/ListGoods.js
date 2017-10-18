@@ -29,16 +29,15 @@ class ListGoods extends React.Component {
         this.props.goodsFun(e)
     }
     render() {
-        const self = this
         let ListGood = [];
         let ListGoods = this.props.goodItems ? this.props.goodItems : 0;
         if (ListGoods !== 0) {
-            ListGood = ListGoods.map(function(good, index) {
+            ListGood = ListGoods.map((good, index) => {
 
-                let liGood = good.thcate.map(function(liThcate, index) {
+                let liGood = good.thcate.map((liThcate, index) => {
                     return (
                         <li  key={index}>
-                    <Link to={'/Exchange-index.html/search/'+liThcate.cate_id+'@list'} onClick={self.goodsFun.bind(self,liThcate.cate_id)}>
+                    <Link to={this.props.baseUrl+'/search/'+liThcate.cate_id+'@list'} onClick={this.goodsFun.bind(this,liThcate.cate_id)}>
                     <LazyLoad   height={10} offset={10}>
                              <img  src={liThcate.cate_thumb}/>
                                    </LazyLoad>

@@ -81,7 +81,7 @@ class Searchhead extends React.Component {
     }
     historyPush(e) {
         document.title = e + ' - 商品搜索-通惠购'
-        this.props.history.push('/Exchange-index.html/search/' + e)
+        this.props.history.push(this.props.baseUrl + '/search/' + e)
     }
     pushValue(e) {
         this.setState({
@@ -300,7 +300,7 @@ class Searchhead extends React.Component {
 
         </div>
 
-            <ResultWrap ref = "getload" detailInit={this.detailInit.bind(this)} value={this.state.value} items = {items} status = {status} _keywordClick={this._keywordClick.bind(this)}  parmKeyword={ this.props.match.params.keyword}  y = {y}  price={price}  searchNum={searchNum}    backupIScrollY = {this.backupIScrollY.bind(this)} pageStatus = {pageStatus}  tryRestoreComponent = {this.tryRestoreComponent.bind(this)}
+            <ResultWrap baseUrl={this.props.baseUrl} ref = "getload" detailInit={this.detailInit.bind(this)} value={this.state.value} items = {items} status = {status} _keywordClick={this._keywordClick.bind(this)}  parmKeyword={ this.props.match.params.keyword}  y = {y}  price={price}  searchNum={searchNum}    backupIScrollY = {this.backupIScrollY.bind(this)} pageStatus = {pageStatus}  tryRestoreComponent = {this.tryRestoreComponent.bind(this)}
                       defaultClick = {this.defaultClick.bind(this)}  cate_idClick={this.cate_idClick.bind(this)} priceClick = {this.priceClick.bind(this)}
                volumeClick = {this.volumeClick.bind(this)}  beginRefresh = {this.beginRefresh.bind(this)}
             beginLoad = {this.beginLoad.bind(this)}    updateLoadingStatus = {this.updateLoadingStatus.bind(this)}
@@ -337,7 +337,7 @@ class GobackUp extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        //iscroll//
+        baseUrl: state.MsgAppReducer.baseUrl,
         items: state.MsgListPageReducer.items,
         pageStatus: state.MsgListPageReducer.pageStatus,
         pullDownStatus: state.MsgListPageReducer.pullDownStatus, // 下拉状态
