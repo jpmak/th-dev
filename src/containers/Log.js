@@ -56,6 +56,10 @@ class Log extends React.Component {
         window.removeEventListener('scroll', this.loghandleScroll);
         if (this.props.logLoadingStatus === 2) { // 首屏成功刷出，则备份y
             this.props.dispatch(backupIScrollY(this.scrollTop))
+        }else if(this.props.logLoadingStatus === 3){
+            // console.log(1)
+               this.props.dispatch(updateLogLoadingStatus(1));
+
         }
 
     }

@@ -132,7 +132,9 @@ class Login extends React.Component {
           window.localStorage.user_info = data.returns;
           this.props.dispatch(beginUser());
 
-
+  // setTimeout(
+  //           this.router()
+  //         , 1000)
           setTimeout(() => {
             this.router()
           }, 1000)

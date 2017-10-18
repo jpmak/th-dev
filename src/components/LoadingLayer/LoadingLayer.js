@@ -13,6 +13,7 @@ export default class LoadingLayer extends React.Component {
         let onRetry = this.props.onRetry ? this.props.onRetry : () => {};
         let loadingStatus = this.props.loadingStatus ? this.props.loadingStatus :
             0; // 0: wait for loading 1: isLoading, 2: loading ok 3:loading fail
+ 
 
         let loadingTips = (<span>开始加载</span>);
         if (loadingStatus === 1) {

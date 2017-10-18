@@ -40,9 +40,8 @@ class Home extends React.Component {
     componentDidMount() {
         window.addEventListener('scroll', this.homehandleScroll);
         if (this.props.homeLoadingStatus === 1 || this.props.userStatus === 0) {
-            this.props.dispatch(beginUser())
-            this.props.dispatch(beginRefresh())
-
+            // this.props.dispatch(beginUser())
+     this.props.dispatch(beginRefresh())
         } else {
             window.scrollTo(0, this.props.y)
         }
@@ -55,8 +54,7 @@ class Home extends React.Component {
         window.removeEventListener('scroll', this.homehandleScroll);
         if (this.props.homeLoadingStatus === 2) { // 首屏成功刷出，则备份y
             this.props.dispatch(backupIScrollY(this.scrollTop))
-
-        }
+        }     
 
     }
     homehandleScroll() {
@@ -104,14 +102,15 @@ class Home extends React.Component {
     renderPage() {
         return (
             <div id='home'>
-        <TopNav titleName = "我的积分" color='#FBFBFB' border='0'/>
+        <TopNav titleName = "我的积分" color='#FBFBFB' border='0' fixed='1'/>
+         <div className='w pt88'>
 <Info userBuy={this.props.userBuy}  userMoney={this.props.userMoney} userTourism={this.props.userTourism}/>
-               <div className='w'>
+              
  <div className='infoTitle'>
    我可兑换
    </div>
 
-        <InfoGoods baseUrl={this.props.baseUrl} homeLoadingStatus={this.props.homeLoadingStatus} beginRefresh={this.beginRefresh.bind(this)} InfoGoodsPage={this.props.InfoGoodsPage} InfoGoods={this.props.InfoGoodsItems} detailData={this.detailData.bind(this)} pullDownStatus={this.props.pullDownStatus} changeGoods={this.changeGoods.bind(this)}/>
+        <InfoGoods baseUrl={this.props.baseUrl} userStatus={this.props.userStatus} homeLoadingStatus={this.props.homeLoadingStatus} beginRefresh={this.beginRefresh.bind(this)} InfoGoodsPage={this.props.InfoGoodsPage} InfoGoods={this.props.InfoGoodsItems} detailData={this.detailData.bind(this)} pullDownStatus={this.props.pullDownStatus} changeGoods={this.changeGoods.bind(this)}/>
    </div>
 
 </div>)

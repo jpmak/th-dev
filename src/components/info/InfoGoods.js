@@ -157,9 +157,8 @@ class InfoGoods extends React.Component {
 
 
     render() {
-
         let renderHtml = [];
-        if (this.props.homeLoadingStatus !== 2) {
+        if (this.props.homeLoadingStatus !== 2 ) {
             renderHtml = this.renderLoading();
         } else {
 
