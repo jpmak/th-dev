@@ -2,7 +2,6 @@ import React from 'react';
 
 
 
-
 class ListNav extends React.Component {
     constructor(props) {
         super(props);
@@ -20,10 +19,10 @@ class ListNav extends React.Component {
         })
         this.props.listGoods(e, id);
         this.props.changeLoading(1);
-        let ListGoods=document.getElementById('list-label');
+        let ListGoods = document.getElementById('list-label');
 
-        ListGoods.scrollTop=0;
-  
+        ListGoods.scrollTop = 0;
+
     }
     render() {
         let ListNavs = this.props.navItems;

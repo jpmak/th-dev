@@ -37,6 +37,7 @@ class OrderDetail extends React.Component {
 
     componentWillMount() {
         document.title = '订单详情'
+        window.scrollTo(0, 0)
         let p = new Promise(function(resolve, reject) {});
 
         if (window.localStorage.user_info != 1) {
@@ -160,7 +161,6 @@ class OrderDetail extends React.Component {
             type: 'post',
             'data': {
                 'order_number': this.props.match.params.id
-
             },
             success: (data) => {
                 this.refs.Modal.handleCloseModal3();
@@ -195,9 +195,9 @@ class OrderDetail extends React.Component {
         let emsHtml = [];
         let btnHtml = [];
 
-
-        if (orderInfoItems.ems_status === 1 && this.props.trackInfoContext !== '') {
-
+        console.log(this.props.trackInfoContext);
+        if (orderInfoItems.ems_status == 1 && trackInfoContext.length > 0) {
+            //转换类型
             emsHtml = (<div className="mid-cont">
                    <div className="condition">{this.props.trackInfoContext}</div>
                         <div className="time"> {this.props.trackInfoTime}</div>
@@ -260,13 +260,13 @@ class OrderDetail extends React.Component {
                 </div>
             </div>
 
-<Link to={this.props.baseUrl+'/TranList/'+orderInfoItems.exchange_order_number}>
-<div className="seller-shipped">
+<div className= {trackInfoContext.length>0?'seller-shipped':'seller-shipped gray'}>
+<Link className='' to={this.props.baseUrl+'/TranList/'+orderInfoItems.exchange_order_number}>
      <div className="bg-icon"></div>
        {emsHtml}
-  
+  </Link>
  </div>
-</Link>
+
 
             <div className="order-details">
                 <div className="goods-details">

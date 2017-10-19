@@ -54,8 +54,7 @@ class Home extends React.Component {
         window.removeEventListener('scroll', this.homehandleScroll);
         if (this.props.homeLoadingStatus === 2) { // 首屏成功刷出，则备份y
             this.props.dispatch(backupIScrollY(this.scrollTop))
-        }     
-
+        }
     }
     homehandleScroll() {
         let scrollTop = this.getScrollTop(); //滚动条滚动高度

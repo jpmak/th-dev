@@ -66,7 +66,7 @@ class ListGoods extends React.Component {
             <div id="js-list-img" className="list-details wbox-flex ">
   
                 <div className="list-detail">
-                    <div id='list-label' className="list-label list-label-img " style={{overflowY: 'scroll',position: 'relative',height:this.props.height}}>
+                    <div id='list-label' className="list-label list-label-img " style={{overflowY: 'scroll',position: 'relative'}}>
                     {ListGood}
                     </div>
 

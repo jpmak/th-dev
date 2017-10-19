@@ -34,7 +34,7 @@ const initState = {
   moveWidths: 0, //块状移动长度
   liWidth: 0, //块状长度
   y: 0,
-  baseUrl: '/wa/Exchange-index.html', //router路径
+  baseUrl: '/wap/Exchange-index.html', //router路径
   urlRoot: '' //ajax路径
 
 };

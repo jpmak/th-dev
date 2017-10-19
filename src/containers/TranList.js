@@ -9,6 +9,7 @@ import TopNav from '../components/TopNav';
 
 import DataNone from '../components/public/DataNone';
 
+import LoadingLayer from '../components/LoadingLayer/LoadingLayer';
 
 import {
 
@@ -22,7 +23,8 @@ class TranList extends React.Component {
         super(props);
         this.state = {
             tranListItem: [],
-            cur: 0
+            cur: 0,
+            state: 1
 
         };
 
@@ -47,7 +49,9 @@ class TranList extends React.Component {
 
 
     }
-
+    onRetryLoading() {
+        this.fetchTranList(this.props.match.params.id)
+    }
     fetchTranList(orderNum) {
         $.ajax({
             url: '/wap/?g=WapSite&c=Exchange&a=getOrderPrompt',
@@ -58,11 +62,12 @@ class TranList extends React.Component {
             },
             // 161012114229844205
             success: (data) => {
+                this.setState({
+                    state: 2
+                });
                 if (data.status && data.delivery.track) {
                     this.setState({
                         tranListItem: data.delivery.track
-                    }, () => {
-
                     })
 
                 } else {
@@ -72,7 +77,9 @@ class TranList extends React.Component {
                 }
             },
             error: () => {
-
+                this.setState({
+                    state: 3
+                });
             }
         });
     }
@@ -80,8 +87,22 @@ class TranList extends React.Component {
     checkIndex(index) {
         return index === this.state.cur ? 'log-lists cur' : 'log-lists'
     }
+    renderLoading() {
+        let outerStyle = {
+            height: window.innerHeight / 2
+        };
+        return (
+            <div>
+                <LoadingLayer outerStyle={outerStyle} onRetry={this.onRetryLoading.bind(this)}
+        loadingStatus = {this.state.state}
+                />
+            </div>
+        );
+    }
+
 
     renderPage() {
+        console.log(this.state.tranListItem.info);
         let detHtml = [];
         let detGoods = this.state.tranListItem.info ? this.state.tranListItem.info : '';
 
@@ -136,12 +157,19 @@ class TranList extends React.Component {
     }
 
     render() {
+
         let renderHtml = [];
-        if (this.state.tranListItem.info === undefined || this.state.tranListItem.info.length === 0) {
+
+        if (this.state.state !== 2) {
+            renderHtml = this.renderLoading();
+        } else if (this.state.tranListItem.info === undefined || this.state.tranListItem.info.length === 0) {
             renderHtml = <DataNone tip='暂无物流信息'/>
+
         } else {
+
             renderHtml = this.renderPage();
         }
+
         return (
             <div>
         <TopNav titleName = "物流列表" go='-1'/>

@@ -121,6 +121,7 @@
         .th-search-box a.search-btn {
             width: .7rem;
             display: inline-block;
+          top:.35rem;
             right: .2rem;
             opacity: 1;
         }
@@ -139,6 +140,8 @@
     }
 
     .th-nav-list .th-search-box a.search-btn {
+          top:.35rem;
+
         right: .2rem;
         opacity: 1;
         width: 9%;
@@ -241,11 +244,18 @@
     }
 
     .list-wrap {
+        margin-top: 1.02rem;
         position: relative;
+     
     }
-
+#js-list-items{
+                position: fixed;
+    left: 0;
+    top: 1.02rem;
+}
     .list-items {
         width: 1.78rem;
+
         background: #FFF;
         li {
             font-size: .3rem;
@@ -283,6 +293,7 @@
     }
 
     .list-details {
+            margin: 0 0 0 1.78rem;
         padding: 0 .15rem .15rem;
         background: #F2F2F2;
         .list-banner {

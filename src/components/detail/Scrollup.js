@@ -73,7 +73,9 @@ class Scrollup extends React.Component {
         return scrollHeight;
     }
     handleScroll() {
-
+        let clientHeight = this.getClientHeight()
+        let scrollTop = this.getScrollTop(); //滚动条滚动高度
+        let scrollHeight = this.getScrollHeight(); //滚动内容高度
 
 
         let produtShowHeight = $('.produt-show').height();
@@ -81,9 +83,12 @@ class Scrollup extends React.Component {
         let productBodyHeight = $('#productBody').height();
         let scrollUp = produtShowHeight + headHeight - productBodyHeight;
         // let scrollwrap = document.getElementById('scrollwrap').offsetHeight
-        let scrollTop = this.getScrollTop(); //滚动条滚动高度
 
+        if ((clientHeight + scrollTop + 10) > (scrollHeight)) {
+            this.props.bottomFun(true)
+        }
 
+        console.log(scrollTop);
 
         if (scrollTop < scrollUp && this.scrollUp) {
             this.props.iScrollUp();
@@ -95,6 +100,8 @@ class Scrollup extends React.Component {
                     isPushUp: 'none'
                 })
             });
+            this.props.bottomFun(false)
+
             this.scrollUp = false;
         }
     }

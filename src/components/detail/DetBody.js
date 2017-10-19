@@ -37,6 +37,7 @@ class DetBody extends React.Component {
         this.movingY = 0;
         this.touchRangeBannerX = 0; // 触控距离;
         this.movIngbannerX = 0;
+        this.bottomState = false;
 
     }
     stopPropagation(e) {
@@ -104,6 +105,9 @@ class DetBody extends React.Component {
             iScrollUp: !this.state.iScrollUp
         })
     }
+    bottomFun(e) {
+        this.bottomState = e;
+    }
     startMoveBannerX(e) {
         this.touchRangeBannerX = e.touches[0].pageX;
     }
@@ -120,8 +124,14 @@ class DetBody extends React.Component {
         this.movingY = e.touches[0].pageY
     }
     endMove() {
+
+        console.log(this.bottomState);
+
+
+
         if (Math.abs(this.touchRangeBannerX - this.movingbannerX) < 20) {
-            if (this.touchRangeY - this.movingY > 20 && this.state.iScrollUp && this.movingY !== 0) {
+
+            if (this.touchRangeY - this.movingY > 20 && this.state.iScrollUp && this.bottomState === true && this.movingY !== 0) {
                 // console.log(this.state.iScrollUp);
                 this.iScrollUp();
 
@@ -136,6 +146,7 @@ class DetBody extends React.Component {
         }
 
     }
+
     componentWillReceiveProps(nextProps) {
         if (nextProps.goodStatus !== this.props.goodStatus) {
             this.setState({
@@ -194,7 +205,7 @@ class DetBody extends React.Component {
             </div>
                <FixBtn title = "立即兑换" stock={stock} />
             <BottomTipFloor/>
-        <Scrollup ref='Scrollup'  goods_body={this.props.goods_body} iScrollUp={this.iScrollUp.bind(this)}/>
+        <Scrollup ref='Scrollup'  goods_body={this.props.goods_body} bottomFun={this.bottomFun.bind(this)} iScrollUp={this.iScrollUp.bind(this)}/>
             </div>
                 <PayWay/>
             <CoverMask />

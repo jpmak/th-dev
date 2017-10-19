@@ -12,13 +12,17 @@ import SearchResult from '../components/search/SearchResult';
 import ListNav from '../components/list/ListNav';
 import ListGoods from '../components/list/ListGoods';
 import Modal from '../components/public/Modal';
-
+import {
+    scrollUp
+} from '../actions'
 import {
     ListTryRestoreComponent,
     fetchListGoods,
     beginRefresh,
     changeLoading,
     backupY,
+
+    listLoadingStatus,
     updateListLoadingStatus
 } from '../actions/list'
 import {
@@ -37,9 +41,13 @@ class List extends React.Component {
             pushSearch: true,
             wrapHeight: 0
         };
+        this.scrollTop = 0;
+        this.listhandleScroll = this.listhandleScroll.bind(this);
+
     }
     componentWillMount() {
         document.title = '积分商品分类'
+
         this.props.dispatch(updateLoadingStatus(1)); //重置搜索页的loading状态
         this.props.dispatch(ListTryRestoreComponent());
         if (window.localStorage.searchhistory) {
@@ -50,10 +58,14 @@ class List extends React.Component {
 
     }
     componentDidMount() {
+
         this.props.dispatch(beginShare('list'));
+        window.addEventListener('scroll', this.listhandleScroll);
 
         if (this.props.listLoadingStatus === 1) {
             this.props.dispatch(beginRefresh());
+        } else {
+            window.scrollTo(0, this.props.y)
         }
         let windowHeight = window.screen.height;
         let searchBox = document.getElementById("boxHeight").offsetHeight;
@@ -62,8 +74,18 @@ class List extends React.Component {
         })
 
     }
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.listhandleScroll);
+        if (this.props.listLoadingStatus === 2) { // 首屏成功刷出，则备份y
+            this.props.dispatch(backupY(this.scrollTop));
+        }
+    }
+    listhandleScroll() {
 
+        let scrollTop = this.props.dispatch(scrollUp.getScrollTop()); //滚动条滚动高度
+        this.scrollTop = scrollTop
 
+    }
     funStoreHistory(e) {
         this.refs.getarr.funStoreHistory(e)
     }
@@ -102,7 +124,6 @@ class List extends React.Component {
 
     }
     backupY(e) {
-        this.props.dispatch(backupY(e));
 
     }
 
@@ -160,7 +181,8 @@ class List extends React.Component {
 
         }
         return (<div>
-     <div className= 'th-search-container th-nav-list pr on-focus'>
+            <div className='th-nav-list'>
+        <div className= 'th-search-container  on-focus'>
 
             <div id='boxHeight' className="th-search-box">
                 <div className="th-search-shadow"></div>
@@ -182,7 +204,7 @@ class List extends React.Component {
             </div>
 
 <SearchResult ref="getarr"  historyPush={this.historyPush.bind(this)} searchMsgStatus_fun={ this.searchMsgStatus_fun.bind(this)} handleDel = {this.handleDel.bind(this)}  />
-
+</div>
         </div>
         {
             renderHtml

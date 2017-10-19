@@ -144,7 +144,7 @@
             display: block;
             width: 7.5rem;
             min-height: 11.02rem;
-            padding-bottom:1rem;
+            padding-bottom: 1rem;
         }
 
         .fixedHeight {
@@ -379,22 +379,19 @@
                         .serve {
                             color: #000;
                             font-size: .28rem;
-                            margin-right:.05rem;
-                            .num{
-                            font-size: .28rem;
+                            margin-right: .05rem;
+                            .num {
+                                font-size: .28rem;
 
                                 font-weight: bold;
                                 padding-right: 0 .1rem;
-                        color: $yellowColor;
-
+                                color: $yellowColor;
                             }
                             .add {
                                 font-weight: normal;
                                 padding: 0 .1rem;
                             }
-                         
                         }
-
                     }
                     .orderPrice {
                         float: right;
@@ -408,7 +405,7 @@
             li {
                 padding: 0rem .3rem;
                 margin-bottom: .3rem;
-             
+
                 .order {
                     color: #666;
                     font-size: .24rem;
@@ -448,9 +445,9 @@
                     padding: 0.3rem 0rem;
                 }
             }
-               :last-child{
+             :last-child {
                 margin-bottom: 0;
-                }
+            }
         }
 
         .hor-list li .info-bar .e-numb .orderNum {
@@ -1137,10 +1134,10 @@
 
 
         .titleWrap {
-     position:fixed;
-     top:.88rem;
-     width: 100%;
-     z-index: 100;
+            position: fixed;
+            top: .88rem;
+            width: 100%;
+            z-index: 100;
             .nav {
                 // width:100%;
                 position: relative;
@@ -1158,8 +1155,7 @@
                 flex-wrap: nowrap;
                 border-bottom: 1px solid #dcdcdc;
                 .filter-item {
-                    display: block;
-                    // width: 33%;
+                    display: block; // width: 33%;
                     height: 100%;
                     background: #FBFBFB;
                     margin: 0 auto;
@@ -1280,6 +1276,7 @@
             padding: .10rem .30rem;
             border-bottom: 1px solid #dedede;
             box-sizing: border-box;
+
             .bg-icon {
                 width: .45rem;
 
@@ -1301,6 +1298,20 @@
                 .time {
                     color: rgba(43, 36, 36, .4);
                     margin-top: .10rem;
+                }
+            }
+        }
+
+        .gray {
+            pointer-events:none;
+            .bg-icon{
+                background: url(../images/truck-gray.png) no-repeat;
+                                background-size: .45rem .45rem;
+            }
+            .mid-cont {
+                .condition {
+                    font-size: .28rem;
+                    color: #dedede;
                 }
             }
         }
@@ -1518,7 +1529,7 @@
                             width: 3.55rem;
                             margin-left: .1rem;
                         }
-                        ::after {
+                         ::after {
                             content: "";
                             display: block;
                             clear: both;
