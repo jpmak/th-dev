@@ -5,7 +5,7 @@ const allOrderInitState = {
 
   allOrderType: '', //订单支付类型
   TypeMove: '0px', //块状移动
-  allOrderGoodsStatus: 1, // 内容状态
+  allOrderGoodsStatus: 0, // 内容状态
   pullUpStatus: 0, //上加载状态
 
   allOrderList: [], // 列表内容
@@ -24,7 +24,7 @@ const ALLORDER_GOODS_SUCCESS_reducer = (state, action) => {
   let nextState = Object.assign({}, state);
   nextState.allOrderLoadingStatus = 2;
   nextState.pullUpStatus = 2;
-
+nextState.allOrderGoodsStatus=1;
 
   if (action.allOrderList.length > 0) {
 
@@ -67,16 +67,26 @@ const ALLORDER_GOODS_SUCCESS_reducer = (state, action) => {
 }
 
 const ALLORDER_GOODS_FAIL_reducer = (state, action) => {
-  return Object.assign({}, state, {
-    allOrderLoadingStatus: 3
-  });
-  return state;
+  let nextState = Object.assign({}, state);
+  // nextState.allOrderGoodsStatus=0;
+  //         nextState.allOrderLoadingStatus= 1
+
+    if(state.allOrderGoodsStatus===1){
+   
+    nextState.allOrderLoadingStatus= 3
+
+        }else{
+          nextState.allOrderGoodsStatus=0;
+          nextState.allOrderLoadingStatus= 1
+        }
+
+  return nextState;
 }
 
 const ALLORDER_UPDATE_LOADING_STATUS_reducer = (state, action) => {
   if (state.allOrderLoadingStatus !== action.allOrderLoadingStatus) {
     return Object.assign({}, state, {
-      logLoadingStatus: action.nextStatus
+      allOrderLoadingStatus: action.nextStatus
     });
   }
   return state;

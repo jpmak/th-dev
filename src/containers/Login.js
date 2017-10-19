@@ -119,10 +119,10 @@ class Login extends React.Component {
       dataType: 'json',
       type: 'post',
       'data': {
-        // 'username': '13516557373',
-        // 'pwd': '030465'
-        'username': username,
-        'pwd': pwd
+        'username': '13516557373',
+        'pwd': '030465'
+        // 'username': username,
+        // 'pwd': pwd
       },
       success: (data) => {
         if (data.returns) {

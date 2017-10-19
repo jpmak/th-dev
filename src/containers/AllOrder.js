@@ -109,13 +109,13 @@ class AllOrder extends React.Component {
                <div className='w pt88'>
 
 
-        <AllOrderGoods ref='AllOrderGoods' baseUrl={this.props.baseUrl}  changeIsData={this.changeIsData.bind(this)}  history={this.history.bind(this)} userStatus={this.props.userStatus} allOrderType={this.props.allOrderType} get_type_goods={this.get_type_goods.bind(this)}   pullUpStatus={this.props.pullUpStatus} allOrderLoadingStatus={this.props.allOrderLoadingStatus} beginRefresh={this.beginRefresh.bind(this)} allOrderGoodsPage={this.props.allOrderGoodsPage} allOrderList={this.props.allOrderList}  pullDownStatus={this.props.pullDownStatus} changeGoods={this.changeGoods.bind(this)} />
+        <AllOrderGoods ref='AllOrderGoods' baseUrl={this.props.baseUrl} allOrderGoodsStatus={this.props.allOrderGoodsStatus}  changeIsData={this.changeIsData.bind(this)}  history={this.history.bind(this)} userStatus={this.props.userStatus} allOrderType={this.props.allOrderType} get_type_goods={this.get_type_goods.bind(this)}   pullUpStatus={this.props.pullUpStatus} allOrderLoadingStatus={this.props.allOrderLoadingStatus} beginRefresh={this.beginRefresh.bind(this)} allOrderGoodsPage={this.props.allOrderGoodsPage} allOrderList={this.props.allOrderList}  pullDownStatus={this.props.pullDownStatus} changeGoods={this.changeGoods.bind(this)} />
    </div>
 </div>)
 
     }
     render() {
-
+console.log(this.props.allOrderLoadingStatus)
         let renderHtml = [];
         renderHtml = this.renderPage();
         return (

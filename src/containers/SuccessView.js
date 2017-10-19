@@ -19,7 +19,7 @@ class SuccessView extends React.Component {
     renderPage() {
         return (
             <div >
-        <TopNav titleName = "支付成功" border='0'/>
+        <TopNav titleName = "支付成功" border='0' isNone='none'/>
 
                <div className='w'>
 <div className="successOrder">
