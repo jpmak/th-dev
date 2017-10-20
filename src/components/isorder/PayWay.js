@@ -61,7 +61,7 @@ class PayWay extends React.Component {
                     </div>
                 </div>
                 </div>
-                <ChooseType changeChooseId={this.changeChooseId.bind(this)} chooseId={this.props.chooseId} userMoney={this.props.userMoney}  userBuy={this.props.userBuy} userTourism={this.props.userTourism}  item_price={ this.props.item_price}/>
+                <ChooseType exchange_points={this.props.exchange_points} changeChooseId={this.changeChooseId.bind(this)} chooseId={this.props.chooseId} userMoney={this.props.userMoney}  userBuy={this.props.userBuy} userTourism={this.props.userTourism}  item_price={ this.props.item_price}/>
                 </div>
         )
 
@@ -79,11 +79,10 @@ class ChooseType extends React.Component {
     };
     cheack(type, money) {
 
-        let item_price = this.props.item_price
-
-        if (type === this.props.chooseId && money >= item_price) {
+        let exchange_points = this.props.exchange_points
+        if (type === this.props.chooseId && money >= exchange_points) {
             return 'cur'
-        } else if (money < item_price) {
+        } else if (money < exchange_points) {
             return 'pointerNone'
         }
     }
@@ -108,6 +107,7 @@ class ChooseType extends React.Component {
         $('#payWay').show();
     }
     render() {
+
         return (
             <div id='chooseTypeWrap'>
             <div className="payWay" style={{height:'34%'}}>

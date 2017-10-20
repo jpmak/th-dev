@@ -44,8 +44,8 @@ class AllOrder extends React.Component {
         window.addEventListener('scroll', this.allOrderHandleScroll);
 
         if (window.localStorage.user_info == 1) {
-            if (this.props.allOrderLoadingStatus === 1 || this.props.userStatus === 0) {
-                this.props.dispatch(beginUser())
+            if (this.props.allOrderLoadingStatus !== 2) {
+                // this.props.dispatch(beginUser())
                 this.props.dispatch(beginRefresh())
             } else {
                 window.scrollTo(0, this.props.y)
@@ -58,6 +58,8 @@ class AllOrder extends React.Component {
 
             if (this.props.allOrderLoadingStatus === 2) { // 首屏成功刷出，则备份y
                 this.props.dispatch(backupIScrollY(this.scrollTop))
+            } else if (this.props.allOrderLoadingStatus === 3) {
+                this.props.dispatch(updateAllOrderLoadingStatus(1));
             }
         }
         //search
@@ -115,7 +117,6 @@ class AllOrder extends React.Component {
 
     }
     render() {
-console.log(this.props.allOrderLoadingStatus)
         let renderHtml = [];
         renderHtml = this.renderPage();
         return (

@@ -42,15 +42,8 @@ class AllOrderGoods extends React.Component {
         }
     }
     onRetryLoading() {
-        if(this.props.allOrderGoodsStatus===1){
-            console.log(11)
         this.props.beginRefresh();
-        }else{
-            console.log(22)
-
-             this.props.history()
     }
-        }
     handleClick(goods_name, item_price, list_image) {
         this.props.detailData(goods_name, item_price, list_image)
     }
@@ -205,9 +198,8 @@ class AllOrderGoods extends React.Component {
 
 
     render() {
-    console.log(this.props.allOrderLoadingStatus)
         let renderHtml = [];
-        if (this.props.allOrderLoadingStatus !== 2 ) {
+        if (this.props.allOrderLoadingStatus !== 2 && this.props.userStatus === 1) {
             renderHtml = this.renderLoading();
         } else if (this.props.allOrderLoadingStatus === 3 && this.props.userStatus === 0) {
             renderHtml = this.history();

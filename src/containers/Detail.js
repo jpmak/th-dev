@@ -53,7 +53,6 @@ class Detail extends React.Component {
     }
     history() {
         if (window.localStorage.user_info != 1 || !this.props.userStatus) {
-            console.log('test');
             this.props.history.push(this.props.baseUrl + '/login/product/' + this.props.id)
         } else {
             this.commit_exchange()

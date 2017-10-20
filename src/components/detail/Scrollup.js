@@ -24,8 +24,7 @@ class Scrollup extends React.Component {
         window.addEventListener('scroll', this.handleScroll);
     }
     componentWillUnmount() {
-        // window.removeEventListener('scroll', this.handleScroll);
-
+        window.removeEventListener('scroll', this.handleScroll);
         this.Det_mounted = false;
     }
 
@@ -82,13 +81,11 @@ class Scrollup extends React.Component {
         let headHeight = $('#headnav').height();
         let productBodyHeight = $('#productBody').height();
         let scrollUp = produtShowHeight + headHeight - productBodyHeight;
-        // let scrollwrap = document.getElementById('scrollwrap').offsetHeight
 
-        if ((clientHeight + scrollTop + 10) > (scrollHeight)) {
+        if ((clientHeight + scrollTop + 20) > (scrollHeight)) {
             this.props.bottomFun(true)
         }
 
-        console.log(scrollTop);
 
         if (scrollTop < scrollUp && this.scrollUp) {
             this.props.iScrollUp();

@@ -39,14 +39,17 @@ class Home extends React.Component {
 
     componentDidMount() {
         window.addEventListener('scroll', this.homehandleScroll);
-        if (this.props.homeLoadingStatus === 1 || this.props.userStatus === 0) {
-            // this.props.dispatch(beginUser())
-     this.props.dispatch(beginRefresh())
-        } else {
-            window.scrollTo(0, this.props.y)
+        if (window.localStorage.user_info == 1) {
+            if (this.props.homeLoadingStatus !== 2 || this.props.userStatus === 0) {
+                this.props.dispatch(updateHomeLoadingStatus(1)); // 恢复loading界面
+
+                // this.props.dispatch(beginUser())
+                this.props.dispatch(beginRefresh())
+            } else {
+                window.scrollTo(0, this.props.y)
+            }
+
         }
-
-
     }
 
 
@@ -70,20 +73,20 @@ class Home extends React.Component {
         return scrollTop;
     }
 
-    //search
     beginRefresh() {
         this.props.dispatch(updateHomeLoadingStatus(1)); // 恢复loading界面
         this.props.dispatch(beginRefresh());
+        this.props.dispatch(beginUser());
+    }
+    history() {
 
+        this.props.history.push(this.props.baseUrl + '/login/home/')
     }
     backupIScrollY(e) {
         this.props.dispatch(backupIScrollY(e))
     }
 
-    onRetryLoading() {
-        // this.props.dispatch(updateListLoadingStatus(1)); // 恢复loading界面
-        // this.props.dispatch(beginRefresh());
-    }
+
     detailData(goods_name, exchange_points, item_price, list_image) {
         window.localStorage.detailData = JSON.stringify({
             'productName': goods_name,
@@ -109,7 +112,7 @@ class Home extends React.Component {
    我可兑换
    </div>
 
-        <InfoGoods baseUrl={this.props.baseUrl} userStatus={this.props.userStatus} homeLoadingStatus={this.props.homeLoadingStatus} beginRefresh={this.beginRefresh.bind(this)} InfoGoodsPage={this.props.InfoGoodsPage} InfoGoods={this.props.InfoGoodsItems} detailData={this.detailData.bind(this)} pullDownStatus={this.props.pullDownStatus} changeGoods={this.changeGoods.bind(this)}/>
+        <InfoGoods history={this.history.bind(this)} baseUrl={this.props.baseUrl} userStatus={this.props.userStatus} homeLoadingStatus={this.props.homeLoadingStatus} beginRefresh={this.beginRefresh.bind(this)} InfoGoodsPage={this.props.InfoGoodsPage} InfoGoods={this.props.InfoGoodsItems} detailData={this.detailData.bind(this)} pullDownStatus={this.props.pullDownStatus} changeGoods={this.changeGoods.bind(this)}/>
    </div>
 
 </div>)
@@ -117,6 +120,7 @@ class Home extends React.Component {
 
     }
     render() {
+
         let renderHtml = [];
         renderHtml = this.renderPage();
         return (

@@ -71,7 +71,7 @@ class LogGoods extends React.Component {
                 if (LogGood.shipping_cost == '0.00') {
                     shopCostHtml = (<span className='serve'><span className='add'>+</span>免运费</span>)
                 } else {
-                    shopCostHtml = (<span  className='serve'><span className='add'>+</span><span className='serve'>运费</span><span className='num'>¥</span><span className='num'>{LogGood.shipping_cost}</span></span>)
+                    shopCostHtml = (<span  className='serve'><span className='add'>+</span><span className='serve'>运费</span><span className='num'>{LogGood.shipping_cost}</span></span>)
                 }
                 return (
                     <li key={index}>
@@ -112,6 +112,8 @@ class LogGoods extends React.Component {
         if (this.props.logLoadingStatus !== 2 && this.props.userStatus === 1) {
             renderHtml = this.renderLoading();
         } else if (this.props.logLoadingStatus === 3 && this.props.userStatus === 0) {
+            // renderHtml = this.renderLoading();
+
             renderHtml = this.history();
             //跳去跳转页面
         } else {

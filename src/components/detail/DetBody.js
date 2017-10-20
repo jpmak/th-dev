@@ -124,21 +124,12 @@ class DetBody extends React.Component {
         this.movingY = e.touches[0].pageY
     }
     endMove() {
-
-        console.log(this.bottomState);
-
-
-
         if (Math.abs(this.touchRangeBannerX - this.movingbannerX) < 20) {
-
-            if (this.touchRangeY - this.movingY > 20 && this.state.iScrollUp && this.bottomState === true && this.movingY !== 0) {
-                // console.log(this.state.iScrollUp);
+            if (this.touchRangeY - this.movingY > 0 && this.state.iScrollUp && this.bottomState === true && this.movingY !== 0) {
                 this.iScrollUp();
-
                 this.refs.Scrollup.changeBlock();
                 this.touchRangeBannerX = 0;
                 this.movingY = 0;
-
             }
         } else {
             this.touchRangeBannerX = 0;

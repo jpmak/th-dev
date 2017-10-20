@@ -26,13 +26,20 @@
             'page': page
           },
           success: (data) => {
-            dispatch({
-              type: consts.LOG_GOODS_SUCCESS,
-              logLoadingStatus: 2,
-              LogGoodsStatus: data.status,
-              logList: data.log_list ? data.log_list : '',
-              logGoodsPage: page
-            });
+            if (data.status) {
+              dispatch({
+                type: consts.LOG_GOODS_SUCCESS,
+            logLoadingStatus: 2,
+                LogGoodsStatus: data.status,
+                logList: data.log_list ? data.log_list : '',
+                logGoodsPage: page
+              });
+            } else {
+              dispatch({
+                type: consts.LOG_GOODS_FAIL
+
+              })
+            }
 
           },
           error: () => {

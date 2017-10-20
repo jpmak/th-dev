@@ -27,16 +27,20 @@
             'state': state
           },
           success: (data) => {
-              if(data.status)
-       {
-        dispatch({
-                 type: consts.ALLORDER_GOODS_SUCCESS,
-                 allOrderLoadingStatus: 2,
-                     allOrderGoodsStatus: data.status,
-                     allOrderList: data.list ? data.list : '',
-                     allOrderGoodsPage: page
-                   })
-      }
+            if (data.status) {
+              dispatch({
+                type: consts.ALLORDER_GOODS_SUCCESS,
+                allOrderLoadingStatus: 2,
+                allOrderGoodsStatus: data.status,
+                allOrderList: data.list ? data.list : '',
+                allOrderGoodsPage: page
+              })
+            } else {
+              dispatch({
+                type: consts.ALLORDER_GOODS_FAIL
+
+              })
+            }
 
           },
           error: () => {

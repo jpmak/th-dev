@@ -102,7 +102,6 @@ class TranList extends React.Component {
 
 
     renderPage() {
-        console.log(this.state.tranListItem.info);
         let detHtml = [];
         let detGoods = this.state.tranListItem.info ? this.state.tranListItem.info : '';
 

@@ -17,24 +17,39 @@ import $ from 'jquery';
 class Login extends React.Component {
   constructor(props) {
     super(props);
-    this.go = '-1';
+    this.go = '-2';
   };
+
+  // componentWillMount() {
+  //   document.title = '登录'
+  //   this.props.dispatch(beginUser())
+
+  // }
   componentWillMount() {
     document.title = '登录'
     const params = this.props.match.params
     const router = params.router
     if (this.props.userStatus === 1) {
       this.go = '-1'
-    } else if (router === 'product') {
+      this.props.history.push(this.props.baseUrl + '/')
+    } else if (this.props.userStatus === 0 && router === 'product') {
       this.go = '-1'
     } else {
       this.go = '-2'
 
     }
   }
-
   componentDidMount() {
     document.body.style.backgroundColor = '#fff'
+      // const params = this.props.match.params
+      // const router = params.router
+      // if (this.props.userStatus === 1) {
+      //   this.props.history.push(this.props.baseUrl + '/')
+      // } else if (router === 'product') {
+
+    //   this.go = -1
+    //   console.log(this.go);
+    // }
     setTimeout(function() {
       if ($('#username').val() !== '') {
         $('#username').next().show();
@@ -119,10 +134,10 @@ class Login extends React.Component {
       dataType: 'json',
       type: 'post',
       'data': {
-        'username': '13516557373',
-        'pwd': '030465'
-        // 'username': username,
-        // 'pwd': pwd
+        // 'username': '13516557373',
+        // 'pwd': '030465'
+        'username': username,
+        'pwd': pwd
       },
       success: (data) => {
         if (data.returns) {
@@ -132,9 +147,9 @@ class Login extends React.Component {
           window.localStorage.user_info = data.returns;
           this.props.dispatch(beginUser());
 
-  // setTimeout(
-  //           this.router()
-  //         , 1000)
+          // setTimeout(
+          //           this.router()
+          //         , 1000)
           setTimeout(() => {
             this.router()
           }, 1000)

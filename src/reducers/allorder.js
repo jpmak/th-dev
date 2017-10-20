@@ -24,7 +24,7 @@ const ALLORDER_GOODS_SUCCESS_reducer = (state, action) => {
   let nextState = Object.assign({}, state);
   nextState.allOrderLoadingStatus = 2;
   nextState.pullUpStatus = 2;
-nextState.allOrderGoodsStatus=1;
+  nextState.allOrderGoodsStatus = 1;
 
   if (action.allOrderList.length > 0) {
 
@@ -71,19 +71,20 @@ const ALLORDER_GOODS_FAIL_reducer = (state, action) => {
   // nextState.allOrderGoodsStatus=0;
   //         nextState.allOrderLoadingStatus= 1
 
-    if(state.allOrderGoodsStatus===1){
-   
-    nextState.allOrderLoadingStatus= 3
+  if (state.allOrderGoodsStatus === 1) {
 
-        }else{
-          nextState.allOrderGoodsStatus=0;
-          nextState.allOrderLoadingStatus= 1
-        }
+    nextState.allOrderLoadingStatus = 3
+
+  } else {
+    nextState.allOrderGoodsStatus = 0;
+    nextState.allOrderLoadingStatus = 1
+  }
 
   return nextState;
 }
 
 const ALLORDER_UPDATE_LOADING_STATUS_reducer = (state, action) => {
+
   if (state.allOrderLoadingStatus !== action.allOrderLoadingStatus) {
     return Object.assign({}, state, {
       allOrderLoadingStatus: action.nextStatus

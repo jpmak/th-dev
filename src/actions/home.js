@@ -26,14 +26,20 @@
             'page': page
           },
           success: (data) => {
-            if(data.status)
-           { dispatch({
-                         type: consts.INFO_GOODS_SUCCESS,
-                         homeLoadingStatus: 2,
-                         InfoGoodsStatus: data.status,
-                         InfoGoodsItems: data.lists ? data.lists : '',
-                         InfoGoodsPage: page
-                       });}
+            if (data.status) {
+              dispatch({
+                type: consts.INFO_GOODS_SUCCESS,
+                homeLoadingStatus: 2,
+                InfoGoodsStatus: data.status,
+                InfoGoodsItems: data.lists ? data.lists : '',
+                InfoGoodsPage: page
+              });
+            } else {
+              dispatch({
+                type: consts.INFO_GOODS_FAIL
+
+              })
+            }
 
           },
           error: () => {

@@ -26,8 +26,8 @@ class Log extends React.Component {
         this.loghandleScroll = this.loghandleScroll.bind(this);
     };
     componentWillMount() {
-        document.title = '兑换记录'
 
+        document.title = '兑换记录'
         let p = new Promise(function(resolve, reject) {});
 
         if (window.localStorage.user_info != 1) {
@@ -42,8 +42,8 @@ class Log extends React.Component {
         window.addEventListener('scroll', this.loghandleScroll);
         if (window.localStorage.user_info == 1) {
             // 转换数字
-            if (this.props.logLoadingStatus === 1 || this.props.userStatus === 0) {
-                this.props.dispatch(beginUser())
+            if (this.props.logLoadingStatus !== 2) {
+                // this.props.dispatch(beginUser())
                 this.props.dispatch(beginRefresh())
             } else {
                 window.scrollTo(0, this.props.y)
@@ -57,9 +57,7 @@ class Log extends React.Component {
         if (this.props.logLoadingStatus === 2) { // 首屏成功刷出，则备份y
             this.props.dispatch(backupIScrollY(this.scrollTop))
         } else if (this.props.logLoadingStatus === 3) {
-            // console.log(1)
             this.props.dispatch(updateLogLoadingStatus(1));
-
         }
 
     }
@@ -79,10 +77,11 @@ class Log extends React.Component {
         }
     }
 
-    //search
     beginRefresh() {
-        this.props.dispatch(updateLogLoadingStatus(1)); // 恢复loading界面
-        this.props.dispatch(beginRefresh());
+        this.props.dispatch(updateLogLoadingStatus(1));
+        this.props.dispatch(beginUser())
+        this.props.dispatch(beginRefresh())
+
     }
     backupIScrollY(e) {
         this.props.dispatch(backupIScrollY(e))
@@ -101,14 +100,16 @@ class Log extends React.Component {
 
                <div className='w pt88'>
 
-        <LogGoods baseUrl={this.props.baseUrl} userStatus={this.props.userStatus} history={this.history.bind(this)} logLoadingStatus={this.props.logLoadingStatus} beginRefresh={this.beginRefresh.bind(this)} logGoodsPage={this.props.logGoodsPage} logList={this.props.logList}  pullDownStatus={this.props.pullDownStatus} changeGoods={this.changeGoods.bind(this)}/>
+        <LogGoods baseUrl={this.props.baseUrl} history={this.history.bind(this)} userStatus={this.props.userStatus} logLoadingStatus={this.props.logLoadingStatus} beginRefresh={this.beginRefresh.bind(this)} logGoodsPage={this.props.logGoodsPage} logList={this.props.logList}  pullDownStatus={this.props.pullDownStatus} changeGoods={this.changeGoods.bind(this)}/>
    </div>
 
 </div>)
 
 
     }
+
     render() {
+
         let renderHtml = [];
         renderHtml = this.renderPage();
         return (

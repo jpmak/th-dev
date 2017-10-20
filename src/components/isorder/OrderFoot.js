@@ -81,7 +81,7 @@ class OrderFoot extends React.Component {
 <div className="left-cont fl">
 <label htmlFor="">合计</label>
 <div className="total-wrap">
-<div className="total"> <span className='num'>{this.props.exchange_points}</span><span >积分</span><i className='add'>+</i><span className='num'>{totalPrice}</span><span>(含运费:¥{this.props.fee})</span></div>
+		<div className="total"> <span className='num'>{this.props.exchange_points}</span><span >积分</span><i className='add'>+</i><span className='num'><span className='money'>¥</span>{totalPrice}</span><span>(含运费：{this.props.fee})</span></div>
 </div>
 </div>
 <div className="settle fr" onClick={this.settlement.bind(this)}>结算</div>

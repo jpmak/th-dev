@@ -65,7 +65,7 @@ class IsOrder extends React.Component {
                     addressItems: data.info.address_all,
                     item_price: parseFloat(data.info.goods_info.goods_price),
                     item_number: data.info.goods_info.item_number,
-                    exchange_points: data.info.goods_info.exchange_points,
+                    exchange_points: parseFloat(data.info.goods_info.exchange_points),
                     orderLi: data.info.goods_info,
                     main_image: data.info.goods_info.main_image[0],
                     fee: data.info.fee,
@@ -126,9 +126,9 @@ class IsOrder extends React.Component {
                <div className='w'>
         <IsOrderAddress addressItems={this.state.addressItems}/>
         <IsOrderLi orderLi={this.state.orderLi} main_image={this.state.main_image}/>
-        <PayWay open={this.openPay.bind(this)} changeChooseId={this.changeChooseId.bind(this)} chooseId={this.state.chooseId} fee={this.state.fee}  item_price={this.state.item_price}  orderLi={this.state.orderLi} userName={this.props.userName} userMoney={this.props.userMoney}  userBuy={this.props.userBuy} userTourism={this.props.userTourism}  />
+        <PayWay open={this.openPay.bind(this)} exchange_points={this.state.exchange_points} changeChooseId={this.changeChooseId.bind(this)} chooseId={this.state.chooseId} fee={this.state.fee}  item_price={this.state.item_price}  orderLi={this.state.orderLi} userName={this.props.userName} userMoney={this.props.userMoney}  userBuy={this.props.userBuy} userTourism={this.props.userTourism}  />
             <CoverMask />
-        <PayPwd ref='PayPwd' csrf={this.state.csrf}  item_price={this.state.item_price} successView={this.successView.bind(this)} chooseId={this.state.chooseId} addressId={this.state.addressItems.address_id}/>
+        <PayPwd ref='PayPwd' csrf={this.state.csrf} exchange_points={this.state.exchange_points}  item_price={this.state.item_price} successView={this.successView.bind(this)} chooseId={this.state.chooseId} addressId={this.state.addressItems.address_id}/>
         <OrderFoot exchange_points={this.state.exchange_points} gray={this.state.gray} addressItems={this.state.addressItems} csrf={this.state.csrf} fee={this.state.fee} orderLi={this.state.orderLi} userMoney={this.props.userMoney}  userBuy={this.props.userBuy} userTourism={this.props.userTourism} item_price={this.state.item_price}  money={this.props.money} />
 
    </div>
@@ -136,6 +136,7 @@ class IsOrder extends React.Component {
 </div>)
     }
     render() {
+
         let renderHtml = [];
         renderHtml = this.renderPage();
         return (

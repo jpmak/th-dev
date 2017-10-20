@@ -87,7 +87,9 @@ class InfoGoods extends React.Component {
     handleClick(goods_name, exchange_points, item_price, list_image) {
         this.props.detailData(goods_name, exchange_points, item_price, list_image)
     }
-
+    history() {
+        this.props.history()
+    }
     renderLoading() {
         let outerStyle = {
             height: window.innerHeight / 2
@@ -143,7 +145,6 @@ class InfoGoods extends React.Component {
         }
 
         return (
-
             <div className="app-pd-wp"  style={{background:'#fff',paddingBottom:'0'}}>
                 <div className="app-pd-list">
                    <ul >
@@ -158,12 +159,13 @@ class InfoGoods extends React.Component {
 
     render() {
         let renderHtml = [];
-        if (this.props.homeLoadingStatus !== 2 ) {
+        if (this.props.homeLoadingStatus !== 2 && this.props.userStatus === 1) {
             renderHtml = this.renderLoading();
+        } else if (this.props.homeLoadingStatus === 3 && this.props.userStatus === 0) {
+            renderHtml = this.history();
+            //跳去跳转页面
         } else {
-
             renderHtml = this.renderPage();
-
         }
         return (
             <div>

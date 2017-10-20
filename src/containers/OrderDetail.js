@@ -195,7 +195,6 @@ class OrderDetail extends React.Component {
         let emsHtml = [];
         let btnHtml = [];
 
-        console.log(this.props.trackInfoContext);
         if (orderInfoItems.ems_status == 1 && trackInfoContext.length > 0) {
             //转换类型
             emsHtml = (<div className="mid-cont">
@@ -212,8 +211,7 @@ class OrderDetail extends React.Component {
         if (orderInfoItems.cur_status === '待付款') {
             btnHtml = (
                 <div>
-                    <button className="order-cancel"  onClick={this.cancelPay.bind(this)} >取消订单</button>
-                    <button className="pay-btn red-btn" >立即支付</button>   
+                   
                     </div>)
 
         } else if (orderInfoItems.cur_status === '待收货') {
@@ -321,11 +319,11 @@ class OrderDetail extends React.Component {
                         <li className="char-lists">
                             <label htmlFor="">实付 (含运费)</label>
                             
-                            <p className="act-paid">¥ {parseFloat(orderInfoItems.shipping_cost?orderInfoItems.shipping_cost:0)+parseFloat(orderInfoItems.total_price?orderInfoItems.total_price:0)}</p>
+        <p className="act-paid">¥ {(parseFloat(orderInfoItems.shipping_cost?orderInfoItems.shipping_cost:0)+parseFloat(orderInfoItems.total_price?orderInfoItems.total_price:0)).toFixed(2)}</p>
                         </li>
                     </ul>
                     <ul className="place-msg">
-                        <li className="place-lists">下单时间：{orderInfoItems.pay_time}</li>
+                        <li className="place-lists">下单时间：{orderInfoItems.created}</li>
                         <li className="place-lists">配送方式：快递运送</li>
                         <li className="place-lists">兑换类型：{orderInfoItems.point_name}</li>
                     </ul>
