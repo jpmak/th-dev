@@ -258,7 +258,7 @@ class OrderDetail extends React.Component {
                 </div>
             </div>
 
-<div className= {trackInfoContext.length>0?'seller-shipped':'seller-shipped gray'}>
+<div className= {trackInfoContext.length>0?'seller-shipped':'seller-shipped gray56'}>
 <Link className='' to={this.props.baseUrl+'/TranList/'+orderInfoItems.exchange_order_number}>
      <div className="bg-icon"></div>
        {emsHtml}

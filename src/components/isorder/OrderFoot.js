@@ -27,6 +27,8 @@ class OrderFoot extends React.Component {
 			this.setState({
 				ModalIicon: 2,
 			});
+			console.log(111)
+			
 			this.refs.Modal.setText2('惠积分不足支付服务费，请充值')
 
 		} else if (this.cssGray === 'gray') {

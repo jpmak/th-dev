@@ -39,7 +39,7 @@ class ListGoods extends React.Component {
                         <li  key={index}>
                     <Link to={this.props.baseUrl+'/search/'+liThcate.cate_id+'@list'} onClick={this.goodsFun.bind(this,liThcate.cate_id)}>
                     <LazyLoad   height={10} offset={10}>
-                             <img  src={liThcate.cate_thumb}/>
+                             <img className='lazy'  src={liThcate.cate_thumb}/>
                                    </LazyLoad>
                                    <span>{liThcate.cate_name}</span>
                              </Link>

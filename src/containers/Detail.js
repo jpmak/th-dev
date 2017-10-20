@@ -46,6 +46,10 @@ class Detail extends React.Component {
         }
 
     }
+     componentWillUnmount() {
+    document.documentElement.style.overflowY = 'auto'
+
+     }
     pushIdStatus(id) {
         this.props.dispatch(pushIdStatus(id));
         this.props.dispatch(fetchPropsGoods(id));

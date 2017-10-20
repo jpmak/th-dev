@@ -37,7 +37,7 @@ class Banner extends React.Component {
 
             return (
 
-                <div className = "swiper-slide" key = { index } ><img alt='' src = {repo}/> </div>
+                <div className = "swiper-slide" key = { index } ><img className='lazy' alt='' src = {repo}/> </div>
 
             );
 

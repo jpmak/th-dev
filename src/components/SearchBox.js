@@ -67,6 +67,7 @@ class SearchBox extends React.Component {
     }
 
     historyPush(e) {
+       
         this.props.history.push(this.props.baseUrl + '/search/' + e)
 
     }

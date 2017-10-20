@@ -107,7 +107,7 @@ class Searchhead extends React.Component {
     }
     componentWillMount() {
         window.scrollTo(0, 0)
-        document.title = this.props.match.params.keyword ? this.props.match.params.keyword : '' + ' - 商品搜索-通惠购'
+        document.title = this.props.match.params.keyword ? (this.props.match.params.keyword+ ' - 商品搜索-通惠购') : '' + ' - 商品搜索-通惠购'
 
         this.funloadHistory();
         if (window.localStorage.searchhistory) {
@@ -239,6 +239,7 @@ class Searchhead extends React.Component {
             this.setState({
                 searchMsgStatus: 1
             });
+            
             this.keywordClick(nextProps.match.params.keyword)
         }
     }

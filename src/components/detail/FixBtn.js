@@ -11,10 +11,10 @@ class FixBtn extends React.Component {
     }
 
     cover() {
-
+    document.documentElement.style.overflowY = 'hidden'
         $('.product-cover').addClass('cover-toggle').show();
         $('.cover-mask').addClass('cover-mask-toggle').show();
-        $('html').addClass('hidescroll');
+        // $('html').addClass('hidescroll');
     }
 
     render() {

@@ -1320,22 +1320,7 @@ text-align:top;
                 }
             }
         }
-
-        .gray {
-            pointer-events:none;
-            .bg-icon{
-                background: url(../images/truck-gray.png) no-repeat;
-                                background-size: .45rem .45rem;
-            }
-            .mid-cont {
-                .condition {
-                    font-size: .28rem;
-                    color: #dedede;
-                }
-            }
-        }
-
-        .seller-shipped::after {
+      .seller-shipped::after {
             content: "";
             display: block;
             width: .20rem;
@@ -1347,6 +1332,28 @@ text-align:top;
             display: inline-block;
             vertical-align: middle;
         }
+        .gray56 {
+            pointer-events:none;
+            .bg-icon{
+                background: url(../images/truck-gray.png) no-repeat;
+                                background-size: .45rem .45rem;
+            }
+            .mid-cont {
+                .condition {
+                    font-size: .28rem;
+                    color: #dedede;
+                }
+            }
+           &:after {
+        width:0rem;
+            height: 0rem;
+ border:0;
+    
+
+            }
+        }
+
+  
 
 
         .goods-details {

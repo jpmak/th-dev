@@ -432,6 +432,46 @@ a.confirm {
 }
  }
 
+@-webkit-keyframes fadeInOut {
+    0% {
+        opacity:0;
+     }
+  25% {
+        opacity:.25;
+    }
+      50% {
+        opacity:.5;
+    }
+       75% {
+        opacity:.75;
+    }
+    100% {
+        opacity:1;
+    }
+}
+@keyframes fadeInOut {
+    0% {
+        opacity:0;
+     }
+  25% {
+        opacity:.25;
+    }
+      50% {
+        opacity:.5;
+    }
+       75% {
+        opacity:.75;
+    }
+    100% {
+        opacity:1;
+    }
+}
+img.lazy{
+-webkit-animation:fadeInOut .6s ease-in-out ;
+-o-animation:fadeInOut .6s ease-in-out ;
+-moz-transition: fadeInOut .6s ease-in-out;
+animation: fadeInOut .6s ease-in-out ;
+}
 /*积分分类*/
 
 @import 'brand';

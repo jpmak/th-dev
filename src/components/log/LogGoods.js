@@ -83,7 +83,7 @@ class LogGoods extends React.Component {
 </div>
 
    <div className="info-img">
-       <LazyLoad  placeholder={<PlaceholderComponent />}><img alt="" className="lazy" src={LogGood.goods_image}/></LazyLoad></div><div className="info-bar"><div className="pro-title">{LogGood.goods_name}</div>
+       <LazyLoad><img alt="" className="lazy" src={LogGood.goods_image}/></LazyLoad></div><div className="info-bar"><div className="pro-title">{LogGood.goods_name}</div>
                 {
                     valueHtml
                 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import LazyLoad from 'react-lazyload';
 
 import $ from 'jquery';
 import LoadingLayer from '../../components/LoadingLayer/LoadingLayer';
@@ -149,8 +150,11 @@ class AllOrderGoods extends React.Component {
 </div>
 <div className='orderState'><span>{allOrderGood.cur_state} </span></div>
 </div>
-
-   <div className="info-img"><img alt="" className="lazy" src={allOrderGood.goods_image}/>{/*</LazyLoad>*/}</div>
+<LazyLoad>
+   <div className="info-img">
+<img alt="" className="lazy" src={allOrderGood.goods_image}/>
+</div>
+</LazyLoad>
    <div className="info-bar">
    <div className="pro-title">{allOrderGood.goods_name}</div>
        {
