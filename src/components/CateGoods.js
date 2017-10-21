@@ -97,7 +97,7 @@ class CateGoods extends React.Component {
                 let item_price = parseFloat(CateGood.item_price)
                 let pointsHtml = '';
                 if (item_price !== 0) {
-                    pointsHtml = (<span className='point'><span className='add'>+</span><em className='money'>¥</em>{CateGood.item_price}</span>)
+                    pointsHtml = (<span className='point'><span className='add'>+</span><em className='money'>{CateGood.item_price}</em>元</span>)
                 } else {
                     pointsHtml = (<span></span>)
                 }

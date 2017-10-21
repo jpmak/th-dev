@@ -73,8 +73,6 @@
           shareImg = opt.imgUrl;
 
         var setTimexxx = setInterval(function() {
-
-
           if (i >= index)
             clearInterval(setTimexxx);
 

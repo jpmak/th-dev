@@ -126,7 +126,7 @@ class AllOrderGoods extends React.Component {
                 if (allOrderGood.shipping_cost === '0.00') {
                     shopCostHtml = (<span className='serve'>免运费</span>)
                 } else {
-                    shopCostHtml = (<span><span className='serve'>运费</span><span className='num'>¥</span><span className='num'>{allOrderGood.shipping_cost}</span></span>)
+                    shopCostHtml = (<span><span className='serve'>运费</span><span className='num'>{allOrderGood.shipping_cost}</span></span>)
                 }
                 if (allOrderGood.cur_state === '待收货') {
                     btnHtml = (<div className='orderBtn' onClick={this.orderPayBtn.bind(this,allOrderGood.exchange_order_number)}>确定收货</div>)
@@ -136,7 +136,7 @@ class AllOrderGoods extends React.Component {
                 let priceHtml = ''
                 let item_price = parseFloat(allOrderGood.price)
                 if (item_price !== 0) {
-                    priceHtml = (<span className='point'><span className='add'>+</span><em className='money'>¥</em>{allOrderGood.price}</span>)
+                    priceHtml = (<span className='point'><span className='add'>+</span><em className='money'>{allOrderGood.price}</em>元</span>)
                 } else {
                     priceHtml = (<span></span>)
 

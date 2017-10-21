@@ -114,7 +114,7 @@ class InfoGoods extends React.Component {
                 let item_price = parseFloat(InfoGood.item_price)
                 let priceHtml = '';
                 if (item_price !== 0) {
-                    priceHtml = (<span className='point'><span className='add'>+</span><em className='money'>¥</em>{InfoGood.item_price}</span>)
+                    priceHtml = (<span className='point'><span className='add'>+</span><em className='money'>{InfoGood.item_price}</em>元</span>)
                 } else {
                     priceHtml = (<span></span>)
 

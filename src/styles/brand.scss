@@ -90,7 +90,7 @@
                 a {
                     height: .8rem;
                     color: #FFD8B9;
-                    padding: 0 .2rem;
+                    padding: 0 .3rem;
                     /*padding: 0 .2rem;*/
                     display: block;
                 }
@@ -270,9 +270,9 @@
                     }
                     .e-numb {
                         color: $yellowColor;
-                        font-size: .24rem;
+                        font-size: .28rem;
                         text-align: left;
-                        font-weight:bold;
+             
                         height: .40rem;
                         padding-top: .2rem;
                         .sale-price {
@@ -292,28 +292,29 @@
 
                             em {
                                         font-weight:bold;
-                                font-size: .28rem;
-                                padding-right: .08rem;
+                                font-size: .32rem;
+                             
                             }
                             .moneyPrice {
-                                font-size: .28rem;
+                                font-size: .32rem;
                                 font-weight: bold;
-                                padding-right: 0.08rem;
+                        
                             }
                         }
                         .point {
-                            font-weight: bold;
 
                             font-size: .28rem;
                             .add {
-                                font-weight: normal;
-                                color: #000;
-                                padding: 0 .1rem;
+                      font-size: .28rem;
+                          font-weight: normal;
+                        color:$yellowColor;
+                        padding:0 .02rem;
+                         
                             }
                             .money {
-                                font-size: .28rem;
-                                font-weight: 500;
-                                padding-right: 0.08rem;
+                                font-size: .32rem;
+                                font-weight: bold;
+                                
                             }
                         }
                     }
@@ -360,7 +361,7 @@
                     }
                     .e-numb {
                         color: $yellowColor;
-                        font-size: .24rem;
+                        font-size: .28rem;
                         text-align: left;
                         height: .40rem;
                         .sale-price {
@@ -479,10 +480,11 @@ text-align:top;
                 height: .78rem;
                 line-height: .78rem; // background:#FBFBFB;
                 .total {
+
                     font-size: .26rem;
                     font-weight: 500;
-
-                    float: left;
+line-height:.6rem;
+         
                     .num {
                         color: #E42C2F;
                         font-size: .28rem;
@@ -505,6 +507,7 @@ text-align:top;
                             padding: 0 .1rem;
                         }
                         .money{
+                        font-weight: bold;
                         margin-right: .05rem;
 
                         }
@@ -1040,14 +1043,16 @@ text-align:top;
                     vertical-align: middle;
                     margin-left: .1rem;
                     .total {
-                        font-size: .22rem;
+                        height: .48rem;
+                        line-height: .48rem;
+                        font-size: .24rem;
                         color: #ED1A3B;
                         .num {
                             font-size: .40rem;
                             margin-right: .05rem;
                             .money{
                                 margin-right: .05rem;
-                            font-size: .26rem;
+                            font-size: .40rem;
 
 
                             }
@@ -1410,6 +1415,7 @@ text-align:top;
                             .totalPrice {
                                 font-weight: bold;
                                 .money {
+                                font-weight: bold;
                                     padding-right: .04rem;
                                 }
                             }
@@ -1437,6 +1443,7 @@ text-align:top;
                             }
                         }
                         .price {
+                            font-weight: bold;
                             color: #E42C2F;
                         }
                     }
@@ -1466,7 +1473,7 @@ text-align:top;
                         clear: both;
                     }
                     .act-paid {
-                        font-size: .28rem;
+                        font-size: .4rem;
                         color: #ED1A3B;
                     }
                 }

@@ -55,14 +55,14 @@
          } else {
              salePropHeight = '40%'
          }
-let item_price=this.props.item_price
-        let priceHtml='';
-            if(item_price!==0){
-               priceHtml=(<span className='point'><span className='add'>+</span><em className='money'>¥</em>{item_price}</span>) 
-            }else{
-                    priceHtml=(<span></span>) 
-            
-            }
+         let item_price = this.props.item_price
+         let priceHtml = '';
+         if (item_price !== 0) {
+            priceHtml = (<span className='point'><span className='add'>+</span><em className='money'>{item_price}</em>元</span>)
+         } else {
+             priceHtml = (<span></span>)
+
+         }
          return (
              <section className="product-cover" style={{height:salePropHeight}}>
         <div className="wbox-flex">

@@ -225,7 +225,7 @@ class OrderDetail extends React.Component {
         let priceHtml = ''
         let item_price = parseFloat(orderInfoItems.total_price)
         if (item_price !== 0) {
-            priceHtml = (<span className='totalPrice'><span className='add'>+</span><em className='money'>¥</em>{orderInfoItems.total_price}</span>)
+            priceHtml = (<span className='totalPrice'><span className='add'>+</span><em className='money'>{orderInfoItems.total_price}</em>元</span>)
         } else {
             priceHtml = (<span></span>)
 

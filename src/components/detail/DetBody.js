@@ -162,7 +162,7 @@ class DetBody extends React.Component {
         let item_price = parseFloat(item_prices)
         let priceHtml = '';
         if (item_price !== 0) {
-            priceHtml = (<span className='point'><span className='add'>+</span><em className='money'>¥</em>{item_price}</span>)
+            priceHtml = (<span className='point'><span className='add'>+</span><em className='money'>{item_price}</em>元</span>)
         } else {
             priceHtml = (<span></span>)
 
@@ -180,7 +180,7 @@ class DetBody extends React.Component {
             <h1>{name}</h1>
         <div className='tip'>产品不设退换</div>
                 <div className="product-price">
-            <span className="num"><em>{exchange_points}</em></span><span className="unit">积分</span>
+            <span className="num">{exchange_points}</span><span className="unit">积分</span>
 {priceHtml}
             </div>
             </div>

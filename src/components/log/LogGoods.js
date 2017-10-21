@@ -62,7 +62,7 @@ class LogGoods extends React.Component {
                 let item_price = parseFloat(LogGood.total_price)
                 let priceHtml = '';
                 if (item_price !== 0) {
-                    priceHtml = (<span className='point'><span className='add'>+</span><em className='money'>¥</em>{LogGood.total_price}</span>)
+                    priceHtml = (<span className='point'><span className='add'>+</span><em className='money'>{LogGood.total_price}</em>元</span>)
                 } else {
                     priceHtml = (<span></span>)
 

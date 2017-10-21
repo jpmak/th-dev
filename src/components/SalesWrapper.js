@@ -67,7 +67,7 @@ class SalesWrapper extends React.Component {
             let item_price = parseFloat(goods.item_price)
             let pointsHtml = ''
             if (item_price !== 0) {
-                pointsHtml = (<span className='point'><span className='add'>+</span><em className='money'>¥</em>{goods.item_price}</span>)
+                pointsHtml = (<span className='point'><span className='add'>+</span><em className='money'>{goods.item_price}</em>元</span>)
             } else {
                 pointsHtml = (<span></span>)
 
@@ -76,7 +76,7 @@ class SalesWrapper extends React.Component {
 
                 <li  key={index} onClick={this.handleClick.bind(this,goods.goods_name,goods.exchange_points,goods.item_price,goods.list_image)}><Link to={this.props.baseUrl+'/product/'+goods.item_id} className="upItem" data-id={goods.item_id}  ><div className="info-img"><div className={sales_top}></div>
                 <img alt='' src={goods.list_image}  />
-                </div><div className="info-bar"><div className="e-numb"><span className="e-price"><em>{goods.exchange_points} </em>积分</span>{pointsHtml}</div></div></Link> </li>
+                </div><div className="info-bar"><div className="e-numb"><span className="e-price"><em>{goods.exchange_points}</em>积分</span>{pointsHtml}</div></div></Link> </li>
 
 
             )

@@ -9,7 +9,9 @@ import SearchInput from '../components/search/SearchInput';
 import DelValue from '../components/search/DelValue';
 import SearchBtn from '../components/search/SearchBtn';
 import SearchResult from '../components/search/SearchResult';
-
+import {
+    beginShare,
+} from '../actions/wxchat'
 
 import {
     SearchBeginRefresh,
@@ -107,7 +109,7 @@ class Searchhead extends React.Component {
     }
     componentWillMount() {
         window.scrollTo(0, 0)
-        document.title = this.props.match.params.keyword ? (this.props.match.params.keyword+ ' - 商品搜索-通惠购') : '' + ' - 商品搜索-通惠购'
+        document.title = this.props.match.params.keyword ? (this.props.match.params.keyword + ' - 商品搜索-通惠购') : '' + ' - 商品搜索-通惠购'
 
         this.funloadHistory();
         if (window.localStorage.searchhistory) {
@@ -117,6 +119,8 @@ class Searchhead extends React.Component {
         }
     }
     componentDidMount(e) {
+        this.props.dispatch(beginShare('search', this.props.match.params.keyword));
+
         this.setState({
             value: this.searchMsg[0]
         });
@@ -239,7 +243,7 @@ class Searchhead extends React.Component {
             this.setState({
                 searchMsgStatus: 1
             });
-            
+
             this.keywordClick(nextProps.match.params.keyword)
         }
     }

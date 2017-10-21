@@ -51,7 +51,7 @@ const store = createStore(
 	applyMiddleware(...middleware)
 )
 
-const baseUrl = '/wa/Exchange-index.html';
+const baseUrl = '/wap/Exchange-index.html';
 const Jf = () => (
 	<Router>
 	<div>

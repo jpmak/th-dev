@@ -13,6 +13,18 @@ $bg:'../images/';
 .pt88{
     padding-top: .88rem
 }
+.fs18{
+    font-size: .18rem;
+}
+.fs24{
+    font-size: .24rem;
+}
+.fs28{
+    font-size: .28rem;
+}
+.bold{
+  font-weight: bold;  
+}
 a.th-btn.th-btn-assertive.th-btn-outline {
     background-color: $redColor;
     color: #fff;
@@ -190,8 +202,8 @@ a.th-btn.th-btn-assertive.th-btn-outline {
                 display: block;
             }
             .info-img {
-                width:2rem;
-                height: 2rem;
+                width:2.2rem;
+                height: 2.2rem;
                 position: relative;
                 display: table-cell;
                 text-align: center;
@@ -199,8 +211,8 @@ a.th-btn.th-btn-assertive.th-btn-outline {
                 text-align: center;
                 background-color: #fff;
                 img {
-                    max-width: 2rem;
-                    max-height: 2rem;
+                    max-width: 2.2rem;
+                    max-height: 2.2rem;
                     vertical-align: middle;
                     text-align: center;
                 }
@@ -233,7 +245,7 @@ a.th-btn.th-btn-assertive.th-btn-outline {
             .info-bar {
                 // padding: 0 .28rem 0;
                 overflow: hidden;
-                width: 2rem;
+                width: 2.2rem;
                 background-color: #fff;
                 .pro-title {
 
@@ -257,19 +269,16 @@ a.th-btn.th-btn-assertive.th-btn-outline {
                                   }
 
                     .point{
-                          font-weight: bold;
-                     font-size: .28rem; 
+                     font-size: .24rem; 
                      .add{
+                         font-size: .24rem;
                           font-weight: normal;
-
-                        color:#000;
-                        padding:0 .05rem; 
+                        color:$yellowColor;
+                        padding:0 .02rem;
                     }
                     .money{
                     font-size: .28rem;
-                        font-weight: 500;
-                        padding-right:0.08rem; 
-
+                        font-weight: bold;
                     }
                     }
                 }
@@ -293,7 +302,20 @@ a.th-btn.th-btn-assertive.th-btn-outline {
      -webkit-box-shadow: 0rem -.05rem .1rem rgba(0, 0, 0, .2);
         -moz-box-shadow: 0rem -.05rem .1rem rgba(0, 0, 0, .2);
         box-shadow: 0rem -.05rem .1rem rgba(0, 0, 0, .2);
-
+ -webkit-animation:fadeInfoot .3s  ease both;
+-moz-animation:fadeInfoot .3s  ease both;
+@-webkit-keyframes fadeInfoot{
+0%{opacity:.4;
+-webkit-transform:translateY(50px)}
+100%{opacity:1;
+-webkit-transform:translateY(0)}
+}
+@-moz-keyframes fadeInfoot{
+0%{opacity:.4;
+-moz-transform:translateY(50px)}
+100%{opacity:1;
+-moz-transform:translateY(0)}
+}
     .hor-view {
         display: -webkit-box;
         display: -webkit-flex;

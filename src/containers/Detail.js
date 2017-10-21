@@ -14,6 +14,9 @@ import {
     fetchPropsGoods
 } from '../actions/detail'
 import {
+    beginShare,
+} from '../actions/wxchat'
+import {
     beginUser
 } from '../actions'
 
@@ -44,12 +47,12 @@ class Detail extends React.Component {
             this.props.dispatch(fetchDetailGoods(this.props.match.params.id));
             this.props.dispatch(pushIdStatus(this.props.match.params.id));
         }
+        this.props.dispatch(beginShare('product', this.props.match.params.id))
+    }
+    componentWillUnmount() {
+        document.documentElement.style.overflowY = 'auto'
 
     }
-     componentWillUnmount() {
-    document.documentElement.style.overflowY = 'auto'
-
-     }
     pushIdStatus(id) {
         this.props.dispatch(pushIdStatus(id));
         this.props.dispatch(fetchPropsGoods(id));

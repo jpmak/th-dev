@@ -12,7 +12,7 @@ class IsOrderLi extends React.Component {
 		let item_price = parseFloat(this.props.orderLi.item_price)
 		let priceHtml = '';
 		if (item_price !== 0) {
-			priceHtml = (<span className='point'><span className='add'>+</span><em className='money'>¥</em>{this.props.orderLi.item_price}</span>)
+			priceHtml = (<span className='point'><span className='add'>+</span><em className='money'>{this.props.orderLi.item_price}</em>元</span>)
 		} else {
 			priceHtml = (<span></span>)
 

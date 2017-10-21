@@ -333,7 +333,7 @@ class ResultWrap extends React.Component {
                 let pointsHtml = ''
                 let item_price = parseFloat(goods.item_price)
                 if (item_price !== 0) {
-                    pointsHtml = (<span className='point'><span className='add'>+</span><em className='money'>¥</em>{goods.item_price}</span>)
+                    pointsHtml = (<span className='point'><span className='add'>+</span><em className='money'>{goods.item_price}</em>元</span>)
                 } else {
                     pointsHtml = (<span></span>)
 

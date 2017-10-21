@@ -37,8 +37,8 @@ class PayWay extends React.Component {
 <div className='wbox-flex payTitle'>付款方式</div>
 <ul className='payList'>
 <li >
-    <label >支付服务费</label>
-    <p className="payMoney"><em>¥</em><span>{totalPrice}</span></p>
+    <label >支付费用</label>
+    <p className="payMoney"><span>{totalPrice}</span></p>
 </li>
 <li>
     <label >付款账号</label>
