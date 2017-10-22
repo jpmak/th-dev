@@ -51,11 +51,15 @@ const store = createStore(
 	applyMiddleware(...middleware)
 )
 
-const baseUrl = '/wap/Exchange-index.html';
+const baseUrl = '/wa/Exchange-index.html';
 const Jf = () => (
 	<Router>
 	<div>
-	<Route exact path={baseUrl}  component={App} />
+{/*	
+<Route exact path={baseUrl}  component={App} />
+*/
+}
+<Route exact path='/'  component={App} />
 	<Route path={baseUrl+ '/login/:router?'}  component={Login} />
 	 <Route path={baseUrl+'/product/:id?'} component={Detail}/>
 	 <Route path={baseUrl+'/search/:keyword?'} component={Searchhead} />
