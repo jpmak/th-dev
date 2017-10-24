@@ -17,7 +17,7 @@
         width: 3.75rem;
     height: 3.75rem;
     margin:0 auto;
-    background: url(./404.png) center no-repeat;
+    background: url(../images/404bg.png) center no-repeat;
     background-size: 2.9rem 2.56rem;
 }
 .overlayLoader {
@@ -40,7 +40,7 @@
     margin: auto;
     width: 97px;
     height: 97px;
-        background: url(./monkeyBg.png) center no-repeat;
+        background: url(../images/monkeyBg.png) center no-repeat;
     background-size: 97px 97px;
     animation-name: rotateAnim;
     -o-animation-name: rotateAnim;

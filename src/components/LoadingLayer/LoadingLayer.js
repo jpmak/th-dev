@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './LoadingLayer.css';
+import style from '../../styles/LoadingLayer.css';
 
 
 export default class LoadingLayer extends React.Component {

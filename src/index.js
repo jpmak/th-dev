@@ -61,8 +61,8 @@ const Jf = () => (
 <Route exact path='/'  component={App} />
 */
 }
-<Route exact path={baseUrl}  component={App} />
 
+<Route exact path='/'  component={App} />
 	<Route path={baseUrl+ '/login/:router?'}  component={Login} />
 	 <Route path={baseUrl+'/product/:id?'} component={Detail}/>
 	 <Route path={baseUrl+'/search/:keyword?'} component={Searchhead} />
