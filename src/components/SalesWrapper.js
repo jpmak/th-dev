@@ -46,8 +46,6 @@ class SalesWrapper extends React.Component {
         this.props.detailData(goods_name, exchange_points, item_price, list_image)
     }
     render() {
-
-
         let goodsHtmls = this.props.salesItems;
         let goodsList = goodsHtmls.map((goods, index) => {
             var sales_top = ' '

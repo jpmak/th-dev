@@ -5,7 +5,7 @@
 $yellowColor: #F5A623;
 $borderColor: #DEDEDE;
 $redColor:#ED0E47;
-$lazzyBg:url(../images/loadbg.png) no-repeat 50% 50%;
+$lazzyBg:url(../images/loadingBg.png) no-repeat 50% 50%;
 $bg:'../images/';
 .mt20 {
     margin-top: .2rem
@@ -289,7 +289,41 @@ a.th-btn.th-btn-assertive.th-btn-outline {
 
 
 /*底部导航*/
+.scrollerUp{
+      
+ -webkit-animation:fadeInfoot .3s  ease both;
+-moz-animation:fadeInfoot .3s  ease both;
+}
+.scrollerDown{
+        
+ -webkit-animation:fadeOutfoot .4s  ease both;
+-moz-animation:fadeOutfoot .4s  ease both;
+@-webkit-keyframes fadeOutfoot{
+0%{opacity:1;
+-webkit-transform:translateY(0)}
+100%{opacity: 0;
+-webkit-transform:translateY(50px)}
+}
+@-moz-keyframes fadeOutfoot{
+0%{opacity:1;
+-moz-transform:translateY(0)}
+100%{opacity:0;
+-moz-transform:translateY(50px)}
+}
+}
 
+@-webkit-keyframes fadeInfoot{
+0%{opacity:.4;
+-webkit-transform:translateY(50px)}
+100%{opacity:1;
+-webkit-transform:translateY(0)}
+}
+@-moz-keyframes fadeInfoot{
+0%{opacity:.4;
+-moz-transform:translateY(50px)}
+100%{opacity:1;
+-moz-transform:translateY(0)}
+}
 .nav-tab {
     position: fixed;
     left: 0;
@@ -304,18 +338,8 @@ a.th-btn.th-btn-assertive.th-btn-outline {
         box-shadow: 0rem -.05rem .1rem rgba(0, 0, 0, .2);
  -webkit-animation:fadeInfoot .3s  ease both;
 -moz-animation:fadeInfoot .3s  ease both;
-@-webkit-keyframes fadeInfoot{
-0%{opacity:.4;
--webkit-transform:translateY(50px)}
-100%{opacity:1;
--webkit-transform:translateY(0)}
-}
-@-moz-keyframes fadeInfoot{
-0%{opacity:.4;
--moz-transform:translateY(50px)}
-100%{opacity:1;
--moz-transform:translateY(0)}
-}
+
+
     .hor-view {
         display: -webkit-box;
         display: -webkit-flex;
@@ -375,7 +399,7 @@ a.th-btn.th-btn-assertive.th-btn-outline {
             height: 0.48rem;
     padding-bottom: .1rem;
 
-            background: url($bg+'loading.gif') no-repeat;
+            background: url($bg+'loading_.gif') no-repeat;
             background-size: 0.48rem 0.48rem;
                display: block;
     margin:0 auto;

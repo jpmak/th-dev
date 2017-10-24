@@ -1,6 +1,5 @@
 import React from 'react';
 import SortsBtn from './public/SortsBtn';
-import GobackUp from './public/GobackUp';
 import DelValue from './search/DelValue';
 import SearchBtn from './search/SearchBtn';
 import SearchInput from './search/SearchInput';
@@ -39,6 +38,7 @@ class SearchBox extends React.Component {
 
         $('#searchInput').on('click', function() {
             $('#headnav').addClass('js-header');
+            $('.fixedTop').removeClass('scrollerDown').addClass('scrollerUp');
 
             // $('#js-list,.sorts,.result-wp').hide();
             $('.th-search-container').addClass('on-focus');
@@ -67,7 +67,7 @@ class SearchBox extends React.Component {
     }
 
     historyPush(e) {
-       
+
         this.props.history.push(this.props.baseUrl + '/search/' + e)
 
     }
@@ -79,15 +79,35 @@ class SearchBox extends React.Component {
     pushHide() {
         this.props.pushHide();
     }
+    handClick() {
 
+        $('#searchInput').val("")
+        $('#searchInput').blur();
+        $('.th-search-container').removeClass('on-focus');
+        $('.th-search-container').addClass('on-blur');
+        $('#headnav').removeClass('js-header');
+        $('.fixedTop').removeClass('scrollerUp').addClass('scrollerDown');
+
+
+
+        $('#js-list,.class,.result-wp').show();
+        $('#del').hide();
+        $('.th-search-box .backbtn').hide();
+
+
+        $('#AppWrap').css({
+            'height': 'auto',
+            'overflow': 'hidden'
+        });
+    }
     render() {
         return (
             <div className="th-search-container on-blur" style={{position:'relative',zIndex:'200'}}>
             <div className="th-search-box">
                 <div className="th-search-shadow"></div>
                       <SortsBtn baseUrl={this.props.baseUrl}/>
-  
-        <GobackUp/>
+    <a className="backbtn" onClick={this.handClick}></a>
+
              <SearchBtn funStoreHistory={this.funStoreHistory.bind(this)} value={this.state.value}/>
                 <div className="wbox search-bar">
                     <lable className="th-search-iconbtn"></lable>
@@ -99,7 +119,9 @@ class SearchBox extends React.Component {
                 </div>
 
             </div>
+            <div className='fixedTop'>
 <SearchResult ref="getarr"  searchMsgStatus_fun={ this.searchMsgStatus_fun.bind(this)} handleDel = {this.handleDel.bind(this)}  historyPush={this.historyPush.bind(this)}/>
+</div>
         </div>
 
         )

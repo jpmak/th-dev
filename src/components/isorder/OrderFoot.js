@@ -10,7 +10,8 @@ class OrderFoot extends React.Component {
 			gray: 'gray',
 			ModalIicon: ''
 		};
-		this.cssGray = 'gray'
+		this.cssGray = 'gray';
+		this.totalPrice = 0
 	}
 	checkPrice() {
 		let userTourism = this.props.userTourism;
@@ -22,15 +23,14 @@ class OrderFoot extends React.Component {
 		}
 	}
 	settlement() {
-		if (this.props.money < this.props.fee) {
+
+
+		if (this.props.money < this.totalPrice) {
 			this.refs.Modal.handleOpenModal2()
 			this.setState({
 				ModalIicon: 2,
 			});
-			console.log(111)
-
 			this.refs.Modal.setText2('惠积分不足支付服务费，请充值')
-
 		} else if (this.cssGray === 'gray') {
 			this.refs.Modal.handleOpenModal2()
 			this.setState({
@@ -53,7 +53,8 @@ class OrderFoot extends React.Component {
 
 	render() {
 
-
+		console.log(this.props.fee);
+		console.log(this.props.money);
 		let userTourism = this.props.userTourism;
 		let userMoney = this.props.userMoney;
 		let userBuy = this.props.userBuy;
@@ -61,13 +62,14 @@ class OrderFoot extends React.Component {
 		let item_price = parseFloat(this.props.item_price);
 		let money = this.props.money;
 		let fee = parseFloat(this.props.fee);
+
 		let tipHtml = [];
-		let totalPrice = 0
-		totalPrice = (item_price + fee).toFixed(2)
+		// let totalPrice = 0
+		this.totalPrice = (item_price + fee).toFixed(2)
 
 		if (userTourism < exchange_points && userMoney < exchange_points && userBuy < exchange_points) {
 			this.cssGray = 'gray'
-		} else if (money < fee) {
+		} else if (money < this.totalPrice) {
 			this.cssGray = 'gray'
 			tipHtml = (<div className='footerTip'><a  href='/wap/Recharge-index.html'><i></i><span className='fl'>当前惠积分:<strong>{this.props.money}</strong>, 不足支付服务费</span><span className='fr'>马上充值 ></span></a></div>)
 		} else {
@@ -83,7 +85,7 @@ class OrderFoot extends React.Component {
 <div className="left-cont fl">
 <label htmlFor="">合计</label>
 <div className="total-wrap">
-		<div className="total"> <span className='num'>{this.props.exchange_points}</span><span>积分</span><i className='add'>+</i><span className='num'><span className='money'>{totalPrice}</span><span className='fs24'>元</span></span></div>
+		<div className="total"> <span className='num'>{this.props.exchange_points}</span><span>积分</span><i className='add'>+</i><span className='num'><span className='money'>{this.totalPrice}</span><span className='fs24'>元</span></span></div>
 		<div className="total"><span>(含运费：{this.props.fee})</span></div>
 </div>
 </div>

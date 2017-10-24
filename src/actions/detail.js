@@ -43,7 +43,7 @@
     export const fetchDetailGoods = (id) => {
         // pushIdStatus(id)
         return (dispatch) => {
-       $.ajax({
+            $.ajax({
                 url: '/wap/?g=WapSite&c=Exchange&a=get_goods_msg',
                 dataType: 'json',
                 type: 'post',
@@ -52,28 +52,35 @@
                 },
                 success: (data) => {
 
-                    dispatch({
-                        type: consts.DETAIL_GOODS_SUCCESS,
+                    if (data.status) {
+                        dispatch({
+                            type: consts.DETAIL_GOODS_SUCCESS,
 
-                        prop_name: (data.prop_name) ? data.prop_name : '',
-                        // saleProp: (data.saleProp) ? data.saleProp : [],
-                        saleProp: data.saleProp,
-                        itemUrl: (data.itemUrl) ? data.itemUrl : '',
-                        item_price: (data.goods.item_price) ? data.goods.item_price : '',
-                        exchange_points:(data.goods.exchange_points)?data.goods.exchange_points :0,
+                            goodStatus: data.status,
+                            prop_name: (data.prop_name) ? data.prop_name : '',
+                            // saleProp: (data.saleProp) ? data.saleProp : [],
+                            saleProp: data.saleProp,
+                            itemUrl: (data.itemUrl) ? data.itemUrl : '',
+                            item_price: (data.goods.item_price) ? data.goods.item_price : '',
+                            exchange_points: (data.goods.exchange_points) ? data.goods.exchange_points : 0,
 
-                        name: data.goods.goods_name,
-                        stock: data.goods.stock,
-                        goods_id: data.goods.goods_id,
-                        goods_body: data.goods.goods_body,
-                        imgsrc: data.goods.main_image,
-                        item_name: (data.goods.item_name) ? '已选择：' + data.goods.item_name : ''
-                    });
-
+                            name: data.goods.goods_name,
+                            stock: data.goods.stock,
+                            goods_id: data.goods.goods_id,
+                            goods_body: data.goods.goods_body,
+                            imgsrc: data.goods.main_image,
+                            item_name: (data.goods.item_name) ? '已选择：' + data.goods.item_name : ''
+                        });
+                    } else {
+                        dispatch({
+                            type: consts.DETAIL_GOODS_FAIL,
+                            goodStatus: 0
+                        });
+                    }
                 },
                 error: () => {
                     console.log('加载失败')
-          
+
                 }
             });
             // fetch('/wap/?g=WapSite&c=Exchange&a=get_goods_msg', {
@@ -102,7 +109,7 @@
             //         });
 
             //     })
-               
+
         }
     }
     export const fetchPropsGoods = (id) => {
@@ -121,15 +128,15 @@
                         item_price: data.goods.item_price,
                         stock: data.goods.stock,
                         item_name: (data.goods.item_name) ? '已选择：' + data.goods.item_name : '',
-                        exchange_points:(data.goods.exchange_points)?data.goods.exchange_points :0,
-                        
+                        exchange_points: (data.goods.exchange_points) ? data.goods.exchange_points : 0,
+
                         itemUrl: data.itemUrl ? data.itemUrl : ''
                     });
 
                 },
                 error: () => {
                     console.log('加载失败')
-          
+
                 }
             });
         }

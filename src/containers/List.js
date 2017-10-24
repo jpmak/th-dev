@@ -15,6 +15,9 @@ import Modal from '../components/public/Modal';
 import {
     scrollUp
 } from '../actions'
+
+
+
 import {
     ListTryRestoreComponent,
     fetchListGoods,
@@ -27,6 +30,7 @@ import {
 } from '../actions/list'
 import {
     updateLoadingStatus,
+    cate_id,
 } from '../actions/search'
 import {
     beginShare,

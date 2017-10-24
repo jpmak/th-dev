@@ -337,6 +337,7 @@ class OrderDetail extends React.Component {
         )
     }
     render() {
+
         let renderHtml = [];
         // 首屏没有加载成功，那么均展示loading效果
         renderHtml = this.renderPage();

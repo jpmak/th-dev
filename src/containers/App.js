@@ -11,7 +11,7 @@ import SalesWrapper from '../components/SalesWrapper';
 import JsCate from '../components/JsCate';
 import FooterNav from '../components/FooterNav';
 import WechatSdk from '../components/public/WechatSdk';
-
+import $ from 'jquery';
 import {
 	scrollUp,
 	tryRestoreComponent,
@@ -56,6 +56,8 @@ class App extends React.Component {
 			window.scrollTo(0, this.props.y)
 		}
 		this.props.dispatch(beginShare())
+
+
 
 	}
 	componentWillUnmount() {
@@ -131,12 +133,13 @@ class App extends React.Component {
 	
 		<header id="headnav" >
 		<TopNav titleName = "兑换商城"	icon = "jf-record-icon" icon_link = "search.html" />
-		</header>
-		
-		<div className='w'>
-		<div id='search' style={{ zIndex:'200'}}>
+			<div id='search' style={{ zIndex:'200'}}>
 		<SearchBox baseUrl={baseUrl} loadingStatus={this.props.loadingStatus} parmKeyword={this.props.match.params.keyword} history={this.props.history} />
 		</div>
+		</header>
+	
+		<div className='w ' style={{paddingTop:'100px'}}>
+	
 		<div id="AppBanner">
 		<SlickBanner bannerItems={bannerItems}/>
 		</div>
@@ -148,7 +151,7 @@ class App extends React.Component {
 		</div>
 		</div>
 		</div>
-			<div className='w'>
+			<div className='w '>
 		<JsCate baseUrl={baseUrl} ref='JsCate' changeIsData={this.changeIsData.bind(this)} UpDataCateId={this.UpDataCateId.bind(this)}  loadingStatus={loadingStatus} detailData={this.detailData.bind(this)} cateList={cateList} cateGoods={cateGoods} liWidth={liWidth} moveWidths={moveWidths} pushIndex={pushIndex} pageStatus={pageStatus} pullDownStatus={pullDownStatus} pullUpStatus={pullUpStatus} UpDataPullUpStatus={this.UpDataPullUpStatus.bind(this)} get_cate_goods={this.get_cate_goods.bind(this)} changeGoods={this.changeGoods.bind(this)} liMove={this.liMove.bind(this)}/>
 
             </div>

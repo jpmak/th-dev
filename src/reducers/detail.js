@@ -1,7 +1,7 @@
 import * as consts from "../consts/ActionTypes";
 // 组件初始化状态，其实就是把component的constructor的挪到这里就完事了
 const detailInitState = {
-    goodStatus: 0,
+    goodStatus: 1,
     id: 0,
     saleProp: [],
     name: null, //标题
@@ -12,7 +12,7 @@ const detailInitState = {
     item_price: null, //积分数量
     item_name: '',
     goods_id: '',
-    exchange_points:'',
+    exchange_points: '',
     goods_body: '',
     detailLoadingStatus: 1, // 首屏加载状态
     y: 0, // 上一次滚动偏移量
@@ -38,7 +38,7 @@ const DETAIL_GOODS_SUCCESS_reducer = (state, action) => {
         saleProp: action.saleProp,
         prop_name: action.prop_name,
         itemUrl: action.itemUrl,
-        exchange_points:action.exchange_points,
+        exchange_points: action.exchange_points,
         imgsrc: action.imgsrc,
         stock: action.stock,
         item_price: action.item_price,
@@ -54,20 +54,21 @@ const DETAIL_PROPS_SUCCESS_reducer = (state, action) => {
 
         stock: action.stock,
         item_price: action.item_price,
-        exchange_points:action.exchange_points,
+        exchange_points: action.exchange_points,
         item_name: action.item_name,
         itemUrl: action.itemUrl,
 
     });
     return state;
 }
-// const DETAIL_GOODS_FAIL_reducer = (state, action) => {
-//     // 首屏加载失败, 那么需要展示loading fail效果
-//     return Object.assign({}, state, {
-//         detailloadingStatus: 3
-//     });
-//     return state;
-// }
+const DETAIL_GOODS_FAIL_reducer = (state, action) => {
+    // 首屏加载失败, 那么需要展示loading fail效果
+    return Object.assign({}, state, {
+        // detailloadingStatus: 3
+        goodStatus: 0
+    });
+    return state;
+}
 
 const DETAIL_ID_STATUS_reducer = (state, action) => {
     return Object.assign({}, state, {
@@ -115,8 +116,8 @@ export const MsgDetailReducer = (state = detailInitState, action) => {
             return DETAIL_UPDATA_LOCALDETAILDATA_reducer(state, action);
         case consts.DETAIL_UPDATE_LOADING_STATUS:
             return DETAIL_UPDATE_LOADING_STATUS_reducer(state, action);
-            // case consts.DETAIL_GOODS_FAIL:
-            //   return DETAIL_GOODS_FAIl_reducer(state, action);
+        case consts.DETAIL_GOODS_FAIL:
+            return DETAIL_GOODS_FAIL_reducer(state, action);
 
         default:
             // console.log(action);

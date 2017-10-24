@@ -145,7 +145,7 @@ class InfoGoods extends React.Component {
         }
 
         return (
-            <div className="app-pd-wp"  style={{background:'#fff',paddingBottom:'0'}}>
+            <div className="app-pd-wp"  style={{paddingBottom:'0'}}>
                 <div className="app-pd-list">
                    <ul >
                 {InfoGoodList}

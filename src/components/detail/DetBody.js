@@ -85,11 +85,12 @@ class DetBody extends React.Component {
     }
 
     componentWillMount() {
+
+
         if (window.localStorage.detailData) {
             this.detailMsg = JSON.parse(window.localStorage.detailData);
         }
         if (this.props.detailLoadingStatus === 2) {
-
             this.setState({
                 iScrollUp: true
             })
@@ -118,7 +119,6 @@ class DetBody extends React.Component {
     startMoveY(e) {
         this.touchRangeY = e.touches[0].pageY;
         this.movingbannerX = 0;
-
     }
     movIngY(e) {
         this.movingY = e.touches[0].pageY
@@ -126,6 +126,7 @@ class DetBody extends React.Component {
     endMove() {
         if (Math.abs(this.touchRangeBannerX - this.movingbannerX) < 20) {
             if (this.touchRangeY - this.movingY > 0 && this.state.iScrollUp && this.bottomState === true && this.movingY !== 0) {
+
                 this.iScrollUp();
                 this.refs.Scrollup.changeBlock();
                 this.touchRangeBannerX = 0;
@@ -139,7 +140,7 @@ class DetBody extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.goodStatus !== this.props.goodStatus) {
+        if (nextProps.detailLoadingStatus !== this.props.detailLoadingStatus) {
             this.setState({
                 iScrollUp: !this.state.iScrollUp,
                 stock: this.props.stock
@@ -153,6 +154,7 @@ class DetBody extends React.Component {
         this.props.history();
     }
     render() {
+
         let isDisplay = this.state.isDisplay ? 'block' : 'none';
         let name = this.detailMsg ? this.detailMsg.productName : this.props.name;
         let item_prices = this.detailMsg ? this.detailMsg.productPrice : this.props.item_price;

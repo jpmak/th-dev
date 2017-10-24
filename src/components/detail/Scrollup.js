@@ -82,12 +82,12 @@ class Scrollup extends React.Component {
         let productBodyHeight = $('#productBody').height();
         let scrollUp = produtShowHeight + headHeight - productBodyHeight;
 
-        if ((clientHeight + scrollTop + 20) > (scrollHeight)) {
+        if ((clientHeight + scrollTop) === (scrollHeight)) {
             this.props.bottomFun(true)
+
         }
 
-
-        if (scrollTop < scrollUp && this.scrollUp) {
+        if (scrollTop + 50 < scrollUp && this.scrollUp) {
             this.props.iScrollUp();
             $('html, body').animate({
                 scrollTop: $('#headnav').offset().top
@@ -112,7 +112,6 @@ class Scrollup extends React.Component {
             isPushUp: 'block',
             height: scrollUp
         }, () => {
-
 
             $('html, body').animate({
                 scrollTop: $('.items').offset().top

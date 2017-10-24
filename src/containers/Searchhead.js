@@ -109,7 +109,6 @@ class Searchhead extends React.Component {
     }
     componentWillMount() {
         window.scrollTo(0, 0)
-        document.title = this.props.match.params.keyword ? (this.props.match.params.keyword + ' - 商品搜索-通惠购') : '' + ' - 商品搜索-通惠购'
 
         this.funloadHistory();
         if (window.localStorage.searchhistory) {
@@ -119,13 +118,25 @@ class Searchhead extends React.Component {
         }
     }
     componentDidMount(e) {
+        let parmKeyword = this.props.match.params.keyword
+        let list = parmKeyword.indexOf('@list');
+        if (list == -1) {
+            document.title = this.props.match.params.keyword + ' - 商品搜索-通惠购'
+        } else {
+            document.title = '分类搜索-通惠购'
+        }
+
         this.props.dispatch(beginShare('search', this.props.match.params.keyword));
 
         this.setState({
             value: this.searchMsg[0]
         });
     }
+    componentWillUnmount() {
+        this.props.dispatch(cate_id(''))
+        this.props.dispatch(price(''))
 
+    }
 
     searchMsgStatus_fun(e) {
         this.setState({
@@ -234,6 +245,7 @@ class Searchhead extends React.Component {
     }
     componentWillReceiveProps(nextProps) {
         if (nextProps.keyword !== this.props.keyword) {
+            // if(nextProps.keyword)
             this.setState({
                 value: nextProps.keyword
             });
@@ -307,7 +319,15 @@ class Searchhead extends React.Component {
         </div>
 
             <ResultWrap baseUrl={this.props.baseUrl} ref = "getload" detailInit={this.detailInit.bind(this)} value={this.state.value} items = {items} status = {status} _keywordClick={this._keywordClick.bind(this)}  parmKeyword={ this.props.match.params.keyword}  y = {y}  price={price}  searchNum={searchNum}    backupIScrollY = {this.backupIScrollY.bind(this)} pageStatus = {pageStatus}  tryRestoreComponent = {this.tryRestoreComponent.bind(this)}
-                      defaultClick = {this.defaultClick.bind(this)}  cate_idClick={this.cate_idClick.bind(this)} priceClick = {this.priceClick.bind(this)}
+        defaultClick = {
+            this.defaultClick.bind(this)
+        }
+        cate_idClick = {
+            this.cate_idClick.bind(this)
+        }
+        priceClick = {
+            this.priceClick.bind(this)
+        }
                volumeClick = {this.volumeClick.bind(this)}  beginRefresh = {this.beginRefresh.bind(this)}
             beginLoad = {this.beginLoad.bind(this)}    updateLoadingStatus = {this.updateLoadingStatus.bind(this)}
             pullDownStatus = {pullDownStatus} pullUpStatus = {pullUpStatus} loadingStatus = {loadingStatus}

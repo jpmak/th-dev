@@ -7,6 +7,8 @@ import {
 } from 'react-redux'
 import TopNav from '../components/TopNav';
 import DetBody from '../components/detail/DetBody';
+import DataNone from '../components/public/DataNone';
+
 import {
     detailTryRestoreComponent,
     fetchDetailGoods,
@@ -19,6 +21,7 @@ import {
 import {
     beginUser
 } from '../actions'
+
 
 class Detail extends React.Component {
     constructor(props) {
@@ -43,7 +46,7 @@ class Detail extends React.Component {
         if (this.props.detailLoadingStatus === 1) {
             this.props.dispatch(fetchDetailGoods(this.props.match.params.id));
             this.props.dispatch(pushIdStatus(this.props.match.params.id));
-        } else if (this.props.detailLoadingStatus === 2 && this.props.id !== this.props.match.params.id) {
+} else if (this.props.detailLoadingStatus === 2 && this.props.id !== this.props.match.params.id) {
             this.props.dispatch(fetchDetailGoods(this.props.match.params.id));
             this.props.dispatch(pushIdStatus(this.props.match.params.id));
         }
@@ -85,7 +88,7 @@ class Detail extends React.Component {
             }
         });
     }
-    render() {
+    renderPage() {
         const {
             detailLoadingStatus,
             goodStatus,
@@ -101,13 +104,33 @@ class Detail extends React.Component {
             goods_id,
             goods_body
         } = this.props
+        let goodStatusHtml = [];
+
+        if (goodStatus === 1) {
+            goodStatusHtml = <DetBody history={this.history.bind(this)} pushIdStatus={this.pushIdStatus.bind(this)}  id={this.props.match.params.id} exchange_points={exchange_points} detailLoadingStatus={detailLoadingStatus} name = { name } saleProp = { saleProp } prop_name = { prop_name } itemUrl = { itemUrl } imgsrc = { imgsrc } stock = { stock } item_price = { item_price } item_name = { item_name } goods_id = { goods_id } goods_body = {goods_body} goodStatus={goodStatus}/>
+        } else {
+            goodStatusHtml = (<DataNone tip='商品已下架或不存在'/>)
+        }
         return (
-            <div className = "th-block">
-        	<header id = "headnav" >
-        <TopNav titleName = "商品详情" go='-1' border = "0" color='#fbfbfb'/> </header><div id = "detwrap"></div>
-        	<DetBody history={this.history.bind(this)} pushIdStatus={this.pushIdStatus.bind(this)}  id={this.props.match.params.id} exchange_points={exchange_points} detailLoadingStatus={detailLoadingStatus} name = { name } saleProp = { saleProp } prop_name = { prop_name } itemUrl = { itemUrl } imgsrc = { imgsrc } stock = { stock } item_price = { item_price } item_name = { item_name } goods_id = { goods_id } goods_body = {goods_body} goodStatus={goodStatus}/>
-        	</div>
+            <div>
+            <header id = "headnav" >
+        <TopNav titleName = "商品详情" go='-1' border = "0" color='#fbfbfb'/> </header>
+        {
+            goodStatusHtml
+        }
+            </div>
         )
+    }
+    render() {
+        let renderHtml = [];
+        renderHtml = this.renderPage();
+        return (
+            <div>
+        {
+            renderHtml
+        }
+        </div>
+        );
     }
 }
 const mapStateToProps = state => {

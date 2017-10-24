@@ -49,9 +49,13 @@ class SearchInput extends React.Component {
     }
     componentDidMount() {
         let parmKeyword = this.props.parmKeyword ? this.props.parmKeyword : '';
-        let list = parmKeyword.indexOf('&list');
-        if (list != -1) {
+        let list = parmKeyword.indexOf('@list');
+        if (list == -1) {
             //转换类型
+            this.setState({
+                value: parmKeyword
+            })
+        } else {
             this.setState({
                 value: ''
             })
@@ -78,7 +82,7 @@ class SearchInput extends React.Component {
     render() {
 
         return (
-        <input id="searchInput" className="th-search-form" type="text" placeholder="搜索商品关键字"  value={this.state.value} onClick={this.searchInputClick.bind(this)} onKeyUp={this.searchInputonKeyUp.bind(this)}  onChange={this.handleChange}/>
+            <input id="searchInput" className="th-search-form" type="text" placeholder="搜索商品关键字"  value={this.state.value} onClick={this.searchInputClick.bind(this)} onKeyUp={this.searchInputonKeyUp.bind(this)}  onChange={this.handleChange}/>
         )
 
 

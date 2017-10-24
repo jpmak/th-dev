@@ -8,7 +8,8 @@ import {
 } from 'react-dom';
 import {
 	BrowserRouter as Router,
-	Route
+	Route,
+	Redirect
 } from 'react-router-dom'
 
 import App from './containers/App';
@@ -57,9 +58,11 @@ const Jf = () => (
 	<div>
 {/*	
 <Route exact path={baseUrl}  component={App} />
+<Route exact path='/'  component={App} />
 */
 }
-<Route exact path='/'  component={App} />
+<Route exact path={baseUrl}  component={App} />
+
 	<Route path={baseUrl+ '/login/:router?'}  component={Login} />
 	 <Route path={baseUrl+'/product/:id?'} component={Detail}/>
 	 <Route path={baseUrl+'/search/:keyword?'} component={Searchhead} />
@@ -71,12 +74,7 @@ const Jf = () => (
 	 <Route path={baseUrl+'/allorder/'} component={AllOrder}/>
 	 <Route path={baseUrl+'/orderdetail/:id?'} component={OrderDetail}/>
 	 <Route path={baseUrl+'/TranList/:id?'} component={TranList}/>
-	 <Route path={baseUrl+'/404/'} component={NotFoundPage}/>
-
-
-
-
-
+<Route path={baseUrl+'/404'} component={NotFoundPage} />
 	</div>
   </Router>
 );

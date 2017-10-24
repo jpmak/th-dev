@@ -6,7 +6,6 @@ import {
 
 class FooterNav extends React.Component {
   render() {
-    console.log('test');
     return (
       <div className = 'nav-tab'>
             <div className='hor-view'>
