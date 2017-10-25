@@ -11,7 +11,7 @@ import SalesWrapper from '../components/SalesWrapper';
 import JsCate from '../components/JsCate';
 import FooterNav from '../components/FooterNav';
 import WechatSdk from '../components/public/WechatSdk';
-import $ from 'jquery';
+
 import {
 	scrollUp,
 	tryRestoreComponent,

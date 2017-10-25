@@ -194,6 +194,8 @@ class OrderDetail extends React.Component {
         let trackInfoTime = this.props.trackInfoTime
         let emsHtml = [];
         let btnHtml = [];
+        let cur_statusHtml = [];
+
 
         if (orderInfoItems.ems_status == 1 && trackInfoContext.length > 0) {
             //转换类型
@@ -213,6 +215,17 @@ class OrderDetail extends React.Component {
                 <div>
                    
                     </div>)
+            cur_statusHtml = (<h3>{
+                orderInfoItems.cur_status
+            } </h3>)
+
+        } else if (orderInfoItems.cur_status === '待发货') {
+            cur_statusHtml = (<h3>正在出库</h3>)
+            btnHtml = (
+                <div className="foot">
+                <button className="pay-btn red-btn" onClick={this.orderPayBtn.bind(this)}>确认收货</button>
+                </div>
+            )
 
         } else if (orderInfoItems.cur_status === '待收货') {
             btnHtml = (
@@ -239,7 +252,7 @@ class OrderDetail extends React.Component {
 
 <div className="top-board">
                 <div className="left-cont">
-                    <h3>{orderInfoItems.cur_status}</h3>
+       {cur_statusHtml}
                 </div>
                 <div className="right-icon"></div>
             </div>

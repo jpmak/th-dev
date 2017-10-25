@@ -78,7 +78,7 @@ class Scrollup extends React.Component {
 
 
         let produtShowHeight = $('.produt-show').height();
-        let headHeight = $('#headnav').height();
+        let headHeight = $('#detNav').height();
         let productBodyHeight = $('#productBody').height();
         let scrollUp = produtShowHeight + headHeight - productBodyHeight;
 
@@ -90,7 +90,7 @@ class Scrollup extends React.Component {
         if (scrollTop + 50 < scrollUp && this.scrollUp) {
             this.props.iScrollUp();
             $('html, body').animate({
-                scrollTop: $('#headnav').offset().top
+                scrollTop: $('#detNav').offset().top
             }, 800, () => {
                 this.setState({
                     height: 0,
@@ -105,7 +105,7 @@ class Scrollup extends React.Component {
     changeBlock() {
 
         let produtShowHeight = $('.produt-show').height();
-        let headHeight = $('#headnav').height();
+        let headHeight = $('#detNav').height();
         let productBodyHeight = $('#productBody').height();
         let scrollUp = produtShowHeight + headHeight - productBodyHeight;;
         this.setState({

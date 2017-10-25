@@ -171,7 +171,7 @@ class DetBody extends React.Component {
         }
         return (
             <div>
-            <div className="produt-show" style={{position:'relative'}} onTouchStart={this.startMoveY.bind(this)} onTouchMove={this.movIngY.bind(this)}  onTouchEnd={this.endMove.bind(this)}>
+        <div className="produt-show" style={{position:'relative'}} onTouchStart={this.startMoveY.bind(this)} onTouchMove={this.movIngY.bind(this)}  onTouchEnd={this.endMove.bind(this)}>
      
             <div className="w">
             <div  onTouchStart={this.startMoveBannerX.bind(this)} onTouchMove={this.movIngBannerX.bind(this)} >
