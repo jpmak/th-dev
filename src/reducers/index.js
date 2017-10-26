@@ -49,10 +49,10 @@ const FETCHUSERINFO_SUCCESS_reducer = (state, action) => {
 
   return Object.assign({}, state, {
     userStatus: action.userStatus,
-    userMoney: action.userMoney,
-    userBuy: action.userBuy,
-    userTourism: action.userTourism,
-    money: action.money,
+    userMoney: parseFloat(action.userMoney),
+    userBuy: parseFloat(action.userBuy),
+    userTourism: parseFloat(action.userTourism),
+    money: parseFloat(action.money),
     userName: action.userName
   });
 

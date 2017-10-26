@@ -124,7 +124,7 @@ class InfoGoods extends React.Component {
                     className = {this.changeGoods ? 'add' : 'move'} >
                     <Link to={this.props.baseUrl+'/product/'+InfoGood.item_id}  className="upItem " data-id={InfoGood.item_id}>
                 <div className="info-img">
-                <LazyLoad  placeholder={<PlaceholderComponent />}>
+                <LazyLoad height={50}  placeholder={<PlaceholderComponent />}>
                 <img className='lazy' alt=''  src={InfoGood.list_image}/>
                 </LazyLoad>
                 </div>

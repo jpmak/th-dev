@@ -171,7 +171,7 @@ class DetBody extends React.Component {
         }
         return (
             <div>
-            <div className="produt-show" style={{position:'relative'}} onTouchStart={this.startMoveY.bind(this)} onTouchMove={this.movIngY.bind(this)}  onTouchEnd={this.endMove.bind(this)}>
+        <div className="produt-show" style={{position:'relative'}} onTouchStart={this.startMoveY.bind(this)} onTouchMove={this.movIngY.bind(this)}  onTouchEnd={this.endMove.bind(this)}>
      
             <div className="w">
             <div  onTouchStart={this.startMoveBannerX.bind(this)} onTouchMove={this.movIngBannerX.bind(this)} >
@@ -188,9 +188,8 @@ class DetBody extends React.Component {
             </div>
 
             <div className="product-count">
-        <p className="remaining"><Link to={'/search/1'}>
-        剩余库存:
-        </Link>
+        <p className="remaining">
+        库存：
         <em>{this.props.stock? this.props.stock : '0'}</em></p>
             </div>
   

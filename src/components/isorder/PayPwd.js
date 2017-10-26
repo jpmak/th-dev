@@ -26,17 +26,13 @@ class PayPwd extends React.Component {
         }
     }
 
-
     componentDidMount() {
-
-    
         var payPassword = $("#payPassword_container");
-
         var _this = payPassword.find('i');
         var k = 0;
         var j = 0;
         var l = '';
-      
+
         var _cardwrap = $('#cardwrap');
 
         //点击隐藏的input密码框,在6个显示的密码框的第一个框显示光标
@@ -99,7 +95,7 @@ class PayPwd extends React.Component {
                 var _val = this.value;
                 this.value = _val.replace(/\D/g, '');
             }
-            
+
 
         });
     }

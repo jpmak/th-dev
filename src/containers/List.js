@@ -156,6 +156,7 @@ class List extends React.Component {
 
         return (
             <div>
+
                 <LoadingLayer outerStyle={outerStyle} onRetry={this.onRetryLoading.bind(this)}
                     loadingStatus={this.props.listLoadingStatus}
                 />
@@ -165,6 +166,7 @@ class List extends React.Component {
     renderPage() {
         return (
             <div id="js-list">
+           
         <div className="list-wrap wbox" style={{height:this.state.wrapHeight}}>
         <ListNav navItems={this.props.navItems} pushIndex={this.props.pushIndex} navStatus={this.props.navStatus} height={this.state.wrapHeight} listGoods={this.getListGoods.bind(this)} changeLoading={this.changeLoading.bind(this)}/>
         <ListGoods baseUrl={this.props.baseUrl} y={this.props.y} listLoadingStatus={this.props.listLoadingStatus} backupY={this.backupY.bind(this)} goodItems={this.props.goodItems} changeLoading={this.props.changeLoading}  height={this.state.wrapHeight} goodStatus={this.props.goodStatus} goodsFun={this.funStoreHistory.bind(this)}/>

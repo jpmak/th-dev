@@ -99,7 +99,7 @@ class CateGoods extends React.Component {
                 if (item_price !== 0) {
                     pointsHtml = (<span className='point'><span className='add'>+</span><em className='money'>{CateGood.item_price}</em>元</span>)
                 } else {
-                    pointsHtml = (<span></span>)
+                    pointsHtml = (<span className='point'><span className='add'>+</span><em className='money'>0</em>元</span>)
                 }
                 return (
                     <li  key={index} onClick={this.handleClick.bind(this,CateGood.goods_name,CateGood.exchange_points,CateGood.item_price,CateGood.list_image)}
@@ -127,8 +127,6 @@ class CateGoods extends React.Component {
         }
 
         return (
-
-
             <div className="app-pd-wp" >
         <div className='fixedHeight' style={{'display':this.state.scrollFixed?'block':'none'}}></div>
                         <p ref="PullUp" id="PullUp" dangerouslySetInnerHTML={{__html:this.pullUpTips[this.props.pullUpStatus]}} />
@@ -138,11 +136,7 @@ class CateGoods extends React.Component {
                    </ul>
                     </div>
               <p ref="PullDown" id="PullDown" dangerouslySetInnerHTML={{__html:this.pullDownTips[this.props.pullDownStatus]}} />
-     
                     </div>
-
-
-
         )
     }
     render() {

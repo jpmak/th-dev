@@ -11,7 +11,7 @@ import SalesWrapper from '../components/SalesWrapper';
 import JsCate from '../components/JsCate';
 import FooterNav from '../components/FooterNav';
 import WechatSdk from '../components/public/WechatSdk';
-import $ from 'jquery';
+
 import {
 	scrollUp,
 	tryRestoreComponent,
@@ -133,12 +133,12 @@ class App extends React.Component {
 	
 		<header id="headnav" >
 		<TopNav titleName = "兑换商城"	icon = "jf-record-icon" icon_link = "search.html" />
-			<div id='search' style={{ zIndex:'200'}}>
+		<div id='search' className='w750'  style={{ zIndex:'200'}}>
 		<SearchBox baseUrl={baseUrl} loadingStatus={this.props.loadingStatus} parmKeyword={this.props.match.params.keyword} history={this.props.history} />
 		</div>
 		</header>
 	
-		<div className='w ' style={{paddingTop:'100px'}}>
+		<div className='w pt1' >
 	
 		<div id="AppBanner">
 		<SlickBanner bannerItems={bannerItems}/>

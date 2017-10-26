@@ -46,7 +46,7 @@ class Detail extends React.Component {
         if (this.props.detailLoadingStatus === 1) {
             this.props.dispatch(fetchDetailGoods(this.props.match.params.id));
             this.props.dispatch(pushIdStatus(this.props.match.params.id));
-} else if (this.props.detailLoadingStatus === 2 && this.props.id !== this.props.match.params.id) {
+        } else if (this.props.detailLoadingStatus === 2 && this.props.id !== this.props.match.params.id) {
             this.props.dispatch(fetchDetailGoods(this.props.match.params.id));
             this.props.dispatch(pushIdStatus(this.props.match.params.id));
         }
@@ -113,7 +113,7 @@ class Detail extends React.Component {
         }
         return (
             <div>
-            <header id = "headnav" >
+        <header id = "detNav" >
         <TopNav titleName = "商品详情" go='-1' border = "0" color='#fbfbfb'/> </header>
         {
             goodStatusHtml
