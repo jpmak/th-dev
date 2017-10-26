@@ -52,9 +52,6 @@ class OrderFoot extends React.Component {
 	}
 
 	render() {
-
-		console.log(this.props.fee);
-		console.log(this.props.money);
 		let userTourism = this.props.userTourism;
 		let userMoney = this.props.userMoney;
 		let userBuy = this.props.userBuy;
@@ -62,11 +59,8 @@ class OrderFoot extends React.Component {
 		let item_price = parseFloat(this.props.item_price);
 		let money = this.props.money;
 		let fee = parseFloat(this.props.fee);
-
 		let tipHtml = [];
-		// let totalPrice = 0
 		this.totalPrice = (item_price + fee).toFixed(2)
-
 		if (userTourism < exchange_points && userMoney < exchange_points && userBuy < exchange_points) {
 			this.cssGray = 'gray'
 		} else if (money < this.totalPrice) {

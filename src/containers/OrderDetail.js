@@ -194,6 +194,7 @@ class OrderDetail extends React.Component {
         let trackInfoTime = this.props.trackInfoTime
         let emsHtml = [];
         let btnHtml = [];
+        let iconHtml = [];
         let cur_statusHtml = [];
 
 
@@ -208,31 +209,28 @@ class OrderDetail extends React.Component {
             emsHtml = (<div className="mid-cont"><div className="condition">暂无物流信息</div></div>)
         }
 
-
-
-        if (orderInfoItems.cur_status === '待付款') {
-            btnHtml = (
-                <div>
-                   
-                    </div>)
-            cur_statusHtml = (<h3>{
-                orderInfoItems.cur_status
-            } </h3>)
-
-        } else if (orderInfoItems.cur_status === '待发货') {
-            cur_statusHtml = (<h3>正在出库</h3>)
-            btnHtml = (
-                <div className="foot">
+        switch (orderInfoItems.cur_status) {
+            case '待发货':
+                cur_statusHtml = (<h3>正在出库</h3>)
+                iconHtml = (<div class="right-icon wait"></div>)
+                break;
+            case '待收货':
+                cur_statusHtml = (<h3>卖家已发货</h3>)
+                iconHtml = (<div className="right-icon car"></div>)
+                btnHtml = (
+                    <div className="foot">
                 <button className="pay-btn red-btn" onClick={this.orderPayBtn.bind(this)}>确认收货</button>
                 </div>
-            )
+                )
+                break;
 
-        } else if (orderInfoItems.cur_status === '待收货') {
-            btnHtml = (
-                <div className="foot">
-                <button className="pay-btn red-btn" onClick={this.orderPayBtn.bind(this)}>确认收货</button>
+            default:
+                cur_statusHtml = (<h3>{orderInfoItems.cur_status}</h3>)
+                iconHtml = (<div className="right-icon"></div>)
+                btnHtml = (
+                    <div>
                 </div>
-            )
+                )
 
         }
         let priceHtml = ''
@@ -254,7 +252,8 @@ class OrderDetail extends React.Component {
                 <div className="left-cont">
        {cur_statusHtml}
                 </div>
-                <div className="right-icon"></div>
+                {iconHtml}
+         
             </div>
 
 <div className="order-msg">
@@ -282,7 +281,7 @@ class OrderDetail extends React.Component {
             <div className="order-details">
                 <div className="goods-details">
                     <div className="order-sub">
-                        <div className="order-sub-num"  >子订单号:{orderInfoItems.exchange_order_number}</div>
+                        <div className="order-sub-num"  >订单号:{orderInfoItems.exchange_order_number}</div>
                     </div>
                     <Link to={this.props.baseUrl+'/product/'+orderInfoItems.item_id} onClick={this.detailData.bind(this, orderInfoItems.goods_name,orderInfoItems.t_beans,orderInfoItems.price, orderInfoItems.goods_image)}>
                     <div className="order-lists">
@@ -293,7 +292,7 @@ class OrderDetail extends React.Component {
 
                                 <div className="norm-wrap">
                                     <div className="norm" style={{float:'left'}}>{orderInfoItems.prop_value}</div>
-                                    <div className="amount" style={{float:'right'}}>× 1</div>
+    
                                 </div>
 
         <div className="price">
@@ -311,34 +310,22 @@ class OrderDetail extends React.Component {
                     <ul className="charges">
                         <li className="char-lists">
                             <label htmlFor="">运费：</label>
-                            <p className="freight">+¥ {orderInfoItems.shipping_cost}</p>
+        <p className="freight">¥ {orderInfoItems.shipping_cost}</p>
                         </li>
-                        <li className="char-lists">
-                            <label htmlFor="">借贷券：</label>
-                            <p className="loan-vcr">0.00</p>
-                        </li>
-                        <li className="char-lists">
-                            <label htmlFor="">商品优惠：</label>
-                            <p className="offers">-¥ 0.00</p>
-                        </li>
-                        <li className="char-lists">
-                            <label htmlFor="">优惠券优惠：</label>
-                            <p className="offers">-¥ 0.00</p>
-                        </li>
-                        <li className="char-lists">
-                            <label htmlFor="">红包：</label>
-                            <p className="red-elp">-¥ 0.00</p>
-                        </li>
+                     
                         <li className="char-lists">
                             <label htmlFor="">实付 (含运费)</label>
                             
-        <p className="act-paid">¥ {(parseFloat(orderInfoItems.shipping_cost?orderInfoItems.shipping_cost:0)+parseFloat(orderInfoItems.total_price?orderInfoItems.total_price:0)).toFixed(2)}</p>
+        <p className="act-paid"><span className="e-price"><em className='moneyPrice'>  {orderInfoItems.t_beans}</em>积分</span>
+      {priceHtml}</p>
                         </li>
                     </ul>
                     <ul className="place-msg">
                         <li className="place-lists">下单时间：{orderInfoItems.created}</li>
                         <li className="place-lists">配送方式：快递运送</li>
                         <li className="place-lists">兑换类型：{orderInfoItems.point_name}</li>
+                        <li className="place-lists">付款方式：惠积分</li>
+
                     </ul>
                 </div>
             </div>

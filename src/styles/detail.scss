@@ -142,11 +142,13 @@ background:#fff;
         margin: 0 .2rem;
 
             text-align: left;
-           color: #666;
+           color: #9b9c9f;
         font-size: .26rem;
-        padding-bottom: .39rem;
+        padding-bottom: .2rem;
         .remaining {
-            line-height: .26rem;
+        font-size: .32rem;
+
+            line-height: .32rem;
         }
         .courier {
          
@@ -429,13 +431,11 @@ vertical-align: middle;
     font-size: .28rem;
     color: #2B2424;
     border-top: 1px solid #dedede;
-   
+   .num{
+    padding-right:.05rem;
+   }
     label {
     float: left;
-     }
-     span{
-     
-
      }
          .round {
             float: right;

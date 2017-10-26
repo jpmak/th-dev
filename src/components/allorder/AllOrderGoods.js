@@ -150,7 +150,7 @@ class AllOrderGoods extends React.Component {
 </div>
 <div className='orderState'><span>{allOrderGood.cur_state} </span></div>
 </div>
-<LazyLoad>
+<LazyLoad height={50}>
    <div className="info-img">
 <img alt="" className="lazy" src={allOrderGood.goods_image}/>
 </div>

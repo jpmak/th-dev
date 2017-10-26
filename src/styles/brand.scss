@@ -470,7 +470,7 @@ text-align:top;
             height: .8rem;
             line-height: .8rem;
         }
-
+// allorder
         .totalWrap {
             float: left;
 
@@ -480,10 +480,11 @@ text-align:top;
                 height: .78rem;
                 line-height: .78rem; // background:#FBFBFB;
                 .total {
+            float: left;
 
                     font-size: .26rem;
                     font-weight: 500;
-line-height:.6rem;
+
          
                     .num {
                         color: #E42C2F;
@@ -522,7 +523,8 @@ line-height:.6rem;
                     border-radius: .25rem;
                     text-align: center;
                     vertical-align: center;
-                    border: 1px solid #000;
+                    color:$redColor;
+                    border: 1px solid $redColor;
                     font-size: .24rem;
                     line-height: .40rem;
                 }
@@ -1236,7 +1238,8 @@ line-height:.6rem;
                 vertical-align: middle;
                 margin-top: .48rem;
                 h3 {
-                    font-size: .40rem;
+                    font-size: .48rem;
+                    line-height: .9rem;
                     font-weight: 500;
                 }
             }
@@ -1255,6 +1258,14 @@ line-height:.6rem;
                 height: 1rem;
                 background: url(../images/cards.png) no-repeat;
                 background-size: 1rem 1rem;
+                &.car{
+                     background: url(../images/delivery.png) no-repeat;
+                                  background-size: 1rem 1rem;
+                }
+                &.wait{
+                     background: url(../images/package.png) no-repeat;
+                                  background-size: 1rem 1rem;
+                }
             }
         }
 
@@ -1421,7 +1432,7 @@ line-height:.6rem;
                             }
                             .add {
                                 font-weight: normal;
-                                color: #000;
+                                color: $yellowColor;
                                 padding: 0 .08rem;
                             }
                              ::after {
@@ -1437,14 +1448,16 @@ line-height:.6rem;
                                 float: right;
                             }
                              ::after {
-                                display: block;
+                                display: inline-block;
                                 clear: both;
                                 content: "";
                             }
                         }
                         .price {
+                            font-size:.32rem;
+                                padding-top: .2rem;
                             font-weight: bold;
-                            color: #E42C2F;
+                            color: $yellowColor;
                         }
                     }
                 }
@@ -1459,29 +1472,38 @@ line-height:.6rem;
                 color: rgba(43, 36, 36, 0.70);
                 .char-lists {
                     margin: .10rem 0;
-                    height: .32rem;
-                    line-height: .32rem;
+                    height: .4rem;
+                    line-height: .4rem;
+               
                     label {
                         float: left;
                     }
                     p {
                         float: right;
+                        &.freight{
+                           color: $redColor;
+                           font-size: .32rem;
+                        }
                     }
                      :after {
-                        display: block;
+                      
                         content: "";
                         clear: both;
                     }
                     .act-paid {
                         font-size: .4rem;
                         color: #ED1A3B;
-                    }
+                   
+}
                 }
             }
             .place-msg {
                 .place-lists {
+                        height: .4rem;
+                      line-height: .4rem;
                     margin: .10rem 0;
                     color: rgba(43, 36, 36, 0.70);
+                  
                 }
             }
         }
@@ -1503,8 +1525,8 @@ line-height:.6rem;
                     width: 1.50rem;
                     height: .50rem;
                     border-radius: 25rem;
-                    border: 1px solid rgba(43, 36, 36, 0.70);
-                    color: rgba(43, 36, 36, 0.70);
+                    border: 1px solid $redColor;
+                    color: $redColor;
                     background: none;
                     font-size: .24rem;
                     margin-left: .30rem;

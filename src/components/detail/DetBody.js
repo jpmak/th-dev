@@ -188,9 +188,8 @@ class DetBody extends React.Component {
             </div>
 
             <div className="product-count">
-        <p className="remaining"><Link to={'/search/1'}>
-        剩余库存:
-        </Link>
+        <p className="remaining">
+        库存：
         <em>{this.props.stock? this.props.stock : '0'}</em></p>
             </div>
   
