@@ -212,7 +212,7 @@ class OrderDetail extends React.Component {
         switch (orderInfoItems.cur_status) {
             case '待发货':
                 cur_statusHtml = (<h3>正在出库</h3>)
-                iconHtml = (<div class="right-icon wait"></div>)
+                iconHtml = (<div className="right-icon wait"></div>)
                 break;
             case '待收货':
                 cur_statusHtml = (<h3>卖家已发货</h3>)

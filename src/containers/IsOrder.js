@@ -35,8 +35,10 @@ class IsOrder extends React.Component {
             payWay: '排点',
             chooseId: 'balance_point',
             gray: 'gray',
-            main_image: ''
+            main_image: '',
+            objectList:[]
         };
+
     }
 
     componentWillMount() {
@@ -93,26 +95,42 @@ class IsOrder extends React.Component {
         this.props.history.push(this.props.baseUrl + '/successview/' + e)
     }
     checkId(exchange_points) {
+        let objectList = [];
         let userTourism = this.props.userTourism;
         let userMoney = this.props.userMoney;
         let userBuy = this.props.userBuy;
+ function Persion(name, num, jf) {
+            this.name = name;
+            this.num = num;
+            this.jf = jf;
+        }
+        objectList.push(new Persion('balance_point', userMoney, '排点积分'));
+        objectList.push(new Persion('travel_point', userTourism, '旅游积分'));
+        objectList.push(new Persion('point', userBuy, '购物积分'));
+        objectList.sort(function(a, b) {
+            return b.num-a.num 
+        });
+     
+                   this.setState({
+                chooseId: objectList[0].name,
+                objectList:objectList
+            })
+        // if (userMoney >= exchange_points) {
+        //     this.setState({
+        //         chooseId: 'balance_point'
+        //     })
+        // }
+        // if (userTourism >= exchange_points) {
+        //     this.setState({
+        //         chooseId: 'travel_point'
+        //     })
+        // }
+        // if (userBuy >= exchange_points) {
+        //     this.setState({
+        //         chooseId: 'point'
+        //     })
 
-        if (userMoney >= exchange_points) {
-            this.setState({
-                chooseId: 'balance_point'
-            })
-        }
-        if (userTourism >= exchange_points) {
-            this.setState({
-                chooseId: 'travel_point'
-            })
-        }
-        if (userBuy >= exchange_points) {
-            this.setState({
-                chooseId: 'point'
-            })
-
-        }
+        // }
     }
     openPay() {
         setTimeout(this.refs.PayPwd.focus, 0)
@@ -126,9 +144,9 @@ class IsOrder extends React.Component {
                <div className='w'>
         <IsOrderAddress addressItems={this.state.addressItems}/>
         <IsOrderLi orderLi={this.state.orderLi} main_image={this.state.main_image}/>
-        <PayWay open={this.openPay.bind(this)} exchange_points={this.state.exchange_points} changeChooseId={this.changeChooseId.bind(this)} chooseId={this.state.chooseId} fee={this.state.fee}  item_price={this.state.item_price}  orderLi={this.state.orderLi} userName={this.props.userName} userMoney={this.props.userMoney}  userBuy={this.props.userBuy} userTourism={this.props.userTourism}  />
+        <PayWay objectList={this.state.objectList}  open={this.openPay.bind(this)} exchange_points={this.state.exchange_points} changeChooseId={this.changeChooseId.bind(this)} chooseId={this.state.chooseId} fee={this.state.fee}  item_price={this.state.item_price}  orderLi={this.state.orderLi} userName={this.props.userName} userMoney={this.props.userMoney}  userBuy={this.props.userBuy} userTourism={this.props.userTourism}  />
             <CoverMask />
-        <PayPwd ref='PayPwd' csrf={this.state.csrf} exchange_points={this.state.exchange_points}  item_price={this.state.item_price} successView={this.successView.bind(this)} chooseId={this.state.chooseId} addressId={this.state.addressItems.address_id}/>
+        <PayPwd  ref='PayPwd'  csrf={this.state.csrf} exchange_points={this.state.exchange_points}  item_price={this.state.item_price} successView={this.successView.bind(this)} chooseId={this.state.chooseId} addressId={this.state.addressItems.address_id}/>
         <OrderFoot exchange_points={this.state.exchange_points} gray={this.state.gray} addressItems={this.state.addressItems} csrf={this.state.csrf} fee={this.state.fee} orderLi={this.state.orderLi} userMoney={this.props.userMoney}  userBuy={this.props.userBuy} userTourism={this.props.userTourism} item_price={this.state.item_price}  money={this.props.money} />
 
    </div>

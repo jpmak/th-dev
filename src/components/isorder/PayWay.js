@@ -69,7 +69,7 @@ class PayWay extends React.Component {
                     </div>
                 </div>
                 </div>
-                <ChooseType exchange_points={this.props.exchange_points} changeChooseId={this.changeChooseId.bind(this)} chooseId={this.props.chooseId} userMoney={this.props.userMoney}  userBuy={this.props.userBuy} userTourism={this.props.userTourism}  item_price={ this.props.item_price}/>
+                <ChooseType objectList={this.props.objectList} exchange_points={this.props.exchange_points} changeChooseId={this.changeChooseId.bind(this)} chooseId={this.props.chooseId} userMoney={this.props.userMoney}  userBuy={this.props.userBuy} userTourism={this.props.userTourism}  item_price={ this.props.item_price}/>
                 </div>
         )
 
@@ -115,99 +115,17 @@ class ChooseType extends React.Component {
         $('#chooseTypeWrap .payWay').hide();
         $('#payWay').show();
     }
-    bubbleSort(arr) {
-        var len = arr.length;
-        for (var i = 0; i < len - 1; i++) {
-            for (var j = i + 1; j < len; j++) {
-                if (arr[i] < arr[j]) {
-                    var tmp = arr[j];
-                    arr[j] = arr[i];
-                    arr[i] = tmp;
-                }
-            }
-        }
-        return arr;
-    }
-
-    componentDidMount() {
-        this.changeHtml()
-    }
-    changeHtml() {
-        console.log(this.props.userMoney);
-        let objectList = [];
-
-
-        function Persion(name, num, jf) {
-            this.name = name;
-            this.num = num;
-            this.jf = jf;
-
-        }
-
-        objectList.push(new Persion('balance_point', this.props.userMoney, '排点积分'));
-        objectList.push(new Persion('travel_point', this.props.userTourism, '旅游积分'));
-        objectList.push(new Persion('userBuy', this.props.userBuy, '购物积分'));
-        objectList.sort(function(a, b) {
-            return a.num - b.num
-        });
-        // for (var i = 0; i < objectList.length; i++) {
-        //     objectList += (<li className={this.cheack(objectList[i].name,objectList[i].num)}  onClick={this.handleClick.bind(this,objectList[i].name)}> 
-        //     <label>objectList[i].jf</label>
-        //     <p>
-        //        <span className='num'>objectList[i].num</span>
-        //    <span  className='jf'>积分</span>
-        //    <i className="round"></i>
-        //    </p>
-        // </li>);
-        // }
-
-        return this.objectLi = objectList
-    }
 
     render() {
-
         let paywayHtml = '';
-        let objectLis = [];
-        objectLis = this.objectLi;
-        // console.log(objectLis[0].name);
-        // console.log(objectLis[0].name);
+      let objectLis = this.props.objectList;
         if (objectLis.length > 0) {
-            console.log(objectLis[0].name);
-
             paywayHtml = objectLis.map((objectLi, index) => {
-                console.log(objectLi.name);
                 return (
-                    <li key={index} className={this.cheack(objectLi.name,objectLi.num)}  onClick={this.handleClick.bind(this,objectLi.name)}><label>objectLi.jf</label><p><span className='num'>objectList[i].num</span><span  className='jf'>积分</span><i className="round"></i></p></li>
+                    <li key={index} className={this.cheack(objectLi.name,objectLi.num)}  onClick={this.handleClick.bind(this,objectLi.name)}><label>{objectLi.jf}</label><p><span className='num'>{objectLi.num}</span><span  className='jf'>积分</span><i className="round"></i></p></li>
                 )
             })
         }
-        // 
-        // // paywayHtml +=
-        // let objectList = [];
-
-        // function Persion(name, num, jf) {
-        //     this.name = name;
-        //     this.num = num;
-        //     this.jf = jf;
-
-        // }
-        // objectList.push(new Persion('balance_point', this.props.userMoney, '排点积分'));
-        // objectList.push(new Persion('travel_point', this.props.userTourism, '旅游积分'));
-        // objectList.push(new Persion('userBuy', this.props.userBuy, '购物积分'));
-        // objectList.sort(function(a, b) {
-        //     return a.age - b.age
-        // });
-        // // for (var i = 0; i < objectList.length; i++) {
-        // //     objectList += (<li className={this.cheack(objectList[i].name,objectList[i].num)}  onClick={this.handleClick.bind(this,objectList[i].name)}> 
-        // //     <label>objectList[i].jf</label>
-        // //     <p>
-        // //        <span className='num'>objectList[i].num</span>
-        // //    <span  className='jf'>积分</span>
-        // //    <i className="round"></i>
-        // //    </p>
-        // // </li>);
-        // // }
-        // console.log(objectList);
         return (
             <div id='chooseTypeWrap'>
             <div className="payWay" style={{height:'34%'}}>
@@ -217,43 +135,12 @@ class ChooseType extends React.Component {
         {
             paywayHtml
         }
- <li className={this.cheack('balance_point',this.props.userMoney)}  onClick={this.handleClick.bind(this,'balance_point')}> 
-    <label >排点积分</label>
-    <p>
-       <span className='num'>{this.props.userMoney}</span>
-   <span  className='jf'>积分</span>
-   <i className="round"></i>
-   </p>
-</li>
-
-<li className={this.cheack('travel_point',this.props.userTourism)}  onClick={this.handleClick.bind(this,'travel_point')}>
-    <label >旅游积分</label>
-        <p>
-       <span className='num'>{this.props.userTourism}</span>
-   <span className='jf'>积分</span>
-   <i className="round"></i>
-   </p>
-
-</li>
-
-<li className={this.cheack('point',this.props.userBuy)}  onClick={this.handleClick.bind(this,'point')}> 
-    <label>购物积分</label>
-    <p>
-       <span className='num'>{this.props.userBuy}</span>
-   <span  className='jf'>积分</span>
-   <i className="round"></i>
-   </p>
-</li>
-
+        {/*
+ 
+*/}
 </ul>
 {/*
-            <div className='fix-box product-payup' onClick={this.handlePush.bind(this)}>
-        <div className='pay-item'>
-        <div className='wbox-flex tc exchange-submit'>
-        <a className='th-btn th-btn-assertive'>确定</a>
-                        </div>
-                    </div>
-                </div>
+          
 */}
                 </div>
                 </div>
