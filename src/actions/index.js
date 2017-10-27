@@ -21,6 +21,7 @@
     }
 
     export const beginUser = () => {
+
       return (dispatch) => {
         fetchUser(dispatch);
       }

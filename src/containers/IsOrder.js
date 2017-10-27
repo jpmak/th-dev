@@ -1,4 +1,6 @@
-import React from 'react';
+import
+React
+from 'react';
 import $ from 'jquery';
 import TopNav from '../components/TopNav';
 
@@ -36,7 +38,7 @@ class IsOrder extends React.Component {
             chooseId: 'balance_point',
             gray: 'gray',
             main_image: '',
-            objectList:[]
+            objectList: []
         };
 
     }
@@ -99,7 +101,8 @@ class IsOrder extends React.Component {
         let userTourism = this.props.userTourism;
         let userMoney = this.props.userMoney;
         let userBuy = this.props.userBuy;
- function Persion(name, num, jf) {
+
+        function Persion(name, num, jf) {
             this.name = name;
             this.num = num;
             this.jf = jf;
@@ -108,29 +111,13 @@ class IsOrder extends React.Component {
         objectList.push(new Persion('travel_point', userTourism, '旅游积分'));
         objectList.push(new Persion('point', userBuy, '购物积分'));
         objectList.sort(function(a, b) {
-            return b.num-a.num 
+            return b.num - a.num
         });
-     
-                   this.setState({
-                chooseId: objectList[0].name,
-                objectList:objectList
-            })
-        // if (userMoney >= exchange_points) {
-        //     this.setState({
-        //         chooseId: 'balance_point'
-        //     })
-        // }
-        // if (userTourism >= exchange_points) {
-        //     this.setState({
-        //         chooseId: 'travel_point'
-        //     })
-        // }
-        // if (userBuy >= exchange_points) {
-        //     this.setState({
-        //         chooseId: 'point'
-        //     })
 
-        // }
+        this.setState({
+            chooseId: objectList[0].name,
+            objectList: objectList
+        })
     }
     openPay() {
         setTimeout(this.refs.PayPwd.focus, 0)
@@ -154,7 +141,6 @@ class IsOrder extends React.Component {
 </div>)
     }
     render() {
-
         let renderHtml = [];
         renderHtml = this.renderPage();
         return (
@@ -164,10 +150,9 @@ class IsOrder extends React.Component {
         }
         </div>
         );
-
-
     }
 }
+
 const mapStateToProps = state => {
     return {
         baseUrl: state.MsgAppReducer.baseUrl,
@@ -182,4 +167,5 @@ const mapStateToProps = state => {
         userTourism: state.MsgAppReducer.userTourism, //旅游积分
     }
 }
+
 export default connect(mapStateToProps)(IsOrder)

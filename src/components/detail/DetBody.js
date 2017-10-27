@@ -154,17 +154,31 @@ class DetBody extends React.Component {
         this.props.history();
     }
     render() {
-
+        let name = '';
+        let item_prices = '';
+        let exchange_points = '';
+        let imgsrc = '';
         let isDisplay = this.state.isDisplay ? 'block' : 'none';
-        let name = this.detailMsg ? this.detailMsg.productName : this.props.name;
-        let item_prices = this.detailMsg ? this.detailMsg.productPrice : this.props.item_price;
-        let exchange_points = this.detailMsg ? this.detailMsg.productPoints : this.props.exchange_points;
-        let imgsrc = this.detailMsg ? this.detailMsg.productImg : this.props.imgsrc;
         let stock = this.props.stock;
-        let item_price = parseFloat(item_prices)
+        let item_price = '';
         let priceHtml = '';
-        if (item_price !== 0) {
-            priceHtml = (<span className='point'><span className='add'>+</span><em className='money'>{item_price}</em>元</span>)
+        switch (this.props.detailLoadingStatus) {
+            case 1:
+                name = this.detailMsg ? this.detailMsg.productName : this.props.name;
+                item_prices = parseFloat(this.detailMsg ? this.detailMsg.productPrice : this.props.item_price);
+                exchange_points = this.detailMsg ? this.detailMsg.productPoints : this.props.exchange_points;
+                imgsrc = this.detailMsg ? this.detailMsg.productImg : this.props.imgsrc;
+                break;
+            case 2:
+                name = this.props.name;
+                item_prices = parseFloat(this.props.item_price);
+                exchange_points = this.props.exchange_points;
+                imgsrc = this.props.imgsrc;
+                break;
+
+        }
+        if (item_prices !== 0) {
+            priceHtml = (<span className='point'><span className='add'>+</span><em className='money'>{item_prices}</em>元</span>)
         } else {
             priceHtml = (<span></span>)
 

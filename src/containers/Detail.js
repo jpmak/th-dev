@@ -8,6 +8,7 @@ import {
 import TopNav from '../components/TopNav';
 import DetBody from '../components/detail/DetBody';
 import DataNone from '../components/public/DataNone';
+import TrBtn from '../components/public/TrBtn';
 
 import {
     detailTryRestoreComponent,
@@ -47,6 +48,7 @@ class Detail extends React.Component {
             this.props.dispatch(fetchDetailGoods(this.props.match.params.id));
             this.props.dispatch(pushIdStatus(this.props.match.params.id));
         } else if (this.props.detailLoadingStatus === 2 && this.props.id !== this.props.match.params.id) {
+
             this.props.dispatch(fetchDetailGoods(this.props.match.params.id));
             this.props.dispatch(pushIdStatus(this.props.match.params.id));
         }
@@ -113,8 +115,11 @@ class Detail extends React.Component {
         }
         return (
             <div>
-        <header id = "detNav" >
-        <TopNav titleName = "商品详情" go='-1' border = "0" color='#fbfbfb'/> </header>
+        <header id = "detNav" styele={{position:'relative'}}>
+        <TopNav titleName = "商品详情" go='-1' border = "0" color='#fbfbfb' /> 
+ <TrBtn baseUrl={this.props.baseUrl}/>
+        </header>
+
         {
             goodStatusHtml
         }

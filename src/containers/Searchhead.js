@@ -118,10 +118,10 @@ class Searchhead extends React.Component {
         }
     }
     componentDidMount(e) {
-        let parmKeyword = this.props.match.params.keyword
+        let parmKeyword = this.props.match.params.keyword ? this.props.match.params.keyword : ''
         let list = parmKeyword.indexOf('@list');
         if (list == -1) {
-            document.title = this.props.match.params.keyword + ' - 商品搜索-通惠购'
+            document.title = parmKeyword + ' - 商品搜索-通惠购'
         } else {
             document.title = '分类搜索-通惠购'
         }

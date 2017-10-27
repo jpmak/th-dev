@@ -19,7 +19,7 @@ class SuccessView extends React.Component {
     renderPage() {
         return (
             <div >
-        <TopNav titleName = "支付成功" border='0' isNone='none'/>
+        <TopNav titleName = "支付成功" border='0' isNone='none' text='完成' historyHome={this.historyHome.bind(this)}/>
 
                <div className='w'>
 <div className="successOrder">
@@ -27,8 +27,8 @@ class SuccessView extends React.Component {
          
                 <p>恭喜您，兑换成功啦!</p>
                 <div className="button">
-                    <a className='order_details' onClick={this.historyOrderDetail.bind(this)}>订单详情</a>
-                    <a className='continue_exchange' onClick={this.historyHome.bind(this)}>返回兑换首页</a>
+                    <a className='order_details' onClick={this.historyHome.bind(this)}>返回兑换首页</a>
+        <a className='continue_exchange' onClick={this.historyOrderDetail.bind(this)}>订单详情</a>
                 </div>
             </div>
 

@@ -43,8 +43,9 @@ class Home extends React.Component {
             if (this.props.homeLoadingStatus !== 2 || this.props.userStatus === 0) {
                 this.props.dispatch(updateHomeLoadingStatus(1)); // 恢复loading界面
 
-                // this.props.dispatch(beginUser())
                 this.props.dispatch(beginRefresh())
+                this.props.dispatch(beginUser())
+
             } else {
                 window.scrollTo(0, this.props.y)
             }

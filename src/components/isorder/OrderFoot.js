@@ -52,6 +52,7 @@ class OrderFoot extends React.Component {
 	}
 
 	render() {
+
 		let userTourism = this.props.userTourism;
 		let userMoney = this.props.userMoney;
 		let userBuy = this.props.userBuy;
