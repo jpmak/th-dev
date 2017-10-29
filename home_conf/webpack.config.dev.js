@@ -122,25 +122,25 @@ module.exports = {
   },
   module: {
     strictExportPresence: true,
-    // loaders: [{
-    //   test: /\.sass/,
-    //   loader: 'style-loader!css-loader!sass-loader?outputStyle=expanded&indentedSyntax'
-    // }, {
-    //   test: /\.scss/,
-    //   loader: 'style!css!postcss!sass?outputStyle=expanded'
-    // }, {
-    //   test: /\.less/,
-    //   loader: 'style-loader!css-loader!less-loader'
-    // }, {
-    //   test: /\.styl/,
-    //   loader: 'style-loader!css-loader!stylus-loader'
-    // }, {
-    //   test: /\.(png|jpg|gif|woff|woff2)$/,
-    //   loader: 'url-loader?limit=8192'
-    // }, {
-    //   test: /\.(mp4|ogg|svg)$/,
-    //   loader: 'file-loader'
-    // }],
+    loaders: [{
+      test: /\.sass/,
+      loader: 'style-loader!css-loader!sass-loader?outputStyle=expanded&indentedSyntax'
+    }, {
+      test: /\.scss/,
+      loader: 'style!css!postcss!sass?outputStyle=expanded'
+    }, {
+      test: /\.less/,
+      loader: 'style-loader!css-loader!less-loader'
+    }, {
+      test: /\.styl/,
+      loader: 'style-loader!css-loader!stylus-loader'
+    }, {
+      test: /\.(png|jpg|gif|woff|woff2)$/,
+      loader: 'url-loader?limit=8192'
+    }, {
+      test: /\.(mp4|ogg|svg)$/,
+      loader: 'file-loader'
+    }],
     rules: [
       // TODO: Disable require.ensure as it's not a standard language feature.
       // We are waiting for https://github.com/facebookincubator/create-react-app/issues/2176.
@@ -162,10 +162,13 @@ module.exports = {
             useEslintrc: false,
             // @remove-on-eject-end
           },
+          // loader: require.resolve('eslint-loader'),
           loader: require.resolve('eslint-loader'),
+
         }, ],
         include: paths.appSrc,
       },
+      
       // ** ADDING/UPDATING LOADERS **
       // The "file" loader handles all assets unless explicitly excluded.
       // The `exclude` list *must* be updated with every change to loader extensions.
@@ -187,6 +190,7 @@ module.exports = {
           /\.png$/,
           /\.scss$/, //....新增项!
           /\.sass$/ //....新增项!
+
         ],
         loader: require.resolve('file-loader'),
         options: {
@@ -231,22 +235,18 @@ module.exports = {
 
       {
         test: [/\.scss$/, /\.sass$/],
-        use: [
-          // loader: ExtractTextPlugin.extract("style-loader", "css-loader?sourceMap!sass-loader?&outputStyle=expanded&sourceMap=true&sourceMapContents=true!autoprefixer-loader")
-          {
-            loader: "style-loader" // creates style nodes from JS strings 
-          }, {
+        use: [{
+          loader: "style-loader" // creates style nodes from JS strings 
+        }, {
+          loader: "css-loader?sourceMap" // translates CSS into CommonJS 
+            // loader: "css-loader" // translates CSS into CommonJS 
 
-            loader: "css-loader?sourceMap" // translates CSS into CommonJS 
-              // loader: "css-loader" // translates CSS into CommonJS 
 
-            // 
-          }, {
-            loader: "sass-loader?&outputStyle=expanded&sourceMap=true&sourceMapContents=true" // compiles Sass to CSS 
-              // loader: "sass-loader" // compiles Sass to CSS 
+        }, {
+          loader: "sass-loader?&outputStyle=expanded&sourceMap=true&sourceMapContents=true" // compiles Sass to CSS 
 
-          }
-        ]
+          // loader: "sass-loader" // compiles Sass to CSS 
+        }]
       },
 
       {
@@ -256,10 +256,7 @@ module.exports = {
             loader: require.resolve('css-loader'),
             options: {
               importLoaders: 1,
-              minimize: true // css压缩
-
             },
-
           }, {
             loader: require.resolve('postcss-loader'),
             options: {

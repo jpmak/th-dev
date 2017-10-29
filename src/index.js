@@ -16,15 +16,11 @@ import App from './containers/App';
 import Detail from './containers/Detail';
 import Searchhead from './containers/Searchhead';
 import List from './containers/List';
-import Home from './containers/Home';
 import Login from './containers/Login';
-import Log from './containers/Log';
-import IsOrder from './containers/IsOrder';
-import SuccessView from './containers/SuccessView';
-import AllOrder from './containers/AllOrder';
-import OrderDetail from './containers/OrderDetail';
-import TranList from './containers/TranList';
+
+
 import NotFoundPage from './containers/NotFoundPage';
+
 
 
 
@@ -39,7 +35,17 @@ import {
 	Provider
 } from 'react-redux'
 import thunk from 'redux-thunk'
+import * as NeedRouter from './containers/NeedRouter';
 
+
+const {NeedLog,NeedHome,NeedIsOrder,NeedSuccessView,NeedAllOrder,NeedOrderDetail,NeedTranList}=NeedRouter;
+const Log=NeedLog;
+const Home=NeedHome;
+const IsOrder=NeedIsOrder;
+const SuccessView=NeedSuccessView;
+const AllOrder=NeedAllOrder;
+const OrderDetail=NeedOrderDetail;
+const TranList=NeedTranList;
 
 const middleware = [thunk]
 	// if (process.env.NODE_ENV !== 'production') {
@@ -61,7 +67,7 @@ const Jf = () => (
 <Route exact path='/'  component={App} />
 */
 }
-<Route exact path={baseUrl}  component={App} />
+<Route exact  path='/'  component={App} />
 	<Route path={baseUrl+ '/login/:router?'}  component={Login} />
 	 <Route path={baseUrl+'/product/:id?'} component={Detail}/>
 	 <Route path={baseUrl+'/search/:keyword?'} component={Searchhead} />
