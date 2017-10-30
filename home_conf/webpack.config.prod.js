@@ -37,7 +37,6 @@ const shouldUseRelativeAssetPaths = publicPath === './';
 const publicUrl = publicPath.slice(0, -1);
 // Get environment variables to inject into our app.
 const env = getClientEnvironment(publicUrl);
-
 // Assert this just to be safe.
 // Development builds of React are slow and not intended for production.
 if (env.stringified['process.env'].NODE_ENV !== '"production"') {
@@ -58,14 +57,14 @@ module.exports = {
 
     bail: true,
     devtool: false,
-      externals: {
+    externals: {
         'jquery': 'var $',
         'react': 'var React',
         'react-dom': 'var ReactDOM',
         'react-router-dom': 'var ReactRouterDOM',
-            'redux': 'var Redux',
-            'react-redux': 'var ReactRedux',
-            'redux-thunk': 'var ReduxThunk',
+        'redux': 'var Redux',
+        'react-redux': 'var ReactRedux',
+        'redux-thunk': 'var ReduxThunk',
 
     },
     entry: {
@@ -86,7 +85,7 @@ module.exports = {
             .relative(paths.appSrc, info.absoluteResourcePath)
             .replace(/\\/g, '/'),
     },
-  
+
     resolve: {
 
         modules: ['node_modules', paths.appNodeModules].concat(

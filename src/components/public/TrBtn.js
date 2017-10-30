@@ -33,7 +33,7 @@ class TrBtn extends React.Component {
             <li><Link to={this.props.baseUrl+ '/home/'} className="nav-more-icon ebuy-icon" >我的积分</Link></li>
             <li><a className="nav-more-icon refresh-icon" href="javascript:location.reload()" >刷新</a></li>
             </ul>
-            <div class="dialog_overlay" onClick={this.handleClick.bind(this)} style={{display:this.state.dis?'block':'none'}}></div>
+            <div className="dialog_overlay" onClick={this.handleClick.bind(this)} style={{display:this.state.dis?'block':'none'}}></div>
         </div>
         );
     }
