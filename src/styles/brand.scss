@@ -1525,11 +1525,15 @@ text-align:top;
                     width: 1.50rem;
                     height: .50rem;
                     border-radius: 25rem;
-                    border: 1px solid $redColor;
-                    color: $redColor;
+                        border: 1px solid rgba(43, 36, 36, 0.7);;
+                    color: rgba(43, 36, 36, 0.7);;
                     background: none;
                     font-size: .24rem;
                     margin-left: .30rem;
+                    &.red-btn{
+                                border: 1px solid $redColor;
+                    color: $redColor;
+                    }
                 }
             }
         }

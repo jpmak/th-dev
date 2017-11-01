@@ -219,6 +219,10 @@ class OrderDetail extends React.Component {
                 iconHtml = (<div className="right-icon car"></div>)
                 btnHtml = (
                     <div className="foot">
+                 <Link to={this.props.baseUrl+'/TranList/'+orderInfoItems.exchange_order_number}>
+                <button className="pay-btn">查看物流</button>
+               </Link>
+
                 <button className="pay-btn red-btn" onClick={this.orderPayBtn.bind(this)}>确认收货</button>
                 </div>
                 )
@@ -271,7 +275,7 @@ class OrderDetail extends React.Component {
             </div>
 
 <div className= {trackInfoContext.length>0?'seller-shipped':'seller-shipped gray56'}>
-<Link className='' to={this.props.baseUrl+'/TranList/'+orderInfoItems.exchange_order_number}>
+<Link  to={this.props.baseUrl+'/TranList/'+orderInfoItems.exchange_order_number}>
      <div className="bg-icon"></div>
        {emsHtml}
   </Link>

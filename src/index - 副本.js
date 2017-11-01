@@ -9,8 +9,7 @@ import {
 import {
 	BrowserRouter as Router,
 	Route,
-	Redirect,
-	Switch
+	Redirect
 } from 'react-router-dom'
 
 import App from './containers/App';
@@ -77,9 +76,7 @@ const store = createStore(
 const baseUrl = '/wa/Exchange-index.html';
 const Jf = () => (
 	<Router>
-
-	<Switch>
-
+	<div>
 {/*	
 <Route exact path={baseUrl}  component={App} />
 <Route exact path='/'  component={App} />
@@ -97,11 +94,8 @@ const Jf = () => (
 	 <Route path={baseUrl+'/allorder/'} component={AllOrder}/>
 	 <Route path={baseUrl+'/orderdetail/:id?'} component={OrderDetail}/>
 	 <Route path={baseUrl+'/TranList/:id?'} component={TranList}/>
-
 <Route path={baseUrl+'/404'} component={NotFoundPage} />
-<Redirect from='*'  to={baseUrl+'/404'} />
-
-  </Switch>
+	</div>
   </Router>
 );
 

@@ -39,7 +39,7 @@ class NotFoundPage extends React.Component {
 
 
   updatePullUpStatus(e) {
-    this.props.dispatch(updatePullUpStatus(e))
+      this.props.dispatch(updatePullUpStatus(e))
     }
     // UpDatapullDownStatus(){
 
@@ -48,6 +48,15 @@ class NotFoundPage extends React.Component {
     document.body.style.backgroundColor = '#f5f5f5'
   }
 
+
+  detailData(goods_name, exchange_points, item_price, list_image) {
+    window.localStorage.detailData = JSON.stringify({
+      'productName': goods_name,
+      'productPoints': exchange_points,
+      'productPrice': item_price,
+      'productImg': [list_image]
+    })
+  }
 
   // volumeClick(e) {
   //   this.props.dispatch(volume(e))
@@ -66,7 +75,7 @@ class NotFoundPage extends React.Component {
       </div>
       <div className='w'>
       <div className="infoTitle" style={{color:'#E7940C'}}>随便看看</div>
-    <NotFoundGoods updatePullUpStatus={this.updatePullUpStatus.bind(this)} pullUpStatus={this.props.pullUpStatus} NotFoundGoods={this.props.items} changeGoods={this.changeGoods.bind(this)}/>
+    <NotFoundGoods detailData={this.detailData.bind(this)} baseUrl={this.props.baseUrl} updatePullUpStatus={this.updatePullUpStatus.bind(this)} pullUpStatus={this.props.pullUpStatus} NotFoundGoods={this.props.items} changeGoods={this.changeGoods.bind(this)}/>
 </div>
         </div>
     )

@@ -97,7 +97,7 @@ class NotFoundGoods extends React.Component {
 
 
     renderPage() {
-
+console.log('test');
         let NotFoundGoodList = [];
         let NotFoundGoods = this.props.NotFoundGoods;
         if (NotFoundGoods.length > 0) {
@@ -114,7 +114,7 @@ class NotFoundGoods extends React.Component {
                 return (
                     <li key = {index} onClick = {this.handleClick.bind(this, InfoGood.goods_name,InfoGood.exchange_points,InfoGood.item_price, InfoGood.list_image)}
                     className = {this.changeGoods ? 'add' : 'move'} >
-                    <Link to={this.props.baseUrl+'/product/'+InfoGood.item_id}  className="upItem " data-id={InfoGood.item_id}>
+                <Link to={this.props.baseUrl+'/product/'+InfoGood.item_id}  className="upItem ">
                 <div className="info-img">
                 <LazyLoad  placeholder={<PlaceholderComponent />}>
                 <img alt=''  src={InfoGood.list_image}/>
