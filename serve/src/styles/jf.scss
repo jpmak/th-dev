@@ -1,0 +1,664 @@
+//sass style
+//-----------------------------------
+// header顶部样式 
+@charset "UTF-8";
+$yellowColor: #F5A623;
+$borderColor: #DEDEDE;
+$redColor:#ED0E47;
+$lazzyBg:url(../images/loadingBg.png) no-repeat 50% 50%;
+$bg:'../images/';
+.mt20 {
+    margin-top: .2rem
+}
+.pt88{
+    padding-top: .88rem
+}
+.fs18{
+    font-size: .18rem;
+}
+.fs24{
+    font-size: .24rem;
+}
+.fs28{
+    font-size: .28rem;
+}
+.bold{
+  font-weight: bold;  
+}
+a.th-btn.th-btn-assertive.th-btn-outline {
+    background-color: $redColor;
+    color: #fff;
+}
+
+.th-block {
+    background: #fff;
+}
+
+.pr {
+    position: relative;
+}
+
+.th-btn.th-btn-assertive.th-btn-outline {
+    border: 1px solid $redColor;
+    color: #E21D1D;
+}
+
+.th-btn.th-btn-outline {
+    height: .6rem;
+    padding: 0 .25rem;
+    line-height: .6rem;
+    background: 0 0;
+    border-radius: .05rem;
+}
+
+.th-btn.th-btn-assertive {
+    background: $redColor;
+    color: #fff;
+}
+
+.th-btn {
+    display: inline-block;
+    padding: 0 .25rem;
+    height: .6rem;
+    line-height: .6rem;
+    border-radius: .05rem;
+}
+
+.jf-record-icon {
+    display: inline-block;
+    width: .4rem;
+    height: .4rem;
+    background: url($bg+'duihuan_dingdan.png') no-repeat;
+    background-size: .4rem .4rem;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+}
+.headerTop{
+    position:fixed;
+}
+// 搜索样式
+@import 'jf_search';
+.jf-floor-banner .swiper-container {
+    width: 7.5rem;
+    height: 3.2rem;
+    background: $lazzyBg;
+    background-size: 2rem 2rem;
+    overflow: hidden;
+}
+
+.jf-floor-banner .swiper-wrapper img {
+    width: 100%;
+}
+
+// 积分兑换记录
+.pr {
+    position: relative;
+}
+.w750{
+    margin:0 auto;
+    max-width: 7.5rem;
+}
+.pt1{
+    padding-top:1.92rem;
+}
+.jf-record {
+    width: 7.5rem;
+    height: 1.28rem;
+    background: #fff;
+    color: $yellowColor;
+    .box {
+        padding: .425rem .3rem 0;
+        vertical-align: middle;
+        .jf-left {
+            height: .43rem;
+            line-height: .43rem;
+            float: left;
+            .num {
+                background: url($bg+'duihuan_xiangjiao.png') no-repeat;
+                background-size: .43rem .41rem;
+                padding-left: .6rem;
+                display: inline-block;
+                height: .43rem;
+                font-size: .43rem;
+                line-height: .43rem;
+            }
+        }
+        .jf-right {
+            float: right;
+            margin-top: .1rem;
+            a.record {
+                font-size: .24rem;
+                color: $yellowColor;
+                border: 1px solid $yellowColor;
+                padding: .1rem .3rem;
+                border-radius: 10rem;
+            }
+        }
+    }
+}
+
+
+/*兑换排行榜*/
+
+#sales-wrapper {
+    background: #fff;
+    z-index: 1;
+    width: 100%;
+    padding:.14rem 0; 
+    -webkit-overflow-scrolling: touch;
+}
+
+#sales-wrapper ::-webkit-scrollbar {
+    display: none;
+}
+
+#scroller {
+    background: #fff;
+    z-index: 1;
+    width: 100%;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    &::-webkit-scrollbar { display: none; }
+}
+
+.hor-view {
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    .tag {
+        margin-left: .2rem;
+        height: .56rem;
+        line-height: .56rem;
+        font-size: .28rem;
+        font-weight: bold;
+        color: $redColor;
+        margin-right: .1rem;
+    }
+}
+
+
+
+.jf-bsell-box {
+
+    .banner {
+        width: 7.5rem;
+        height: 1.28rem; // background: url($bg+'Combined.jpg') no-repeat;
+        background-size: 7.5rem 1.28rem;
+    }
+    .banner-bottom {
+        margin-top: .2rem;
+        width: 7.5rem;
+        height: 1.6rem;
+    }
+    .list {
+        display: table;
+        table-layout: fixed;
+        white-space: nowrap;
+        padding: .0rem .2rem 0rem 0;
+
+        height: 2.2rem;
+        -webkit-overflow-scrolling: touch;
+        li {
+            width: 2rem;
+            height: 2rem;
+
+            display: inline-block;
+            margin: 0 .1rem 0 .2rem;
+            a {
+                display: block;
+            }
+            .info-img {
+                width:2.2rem;
+                height: 2.2rem;
+                position: relative;
+                display: table-cell;
+                text-align: center;
+                vertical-align: middle; // padding: .4rem .4rem .2rem;
+                text-align: center;
+                background-color: #fff;
+                img {
+                    max-width: 2.2rem;
+                    max-height: 2.2rem;
+                    vertical-align: middle;
+                    text-align: center;
+                }
+                 :after {
+                    content: '';
+                    width: 0;
+                    height: 100%;
+                    display: inline-block;
+                    vertical-align: middle;
+                }
+                .t1 {
+                    background: url($bg+'duihuan_top1.png') no-repeat;
+                }
+                .t2 {
+                    background: url($bg+'duihuan_top2.png') no-repeat;
+                }
+                .t3 {
+                    background: url($bg+'duihuan_top3.png') no-repeat;
+                }
+                .top {
+                    width: .64rem;
+                    height: .64rem;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    border: 0;
+                    background-size: .64rem .64rem;
+                }
+            }
+            .info-bar {
+                // padding: 0 .28rem 0;
+                overflow: hidden;
+                width: 2.2rem;
+                background-color: #fff;
+                .pro-title {
+
+                    font-size: .28rem;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    color: #333;
+                }
+                .e-numb {
+                    color: $yellowColor;
+                    text-align: center;
+                .e-price
+                  {  
+                    font-size: .24rem;
+                    em {
+                     font-weight: bold;
+                     font-size: .28rem; 
+
+                                      }
+                                  }
+
+                    .point{
+                     font-size: .24rem; 
+                     .add{
+                         font-size: .24rem;
+                          font-weight: normal;
+                        color:$yellowColor;
+                        padding:0 .02rem;
+                    }
+                    .money{
+                    font-size: .28rem;
+                        font-weight: bold;
+                    }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+/*底部导航*/
+.scrollerUp{
+      
+ -webkit-animation:fadeInfoot .3s  ease both;
+-moz-animation:fadeInfoot .3s  ease both;
+}
+.scrollerDown{
+    pointer-events:none;
+    
+ -webkit-animation:fadeOutfoot .4s  ease both;
+-moz-animation:fadeOutfoot .4s  ease both;
+@-webkit-keyframes fadeOutfoot{
+0%{opacity:1;
+-webkit-transform:translateY(0)}
+100%{opacity: 0;
+     
+
+-webkit-transform:translateY(50px)}
+}
+@-moz-keyframes fadeOutfoot{
+0%{opacity:1;
+-moz-transform:translateY(0)}
+100%{opacity:0;
+   
+-moz-transform:translateY(50px)}
+}
+}
+
+@-webkit-keyframes fadeInfoot{
+0%{opacity:.4;
+-webkit-transform:translateY(50px)}
+100%{opacity:1;
+-webkit-transform:translateY(0)}
+}
+@-moz-keyframes fadeInfoot{
+0%{opacity:.4;
+-moz-transform:translateY(50px)}
+100%{opacity:1;
+-moz-transform:translateY(0)}
+}
+.nav-tab {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+    width: 100%;
+    height: 1rem;
+    z-index: 199;
+     -webkit-box-shadow: 0rem -.05rem .1rem rgba(0, 0, 0, .2);
+        -moz-box-shadow: 0rem -.05rem .1rem rgba(0, 0, 0, .2);
+        box-shadow: 0rem -.05rem .1rem rgba(0, 0, 0, .2);
+ -webkit-animation:fadeInfoot .3s  ease both;
+-moz-animation:fadeInfoot .3s  ease both;
+
+
+    .hor-view {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+        background: #fff;
+
+        a {
+            color: #353d44;
+            position: relative;
+            flex: 1;
+            display: block;
+            line-height: .7rem;
+            margin: .15rem 0;
+            height: .7rem;
+            text-align: center;
+            border-right: 1px dashed $borderColor;
+        }
+        a:last-child {
+            border-right: 0;
+        }
+        span {}
+        .cur span {
+            color: #F5A623;
+        }
+    }
+}
+
+/*右上角菜单*/
+.js-tr{
+    position:absolute;
+    top: 0;
+    right:0;
+    height: .88rem;
+}
+.jstr-btn{
+    // margin: .2rem .2rem 0 0;
+    width: .8rem;
+    height: .88rem;
+   background: url($bg+'more.png') no-repeat center;
+      background-size: .5rem .5rem;
+
+ 
+}
+#sub-title {
+    -webkit-animation: bounce .4s 0s ease both;
+    -moz-animation: bounce .4s 0s ease both;
+    -webkit-transform-origin: 95% 5%;
+    -moz-transform-origin: 95% 5%;
+}
+@-webkit-keyframes bounce{
+0%{opacity:0;-webkit-transform: scale(0)}
+0%,20%,50%,80%,100%{-webkit-transform:translateY(0)}
+50%{-webkit-transform:translateY(-5px) scale(.9)}
+100%{opacity:1;-webkit-transform:scale(1)}
+}
+@-moz-keyframes bounce{
+0%{opacity:0;-moz-transform: scale(0)}
+0%,20%,50%,80%,100%{-moz-transform:translateY(0)}
+50%{-moz-transform:translateY(-5px) scale(.9)}
+100%{opacity:1;-moz-transform:scale(1)}
+}
+.nav-more-list {
+    display: block;
+    position: absolute;
+    top: 1.18rem;
+    right: .05rem;
+    background: #484F55;
+    z-index: 112;
+    border: 1px solid transparent;
+    border-radius: 2px;
+
+        li {
+    position: relative;
+    border-bottom: 1px solid #5B6166;
+    width: 2.5rem;
+    height: .9rem;
+    line-height: .9rem;
+    text-align: left;
+    text-indent: 1.0rem;
+    background: #484F55;
+    a {
+    position: relative;
+    display: block;
+    width: 100%;
+    color: #fff;
+    font-size: .28rem;
+}
+    }
+    &::after {
+    content: "";
+    position: absolute;
+     top: -.45rem;
+    right: .1rem;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-color: transparent transparent #484F55;
+    border-width: .25rem;
+}
+}
+
+
+/*h_icon*/
+.nav-more-list li a:after {
+    content: "";
+    position: absolute;
+left:.3rem;
+    top: 50%;
+margin-top:-.25rem;
+    width: .5rem;
+    height: .5rem;
+    -webkit-mask-repeat: no-repeat;
+    background-image: -webkit-gradient(linear, 50% 0, 50% 100%, color-stop(0, #fff), color-stop(100%, #fff));
+    -webkit-mask-size: .5rem;
+    
+}
+
+.nav-more-list li a.nav-more-icon.home-icon:after{-webkit-mask-image:url($bg+'home-icon.png')}
+// .nav-more-list li a.nav-more-icon.cart-icon:after{-webkit-mask-image:url($bg+'cart-icon.png')}
+.nav-more-list li a.nav-more-icon.search-icon:after{-webkit-mask-image:url($bg+'search-icon.png')}
+.nav-more-list li a.nav-more-icon.cate-icon:after{-webkit-mask-image:url($bg+'cate-icon.png')}
+.nav-more-list li a.nav-more-icon.ebuy-icon:after{-webkit-mask-image:url($bg+'ebuy-icon.png')}
+.nav-more-list li a.nav-more-icon.refresh-icon:after{-webkit-mask-image:url($bg+'refresh-icon.png')}
+
+
+.dialog_overlay {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+
+    
+    .dialog_overlay {
+        display: none;
+    }
+    
+    .dialog_overlay {
+        position: fixed;
+        display: none;
+        z-index: 6;
+        background: #666;
+        -webkit-backface-visibility: hidden;
+        opacity: 0;
+        filter: alpha(opacity=0);
+        -moz-opacity: 0;
+        pointer-events: auto;
+    }
+        .dark{
+               opacity: .4;
+        filter: alpha(opacity=40);
+        -moz-opacity: .4;
+
+    }
+/*react-Modal*/
+
+.modalOk{
+    width: .48rem;
+    height: .48rem;
+    display: block;
+    text-align: center;
+    margin:0 auto .2rem;
+      background: url($bg+'ok.png') no-repeat;
+      background-size: .48rem .48rem;
+}
+.modalError{
+    width: .48rem;
+    height: .48rem;
+
+
+    display: block;
+    text-align: center;
+    margin:0 auto .2rem;
+      background: url($bg+'error.png') no-repeat;
+      background-size: .48rem .48rem;
+}
+ .modalLoading {
+            width: 0.48rem;
+            height: 0.48rem;
+    padding-bottom: .1rem;
+
+            background: url($bg+'loading.gif') no-repeat;
+            background-size: 0.48rem 0.48rem;
+               display: block;
+    margin:0 auto;
+ 
+        }
+.modalText {
+    color: #000;
+}
+
+.modalText2 {
+    color: #fff;
+}
+
+.modalText,
+.modalText2 {
+    font-size: .28rem;
+    text-align: center;
+    padding: .5rem;
+}
+
+a.modalBtn {
+    border: 0 none;
+    height: .7rem;
+    width: 50%;
+    display: inline-block;
+    float: left;
+    color: #fff;
+    text-align: center;
+    font-size: .28rem;
+    line-height: .7rem;
+    /*background: #d8d8d8;*/
+    vertical-align: middle;
+    border-top: 1px solid #ddd;
+    color: #000;
+}
+
+a.confirm {
+    color: #fff;
+    background: #ed1a3b;
+}
+       .NoData,.NotFound {
+            width: 3.75rem;
+            height: 3.75rem;
+            margin-top: 1.2rem;
+            margin: 0 auto;
+            text-align: center;
+            padding: 1rem 0;
+            color: #E7940C;
+            h3 {
+                height: .5rem;
+                font-size: .40rem;
+                line-height: .5rem;
+                margin-top: 4.30rem;
+                font-weight: 500;
+            }
+        }
+ .NoData{
+            background: url(../images/noCollection.png) no-repeat center;
+            background-size: 3.75rem 3.75rem;
+
+ }
+ .NotFound {
+            background: url(../images/404.png) no-repeat center .5rem;
+            background-size: 3.75rem 3.66rem;
+            height: auto;
+   padding:.4rem 0;
+              h3 {display:inline-block}
+.broder_f36 {
+    border-radius: 50px;
+    border: 1px #000 solid;
+    width: 1.8rem;
+    color: #000;
+
+    margin: .22rem auto;
+    padding: .06rem .12rem;
+}
+ }
+
+@-webkit-keyframes fadeInOut {
+    0% {
+        opacity:0;
+     }
+  25% {
+        opacity:.25;
+    }
+      50% {
+        opacity:.5;
+    }
+       75% {
+        opacity:.75;
+    }
+    100% {
+        opacity:1;
+    }
+}
+@keyframes fadeInOut {
+    0% {
+        opacity:0;
+     }
+  25% {
+        opacity:.25;
+    }
+      50% {
+        opacity:.5;
+    }
+       75% {
+        opacity:.75;
+    }
+    100% {
+        opacity:1;
+    }
+}
+img.lazy{
+-webkit-animation:fadeInOut .6s ease-in-out ;
+-o-animation:fadeInOut .6s ease-in-out ;
+-moz-transition: fadeInOut .6s ease-in-out;
+animation: fadeInOut .6s ease-in-out ;
+}
+/*积分分类*/
+
+@import 'brand';
+
+/*详情页面*/
+
+@import 'detail';
