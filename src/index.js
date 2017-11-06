@@ -85,8 +85,9 @@ const Jf = () => (
 <Route exact path='/'  component={App} />
 */
 }
-<Route exact path={baseUrl}  component={App} />
-	<Route path={baseUrl+ '/login/:router?'}  component={Login} />
+<Route exact path='/'  component={App} />
+
+	<Route path={baseUrl+ '/login/:routee.preventDefault();r?'}  component={Login} />
 	 <Route path={baseUrl+'/product/:id?'} component={Detail}/>
 	 <Route path={baseUrl+'/search/:keyword?'} component={Searchhead} />
 	 <Route path={baseUrl +'/list/'} component={List}/>

@@ -1,5 +1,5 @@
-import React from 'react';
-import '../../styles/Placeholder.css';
+import React from 'react'
+import '../../styles/Placeholder.css'
 
 export default function Placeholder() {
   return (
