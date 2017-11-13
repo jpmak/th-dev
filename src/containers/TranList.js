@@ -36,7 +36,7 @@ class TranList extends React.Component {
 
         if (window.localStorage.user_info != 1) {
             //转换数字
-            p.then(this.props.history.push(this.props.baseUrl + '/login/tranList/'))
+            p.then(this.props.history.push(this.props.baseUrl + '/login/tranList'))
         }
     }
     componentDidMount() {

@@ -78,39 +78,39 @@
     }
 
     const fetchSalse = (dispatch) => {
-      $.ajax({
-        url: '/wap/?g=WapSite&c=Exchange&a=sales_volume',
-        dataType: 'json',
-        type: 'post',
-        success: (data) => {
-          dispatch({
-            type: consts.FETCHSALSE_SUCCESS,
-            salesItems: data.goods_list
-          });
-        },
-        error: () => {
-          console.log("加载失败");
-        }
+  $.ajax({
+    url: '/wap/?g=WapSite&c=Exchange&a=sales_volume',
+    dataType: 'json',
+    type: 'post',
+    success: (data) => {
+      dispatch({
+        type: consts.FETCHSALSE_SUCCESS,
+        salesItems: data.goods_list
       });
+    },
+    error: () => {
+      console.log("加载失败");
+    }
+  });
 
-      // fetch('/wap/?g=WapSite&c=Exchange&a=sales_volume', {
-      //     method: 'POST',
-      //     headers: {
-      //       "Content-Type": "application/x-www-form-urlencoded"
-      //     }
-      //   })
-      //   .then((res) => res.json())
-      //   .then((data) => {
+  // fetch('/wap/?g=WapSite&c=Exchange&a=sales_volume', {
+  //     method: 'POST',
+  //     headers: {
+  //       "Content-Type": "application/x-www-form-urlencoded"
+  //     }
+  //   })
+  //   .then((res) => res.json())
+  //   .then((data) => {
 
-      //     dispatch({
-      //       type: consts.FETCHSALSE_SUCCESS,
-      //       salesItems: data.goods_list
-      //     });
+  //     dispatch({
+  //       type: consts.FETCHSALSE_SUCCESS,
+  //       salesItems: data.goods_list
+  //     });
 
-      //   })
-      //   .catch(function(e) {
-      //     console.log("加载失败");
-      //   });
+  //   })
+  //   .catch(function(e) {
+  //     console.log("加载失败");
+  //   });
     }
 
 

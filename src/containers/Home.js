@@ -31,7 +31,7 @@ class Home extends React.Component {
         let p = new Promise(function(resolve, reject) {});
         if (window.localStorage.user_info != 1) {
             //转换数字
-            p.then(this.props.history.push(this.props.baseUrl + '/login/home/'))
+            p.then(this.props.history.push(this.props.baseUrl + '/login/home'))
         } else {
             this.props.dispatch(InfoTryRestoreComponent());
         }
@@ -81,7 +81,7 @@ class Home extends React.Component {
     }
     history() {
 
-        this.props.history.push(this.props.baseUrl + '/login/home/')
+        this.props.history.push(this.props.baseUrl + '/login/home')
     }
     backupIScrollY(e) {
         this.props.dispatch(backupIScrollY(e))

@@ -97,7 +97,6 @@ class NotFoundGoods extends React.Component {
 
 
     renderPage() {
-console.log('test');
         let NotFoundGoodList = [];
         let NotFoundGoods = this.props.NotFoundGoods;
         if (NotFoundGoods.length > 0) {
@@ -151,7 +150,6 @@ console.log('test');
 
 
     render() {
-        console.log(this.props.NotFoundGoods);
         let renderHtml = [];
         renderHtml = this.renderPage();
         return (

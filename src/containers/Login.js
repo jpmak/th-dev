@@ -1,4 +1,5 @@
 import React from 'react';
+
 import './../styles/login.scss';
 
 import {
@@ -20,18 +21,14 @@ class Login extends React.Component {
     this.go = '-2';
   };
 
-  // componentWillMount() {
-  //   document.title = '登录'
-  //   this.props.dispatch(beginUser())
 
-  // }
   componentWillMount() {
     document.title = '登录'
     const params = this.props.match.params
     const router = params.router
     if (this.props.userStatus === 1) {
       this.go = '-1'
-      this.props.history.push(this.props.baseUrl + '/')
+      this.props.history.push(this.props.baseUrl)
     } else if (this.props.userStatus === 0 && router === 'product') {
       this.go = '-1'
     } else {
@@ -39,17 +36,8 @@ class Login extends React.Component {
 
     }
   }
-  componentDidMount() {
+  componentDidMount(e) {
     document.body.style.backgroundColor = '#fff'
-      // const params = this.props.match.params
-      // const router = params.router
-      // if (this.props.userStatus === 1) {
-      //   this.props.history.push(this.props.baseUrl + '/')
-      // } else if (router === 'product') {
-
-    //   this.go = -1
-    //   console.log(this.go);
-    // }
     setTimeout(function() {
       if ($('#username').val() !== '') {
         $('#username').next().show();
@@ -57,6 +45,7 @@ class Login extends React.Component {
         $('#loginform').removeClass('bg-dark');
       }
     }, 10);
+
 
 
     $('#username,#pwd').on('keyup', function() {
@@ -88,7 +77,7 @@ class Login extends React.Component {
     document.body.style.backgroundColor = '#f5f5f5'
   }
   backEchange() {
-    this.props.history.push(this.props.baseUrl + '/')
+    this.props.history.push(this.props.baseUrl)
 
   }
   router() {
@@ -105,20 +94,21 @@ class Login extends React.Component {
       }
 
     } else {
-
       //跳转到用户主页
-      this.props.history.push(this.props.baseUrl + '/')
+      this.props.history.push(this.props.baseUrl)
+    }
+  }
+  keyCode(e) {
+    if (e.keyCode === 13) {
+      this.toLogin();
     }
   }
   toLogin() {
-    let p = new Promise(function(resolve, reject) {});
     var username = $('#username').val();
     var pwd = $('#pwd').val();
-
     if (username === '') {
       this.refs.Modal.setText2('请填写账号信息');
       this.refs.Modal.handleOpenModal2();
-
       return false;
     }
 
@@ -128,14 +118,11 @@ class Login extends React.Component {
 
       return false;
     }
-
     $.ajax({
       url: '/wap/?g=WapSite&c=Login&a=checkin',
       dataType: 'json',
       type: 'post',
       'data': {
-        // 'username': '13516557373',
-        // 'pwd': '030465'
         'username': username,
         'pwd': pwd
       },
@@ -143,13 +130,8 @@ class Login extends React.Component {
         if (data.returns) {
           this.refs.Modal.setText2(data.msg)
           this.refs.Modal.handleOpenModal2();
-
           window.localStorage.user_info = data.returns;
           this.props.dispatch(beginUser());
-
-          // setTimeout(
-          //           this.router()
-          //         , 1000)
           setTimeout(() => {
             this.router()
           }, 1000)
@@ -181,12 +163,12 @@ class Login extends React.Component {
                 <ul>
                     <li className="rel">
     <label className='account' htmlFor="username"> 账 号 </label>
-                        <input type="text" id="username" placeholder="请填写用户名或手机号码" autoFocus  />
+                        <input type="text" id="username" onKeyUp={this.keyCode.bind(this)} placeholder="请填写用户名或手机号码" autoFocus  />
                         <div id="del" className="delete"></div>
                     </li>
                     <li className="rel">
                         <label className='pwd' htmlFor="pwd"> 密 码 </label>
-                        <input type="password" id="pwd" placeholder="请输入登录密码"/>
+                        <input type="password" id="pwd" onKeyUp={this.keyCode.bind(this)} placeholder="请输入登录密码"/>
                         <div id="del" className="delete"></div>
                     </li>
                     <li className='forget' ><a href="https://www.thgo8.com/wap/Login-forgetpwd.html" >忘记密码</a></li>
@@ -195,7 +177,7 @@ class Login extends React.Component {
             <div className="button">
                 <ul>
                     <li>
-    <button id="loginform" onClick={this.toLogin.bind(this)} className="btn bg-red bg-dark">登录</button>
+    <button id="loginform" onClick={this.toLogin.bind(this)}  className="btn bg-red bg-dark">登录</button>
                     </li>
                     <li>
                         <button className="btn bg-fff registered" ><a href='https://www.thgo8.com/wap/Login-register.html'>立即注册</a></button>

@@ -11,7 +11,6 @@ import MsgAllOrderReducer from "./allorder.js";
 import MsgOrderDetailReducer from "./orderDetail.js";
 
 
-
 const initState = {
   userStatus: 0, // 登录状态
   userName: '', // 用户名
@@ -34,7 +33,7 @@ const initState = {
   moveWidths: 0, //块状移动长度
   liWidth: 0, //块状长度
   y: 0,
-  baseUrl: '/wa/Exchange-index.html', //router路径
+  baseUrl: process.env.NODE_ENV === 'production' ? '/wap/Exchange-index.html' : '/wa/Exchange-index.html', //router路径
   urlRoot: '' //ajax路径
 
 };

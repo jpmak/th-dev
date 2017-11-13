@@ -32,7 +32,7 @@ class Log extends React.Component {
 
         if (window.localStorage.user_info != 1) {
             // 转换数字
-            this.props.history.push(this.props.baseUrl + '/login/log/')
+            this.props.history.push(this.props.baseUrl + '/login/log')
         } else {
             this.props.dispatch(logTryRestoreComponent());
         }

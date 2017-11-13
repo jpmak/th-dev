@@ -64,38 +64,41 @@ import thunk from 'redux-thunk'
 // const TranList = NeedTranList;
 
 const middleware = [thunk]
-	// if (process.env.NODE_ENV !== 'production') {
-	// 	// middleware.push(createLogger())
-	// 	middleware
-
-// }
 const store = createStore(
 	reducer,
 	applyMiddleware(...middleware)
 )
+const Jf = () => {
+	let baseUrl = ''
+	if (process.env.NODE_ENV === 'production') {
+		baseUrl = '/wap/Exchange-index.html'
+	} else {
+		baseUrl = '/wa/Exchange-index.html'
 
-const baseUrl = '/wa/Exchange-index.html';
-const Jf = () => (
-	<Router>
-
+	}
+	return (
+		<Router>
 	<Switch>
 
 {/*	
 <Route exact path={baseUrl}  component={App} />
 <Route exact path='/'  component={App} />
+	<Route path={baseUrl+ '/login/:routee.preventDefault();r?'}  component={Login} />
+
 */
 }
-<Route exact path='/'  component={App} />
 
-	<Route path={baseUrl+ '/login/:routee.preventDefault();r?'}  component={Login} />
+
+<Route exact path={baseUrl}  component={App} />
+	<Route path={baseUrl+ '/login'}  component={Login} />
 	 <Route path={baseUrl+'/product/:id?'} component={Detail}/>
 	 <Route path={baseUrl+'/search/:keyword?'} component={Searchhead} />
-	 <Route path={baseUrl +'/list/'} component={List}/>
-	 <Route path={baseUrl+'/home/'} component={Home}/>
-	 <Route path={baseUrl+'/log/'} component={Log}/>
+	 <Route path={baseUrl +'/list'} component={List}/>
+	 <Route path={baseUrl+'/home'} component={Home}/>
+	 <Route path={baseUrl+'/log'} component={Log}/>
 	 <Route path={baseUrl+'/isorder/:id?'} component={IsOrder}/>
 	 <Route path={baseUrl+'/successview/:id?'} component={SuccessView}/>
-	 <Route path={baseUrl+'/allorder/'} component={AllOrder}/>
+	 <Route path={baseUrl+'/allorder'} component={AllOrder}/>
 	 <Route path={baseUrl+'/orderdetail/:id?'} component={OrderDetail}/>
 	 <Route path={baseUrl+'/TranList/:id?'} component={TranList}/>
 
@@ -104,8 +107,9 @@ const Jf = () => (
 
   </Switch>
   </Router>
-);
 
+	)
+}
 
 
 render(

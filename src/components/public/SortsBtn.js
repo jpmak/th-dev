@@ -5,7 +5,7 @@ import {
 class SortsBtn extends React.Component {
 	render() {
 		return (
-			<Link to={this.props.baseUrl+'/list/'} className="class sorts" ></Link>
+			<Link to={this.props.baseUrl+'/list'} className="class sorts" ></Link>
 		)
 	}
 }

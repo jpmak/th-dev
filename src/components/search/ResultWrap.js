@@ -22,11 +22,7 @@ class ResultWrap extends React.Component {
         this.p = 0;
         this.t = 0;
         this.page = 0;
-
-
-
         this.itemsChanged = false;
-
         this.pullDownTips = {
             // 下拉状态
             0: '下拉发起刷新',

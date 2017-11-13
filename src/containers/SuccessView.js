@@ -12,7 +12,7 @@ class SuccessView extends React.Component {
         this.props.history.push(this.props.baseUrl + '/orderDetail/' + this.props.match.params.id)
     }
     historyHome() {
-        this.props.history.push(this.props.baseUrl + '/')
+        this.props.history.push(this.props.baseUrl)
 
     }
 

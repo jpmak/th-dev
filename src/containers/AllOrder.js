@@ -34,7 +34,7 @@ class AllOrder extends React.Component {
         document.title = '兑换订单'
         if (window.localStorage.user_info != 1) {
             //类型转换
-            this.props.history.push(this.props.baseUrl + '/login/allorder/')
+            this.props.history.push(this.props.baseUrl + '/login/allorder')
         } else {
             this.props.dispatch(allOrderTryRestoreComponent());
         }

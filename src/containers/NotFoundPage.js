@@ -21,6 +21,7 @@ class NotFoundPage extends React.Component {
     super(props);
   };
   componentWillMount() {
+    window.scrollTo(0, 0)
     document.title = '页面出错'
 
   }
@@ -64,13 +65,12 @@ class NotFoundPage extends React.Component {
   //   this.props.dispatch(SearchBeginRefresh())
   // }
   render() {
-    console.log(this.props.pullDownStatus);
     return (
       <div className="div1" id="bodyDiv">
         <TopNav titleName = "页面出错" go={this.go} border='0' color='#fbfbfb' isNone='none'/>
        <div className='NotFound'> 
       <h3>抱歉,您所访问的页面不存在</h3>
-    <p className="broder_f36"><Link to={this.props.baseUrl+'/'}>返回兑换首页</Link></p>
+    <p className="broder_f36"><Link to={this.props.baseUrl}>返回兑换首页</Link></p>
 
       </div>
       <div className='w'>

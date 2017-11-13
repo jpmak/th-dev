@@ -27,12 +27,12 @@ export default (
 	<Route path={baseUrl+ '/login/:router?'}  component={Login} />
 	 <Route path={baseUrl+'/product/:id?'} component={Detail}/>
 	 <Route path={baseUrl+'/search/:keyword?'} component={Searchhead} />
-	 <Route path={baseUrl +'/list/'} component={List}/>
-	 <Route path={baseUrl+'/home/'} component={Home}/>
-	 <Route path={baseUrl+'/log/'} component={Log}/>
+	 <Route path={baseUrl +'/list'} component={List}/>
+	 <Route path={baseUrl+'/home'} component={Home}/>
+	 <Route path={baseUrl+'/log'} component={Log}/>
 	 <Route path={baseUrl+'/isorder/:id?'} component={IsOrder}/>
 	 <Route path={baseUrl+'/successview/:id?'} component={SuccessView}/>
-	 <Route path={baseUrl+'/allorder/'} component={AllOrder}/>
+	 <Route path={baseUrl+'/allorder'} component={AllOrder}/>
 	 <Route path={baseUrl+'/orderdetail/:id?'} component={OrderDetail}/>
 	 <Route path={baseUrl+'/TranList/:id?'} component={TranList}/>
 <Route path={baseUrl+'/404'} component={NotFoundPage} />
