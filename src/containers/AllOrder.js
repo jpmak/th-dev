@@ -12,6 +12,9 @@ import {
     beginUser
 } from '../actions'
 import {
+    beginShare
+} from '../actions/wxchat'
+import {
     allOrderTryRestoreComponent,
     beginRefresh,
     fetchAllOrderGoods,
@@ -42,6 +45,7 @@ class AllOrder extends React.Component {
 
     componentDidMount() {
         window.addEventListener('scroll', this.allOrderHandleScroll);
+        this.props.dispatch(beginShare())
 
         if (window.localStorage.user_info == 1) {
             if (this.props.allOrderLoadingStatus !== 2) {

@@ -11,6 +11,9 @@ import {
     scrollUp
 } from '../actions'
 import {
+    beginShare
+} from '../actions/wxchat'
+import {
     logTryRestoreComponent,
     beginRefresh,
     fetchLogGoods,
@@ -49,6 +52,8 @@ class Log extends React.Component {
                 window.scrollTo(0, this.props.y)
             }
         }
+        this.props.dispatch(beginShare())
+
     }
 
 

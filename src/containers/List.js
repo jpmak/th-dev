@@ -33,7 +33,7 @@ import {
     cate_id,
 } from '../actions/search'
 import {
-    beginShare,
+    beginShare
 } from '../actions/wxchat'
 class List extends React.Component {
     constructor(props) {

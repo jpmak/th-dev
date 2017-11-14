@@ -13,9 +13,10 @@ import {
   volume,
   beginLoad,
   updatePullUpStatus
-
 } from '../actions/search'
-
+import {
+  beginShare
+} from '../actions/wxchat'
 class NotFoundPage extends React.Component {
   constructor(props) {
     super(props);
@@ -33,9 +34,7 @@ class NotFoundPage extends React.Component {
     this.props.dispatch(volume())
     this.props.dispatch(price(''))
     this.props.dispatch(SearchBeginRefresh())
-
-
-
+    this.props.dispatch(beginShare())
   }
 
 

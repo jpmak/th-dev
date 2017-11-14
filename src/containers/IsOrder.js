@@ -11,9 +11,9 @@ import OrderFoot from '../components/isorder/OrderFoot';
 import PayWay from '../components/isorder/PayWay';
 import PayPwd from '../components/isorder/PayPwd';
 import CoverMask from '../components/detail/CoverMask';
-
-
-
+import {
+    beginShare
+} from '../actions/wxchat'
 import {
     beginUser
 } from '../actions'
@@ -22,7 +22,6 @@ import {
 } from 'react-redux'
 
 class IsOrder extends React.Component {
-
     constructor(props) {
         super(props);
         this.mounted = false;
@@ -53,6 +52,8 @@ class IsOrder extends React.Component {
     }
     componentDidMount() {
         this.fetchOrder();
+        this.props.dispatch(beginShare())
+
     }
 
     fetchOrder() {

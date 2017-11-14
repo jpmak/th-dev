@@ -18,6 +18,9 @@ import {
     beginUser,
 } from '../actions'
 import {
+    beginShare
+} from '../actions/wxchat'
+import {
     OrderDetailTryRestoreComponent,
     beginRefresh,
     fetchOrderDetailGoods,
@@ -59,7 +62,7 @@ class OrderDetail extends React.Component {
         } else {
             window.scrollTo(0, this.props.y)
         }
-
+        this.props.dispatch(beginShare())
     }
 
 

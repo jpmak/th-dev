@@ -3,10 +3,15 @@ import TopNav from '../components/TopNav';
 import {
     connect
 } from 'react-redux'
-
+import {
+    beginShare
+} from '../actions/wxchat'
 class SuccessView extends React.Component {
     componentWillMount() {
         document.title = '支付成功'
+    }
+    componentDidMount() {
+        this.props.dispatch(beginShare())
     }
     historyOrderDetail() {
         this.props.history.push(this.props.baseUrl + '/orderDetail/' + this.props.match.params.id)

@@ -11,6 +11,9 @@ import {
     beginUser,
 } from '../actions'
 import {
+    beginShare
+} from '../actions/wxchat'
+import {
     InfoTryRestoreComponent,
     beginRefresh,
     fetchInfoGoods,
@@ -39,6 +42,8 @@ class Home extends React.Component {
 
     componentDidMount() {
         window.addEventListener('scroll', this.homehandleScroll);
+        this.props.dispatch(beginShare())
+
         if (window.localStorage.user_info == 1) {
             if (this.props.homeLoadingStatus !== 2 || this.props.userStatus === 0) {
                 this.props.dispatch(updateHomeLoadingStatus(1)); // 恢复loading界面

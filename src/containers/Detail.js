@@ -17,7 +17,7 @@ import {
     fetchPropsGoods
 } from '../actions/detail'
 import {
-    beginShare,
+    beginShare
 } from '../actions/wxchat'
 import {
     beginUser

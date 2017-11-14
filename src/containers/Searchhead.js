@@ -10,10 +10,6 @@ import DelValue from '../components/search/DelValue';
 import SearchBtn from '../components/search/SearchBtn';
 import SearchResult from '../components/search/SearchResult';
 import {
-    beginShare,
-} from '../actions/wxchat'
-
-import {
     SearchBeginRefresh,
     SearchTryRestoreComponent,
     updateLoadingStatus,
@@ -26,28 +22,14 @@ import {
     price,
     volume,
     cate_id,
-
-
 } from '../actions/search'
 import {
     detailInit,
 } from '../actions/detail'
-// import {
-//     bindActionCreators
-// } from 'redux'
-
-
-
-// let arrval = new Array();
-// let sVal = '';
-
+import {
+    beginShare
+} from '../actions/wxchat'
 class Searchhead extends React.Component {
-
-    // static propTypes = {
-    //     searchPagedReddit: PropTypes.number.isRequired,
-    //     posts: PropTypes.array.isRequired,
-    //     dispatch: PropTypes.func.isRequired
-    // }
 
     constructor(props) {
         super(props);
@@ -60,19 +42,12 @@ class Searchhead extends React.Component {
         this.searchhistory_ev = false;
 
 
-
         this.searchMsg = window.localStorage.searchhistory ? JSON.parse(window.localStorage.searchhistory) : '';
 
     }
 
     pushSearch(e) {
-        // this.props.history.push('/product/384.html');
-
         let p = new Promise(function(resolve, reject) {});
-        // this.refs.getarr.funStoreHistory(e);
-        // this.refs.getarr.pushSearch();
-        // console.log(e);
-        // this.props.history.push('/serach/' + e)
         p.then(this.refs.getarr.funStoreHistory(e))
             .then(this.refs.getarr.pushSearch(e))
 
@@ -109,7 +84,6 @@ class Searchhead extends React.Component {
     }
     componentWillMount() {
         window.scrollTo(0, 0)
-
         this.funloadHistory();
         if (window.localStorage.searchhistory) {
             this.setState({

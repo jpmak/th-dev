@@ -10,6 +10,7 @@ import {
   beginUser
 
 } from '../actions'
+
 import Modal from '../components/public/Modal';
 import TopNav from '../components/TopNav';
 
@@ -38,6 +39,7 @@ class Login extends React.Component {
   }
   componentDidMount(e) {
     document.body.style.backgroundColor = '#fff'
+
     setTimeout(function() {
       if ($('#username').val() !== '') {
         $('#username').next().show();

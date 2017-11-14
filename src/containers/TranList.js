@@ -12,11 +12,11 @@ import DataNone from '../components/public/DataNone';
 import LoadingLayer from '../components/LoadingLayer/LoadingLayer';
 
 import {
-
     beginUser,
-
 } from '../actions'
-
+import {
+    beginShare
+} from '../actions/wxchat'
 class TranList extends React.Component {
 
     constructor(props) {
@@ -42,12 +42,9 @@ class TranList extends React.Component {
     componentDidMount() {
         if (this.props.userStatus === 0) {
             this.props.dispatch(beginUser())
-
         }
         this.fetchTranList(this.props.match.params.id)
-
-
-
+        this.props.dispatch(beginShare())
     }
     onRetryLoading() {
         this.fetchTranList(this.props.match.params.id)

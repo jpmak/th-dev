@@ -56,9 +56,6 @@ class App extends React.Component {
 			window.scrollTo(0, this.props.y)
 		}
 		this.props.dispatch(beginShare())
-
-
-
 	}
 	componentWillUnmount() {
 		window.removeEventListener('scroll', this.appHandleScroll);
