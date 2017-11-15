@@ -2,6 +2,7 @@
         $activeColor:#FF3838;
         $yellowColor: #F5A623;
         $borderColor:#dedede;
+        $grayColor:#eee;
         $redColor:#ED0E47;
         $blueColor:#0066ff;
         .black000 {
@@ -272,14 +273,14 @@
                         color: $yellowColor;
                         font-size: .28rem;
                         text-align: left;
-             
+
                         height: .40rem;
                         padding-top: .2rem;
                         .sale-price {
                             font-size: .28rem;
                             em {
                                 font-size: .20rem;
-                
+
 
                                 padding-right: .02rem;
                             }
@@ -291,30 +292,26 @@
 
 
                             em {
-                                        font-weight:bold;
+                                font-weight: bold;
                                 font-size: .32rem;
-                             
                             }
                             .moneyPrice {
                                 font-size: .32rem;
                                 font-weight: bold;
-                        
                             }
                         }
                         .point {
 
                             font-size: .28rem;
                             .add {
-                      font-size: .28rem;
-                          font-weight: normal;
-                        color:$yellowColor;
-                        padding:0 .02rem;
-                         
+                                font-size: .28rem;
+                                font-weight: normal;
+                                color: $yellowColor;
+                                padding: 0 .02rem;
                             }
                             .money {
                                 font-size: .32rem;
                                 font-weight: bold;
-                                
                             }
                         }
                     }
@@ -385,10 +382,10 @@
                             color: #000;
                             font-size: .26rem;
                             margin-right: .05rem;
-font-weight:500;
-display:inline-block;
-line-height:.26rem;
-text-align:top;
+                            font-weight: 500;
+                            display: inline-block;
+                            line-height: .26rem;
+                            text-align: top;
 
                             .num {
                                 font-size: .28rem;
@@ -469,8 +466,7 @@ text-align:top;
         .order li .shop {
             height: .8rem;
             line-height: .8rem;
-        }
-// allorder
+        } // allorder
         .totalWrap {
             float: left;
 
@@ -480,12 +476,12 @@ text-align:top;
                 height: .78rem;
                 line-height: .78rem; // background:#FBFBFB;
                 .total {
-            float: left;
+                    float: left;
 
                     font-size: .26rem;
                     font-weight: 500;
 
-         
+
                     .num {
                         color: #E42C2F;
                         font-size: .28rem;
@@ -507,10 +503,9 @@ text-align:top;
                             color: #000;
                             padding: 0 .1rem;
                         }
-                        .money{
-                        font-weight: bold;
-                        margin-right: .05rem;
-
+                        .money {
+                            font-weight: bold;
+                            margin-right: .05rem;
                         }
                     }
                 }
@@ -523,7 +518,7 @@ text-align:top;
                     border-radius: .25rem;
                     text-align: center;
                     vertical-align: center;
-                    color:$redColor;
+                    color: $redColor;
                     border: 1px solid $redColor;
                     font-size: .24rem;
                     line-height: .40rem;
@@ -1052,11 +1047,9 @@ text-align:top;
                         .num {
                             font-size: .40rem;
                             margin-right: .05rem;
-                            .money{
+                            .money {
                                 margin-right: .05rem;
-                            font-size: .40rem;
-
-
+                                font-size: .40rem;
                             }
                         }
                         .add {
@@ -1258,18 +1251,142 @@ text-align:top;
                 height: 1rem;
                 background: url(../images/cards.png) no-repeat;
                 background-size: 1rem 1rem;
-                &.car{
-                     background: url(../images/delivery.png) no-repeat;
-                                  background-size: 1rem 1rem;
+                &.car {
+                    background: url(../images/delivery.png) no-repeat;
+                    background-size: 1rem 1rem;
                 }
-                &.wait{
-                     background: url(../images/package.png) no-repeat;
-                                  background-size: 1rem 1rem;
+                &.wait {
+                    background: url(../images/package.png) no-repeat;
+                    background-size: 1rem 1rem;
                 }
             }
         }
+.open{
+-webkit-animation:fadeInOut 1s ease-in;
+-o-animation:fadeInOut .6s ease-in;
+-moz-transition: fadeInOut .6s ease-in;
+animation: fadeInOut .6s ease-in ;
+}
+@-webkit-keyframes fadeInOut {
+    0% {
+        opacity:0;
+     }
+  25% {
+        opacity:.25;
+    }
+      50% {
+        opacity:.5;
+    }
+       75% {
+        opacity:.75;
+    }
+    100% {
+        opacity:1;
+    }
+}
+@keyframes fadeInOut {
+    0% {
+        opacity:0;
+     }
+  25% {
+        opacity:.25;
+    }
+      50% {
+        opacity:.5;
+    }
+       75% {
+        opacity:.75;
+    }
+    100% {
+        opacity:1;
+    }
+}
+        .loading { 
+              .place-msg{
+                    em{
 
+                          width:2.44rem;
+                    height: .3rem;
+                vertical-align: middle;
 
+                    display: inline-block;
+                    background: $grayColor 
+                    }
+                } 
+            .charges{
+
+                p.freight{
+                    height:.4rem;
+width:1.4rem;
+                    background: $grayColor
+
+                }
+                .act-paid{
+                                        height:.42rem;
+width:3rem;
+                    background: $grayColor
+                }
+            }
+            .goods-msg {
+                .icon {
+                    background: $grayColor
+                }
+                .goods-name{
+                    background: $grayColor
+
+                }
+                .price {
+height:.38rem;
+width:3rem;
+                    background: $grayColor
+
+}
+            }
+            .left-cont {
+                h3 {
+                    width: 1.44rem;
+                    height: .9rem;
+                    background: $grayColor
+                }
+            }
+            .right-cont {
+                .user-msg {
+                    .user-id {
+                        height: .26rem;
+                        width: .56rem;
+                        background: $grayColor
+                    }
+                    .tel-num {
+                        background: $grayColor;
+                        height: .26rem;
+                        width: 1.76rem;
+                    }
+                }
+                .address {
+                    height: .56rem;
+                    width: 6rem;
+                    background: $grayColor;
+                }
+            }
+            .condition {
+                background: $grayColor;
+                width: 6rem;
+                height: .32rem;
+            }
+            .order-sub {
+                .order-sub-num {
+                    em {
+
+                        width: 3rem;
+                        height: .32rem;
+                        vertical-align: middle;
+
+                        display: inline-block;
+                        background: $grayColor;
+                    }
+                }
+            }
+        }
 
         .order-msg {
             background: #fff;
@@ -1336,7 +1453,8 @@ text-align:top;
                 }
             }
         }
-      .seller-shipped::after {
+
+        .seller-shipped::after {
             content: "";
             display: block;
             width: .20rem;
@@ -1348,11 +1466,12 @@ text-align:top;
             display: inline-block;
             vertical-align: middle;
         }
+
         .gray56 {
-            pointer-events:none;
-            .bg-icon{
+            pointer-events: none;
+            .bg-icon {
                 background: url(../images/truck-gray.png) no-repeat;
-                                background-size: .45rem .45rem;
+                background-size: .45rem .45rem;
             }
             .mid-cont {
                 .condition {
@@ -1360,16 +1479,14 @@ text-align:top;
                     color: #dedede;
                 }
             }
-           &:after {
-        width:0rem;
-            height: 0rem;
- border:0;
-    
-
+            &:after {
+                width: 0rem;
+                height: 0rem;
+                border: 0;
             }
         }
 
-  
+
 
 
         .goods-details {
@@ -1378,13 +1495,14 @@ text-align:top;
             padding: 0 .20rem;
             border-bottom: 1px solid #dedede;
             margin-top: .20rem;
+            span {
+                display: inline-block
+            }
             .order-sub {
                 height: .50rem;
                 line-height: .50rem;
                 border-bottom: 1px solid #dedede;
-                .order-sub-num {
-                    float: left;
-                }
+                .order-sub-num {}
                 .shop-name {
                     float: right;
                 }
@@ -1426,7 +1544,7 @@ text-align:top;
                             .totalPrice {
                                 font-weight: bold;
                                 .money {
-                                font-weight: bold;
+                                    font-weight: bold;
                                     padding-right: .04rem;
                                 }
                             }
@@ -1454,8 +1572,8 @@ text-align:top;
                             }
                         }
                         .price {
-                            font-size:.32rem;
-                                padding-top: .2rem;
+                            font-size: .32rem;
+                            padding-top: .2rem;
                             font-weight: bold;
                             color: $yellowColor;
                         }
@@ -1474,36 +1592,34 @@ text-align:top;
                     margin: .10rem 0;
                     height: .4rem;
                     line-height: .4rem;
-               
+
                     label {
                         float: left;
                     }
                     p {
                         float: right;
-                        &.freight{
-                           color: $redColor;
-                           font-size: .32rem;
+                        &.freight {
+                            color: $redColor;
+                            font-size: .32rem;
                         }
                     }
                      :after {
-                      
+
                         content: "";
                         clear: both;
                     }
                     .act-paid {
                         font-size: .4rem;
                         color: #ED1A3B;
-                   
-}
+                    }
                 }
             }
             .place-msg {
                 .place-lists {
-                        height: .4rem;
-                      line-height: .4rem;
+                    height: .4rem;
+                    line-height: .4rem;
                     margin: .10rem 0;
                     color: rgba(43, 36, 36, 0.70);
-                  
                 }
             }
         }
@@ -1525,14 +1641,16 @@ text-align:top;
                     width: 1.50rem;
                     height: .50rem;
                     border-radius: 25rem;
-                        border: 1px solid rgba(43, 36, 36, 0.7);;
-                    color: rgba(43, 36, 36, 0.7);;
+                    border: 1px solid rgba(43, 36, 36, 0.7);
+                    ;
+                    color: rgba(43, 36, 36, 0.7);
+                    ;
                     background: none;
                     font-size: .24rem;
                     margin-left: .30rem;
-                    &.red-btn{
-                                border: 1px solid $redColor;
-                    color: $redColor;
+                    &.red-btn {
+                        border: 1px solid $redColor;
+                        color: $redColor;
                     }
                 }
             }

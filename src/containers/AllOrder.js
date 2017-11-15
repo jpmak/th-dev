@@ -45,7 +45,7 @@ class AllOrder extends React.Component {
 
     componentDidMount() {
         window.addEventListener('scroll', this.allOrderHandleScroll);
-        this.props.dispatch(beginShare())
+        this.props.dispatch(beginShare('allorder'))
 
         if (window.localStorage.user_info == 1) {
             if (this.props.allOrderLoadingStatus !== 2) {

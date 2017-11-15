@@ -62,7 +62,7 @@ class OrderDetail extends React.Component {
         } else {
             window.scrollTo(0, this.props.y)
         }
-        this.props.dispatch(beginShare())
+        this.props.dispatch(beginShare('orderdetail', this.props.match.params.id))
     }
 
 
@@ -188,7 +188,96 @@ class OrderDetail extends React.Component {
             }
         });
     }
+    renderloading() {
+        return (
+            <div>
 
+        <TopNav titleName = "订单详情" />
+               <div className='w orderDetWrap loading'>
+<div className="top-board">
+            </div>
+
+<div className="order-msg">
+                <div className="bg-icon"></div>
+                <div className="right-cont">
+                    <div className="user-msg">
+                        <div className="user-id"></div>
+                        <div className="tel-num"></div>
+                    </div>
+                    <div className="address">
+                        <p></p>
+                        <p></p>
+                    </div>
+                </div>
+
+            </div>
+<div class="seller-shipped gray56"><div class="bg-icon"></div><div class="mid-cont"><div class="condition"></div></div></div>
+<div>
+
+     <div className="bg-icon"></div>
+
+
+ </div>
+
+
+            <div className="order-details">
+                <div className="goods-details">
+                    <div className="order-sub">
+                        <div className="order-sub-num"><span>订单号:</span><em></em></div>
+                    </div>
+              
+                    <div className="order-lists">
+                        <div className="goods-msg">
+                         <div className="icon"></div>
+                            <div className="right-cont">
+                                <div className="goods-name"></div>
+
+                                <div className="norm-wrap">
+                                    <div className="norm" style={{float:'left'}}></div>
+    
+                                </div>
+
+        <div className="price">
+<span className="e-price"></span>
+      </div>
+                            </div>
+                        </div>
+                                            </div>
+
+                                        <div className="shop-tit" >
+                        <div className="title">
+                            <i></i>
+                                           </div>
+                    </div>
+                    <ul className="charges">
+                        <li className="char-lists">
+                            <label htmlFor="">运费：</label>
+        <p className="freight"></p>
+                        </li>
+                     
+                        <li className="char-lists">
+                            <label htmlFor="">实付 (含运费)</label>
+                            
+        <p className="act-paid"><span className="e-price"></span>
+    </p>
+                        </li>
+                    </ul>
+                    <ul className="place-msg">
+                        <li className="place-lists">下单时间：<em></em></li>
+                        <li className="place-lists">配送方式：<em></em></li>
+                        <li className="place-lists">兑换类型：<em></em></li>
+                        <li className="place-lists">付款方式：<em></em></li>
+
+                    </ul>
+                </div>
+            </div>
+             
+   </div> 
+<PayPwd/>
+      <Modal ref='Modal'  icon={this.state.ModalIicon}  ModalCallBack={this.ModalCallBack.bind(this)}/>
+   </div>
+        )
+    }
     renderPage() {
 
         let orderInfoItems = this.props.orderInfoItems;
@@ -203,13 +292,13 @@ class OrderDetail extends React.Component {
 
         if (orderInfoItems.ems_status == 1 && trackInfoContext.length > 0) {
             //转换类型
-            emsHtml = (<div className="mid-cont">
+            emsHtml = (<div className="mid-cont open">
                    <div className="condition">{this.props.trackInfoContext}</div>
                         <div className="time"> {this.props.trackInfoTime}</div>
                 </div>)
 
         } else {
-            emsHtml = (<div className="mid-cont"><div className="condition">暂无物流信息</div></div>)
+            emsHtml = (<div className="mid-cont open"><div className="condition">暂无物流信息</div></div>)
         }
 
         switch (orderInfoItems.cur_status) {
@@ -243,7 +332,7 @@ class OrderDetail extends React.Component {
         let priceHtml = ''
         let item_price = parseFloat(orderInfoItems.total_price)
         if (item_price !== 0) {
-            priceHtml = (<span className='totalPrice'><span className='add'>+</span><em className='money'>{orderInfoItems.total_price}</em>元</span>)
+            priceHtml = (<span className='totalPrice open'><span className='add'>+</span><em className='money'>{orderInfoItems.total_price}</em>元</span>)
         } else {
             priceHtml = (<span></span>)
 
@@ -253,7 +342,7 @@ class OrderDetail extends React.Component {
             <div>
 
         <TopNav titleName = "订单详情" />
-               <div className='w orderDetWrap'>
+               <div className='w orderDetWrap '>
 
 <div className="top-board">
                 <div className="left-cont">
@@ -267,19 +356,19 @@ class OrderDetail extends React.Component {
                 <div className="bg-icon"></div>
                 <div className="right-cont">
                     <div className="user-msg">
-                        <div className="user-id">{orderConsigneeItems.consignee}</div>
-                        <div className="tel-num">{orderConsigneeItems.mobile}</div>
+        <div className="user-id open">{orderConsigneeItems.consignee}</div>
+                        <div className="tel-num open">{orderConsigneeItems.mobile}</div>
                     </div>
                     <div className="address">
-                        <p>{orderConsigneeItems.province} {orderConsigneeItems.city} {orderConsigneeItems.county}</p>
-                        <p>{orderConsigneeItems.address} </p>
+                        <p className='open'>{orderConsigneeItems.province} {orderConsigneeItems.city} {orderConsigneeItems.county}</p>
+                        <p className='open'>{orderConsigneeItems.address} </p>
                     </div>
                 </div>
             </div>
 
-<div className= {trackInfoContext.length>0?'seller-shipped':'seller-shipped gray56'}>
+<div className= {trackInfoContext.length>0?'seller-shipped':'seller-shipped gray56 '}>
 <Link  to={this.props.baseUrl+'/TranList/'+orderInfoItems.exchange_order_number}>
-     <div className="bg-icon"></div>
+     <div className="bg-icon open"></div>
        {emsHtml}
   </Link>
  </div>
@@ -293,17 +382,17 @@ class OrderDetail extends React.Component {
                     <Link to={this.props.baseUrl+'/product/'+orderInfoItems.item_id} onClick={this.detailData.bind(this, orderInfoItems.goods_name,orderInfoItems.t_beans,orderInfoItems.price, orderInfoItems.goods_image)}>
                     <div className="order-lists">
                         <div className="goods-msg">
-                         <div className="icon"><img src={orderInfoItems.goods_image}/></div>
+                         <div className="icon"><img className='open' src={orderInfoItems.goods_image}/></div>
                             <div className="right-cont">
-                                <div className="goods-name">{orderInfoItems.goods_name}</div>
+                                <div className="goods-name open">{orderInfoItems.goods_name}</div>
 
                                 <div className="norm-wrap">
-                                    <div className="norm" style={{float:'left'}}>{orderInfoItems.prop_value}</div>
+                                    <div className="norm open" style={{float:'left'}}>{orderInfoItems.prop_value}</div>
     
                                 </div>
 
         <div className="price">
-<span className="e-price"><em className='moneyPrice'>  {orderInfoItems.t_beans}</em>积分</span>
+<span className="e-price open"><em className='moneyPrice'>  {orderInfoItems.t_beans}</em>积分</span>
       {priceHtml}</div>
                             </div>
                         </div>
@@ -317,26 +406,26 @@ class OrderDetail extends React.Component {
                     <ul className="charges">
                         <li className="char-lists">
                             <label htmlFor="">运费：</label>
-        <p className="freight">¥ {orderInfoItems.shipping_cost}</p>
+        <p className="freight open">¥ {orderInfoItems.shipping_cost}</p>
                         </li>
                      
                         <li className="char-lists">
                             <label htmlFor="">实付 (含运费)</label>
                             
-        <p className="act-paid"><span className="e-price"><em className='moneyPrice'>  {orderInfoItems.t_beans}</em>积分</span>
+        <p className="act-paid  open"><span className="e-price"><em className='moneyPrice'>  {orderInfoItems.t_beans}</em>积分</span>
       {priceHtml}</p>
                         </li>
                     </ul>
                     <ul className="place-msg">
-                        <li className="place-lists">下单时间：{orderInfoItems.created}</li>
-                        <li className="place-lists">配送方式：快递运送</li>
-                        <li className="place-lists">兑换类型：{orderInfoItems.point_name}</li>
-                        <li className="place-lists">付款方式：惠积分</li>
+                        <li className="place-lists">下单时间：<em className='open'>{orderInfoItems.created}</em></li>
+                        <li className="place-lists">配送方式：<em className='open'>快递运送</em></li>
+                        <li className="place-lists">兑换类型：<em className='open'>{orderInfoItems.point_name}</em></li>
+                        <li className="place-lists">付款方式：<em className='open'>惠积分</em></li>
 
                     </ul>
                 </div>
             </div>
-               {btnHtml}
+       
    </div> 
 <PayPwd/>
       <Modal ref='Modal'  icon={this.state.ModalIicon}  ModalCallBack={this.ModalCallBack.bind(this)}/>
@@ -344,14 +433,21 @@ class OrderDetail extends React.Component {
         )
     }
     render() {
-
         let renderHtml = [];
+
+        // console.log(this.props.orderInfoItems);
+        if (this.props.orderInfoItems.length == 0) {
+            console.log('test');
+            renderHtml = this.renderloading()
+        } else {
+            renderHtml = this.renderPage();
+        }
         // 首屏没有加载成功，那么均展示loading效果
-        renderHtml = this.renderPage();
+
         return (
             <div>
         {
-            renderHtml
+          renderHtml
         }
         </div>
         );

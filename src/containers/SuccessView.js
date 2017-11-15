@@ -11,7 +11,7 @@ class SuccessView extends React.Component {
         document.title = '支付成功'
     }
     componentDidMount() {
-        this.props.dispatch(beginShare())
+        this.props.dispatch(beginShare('successview'))
     }
     historyOrderDetail() {
         this.props.history.push(this.props.baseUrl + '/orderDetail/' + this.props.match.params.id)

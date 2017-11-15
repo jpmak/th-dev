@@ -52,7 +52,7 @@ class IsOrder extends React.Component {
     }
     componentDidMount() {
         this.fetchOrder();
-        this.props.dispatch(beginShare())
+        this.props.dispatch(beginShare('isorder', this.props.match.params.id))
 
     }
 

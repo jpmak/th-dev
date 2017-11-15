@@ -52,7 +52,7 @@ class Log extends React.Component {
                 window.scrollTo(0, this.props.y)
             }
         }
-        this.props.dispatch(beginShare())
+        this.props.dispatch(beginShare('log'))
 
     }
 

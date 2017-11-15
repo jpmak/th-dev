@@ -44,7 +44,7 @@ class TranList extends React.Component {
             this.props.dispatch(beginUser())
         }
         this.fetchTranList(this.props.match.params.id)
-        this.props.dispatch(beginShare())
+        this.props.dispatch(beginShare('tranlist', this.props.match.params.id))
     }
     onRetryLoading() {
         this.fetchTranList(this.props.match.params.id)

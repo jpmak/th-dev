@@ -42,7 +42,7 @@ class Home extends React.Component {
 
     componentDidMount() {
         window.addEventListener('scroll', this.homehandleScroll);
-        this.props.dispatch(beginShare())
+        this.props.dispatch(beginShare('home'))
 
         if (window.localStorage.user_info == 1) {
             if (this.props.homeLoadingStatus !== 2 || this.props.userStatus === 0) {

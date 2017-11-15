@@ -34,7 +34,7 @@ class NotFoundPage extends React.Component {
     this.props.dispatch(volume())
     this.props.dispatch(price(''))
     this.props.dispatch(SearchBeginRefresh())
-    this.props.dispatch(beginShare())
+    this.props.dispatch(beginShare('404'))
   }
 
 
