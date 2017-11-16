@@ -100,7 +100,7 @@ const Jf = () => {
 	 <Route path={baseUrl+'/successview/:id?'} component={SuccessView}/>
 	 <Route path={baseUrl+'/allorder'} component={AllOrder}/>
 	 <Route path={baseUrl+'/orderdetail/:id?'} component={OrderDetail}/>
-	 <Route path={baseUrl+'/TranList/:id?'} component={TranList}/>
+	 <Route path={baseUrl+'/tranList/:id?'} component={TranList}/>
 
 <Route path={baseUrl+'/404'} component={NotFoundPage} />
 <Redirect from='*'  to={baseUrl+'/404'} />

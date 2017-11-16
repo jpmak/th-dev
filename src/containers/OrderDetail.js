@@ -45,7 +45,7 @@ class OrderDetail extends React.Component {
 
         if (window.localStorage.user_info != 1) {
             // 转换数字
-            p.then(this.props.history.push(this.props.baseUrl + '/login/orderDetail/'))
+            p.then(this.props.history.push(this.props.baseUrl + '/login/orderdetail/'))
         } else {
 
             this.props.dispatch(OrderDetailTryRestoreComponent());
@@ -311,7 +311,7 @@ class OrderDetail extends React.Component {
                 iconHtml = (<div className="right-icon car"></div>)
                 btnHtml = (
                     <div className="foot">
-                 <Link to={this.props.baseUrl+'/TranList/'+orderInfoItems.exchange_order_number}>
+                 <Link to={this.props.baseUrl+'/tranList/'+orderInfoItems.exchange_order_number}>
                 <button className="pay-btn">查看物流</button>
                </Link>
 

@@ -81,7 +81,7 @@ class Detail extends React.Component {
             },
             success: (data) => {
                 if (data.status) {
-                    this.props.history.push(this.props.baseUrl + '/IsOrder/' + this.props.match.params.id)
+                    this.props.history.push(this.props.baseUrl + '/isorder/' + this.props.match.params.id)
                 }
 
             },
