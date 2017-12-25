@@ -70,10 +70,12 @@ const store = createStore(
 )
 const Jf = () => {
 	let baseUrl = ''
+
 	if (process.env.NODE_ENV === 'production') {
+		// baseUrl = ''
 		baseUrl = '/wap/Exchange-index.html'
 	} else {
-		baseUrl = '/wa/Exchange-index.html'
+		baseUrl = '/wa/Exchange-index.html1111111111111111111111'
 
 	}
 	return (
