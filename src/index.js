@@ -75,7 +75,7 @@ const Jf = () => {
 		// baseUrl = ''
 		baseUrl = '/wap/Exchange-index.html'
 	} else {
-		baseUrl = '/wa/Exchange-index.html1111111111111111111111'
+		baseUrl = '/wa/Exchange-index.html'
 
 	}
 	return (

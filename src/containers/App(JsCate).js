@@ -8,8 +8,9 @@ import SearchBox from '../components/SearchBox';
 import SlickBanner from '../components/SlickBanner';
 import SlickBanner2 from '../components/SlickBanner2';
 import SalesWrapper from '../components/SalesWrapper';
+import JsCate from '../components/JsCate';
 import TabCate from '../components/TabCate';
-// import JsCate from '../components/JsCate';
+
 import FooterNav from '../components/FooterNav';
 import WechatSdk from '../components/public/WechatSdk';
 
@@ -18,7 +19,6 @@ import {
 	tryRestoreComponent,
 	beginRefresh,
 	fetchCateGoods,
-	fetchTabGoods,
 	getCateId,
 	pullUpStatus,
 	liMove,
@@ -69,7 +69,7 @@ class App extends React.Component {
 		let clientHeight = this.props.dispatch(scrollUp.getClientHeight())
 		let scrollTop = this.props.dispatch(scrollUp.getScrollTop()); //滚动条滚动高度
 		let scrollHeight = this.props.dispatch(scrollUp.getScrollHeight()); //滚动内容高度
-		// this.refs.JsCate.fixWrap(scrollTop)
+		this.refs.JsCate.fixWrap(scrollTop)
 		this.scrollTop = scrollTop
 		if ((clientHeight + scrollTop) === (scrollHeight) && this.isDataing === false) {
 			this.isDataing = true;
@@ -77,9 +77,7 @@ class App extends React.Component {
 		}
 	}
 	get_cate_goods(index, id, page) {
-		// this.props.dispatch(fetchCateGoods(index, id, page))
-		this.props.dispatch(fetchTabGoods(index, id, page))
-
+		this.props.dispatch(fetchCateGoods(index, id, page))
 	}
 	changeIsData(e) {
 		this.isDataing = e
@@ -120,7 +118,6 @@ class App extends React.Component {
 			cateList,
 			pushIndex,
 			cateGoods,
-			tabGoods,
 			pullUpStatus,
 			pullDownStatus,
 			pageStatus,
@@ -154,16 +151,13 @@ class App extends React.Component {
 		</div>
 		</div>
 			<div className='w'>
-	{/*
+	
 		<JsCate baseUrl={baseUrl} ref='JsCate' changeIsData={this.changeIsData.bind(this)} UpDataCateId={this.UpDataCateId.bind(this)}  loadingStatus={loadingStatus} detailData={this.detailData.bind(this)} cateList={cateList} cateGoods={cateGoods} liWidth={liWidth} moveWidths={moveWidths} pushIndex={pushIndex} pageStatus={pageStatus} pullDownStatus={pullDownStatus} pullUpStatus={pullUpStatus} UpDataPullUpStatus={this.UpDataPullUpStatus.bind(this)} get_cate_goods={this.get_cate_goods.bind(this)} changeGoods={this.changeGoods.bind(this)} liMove={this.liMove.bind(this)}/>
-		*/}
-		<TabCate baseUrl={baseUrl} ref='JsCate' changeIsData={this.changeIsData.bind(this)} UpDataCateId={this.UpDataCateId.bind(this)}  loadingStatus={loadingStatus} detailData={this.detailData.bind(this)} cateList={cateList} cateGoods={cateGoods} tabGoods={tabGoods} liWidth={liWidth} moveWidths={moveWidths} pushIndex={pushIndex} pageStatus={pageStatus} pullDownStatus={pullDownStatus} pullUpStatus={pullUpStatus} UpDataPullUpStatus={this.UpDataPullUpStatus.bind(this)} get_cate_goods={this.get_cate_goods.bind(this)} changeGoods={this.changeGoods.bind(this)} liMove={this.liMove.bind(this)}/>
             </div>
-          	{/*  
 		<footer id='nav'>
             <FooterNav baseUrl={baseUrl}/>
             </footer>
-        	*/}
+            <TabCate />
 		<WechatSdk appId={this.props.appId} timestamp={this.props.timestamp} nonceStr={this.props.nonceStr} signature={this.props.signature} jsApiList={this.props.jsApiList}/>
 </div>
 		);
@@ -188,7 +182,6 @@ const mapStateToProps = state => {
 		salesItems: state.MsgAppReducer.salesItems,
 		cateGoods: state.MsgAppReducer.cateGoods,
 		cateId: state.MsgAppReducer.cateId,
-		tabGoods: state.MsgAppReducer.tabGoods,
 		pushIndex: state.MsgAppReducer.pushIndex,
 		pullUpStatus: state.MsgAppReducer.pullUpStatus,
 		pullDownStatus: state.MsgAppReducer.pullDownStatus,

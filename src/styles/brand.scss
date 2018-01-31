@@ -139,7 +139,15 @@
                 z-index: 100;
             }
         }
+.tab-content-list{
 
+    .tab-content-item{
+    display: none;
+    }
+        .active{
+        display: block;
+    }
+}
         .app-pd-wp {
             position: relative;
             display: block;

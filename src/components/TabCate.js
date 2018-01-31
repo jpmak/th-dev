@@ -5,9 +5,12 @@ import {
     spring
 } from 'react-motion';
 import CateGoods from './CateGoods';
-
-
-class JsCate extends React.Component {
+import {
+    Link
+} from 'react-router-dom'
+import LazyLoad from 'react-lazyload';
+import PlaceholderComponent from './public/Placeholder';
+class TabCate extends React.Component {
 
     constructor(props) {
         super(props);
@@ -17,6 +20,7 @@ class JsCate extends React.Component {
         this.state = {
             move: this.props.moveWidths,
             currentIndex: this.props.pushIndex,
+            actIndex: 0,
             liWidth: this.props.liWidth,
             onStartX: 0,
             onMoveX: 0
@@ -50,7 +54,8 @@ class JsCate extends React.Component {
         this.setState({
             move: widths,
             currentIndex: index,
-            liWidth: liWidth
+            liWidth: liWidth,
+            actIndex: index
         });
         this.props.liMove(index, widths, liWidth)
 
@@ -120,6 +125,9 @@ class JsCate extends React.Component {
     fixWrap(e) {
         this.refs.CateGoods.handleScroll(e)
     }
+    getContentItemCssClasses(index) {
+        return index === this.state.actIndex ? "tab-content-item active" : "tab-content-item";
+    }
     componentWillReceiveProps(nextProps) {
         if (nextProps.loadingStatus !== this.props.loadingStatus) {
             let nav_w = $('.app-scroller li').first().width();
@@ -127,6 +135,12 @@ class JsCate extends React.Component {
         }
     }
     render() {
+        console.log(this.props.tabGoods);
+        let that = this;
+        let {
+            baseWidth
+        } = this.props;
+        // let childrenLength = this.props.children.length;
         if (!this.onClick) {
             let nav_w = $('.app-scroller li').first().width();
             $('.choose-items-wp p').width(nav_w);
@@ -138,9 +152,56 @@ class JsCate extends React.Component {
                 <li key={index} className={this.cheack(index)} id={Cate.cate_id} onClick={this.handleClick.bind(this,index,Cate.cate_id)}><a><span>{Cate.cate_name}</span></a></li>
             )
         }, this)
+
+        let CateGoodList = [];
+        let GoodListLi = [];
+        let CateGoods = this.props.cateGoods;
+        // let GoodList = []
+        let GoodList = this.props.cateGoods.map((tabs, index) => {
+
+            // let GoodListLi = tabs.map((tab, index) => {
+            //     return (
+
+            //         <li key={index} className='add'> 
+            //         <Link to={this.props.baseUrl+'/product/'+tab.item_id}  className="upItem " data-id={tab.item_id}>
+            //     <div className="info-img">
+            //     <LazyLoad height={200} placeholder={<PlaceholderComponent />}>
+            //     <img className='lazy' alt=''  src={tab.list_image}/>
+            //     </LazyLoad>
+            //     </div>
+            //     <div className="info-bar">
+            //     <div className="pro-title">{tab.goods_name}</div>
+            //     <div className="e-numb">
+            //     <span className="e-price"><em className='moneyPrice'>{tab.exchange_points}</em>积分</span>
+            //     </div>
+            //     </div>
+            //     </Link>
+            //      </li>
+
+            //         // <div key={index}  id={index} className={this.getContentItemCssClasses(index)}>
+            //         //  <div className="app-pd-list">
+            //         //  {tabs}
+            //         // </div>
+            //         //  </div>
+            //     )
+            // }, this)
+
+
+            return (
+
+
+                <div key={index}  id={index} className={this.getContentItemCssClasses(index)}>
+             <div className="app-pd-list">
+             {GoodListLi}
+            </div>
+             </div>
+            )
+        }, this)
+
         return (
             <div>
-        <Motion style={{x: spring(this.state.move),width:spring(this.state.liWidth),navw:spring(this.state.wrapWidth)}}>
+       
+    <Motion style={{x: spring(this.state.move),width:spring(this.state.liWidth),navw:spring(this.state.wrapWidth)}}>
                            {({x,width,navw}) =>
             <div id="app-scroller"  className="app-scroller-wrap" onTouchStart={this.startMoveImg.bind(this)}  onTouchMove={this.movingImg.bind(this)}>
             <div className="app-scroller" style={{WebkitTransform: `translate3d(${this.state.wrapWidth}px, 0, 0)`,transform: `translate3d(${this.state.wrapWidth}px, 0, 0)`}} >
@@ -152,9 +213,26 @@ class JsCate extends React.Component {
                     </div>
 }
         </Motion>
-        <CateGoods ref='CateGoods' baseUrl={this.props.baseUrl} changeIsData={this.changeIsData.bind(this)} ref='CateGoods' detailData={this.detailData.bind(this)} cateGoods={this.props.cateGoods} pageStatus={this.props.pageStatus} pullUpStatus={this.props.pullUpStatus} pullDownStatus={this.props.pullDownStatus} changeGoods={this.props.changeGoods} />
+ <div className="tab-content-list">
+
+<div className="app-pd-list">
+     {GoodList}
+
+{/*
+
+
+          {React.Children.map(this.props.children, (element, index) => {
+            return ()
+          })}  
+
+          */}
+        </div>
+  
+        </div>
+
+      
                 </div>
         )
     }
 }
-export default JsCate;
+export default TabCate;

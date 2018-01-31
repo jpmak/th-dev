@@ -26,7 +26,10 @@ const initState = {
   cateList: [], //分类列表
   pushIndex: 0, //点击的index
   cateId: '', //当前分类ID
-  cateGoods: [], //分类信息
+  cateGoods: [], //分类信息,
+  tabGoods: [
+
+  ], //选项卡信息,
   CateGoodsPage: 0, //页数
   pullUpStatus: 0, //上加载状态
   pullDownStatus: 4, //下加载状态
@@ -123,6 +126,13 @@ const UPDATE_LIEVENT_STATUS_reducer = (state, action) => {
   return state;
 }
 
+const FETCHTABGOODS_SUCCESS_reducer = (state, action) => {
+  return Object.assign({}, state, {
+    tabGoods: action.tabGoods,
+  });
+  return state;
+}
+
 const FETCHCATEGOODS_SUCCESS_reducer = (state, action) => {
   let nextState = Object.assign({}, state);
   nextState.pageStatus = action.pageStatus;
@@ -158,13 +168,10 @@ const FETCHCATEGOODS_SUCCESS_reducer = (state, action) => {
     }
     if (action.CateGoodsPage > 0 && state.pullDownStatus < 2) {
       nextState.pullDownStatus = 2;
-
     }
   }
   return nextState;
 }
-
-
 
 export const MsgAppReducer = (state = initState, action) => {
   switch (action.type) {
@@ -182,6 +189,8 @@ export const MsgAppReducer = (state = initState, action) => {
       return FETCHCATELIST_SUCCESS_reducer(state, action);
     case consts.FETCHCATEGOODS_SUCCESS:
       return FETCHCATEGOODS_SUCCESS_reducer(state, action);
+    case consts.FETCHTABGOODS_SUCCESS:
+      return FETCHTABGOODS_SUCCESS_reducer(state, action);
     case consts.UPDATE_PULLUP_STATUS:
       return UPDATE_PULLUP_STATUS_reducer(state, action);
     case consts.UPDATE_LIEVENT_STATUS:
